@@ -1,0 +1,176 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+					<Item class="ScreenGui" referent="25369">
+						<Properties>
+							<bool name="ClipToDeviceSafeArea">true</bool>
+							<int name="DisplayOrder">35</int>
+							<token name="SafeAreaCompatibility">1</token>
+							<token name="ScreenInsets">1</token>
+							<bool name="Enabled">true</bool>
+							<bool name="ResetOnSpawn">false</bool>
+							<token name="ZIndexBehavior">1</token>
+							<bool name="AutoLocalize">true</bool>
+							<Ref name="RootLocalizationTable">null</Ref>
+							<token name="SelectionBehaviorDown">0</token>
+							<token name="SelectionBehaviorLeft">0</token>
+							<token name="SelectionBehaviorRight">0</token>
+							<token name="SelectionBehaviorUp">0</token>
+							<bool name="SelectionGroup">false</bool>
+							<BinaryString name="AttributesSerialize">AgAAAA8AAABTZWxmTWFuYWdlZFRleHQDAQwAAABVc2VHYW1lQXVkaW8DAQ==</BinaryString>
+							<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+							<bool name="DefinesCapabilities">false</bool>
+							<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+							<string name="Name">MatchSummaryUI</string>
+							<BinaryString name="SerializedOverrides"></BinaryString>
+							<int64 name="SourceAssetId">-1</int64>
+							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
+							<UniqueId name="UniqueId">37e861920e9a3f3d0afcf6e2000041d2</UniqueId>
+						</Properties>
+						<Item class="LocalScript" referent="25370">
+							<Properties>
+								<ProtectedString name="Source"><![CDATA[ 
+
+ 
+
+local StarterGui = game:GetService("StarterGui");
+local UserInputService = game:GetService("UserInputService");
+local ChickenOrHero = game:GetService("ReplicatedStorage"):WaitForChild("ChickenOrHero");
+local script_Parent = script.Parent;
+
+if not game:IsLoaded() then
+    game.Loaded:Wait();
+end;
+
+local UI = StarterGui:WaitForChild("UI", 30);
+
+if UI then
+    UI = UI:WaitForChild("HolderFrame", 30);
+end;
+
+if UI then
+    UI = UI:WaitForChild("MatchResult", 30);
+end;
+
+if not UI then
+    warn("MatchResultClient: StarterGui.UI.HolderFrame.MatchResult is missing, so there is no match recap");
+
+    return;
+end;
+
+UI.Parent = script_Parent:WaitForChild("HolderFrame");
+local u1;
+
+if UI:FindFirstChildOfClass("UIScale") then
+    u1 = nil;
+else
+    local UIScale = Instance.new("UIScale");
+    UIScale.Name = "TouchScale";
+    UIScale.Scale = UserInputService.PreferredInput == Enum.PreferredInput.Touch and 1.15 or 1.25;
+    UIScale.Parent = UI;
+    u1 = UserInputService:GetPropertyChangedSignal("PreferredInput"):Connect(function() -- Line: 33, Name: fit
+        -- upvalues: UIScale (copy), UserInputService (copy)
+        UIScale.Scale = UserInputService.PreferredInput == Enum.PreferredInput.Touch and 1.15 or 1.25;
+    end);
+end;
+
+script.Destroying:Connect(function() -- Line: 40
+    -- upvalues: u1 (ref)
+    if u1 then
+        u1:Disconnect();
+        u1 = nil;
+    end;
+end);
+local success, result = pcall(function() -- Line: 48
+    -- upvalues: ChickenOrHero (copy), script_Parent (copy)
+    require(ChickenOrHero:WaitForChild("Interface"):WaitForChild("Features"):WaitForChild("MatchResultPanel")).start(script_Parent);
+end);
+
+if not success then
+    warn("MatchResultClient: the match recap failed to start: " .. tostring(result));
+end;]]></ProtectedString>
+								<bool name="Disabled">false</bool>
+								<Content name="LinkedSource"><null></null></Content>
+								<token name="RunContext">0</token>
+								<string name="ScriptGuid">{3C3434F3-F1EA-4057-A787-5574D2FFCF5F}</string>
+								<BinaryString name="AttributesSerialize"></BinaryString>
+								<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+								<bool name="DefinesCapabilities">false</bool>
+								<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+								<string name="Name">MatchResultClient</string>
+								<BinaryString name="SerializedOverrides"></BinaryString>
+								<int64 name="SourceAssetId">-1</int64>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
+								<UniqueId name="UniqueId">37e861920e9a3f3d0afcf6e2000041d3</UniqueId>
+							</Properties>
+						</Item>
+						<Item class="Frame" referent="25371">
+							<Properties>
+								<token name="Style">0</token>
+								<bool name="Active">false</bool>
+								<Vector2 name="AnchorPoint">
+									<X>0.5</X>
+									<Y>0.5</Y>
+								</Vector2>
+								<token name="AutomaticSize">0</token>
+								<Color3 name="BackgroundColor3">
+									<R>1</R>
+									<G>1</G>
+									<B>1</B>
+								</Color3>
+								<float name="BackgroundTransparency">1</float>
+								<Color3 name="BorderColor3">
+									<R>0.105882354</R>
+									<G>0.164705887</G>
+									<B>0.20784314</B>
+								</Color3>
+								<token name="BorderMode">0</token>
+								<int name="BorderSizePixel">0</int>
+								<bool name="ClipsDescendants">false</bool>
+								<bool name="Draggable">false</bool>
+								<bool name="Interactable">true</bool>
+								<int name="LayoutOrder">0</int>
+								<Ref name="NextSelectionDown">null</Ref>
+								<Ref name="NextSelectionLeft">null</Ref>
+								<Ref name="NextSelectionRight">null</Ref>
+								<Ref name="NextSelectionUp">null</Ref>
+								<UDim2 name="Position">
+									<XS>0.5</XS>
+									<XO>0</XO>
+									<YS>0.5</YS>
+									<YO>0</YO>
+								</UDim2>
+								<float name="Rotation">0</float>
+								<bool name="Selectable">false</bool>
+								<Ref name="SelectionImageObject">null</Ref>
+								<int name="SelectionOrder">0</int>
+								<token name="Sink">0</token>
+								<UDim2 name="Size">
+									<XS>1</XS>
+									<XO>0</XO>
+									<YS>1</YS>
+									<YO>0</YO>
+								</UDim2>
+								<token name="SizeConstraint">0</token>
+								<bool name="Visible">true</bool>
+								<int name="ZIndex">1</int>
+								<bool name="AutoLocalize">true</bool>
+								<Ref name="RootLocalizationTable">null</Ref>
+								<token name="SelectionBehaviorDown">0</token>
+								<token name="SelectionBehaviorLeft">0</token>
+								<token name="SelectionBehaviorRight">0</token>
+								<token name="SelectionBehaviorUp">0</token>
+								<bool name="SelectionGroup">false</bool>
+								<BinaryString name="AttributesSerialize"></BinaryString>
+								<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+								<bool name="DefinesCapabilities">false</bool>
+								<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+								<string name="Name">HolderFrame</string>
+								<BinaryString name="SerializedOverrides"></BinaryString>
+								<int64 name="SourceAssetId">-1</int64>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
+								<UniqueId name="UniqueId">37e861920e9a3f3d0afcf6e2000041d4</UniqueId>
+							</Properties>
+						</Item>
+					</Item>
+</roblox>

@@ -1,0 +1,97 @@
+  
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage");
+game:GetService("ServerScriptService");
+game:GetService("Players");
+game:GetService("RunService");
+game:GetService("TweenService");
+game:GetService("RunService");
+game:GetService("TweenService");
+game:GetService("Debris");
+require(ReplicatedStorage.Shared.Essentials);
+require(ReplicatedStorage.Shared.Trove);
+require(ReplicatedStorage.Shared.SoundManager);
+local Popup = require(ReplicatedStorage.Shared.Popup);
+require(ReplicatedStorage.Shared.VfxManager);
+
+return function(u1, u2, u3) -- Line: 17
+    -- upvalues: Popup (copy), ReplicatedStorage (copy)
+    if u2.Character.Values.HasBall.Value == true then
+        Popup.Popup(u2, "Must not have ball!)");
+
+        return;
+    end;
+
+    if u1.AbilityThree > tick() then
+        return;
+    end;
+
+    if u1.AbilityUsed > tick() then
+        return;
+    end;
+
+    if u1.ABC then
+        u1.ABC:Clean();
+    end;
+
+    u1:AbilityCooldown("3", 1);
+    local Value = ReplicatedStorage.Football.Value;
+
+    if Value.OnPlayer.Value then
+        Popup.Popup(u2, "Ball must be loose!");
+
+        return;
+    end;
+
+    if (Value.Position - u3.HumanoidRootPart.Position).Magnitude >= 80 then
+        Popup.Popup(u2, "Ball too far!");
+
+        return;
+    end;
+
+    if Value.Position.Y < 14 then
+        Popup.Popup(u2, "Ball not in the air!");
+
+        return;
+    end;
+
+    local _ = u1.Camera.Shiftlock;
+    u1.Camera:SetShiftlock(false);
+    u1.Camera.Cutscene = true;
+    u1.InAbility = true;
+    u1.StatesController.States.Ability = true;
+    u3.HumanoidRootPart.Anchored = true;
+    u1.ABC:Add(function() -- Line: 52
+        -- upvalues: u1 (copy), u3 (copy)
+        u1.Camera.Cutscene = false;
+        u1.InAbility = false;
+        u1.StatesController.States.Ability = false;
+        u3.HumanoidRootPart.Anchored = false;
+    end);
+    u1.ABC:Add(task.delay(12, function() -- Line: 61
+        -- upvalues: u1 (copy)
+        u1.ABC:Clean();
+    end));
+    u1.ABC:Connect(u1.AbilityService.Ability, function(p4) -- Line: 66
+        -- upvalues: u1 (copy), u2 (copy), Value (copy)
+        if p4 == false then
+            u1.ABC:Clean();
+
+            return;
+        end;
+
+        u1:AbilityCooldown("3", 40);
+        local Character = u2.Character;
+
+        if Character then
+            Character = Character:FindFirstChild("HumanoidRootPart");
+        end;
+
+        if not Character then
+            return;
+        end;
+
+        Value.AssemblyLinearVelocity = Character.CFrame.LookVector * 80;
+    end);
+    u1.AbilityService.Ability:Fire("ItsSlow");
+end;

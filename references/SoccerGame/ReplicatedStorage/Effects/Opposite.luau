@@ -1,0 +1,121 @@
+  
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage");
+local TweenService = game:GetService("TweenService");
+local UserInputService = game:GetService("UserInputService");
+local RunService = game:GetService("RunService");
+local Debris = game:GetService("Debris");
+require(ReplicatedStorage.Shared.Essentials);
+require(ReplicatedStorage.Shared.VfxManager);
+local SpectatorController = require(ReplicatedStorage.Controllers.SpectatorController);
+
+return function(u1) -- Line: 12
+    -- upvalues: SpectatorController (copy), UserInputService (copy), RunService (copy), TweenService (copy), Debris (copy)
+    if game.Players.LocalPlayer.Team == game.Teams.Visitor and not SpectatorController.IsSpectating then
+        table.clear(u1);
+
+        return;
+    end;
+
+    local u2 = UserInputService.TouchEnabled and 0.3 or 0.15;
+    local u3 = {
+        Color3.new(0.207843, 0.0156863, 0.6),
+        Color3.new(0.0196078, 0.654902, 0.505882),
+        Color3.new(0.0980392, 0.25098, 0.498039),
+        Color3.new(0.0862745, 0.505882, 0.380392)
+    };
+    local u4 = 1;
+    local u5 = nil;
+    local u6 = tick();
+    u5 = RunService.Heartbeat:Connect(function() -- Line: 36
+        -- upvalues: u1 (ref), u5 (ref), u6 (ref), u2 (ref), u4 (ref), u3 (copy), TweenService (ref), Debris (ref)
+        if u1.Char == nil then
+            table.clear(u1);
+            u1 = nil;
+
+            if u5 then
+                u5:Disconnect();
+                u5 = nil;
+            end;
+        end;
+
+        if u6 + u2 < tick() then
+            u6 = tick();
+            u4 = u4 + 1;
+
+            if u4 > #u3 then
+                u4 = 1;
+            end;
+
+            u1.Char.Archivable = true;
+            local u7 = u1.Char:Clone();
+            task.delay(0.55, function() -- Line: 56
+                -- upvalues: u7 (copy)
+                u7:Destroy();
+            end);
+            task.spawn(function() -- Line: 60
+                -- upvalues: u7 (copy)
+                u7.Torso:FindFirstChild("Jersey"):Destroy();
+            end);
+            local Children = u7:GetChildren();
+
+            for _, v in pairs(Children) do
+                if v:IsA("Accessory") and v.Name == "Cape" then
+                    v:Destroy();
+                elseif v:IsA("Accessory") and v.Name == "Peppermint Cape" then
+                    v:Destroy();
+                elseif v:IsA("Accessory") and v.Name == "Santa Hat" then
+                    v:Destroy();
+                elseif v:IsA("Script") or v:IsA("LocalScript") then
+                    v:Destroy();
+                elseif v:IsA("Highlight") then
+                    v.FillColor = u3[u4];
+                    v.OutlineColor = u3[u4];
+                    v.OutlineTransparency = 0;
+                    v.FillTransparency = 0;
+                    local v8 = TweenService:Create(v, TweenInfo.new(0.55, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
+                        FillTransparency = 1,
+                        OutlineTransparency = 1
+                    });
+                    v8:Play();
+                    Debris:AddItem(v8, 0.55);
+                elseif v:IsA("MeshPart") or v:IsA("BasePart") then
+                    v.CanCollide = false;
+                    v.Anchored = true;
+
+                    if v.Name ~= "HumanoidRootPart" then
+                        local v9 = TweenService:Create(v, TweenInfo.new(0.55, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
+                            Transparency = 1
+                        });
+                        v9:Play();
+                        Debris:AddItem(v9, 0.55);
+                    end;
+                elseif v:IsA("Accessory") then
+                    v.Handle.CanCollide = false;
+                    v.Handle.Anchored = true;
+                    local v10 = TweenService:Create(v.Handle, TweenInfo.new(0.55, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
+                        Transparency = 1
+                    });
+                    v10:Play();
+                    Debris:AddItem(v10, 0.55);
+                end;
+            end;
+
+            table.clear(Children);
+            u7.Parent = workspace;
+        end;
+    end);
+    task.delay(0.9, function() -- Line: 121
+        -- upvalues: u1 (ref), u5 (ref), u3 (copy), u4 (ref)
+        table.clear(u1);
+        u1 = nil;
+
+        if u5 then
+            u5:Disconnect();
+            u5 = nil;
+        end;
+
+        table.clear(u3);
+        u4 = nil;
+    end);
+end;

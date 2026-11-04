@@ -1,0 +1,6 @@
+ 
+ 
+
+return {
+    bufferable = { "skill2" }
+};

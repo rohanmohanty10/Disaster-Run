@@ -1,0 +1,10 @@
+ 
+ 
+
+return {
+    Description = "CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS CHAOS ",
+    Name = script.Name,
+    Aliases = { "c" },
+    Group = script.Parent.Name,
+    Args = {}
+};

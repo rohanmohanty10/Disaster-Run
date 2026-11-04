@@ -1,0 +1,29 @@
+  
+
+local v1 = {};
+game:GetService("RunService");
+local ReplicatedStorage = game:GetService("ReplicatedStorage");
+local CollectionService = game:GetService("CollectionService");
+require(ReplicatedStorage.Shared.Essentials);
+
+function v1.SetupCosmetic(p2, p3) -- Line: 8
+    -- upvalues: CollectionService (copy)
+    for _, descendant in script:GetDescendants() do
+        if descendant.Name ~= "HRP" and descendant:IsA("BasePart") then
+            local v4 = descendant:Clone();
+            v4.CanCollide = false;
+            v4.Massless = true;
+            v4.Anchored = false;
+            v4.Transparency = 1;
+            v4:PivotTo(p2.HumanoidRootPart.CFrame * script.HRP.CFrame:ToObjectSpace(v4.CFrame));
+            v4.Parent = p2.HumanoidRootPart;
+            local WeldConstraint = Instance.new("WeldConstraint");
+            WeldConstraint.Part0 = p2.HumanoidRootPart;
+            WeldConstraint.Part1 = v4;
+            WeldConstraint.Parent = v4;
+            CollectionService:AddTag(v4, (`Cosmetic{p3}`));
+        end;
+    end;
+end;
+
+return v1;

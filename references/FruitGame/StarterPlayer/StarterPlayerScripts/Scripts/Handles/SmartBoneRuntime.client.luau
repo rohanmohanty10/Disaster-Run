@@ -1,0 +1,3 @@
+ 
+
+require(game:GetService("ReplicatedStorage"):WaitForChild("SmartBone")).Start()
