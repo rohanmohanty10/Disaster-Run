@@ -1,0 +1,121 @@
+  
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage");
+local TweenService = game:GetService("TweenService");
+game:GetService("UserInputService");
+local RunService = game:GetService("RunService");
+game:GetService("Debris");
+local Players = game:GetService("Players");
+local Lighting = game:GetService("Lighting");
+require(ReplicatedStorage.Shared.Essentials);
+local VfxManager = require(ReplicatedStorage.Shared.VfxManager);
+require(ReplicatedStorage.Shared.SoundManager);
+require(ReplicatedStorage.Controllers.CameraController);
+local SpectatorController = require(ReplicatedStorage.Controllers.SpectatorController);
+local createAfterImage = require(ReplicatedStorage.Shared.AbilityUtils).createAfterImage;
+require(ReplicatedStorage.AbilityBalancing);
+local EmitModule = require(ReplicatedStorage.Shared.EmitModule);
+local LocalPlayer = Players.LocalPlayer;
+
+return function(p1) -- Line: 20
+    -- upvalues: SpectatorController (copy), LocalPlayer (copy), TweenService (copy), Lighting (copy), VfxManager (copy), EmitModule (copy), RunService (copy), createAfterImage (copy)
+    local Char = p1.Char;
+
+    if not Char then
+        return;
+    end;
+
+    if game.Players.LocalPlayer.Team == game.Teams.Visitor and not SpectatorController.IsSpectating then
+        return;
+    end;
+
+    if not Char:FindFirstChild("HumanoidRootPart") then
+        return;
+    end;
+
+    local u2 = {};
+
+    local function ScreenEffect() -- Line: 35
+        -- upvalues: Char (copy), LocalPlayer (ref), TweenService (ref), Lighting (ref)
+        if (Char.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
+            TweenService:Create(Lighting.ColorCorrection, TweenInfo.new(0.1), {
+                TintColor = Color3.fromRGB(255, 60, 100)
+            }):Play();
+            task.delay(0.1, function() -- Line: 39
+                -- upvalues: TweenService (ref), Lighting (ref)
+                TweenService:Create(Lighting.ColorCorrection, TweenInfo.new(0.6), {
+                    TintColor = Color3.new(1, 1, 1)
+                }):Play();
+            end);
+        end;
+    end;
+
+    local function CreateEffect(p3, p4) -- Line: 45
+        -- upvalues: Char (copy), VfxManager (ref), u2 (copy)
+        local v5 = p3:Clone();
+        v5.CFrame = Char.HumanoidRootPart.CFrame * p4;
+        v5.Parent = workspace.Debris;
+        VfxManager.Emit(v5);
+        table.insert(u2, v5);
+    end;
+
+    local v6 = script.Highlight:Clone();
+    v6.Parent = Char;
+    EmitModule.emit(v6);
+
+    if p1.Type == "Start" then
+        local script_StartupSimple = script.StartupSimple;
+        local CFrame_new_ret = CFrame.new(0, -2.5, 0);
+        local v7 = script_StartupSimple:Clone();
+        v7.CFrame = Char.HumanoidRootPart.CFrame * CFrame_new_ret;
+        v7.Parent = workspace.Debris;
+        VfxManager.Emit(v7);
+        table.insert(u2, v7);
+    elseif p1.Type == "Fake" then
+        local script_StartupSimple = script.StartupSimple;
+        local CFrame_new_ret = CFrame.new(0, -2.5, 0);
+        local v8 = script_StartupSimple:Clone();
+        v8.CFrame = Char.HumanoidRootPart.CFrame * CFrame_new_ret;
+        v8.Parent = workspace.Debris;
+        VfxManager.Emit(v8);
+        table.insert(u2, v8);
+        task.wait(0.55);
+        local u9 = script.Trail:Clone();
+        u9.Parent = workspace.Debris;
+        table.insert(u2, u9);
+        local v10 = RunService.Heartbeat:Connect(function() -- Line: 72
+            -- upvalues: u9 (copy), Char (copy)
+            u9.CFrame = Char.HumanoidRootPart.CFrame;
+        end);
+        task.spawn(function() -- Line: 76
+            -- upvalues: createAfterImage (ref), Char (copy), u2 (copy)
+            for i = 1, 5 do
+                local v11 = createAfterImage(Char, {
+                    FillColor = Color3.new(0.392157, 0.839216, 0.976471),
+                    OutlineColor = Color3.new(0.262745, 0.592157, 0.796078)
+                });
+                table.insert(u2, v11);
+                task.wait(0.05);
+                local _ = i;
+            end;
+        end);
+        EmitModule.emit(u9);
+        task.wait(1.5);
+        v10:Disconnect();
+    else
+        local script_Hit4Emit = script.Hit4Emit;
+        local CFrame_new_ret = CFrame.new(0, -2.5, 0);
+        local v12 = script_Hit4Emit:Clone();
+        v12.CFrame = Char.HumanoidRootPart.CFrame * CFrame_new_ret;
+        v12.Parent = workspace.Debris;
+        VfxManager.Emit(v12);
+        table.insert(u2, v12);
+    end;
+
+    task.wait(2);
+    v6:Destroy();
+
+    for _, v in pairs(u2) do
+        v:Destroy();
+    end;
+end;

@@ -1,0 +1,36 @@
+ 
+ 
+
+return {
+    [0.2] = "I see your weakness",
+    [4] = "Before you see it yourself",
+    [7.6] = "I wear your secrets",
+    [11.2] = "Like trophies on a shelf",
+    [14.8] = "Walk the line between fear and faith",
+    [18.4] = "Eyes like razors, cutting through",
+    [22.1] = "Built a kingdom with no voice but mine",
+    [25.9] = "One crown, one will, no compromise",
+    [30] = "I\'ve seen the moments you break",
+    [33.8] = "Before you even tense",
+    [37.3] = "I watch the way your breath stutters",
+    [40.3] = "And I write endings in it",
+    [44.5] = "You can pray, but you can\'t run",
+    [48.1] = "The game was always mine",
+    [51.5] = "And when you fall, you\'ll call my name",
+    [55.4] = "Hoping for a better day",
+    [59.4] = "",
+    [65.7] = "I\'m not your friend, I\'m not your god",
+    [69.4] = "But you\'ll obey, like it or not",
+    [74] = "Don\'t need a crown",
+    [76.7] = "I don\'t even need a name",
+    [80.3] = "You\'ll remember the shape of fear",
+    [84] = "Long after I\'m gone away",
+    [87.7] = "I see your weakness",
+    [91.2] = "Before you see it yourself",
+    [95] = "I wear your secrets",
+    [98.6] = "Like trophies on a shelf",
+    [102.6] = "You can pray, but you can\'t run",
+    [106.3] = "The game was always mine",
+    [109.7] = "And when you fall, you\'ll call my name",
+    [113.5] = "Hoping for a better day"
+};

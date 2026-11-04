@@ -1,0 +1,3 @@
+ 
+
+return require(game.ReplicatedStorage.Modules.RotatedRegion3)

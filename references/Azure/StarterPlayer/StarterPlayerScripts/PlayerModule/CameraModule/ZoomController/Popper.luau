@@ -1,0 +1,385 @@
+ 
+
+ 
+
+local Players = game:GetService("Players");
+local CurrentCamera = game.Workspace.CurrentCamera;
+local math_min = math.min;
+local math_tan = math.tan;
+local math_rad = math.rad;
+local Ray_new = Ray.new;
+
+local function getTotalTransparency(p1) -- Line: 17
+    return 1 - (1 - p1.Transparency) * (1 - p1.LocalTransparencyModifier);
+end;
+
+local function eraseFromEnd(p2, p3) -- Line: 21
+    for i = #p2, p3 + 1, -1 do
+        p2[i] = nil;
+        local _ = i;
+    end;
+end;
+
+local u4 = nil;
+local u5 = nil;
+
+local function updateProjection() -- Line: 28
+    -- upvalues: CurrentCamera (copy), math_rad (copy), u5 (ref), math_tan (copy), u4 (ref)
+    local v6 = math_rad(CurrentCamera.FieldOfView);
+    local ViewportSize = CurrentCamera.ViewportSize;
+    local v7 = ViewportSize.X / ViewportSize.Y;
+    u5 = math_tan(v6 / 2) * 2;
+    u4 = v7 * u5;
+end;
+
+CurrentCamera:GetPropertyChangedSignal("FieldOfView"):Connect(updateProjection);
+CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(updateProjection);
+local v8 = math_rad(CurrentCamera.FieldOfView);
+local ViewportSize = CurrentCamera.ViewportSize;
+local v9 = ViewportSize.X / ViewportSize.Y;
+u5 = math_tan(v8 / 2) * 2;
+u4 = v9 * u5;
+local NearPlaneZ = CurrentCamera.NearPlaneZ;
+CurrentCamera:GetPropertyChangedSignal("NearPlaneZ"):Connect(function() -- Line: 43
+    -- upvalues: NearPlaneZ (ref), CurrentCamera (copy)
+    NearPlaneZ = CurrentCamera.NearPlaneZ;
+end);
+local u10 = {};
+local u11 = {};
+
+local function refreshIgnoreList() -- Line: 51
+    -- upvalues: u10 (ref), u11 (copy)
+    local v12 = 1;
+    u10 = {};
+
+    for _, v in pairs(u11) do
+        u10[v12] = v;
+        v12 = v12 + 1;
+    end;
+end;
+
+local function playerAdded(u13) -- Line: 60
+    -- upvalues: u11 (copy), u10 (ref)
+    local function characterRemoving() -- Line: 65
+        -- upvalues: u11 (ref), u13 (copy), u10 (ref)
+        u11[u13] = nil;
+        local v14 = 1;
+        u10 = {};
+
+        for _, v in pairs(u11) do
+            u10[v14] = v;
+            v14 = v14 + 1;
+        end;
+    end;
+
+    u13.CharacterAdded:Connect(function(p15) -- Line: 61, Name: characterAdded
+        -- upvalues: u11 (ref), u13 (copy), u10 (ref)
+        u11[u13] = p15;
+        local v16 = 1;
+        u10 = {};
+
+        for _, v in pairs(u11) do
+            u10[v16] = v;
+            v16 = v16 + 1;
+        end;
+    end);
+    u13.CharacterRemoving:Connect(characterRemoving);
+
+    if u13.Character then
+        u11[u13] = u13.Character;
+        local v17 = 1;
+        u10 = {};
+
+        for _, v in pairs(u11) do
+            u10[v17] = v;
+            v17 = v17 + 1;
+        end;
+    end;
+end;
+
+local function playerRemoving(p18) -- Line: 77
+    -- upvalues: u11 (copy), u10 (ref)
+    u11[p18] = nil;
+    local v19 = 1;
+    u10 = {};
+
+    for _, v in pairs(u11) do
+        u10[v19] = v;
+        v19 = v19 + 1;
+    end;
+end;
+
+Players.PlayerAdded:Connect(playerAdded);
+Players.PlayerRemoving:Connect(playerRemoving);
+
+for _, v in ipairs(Players:GetPlayers()) do
+    playerAdded(v);
+end;
+
+local v20 = 1;
+u10 = {};
+
+for _, v in pairs(u11) do
+    u10[v20] = v;
+    v20 = v20 + 1;
+end;
+
+local u21 = nil;
+local u22 = nil;
+CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(function() -- Line: 111
+    -- upvalues: CurrentCamera (copy), u22 (ref)
+    local CameraSubject = CurrentCamera.CameraSubject;
+
+    if CameraSubject:IsA("Humanoid") then
+        u22 = CameraSubject.RootPart;
+
+        return;
+    end;
+
+    if CameraSubject:IsA("BasePart") then
+        u22 = CameraSubject;
+
+        return;
+    end;
+
+    u22 = nil;
+end);
+
+local function canOcclude(p23) -- Line: 122
+    -- upvalues: u21 (ref)
+    if p23.Parent and p23.Parent.Name:sub(1, 2) == "gm" then
+        return false;
+    end;
+
+    local v24;
+
+    if 1 - (1 - p23.Transparency) * (1 - p23.LocalTransparencyModifier) < 0.25 then
+        v24 = p23.CanCollide;
+
+        if v24 then
+            if u21 == (p23:GetRootPart() or p23) then
+                v24 = false;
+            else
+                v24 = not p23:IsA("TrussPart");
+            end;
+        end;
+    else
+        v24 = false;
+    end;
+
+    return v24;
+end;
+
+local u25 = {
+    Vector2.new(0.4, 0),
+    Vector2.new(-0.4, 0),
+    Vector2.new(0, -0.4),
+    Vector2.new(0, 0.4),
+    Vector2.new(0, 0.2)
+};
+
+local function getCollisionPoint(p26, p27) -- Line: 155
+    -- upvalues: u10 (ref), Ray_new (copy)
+    local v28 = #u10;
+
+    while true do
+        local v29, v30 = workspace:FindPartOnRayWithIgnoreList(Ray_new(p26, p27), u10, false, true);
+
+        if v29 then
+            if v29.CanCollide then
+                local v31 = u10;
+
+                for i = #v31, v28 + 1, -1 do
+                    v31[i] = nil;
+                    local _ = i;
+                end;
+
+                return v30, true;
+            end;
+
+            u10[#u10 + 1] = v29;
+        end;
+
+        if not v29 then
+            local v32 = u10;
+
+            for i = #v32, v28 + 1, -1 do
+                v32[i] = nil;
+                local _ = i;
+            end;
+
+            return p26 + p27, false;
+        end;
+    end;
+end;
+
+local function queryPoint(p33, p34, p35, p36) -- Line: 177
+    -- upvalues: u10 (ref), NearPlaneZ (ref), Ray_new (copy), canOcclude (copy)
+    debug.profilebegin("queryPoint");
+    local v37 = #u10;
+    local v38 = p35 + NearPlaneZ;
+    local v39 = p33 + p34 * v38;
+    local v40 = p33;
+    local v41 = 0;
+    local v42 = (1 / 0);
+    local v43 = (1 / 0);
+
+    while true do
+        local v44, v45 = workspace:FindPartOnRayWithIgnoreList(Ray_new(p33, v39 - p33), u10, false, true);
+        v41 = v41 + 1;
+        local v46;
+
+        if v44 then
+            local v47 = v41 >= 64;
+
+            if canOcclude(v44) or v47 then
+                local v48 = { v44 };
+                local v49 = workspace:FindPartOnRayWithWhitelist(Ray_new(v39, v45 - v39), v48, true);
+                v46 = (v45 - v40).Magnitude;
+
+                if v49 and not v47 then
+                    local v50;
+
+                    if p36 then
+                        v50 = workspace:FindPartOnRayWithWhitelist(Ray_new(p36, v39 - p36), v48, true) or workspace:FindPartOnRayWithWhitelist(Ray_new(v39, p36 - v39), v48, true);
+                    else
+                        v50 = false;
+                    end;
+
+                    if v50 then
+                        v42 = v46;
+                        v46 = v43;
+                    elseif v38 >= v43 then
+                        v46 = v43;
+                    end;
+                else
+                    v42 = v46;
+                    v46 = v43;
+                end;
+            else
+                v46 = v43;
+            end;
+
+            u10[#u10 + 1] = v44;
+            p33 = v45 - p34 * 0.001;
+        else
+            v46 = v43;
+        end;
+
+        if v42 < (1 / 0) or not v44 then
+            local v51 = u10;
+
+            for i = #v51, v37 + 1, -1 do
+                v51[i] = nil;
+                local _ = i;
+            end;
+
+            debug.profileend();
+
+            return v46 - NearPlaneZ, v42 - NearPlaneZ;
+        end;
+
+        v43 = v46;
+    end;
+end;
+
+local function queryViewport(p52, p53) -- Line: 237
+    -- upvalues: CurrentCamera (copy), u4 (ref), u5 (ref), NearPlaneZ (ref), queryPoint (copy)
+    debug.profilebegin("queryViewport");
+    local p = p52.p;
+    local rightVector = p52.rightVector;
+    local upVector = p52.upVector;
+    local v54 = -p52.lookVector;
+    local ViewportSize2 = CurrentCamera.ViewportSize;
+    local v55 = (1 / 0);
+    local v56 = (1 / 0);
+
+    for i = 0, 1 do
+        local v57 = rightVector * ((i - 0.5) * u4);
+        local v58 = i;
+
+        for i2 = 0, 1 do
+            local v59, v60 = queryPoint(p + NearPlaneZ * (v57 + upVector * ((i2 - 0.5) * u5)), v54, p53, CurrentCamera:ViewportPointToRay(ViewportSize2.x * v58, ViewportSize2.y * i2).Origin);
+
+            if v60 >= v55 then
+                v60 = v55;
+            end;
+
+            local v61;
+
+            if v59 < v56 then
+                v61 = i2;
+                v56 = v59;
+                v55 = v60;
+            else
+                v61 = i2;
+                v55 = v60;
+            end;
+        end;
+    end;
+
+    debug.profileend();
+
+    return v56, v55;
+end;
+
+local function testPromotion(p62, p63, p64) -- Line: 278
+    -- upvalues: getCollisionPoint (copy), math_min (copy), queryPoint (copy), u25 (copy)
+    debug.profilebegin("testPromotion");
+    local p = p62.p;
+    local rightVector = p62.rightVector;
+    local upVector = p62.upVector;
+    local v65 = -p62.lookVector;
+    debug.profilebegin("extrapolate");
+    local Magnitude = (getCollisionPoint(p, p64.posVelocity * 1.25) - p).Magnitude;
+
+    for i = 0, math_min(1.25, p64.rotVelocity.magnitude + Magnitude / p64.posVelocity.magnitude), 0.0625 do
+        local v66 = p64.extrapolate(i);
+
+        if p63 <= queryPoint(v66.p, -v66.lookVector, p63) then
+            return false;
+        end;
+
+        local _ = i;
+    end;
+
+    debug.profileend();
+    debug.profilebegin("testOffsets");
+
+    for _, v in ipairs(u25) do
+        local v67 = getCollisionPoint(p, rightVector * v.x + upVector * v.y);
+
+        if queryPoint(v67, (p + v65 * p63 - v67).Unit, p63) == (1 / 0) then
+            return false;
+        end;
+    end;
+
+    debug.profileend();
+    debug.profileend();
+
+    return true;
+end;
+
+return function(p68, p69, p70) -- Line: 327, Name: Popper
+    -- upvalues: u21 (ref), u22 (ref), queryViewport (copy), testPromotion (copy)
+    debug.profilebegin("popper");
+    u21 = u22 and u22:GetRootPart() or u22;
+    local v71, v72 = queryViewport(p68, p69);
+
+    if v72 >= p69 then
+        v72 = p69;
+    end;
+
+    if v71 < v72 then
+        if not testPromotion(p68, p69, p70) then
+            v71 = v72;
+        end;
+    else
+        v71 = v72;
+    end;
+
+    u21 = nil;
+    debug.profileend();
+
+    return v71;
+end;

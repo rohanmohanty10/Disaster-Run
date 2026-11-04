@@ -1,0 +1,3 @@
+ 
+
+script.Parent:LoadAnimation(script:WaitForChild("Animation")):Play()

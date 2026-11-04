@@ -1,0 +1,16 @@
+  
+
+local v1 = {};
+game:GetService("RunService");
+local CollectionService = game:GetService("CollectionService");
+
+function v1.SetupCosmetic(p2, p3) -- Line: 6
+    -- upvalues: CollectionService (copy)
+    local v4 = script.ShidouWings:Clone();
+    v4.RootPart.Weld.Part0 = p2.Torso;
+    v4.Parent = p2;
+    CollectionService:AddTag(v4, (`Cosmetic{p3}`));
+    v4.AnimationController.Animator:LoadAnimation(script.FlapAnim):Play();
+end;
+
+return v1;

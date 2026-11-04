@@ -1,0 +1,42 @@
+  
+
+return {
+    KOTJLion = "rbxassetid://83988906963047",
+    KingGhouls = "rbxassetid://108331269887701",
+    NelBachiraAwkMonster = "rbxassetid://123531077479610",
+    Monster = "rbxassetid://85204449151987",
+    AmbushSnake = "rbxassetid://126360148020814",
+    SnakeIdle = "rbxassetid://88376807409093",
+    IgaguriBhuddaAwk = "rbxassetid://105370609929213",
+    IgaguriDharmaCam = "rbxassetid://102357317382332",
+    DieHand = "rbxassetid://98613334623164",
+    FinalShotPuzzle = "rbxassetid://126584497017567",
+    DestructiveCrashShotMonster = "rbxassetid://124448285264422",
+    OtoyaXBachiraMonster = "rbxassetid://135529997149770",
+    BashiraBeeShotBallFreestyleBeeshot = "rbxassetid://97953946327478",
+    BashiraBeeShotBeeFreestyleBeeshot = "rbxassetid://134691474994609",
+    NelRinDemon1 = "rbxassetid://70773661229357",
+    NelRinDemon2 = "rbxassetid://98110466338255",
+    NelRinDemon3 = "rbxassetid://78616485354607",
+    NelRinDemon4 = "rbxassetid://117667440900692",
+    NelRinDemon5 = "rbxassetid://119593257520039",
+    NelRinDemon6 = "rbxassetid://116125924684390",
+    NelRinDemon7 = "rbxassetid://89375116320068",
+    NelRinDemon8 = "rbxassetid://113794863348109",
+    NelRinDemon9 = "rbxassetid://92100001577612",
+    NelRinDemon10 = "rbxassetid://135103370140708",
+    NelRinDemonHand = "rbxassetid://106072545149217",
+    YukiCat = "rbxassetid://72351470544090",
+    AikuBasilisk = "rbxassetid://91356378117566",
+    AwakeningSnake1 = "rbxassetid://108193815757469",
+    AwakeningSnake2 = "rbxassetid://139565063292068",
+    AwakeningSnake3 = "rbxassetid://125635185945549",
+    OpenEvent = "rbxassetid://104563827724094",
+    Abilities = {
+        OtoyaXBachira1 = "rbxassetid://82063595149323",
+        OtoyaXBachira2 = "rbxassetid://84034951960978",
+        OtoyaXBachiraBall = "rbxassetid://128206305437687",
+        GeniusKillingMaliciaBall = "rbxassetid://138345587350607",
+        GeniusKillingMaliciaCamera = "rbxassetid://100663616728351"
+    }
+};

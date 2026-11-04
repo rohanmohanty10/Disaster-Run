@@ -1,0 +1,4 @@
+ 
+ 
+
+return require(script:WaitForChild("makeConsoleImpl"))();

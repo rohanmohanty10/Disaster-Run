@@ -1,0 +1,35 @@
+ 
+ 
+
+return {
+    "rbxassetid://127445737404002",
+    "rbxassetid://138415402208286",
+    "rbxassetid://83541761687479",
+    "rbxassetid://73911866335899",
+    "rbxassetid://136423543923608",
+    "rbxassetid://72355788845054",
+    "rbxassetid://139728160516177",
+    "rbxassetid://91521790973397",
+    "rbxassetid://101991253485029",
+    "rbxassetid://72446837445332",
+    "rbxassetid://102866768583883",
+    "rbxassetid://126252100618523",
+    "rbxassetid://116084866383922",
+    "rbxassetid://135734623102852",
+    "rbxassetid://104720871397791",
+    "rbxassetid://96975808652928",
+    "rbxassetid://79961141706432",
+    "rbxassetid://87692220250875",
+    "rbxassetid://75943604842624",
+    "rbxassetid://108754706220923",
+    "rbxassetid://77745591266526",
+    "rbxassetid://85617980843525",
+    "rbxassetid://113601036686276",
+    "rbxassetid://108842448364565",
+    "rbxassetid://109766429327242",
+    "rbxassetid://96277776358684",
+    "rbxassetid://81062003857791",
+    "rbxassetid://106399825089453",
+    "rbxassetid://105866544728632",
+    "rbxassetid://98094011093672"
+};

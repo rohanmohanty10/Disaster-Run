@@ -1,0 +1,197 @@
+ 
+ 
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage");
+local Rating = require(ReplicatedStorage.Shared.Utility.Rating);
+game:GetService("RunService"):IsStudio();
+local v1 = {
+    BallTrailColor = Color3.fromRGB(math.random(1, 255), math.random(1, 255), math.random(1, 255)):ToHex(),
+    ZoneColor = Color3.fromRGB(math.random(1, 255), math.random(1, 255), math.random(1, 255)):ToHex(),
+    Inventory = {
+        Emotes = { "Bird" },
+        GoalEffects = { "Default" },
+        ShotEffects = {},
+        Outfits = { "" },
+        MVPCutscenes = {},
+        Cosmetics = { "" },
+        Cards = { "Basic" },
+        ChatTags = {}
+    },
+    Equipped = {
+        GoalEffects = "Default",
+        ShotEffects = "",
+        Outfits = "",
+        MVPCutscenes = "",
+        Cosmetics = "",
+        Cards = "Basic",
+        ChatTag = "",
+        Emotes = {
+            Emotes1 = "Bird",
+            Emotes2 = "",
+            Emotes3 = "",
+            Emotes4 = ""
+        }
+    },
+    Settings = {
+        GlobalShadows = true,
+        BoomboxMusic = true,
+        Music = 50,
+        CustomSFX = 50,
+        MatchSFX = 50,
+        EmoteMusic = true,
+        AutoRun = true,
+        EmotePopup = true,
+        RankChatTag = true,
+        MusicSubtitles = true,
+        ControlsManual = true,
+        MatchQuests = true,
+        KeybindPassing = false,
+        TVCameras = true,
+        Banners = true,
+        LowQualityMap = false,
+        LowQualityVFX = false,
+        NightMode = false,
+        AnkleBreakerSFX = -1,
+        GoalEffectSFX = -1,
+        BlockSFX = -1,
+        PersonalCardsSFX = true,
+        AllCardsSFX = true,
+        KeyboardKeybinds = {},
+        ControllerKeybinds = {}
+    }
+};
+local v2 = {
+    RR = -1,
+    MatchesUntilPlacement = 5,
+    LastPlayed = 0,
+    NextDecay = 0,
+    Rating = Rating.default,
+    MatchesPlayed = {
+        Won = 0,
+        Lost = 0
+    },
+    History = {},
+    ReceivedTierRewards = {}
+};
+
+return {
+    Halloween = {
+        Candy = 0,
+        Credits = {}
+    },
+    Money = 0,
+    Exp = 0,
+    Level = 0,
+    MatchesWon = 0,
+    JerseyNumber = math.random(1, 99),
+    Spins = 5,
+    LuckySpins = 0,
+    ZoneSpins = 5,
+    ZoneLuckySpins = 0,
+    TrailColorSpins = 1,
+    ZoneColorSpins = 1,
+    CrateSpins = 0,
+    WheelSpins = 0,
+    WheelSpinsDone = 0,
+    LastWheelSpinClaimed = nil,
+    BoughtDiscountedWheelSpin = false,
+    DailyRewardStreak = 1,
+    DailyRewardsClaimed = {},
+    LastLogin = nil,
+    LastDailyRewardClaimed = nil,
+    MaxStyleSlots = 1,
+    StyleSlotEquipped = 1,
+    LimitedStyleEquipped = nil,
+    StyleSpinsDone = 0,
+    LuckyStyleSpinsDone = 0,
+    MaxZoneSlots = 1,
+    ZoneSlotEquipped = 1,
+    LimitedZoneEquipped = nil,
+    ZoneSpinsDone = 0,
+    LuckyZoneSpinsDone = 0,
+    StyleSlots = { "Clutch" },
+    ZoneSlots = { "Sprinter" },
+    LimitedStyles = {},
+    LimitedZones = {},
+    OGStyles = {},
+    OGZones = {},
+    Statistics = {
+        Points3 = 0,
+        Points = 0,
+        Blocks = 0,
+        Assists = 0,
+        AnkleBreaks = 0,
+        Dunks = 0,
+        Matches = 0,
+        MVP = 0
+    },
+    Customization = v1,
+    AdRarityBoost = 0,
+    AdLastWatched = 0,
+    BoostedStyle = "",
+    BoostedZone = "",
+    IsSubscribed = false,
+    IsVIP = false,
+    IsVIPActive = nil,
+    CanSkipSpins = false,
+    LatestVIPSubscriptionPayment = nil,
+    StyleQuests = {},
+    ClaimedStyleQuests = {},
+    ZoneQuests = {},
+    SelectedZoneQuestSkill = "",
+    LastZoneQuest = nil,
+    ClaimedZoneQuest = nil,
+    HoopRewardsScore = 0,
+    ClaimedHoopRewards = {},
+    EventQuests = {},
+    Quests = {},
+    TotalQuestsCompleted = 0,
+    LastDailyQuestRefresh = nil,
+    RobuxSpent = 0,
+    PurchaseHistory = {},
+    FailedPurchases = {},
+    OwnedGamepasses = {},
+    OwnedAssets = {},
+    OwnedBadges = {},
+    ClaimedCodes = {},
+    InvitedUsers = {},
+    LockedSlots = {
+        Style = {},
+        Zone = {}
+    },
+    IsNewPlayer = true,
+    HasCompletedOnboarding = false,
+    PromptedKeybindPassing = false,
+    ClaimedDiscordRewards = false,
+    Ranked = {
+        ["3v3"] = v2,
+        ["2v2"] = v2,
+        ["1v1"] = v2
+    },
+    RankedSeasonRewards = {},
+    MatchmakingInfo = {
+        BriefedOnPenalties = false,
+        UnreadPenaltyMessage = false,
+        BannedOn = 0,
+        BannedUntil = 0,
+        DistrustFactor = 0,
+        NextDistrustDecrease = 0,
+        BanReason = ""
+    },
+    LevelSpins = 0,
+    BonusLevelSpins = 0,
+    LastSeason = 0,
+    SeasonPass = {
+        XP = 0,
+        Rebirths = 0,
+        Currency = 0,
+        Premium = false
+    },
+    AntiCheatTriggers = 0,
+    FreeSpinBurstUsed = false,
+    CustomClothing = false,
+    CustomRig = false,
+    ExtendedGoalEffectSFX = false,
+    GoalEffectSFXPosition = false,
+    Rsvped = {}
+};
