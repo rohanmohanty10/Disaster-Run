@@ -38,7 +38,9 @@ This repository serves as the central design blueprint and technical reference a
 The code lives in this GitHub repo. **Rojo doesn't store anything itself**: it syncs the files on your computer into Roblox Studio. Everyone gets the same code by cloning this repo, and shares changes through Git (branches + pull requests).
 
 ### One-time setup
-1. Install [Rokit](https://github.com/rojo-rbx/rokit), the [Rojo Studio plugin](https://rojo.space/docs/v7/getting-started/installation/), and Git.
+1. Install [Rokit](https://github.com/rojo-rbx/rokit), the [Rojo Studio plugin](https://rojo.space/docs/v7/getting-started/installation/), Git and [Git LFS](https://git-lfs.com).
+   - The knowledge graph (`graphify-out/graph.json`, ~70 MB) is stored with Git LFS because it's too big for normal Git. It's only for AI assistants, not the game.
+   - If the repo has graphify's Git hooks, set up hooks with `git lfs update --force` and then `graphify hook install` (plain `git lfs install` refuses because the hooks already exist).
 2. Clone the repo (don't use `rojo init`; that creates a separate, empty project):
    ```bash
    git clone https://github.com/rohanmohanty10/Disaster-Run.git
@@ -62,6 +64,8 @@ The code lives in this GitHub repo. **Rojo doesn't store anything itself**: it s
 ### Working as a team
 - **Each dev syncs into their own Studio session.** The usual setup is one shared place for the map and builds (via Team Create), and code that only comes from Git through Rojo. Avoid several people running `rojo serve` into the same Team Create session at once, because each sync overwrites the scripts for everyone.
 - **To test saving in Studio**, turn on *Game Settings → Security → Enable Studio Access to API Services*. Without it, ProfileStore runs with temporary mock data.
+- **`graph.json` merge conflicts:** keep either side, then run `graphify update .` to rebuild it.
+- **Pull blocked by `graphify-out` changes?** graphify rebuilds the graph after commits and branch switches. Run `git stash` and then `git pull --rebase`.
 - **GUIs** in `src/gui/` are `.rbxmx` files. Edit them in Studio, then right-click the ScreenGui, choose *Save to File*, and overwrite the file in `src/gui/` before committing. If you rerun `tools/build_vault_ui.py`, it regenerates them from the reference exports.
 
 ---
