@@ -2,7 +2,7 @@
 -- The simple canyon course (GAME_PLAN.md Section 4, kept deliberately plain).
 --   * Static: Workspace.Course — floor, canyon walls, start bunker + "StartBarrier", Sanctuary gate.
 --     It lives in the place (src/map/Course.rbxmx, synced by Rojo) so it's visible in Edit mode;
---     edit it in Studio and save it back to that file, or regenerate with tools/build_course.py.
+--     edit it in Studio and save it back to that file, or regenerate with tools/build_world.py.
 --     If it's missing, the same course is built here as a fallback.
 --   * Per round: Course.Cover — ruins, pillars, low walls, boulders in 100-stud chunks, reshuffled
 --     with a new seed. Ruins / pillars / walls are DestructibleCover with Health; boulders are
@@ -46,7 +46,7 @@ local function buildCourse(): Model
 	model.Name = "Course"
 
 	local center = origin + Vector3.new(0, -2, -length / 2)
-	block(model, "Floor", Vector3.new(width, 4, length + 120), CFrame.new(center + Vector3.new(0, 0, 30)), cfg.Colors.Floor, Enum.Material.Slate)
+	block(model, "Floor", Vector3.new(width, 4, length + 120), CFrame.new(center + Vector3.new(0, 0, 30)), cfg.Colors.Floor, Enum.Material.Grass)
 	for _, side in { -1, 1 } do
 		block(model, "Wall", Vector3.new(12, cfg.WallHeight, length + 120), CFrame.new(center + Vector3.new(side * (width / 2 + 6), cfg.WallHeight / 2, 30)), cfg.Colors.Wall, Enum.Material.Rock)
 	end
@@ -71,29 +71,37 @@ local function buildCourse(): Model
 end
 
 -- ------------------------------------------------------------------ cover
-local COVER_TYPES = { "Ruin", "Pillar", "Boulder", "Wall" }
+local COVER_TYPES = { "Ruin", "Pillar", "Boulder", "Wall", "Tree", "Tree" }
 
 local function placeCover(folder: Folder, kind: string, position: Vector3, rng: Random)
 	local cfg = MapConfig
 	local yaw = CFrame.Angles(0, math.rad(rng:NextInteger(0, 3) * 90 + rng:NextNumber(-10, 10)), 0)
-	if kind == "Boulder" then
+	if kind == "Tree" then
+		-- Trees block shots and line of sight but can't be destroyed.
+		local height = rng:NextNumber(9, 13)
+		local trunk = block(folder, "TreeTrunk", Vector3.new(height, 2.2, 2.2), CFrame.new(position + Vector3.new(0, height / 2, 0)) * CFrame.Angles(0, 0, math.rad(90)), cfg.Colors.Wood, Enum.Material.Wood)
+		trunk.Shape = Enum.PartType.Cylinder
+		local crown = rng:NextNumber(10, 14)
+		local leaves = block(folder, "TreeLeaves", Vector3.one * crown, CFrame.new(position + Vector3.new(0, height + crown * 0.25, 0)), cfg.Colors.Leaves, Enum.Material.LeafyGrass)
+		leaves.Shape = Enum.PartType.Ball
+	elseif kind == "Boulder" then
 		local size = rng:NextNumber(8, 14)
 		local rock = block(folder, "Boulder", Vector3.new(size, size * 0.8, size), CFrame.new(position + Vector3.new(0, size * 0.35, 0)) * yaw, cfg.Colors.Boulder, Enum.Material.Rock)
 		rock.Shape = Enum.PartType.Ball
 	elseif kind == "Pillar" then
 		local height = rng:NextNumber(12, 20)
-		local pillar = block(folder, "Pillar", Vector3.new(5, height, 5), CFrame.new(position + Vector3.new(0, height / 2, 0)) * yaw, cfg.Colors.Ruin, Enum.Material.Brick)
+		local pillar = block(folder, "Pillar", Vector3.new(5, height, 5), CFrame.new(position + Vector3.new(0, height / 2, 0)) * yaw, cfg.Colors.Ruin, Enum.Material.Cobblestone)
 		pillar:SetAttribute("Health", cfg.CoverHealth.Pillar)
 		CollectionService:AddTag(pillar, "DestructibleCover")
 	elseif kind == "Wall" then
-		local wall = block(folder, "LowWall", Vector3.new(rng:NextNumber(14, 22), 6, 3), CFrame.new(position + Vector3.new(0, 3, 0)) * yaw, cfg.Colors.Ruin, Enum.Material.Brick)
+		local wall = block(folder, "LowWall", Vector3.new(rng:NextNumber(14, 22), 6, 3), CFrame.new(position + Vector3.new(0, 3, 0)) * yaw, cfg.Colors.Ruin, Enum.Material.Cobblestone)
 		wall:SetAttribute("Health", cfg.CoverHealth.Wall)
 		CollectionService:AddTag(wall, "DestructibleCover")
 	else
 		-- A small ruin: two walls and a roof slab to hide under.
 		local base = CFrame.new(position) * yaw
 		for _, side in { -1, 1 } do
-			local wall = block(folder, "RuinWall", Vector3.new(2, 10, 14), base * CFrame.new(side * 6, 5, 0), cfg.Colors.Ruin, Enum.Material.Brick)
+			local wall = block(folder, "RuinWall", Vector3.new(2, 10, 14), base * CFrame.new(side * 6, 5, 0), cfg.Colors.Ruin, Enum.Material.Cobblestone)
 			wall:SetAttribute("Health", cfg.CoverHealth.Ruin)
 			CollectionService:AddTag(wall, "DestructibleCover")
 		end
@@ -120,7 +128,7 @@ function MapService.Generate(seed: number?)
 	coverFolder = folder
 	local cfg = MapConfig
 	local rng = Random.new(seed or os.clock() * 1000)
-	local laneWidth = cfg.Width / cfg.Lanes
+	local laneWidth = cfg.PlayableWidth / cfg.Lanes
 	local chunks = math.floor((cfg.Length - 80) / cfg.ChunkLength)
 	for chunk = 1, chunks do
 		local chunkZ = cfg.Origin.Z - 40 - (chunk - 0.5) * cfg.ChunkLength
@@ -136,7 +144,7 @@ function MapService.Generate(seed: number?)
 		end
 		for lane = 1, cfg.Lanes do
 			if not open[lane] and rng:NextNumber() < cfg.CoverDensity then
-				local x = cfg.Origin.X - cfg.Width / 2 + (lane - 0.5) * laneWidth + rng:NextNumber(-4, 4)
+				local x = cfg.Origin.X - cfg.PlayableWidth / 2 + (lane - 0.5) * laneWidth + rng:NextNumber(-3, 3)
 				local z = chunkZ + rng:NextNumber(-cfg.ChunkLength * 0.3, cfg.ChunkLength * 0.3)
 				placeCover(folder, COVER_TYPES[rng:NextInteger(1, #COVER_TYPES)], Vector3.new(x, cfg.Origin.Y, z), rng)
 			end

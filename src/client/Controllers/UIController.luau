@@ -253,6 +253,16 @@ function UIController.RegisterScreen(name: string, screen: Screen)
 	screens[name] = screen
 end
 
+-- Opens a registered screen by name (closing any other first).
+function UIController.OpenScreen(name: string)
+	local screen = screens[name]
+	if not screen then
+		return
+	end
+	UIController.CloseAll()
+	screen.Open()
+end
+
 -- Closes every registered screen and shows the HUD again.
 function UIController.CloseAll()
 	for _, screen in screens do
@@ -339,6 +349,18 @@ end
 function UIController.Start()
 	setupHUD()
 	setupStrokes()
+	-- Lobby kiosks (Workspace.Lobby): GodVaultKiosk / RunnerVaultKiosk each hold an "OpenVault" prompt.
+	game:GetService("ProximityPromptService").PromptTriggered:Connect(function(prompt: ProximityPrompt, player: Player)
+		if player ~= LocalPlayer or prompt.Name ~= "OpenVault" then
+			return
+		end
+		local kiosk = prompt:FindFirstAncestorOfClass("Model")
+		if kiosk and kiosk.Name == "GodVaultKiosk" then
+			UIController.OpenScreen("GodVault")
+		elseif kiosk and kiosk.Name == "RunnerVaultKiosk" then
+			UIController.OpenScreen("RunnerVault")
+		end
+	end)
 end
 
 return UIController
