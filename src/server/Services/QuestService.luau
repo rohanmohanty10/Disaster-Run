@@ -149,6 +149,12 @@ end
 function QuestService.Init()
 	Requests.Register("ClaimQuest", claimQuest)
 	Requests.Register("ClaimDaily", claimDaily)
+	-- The Quests panel asks for this when the saved quests are from an earlier day
+	-- (a player who stayed in the lobby past UTC midnight).
+	Requests.Register("RefreshQuests", function(player: Player)
+		QuestService.Refresh(player)
+		return { Ok = true }
+	end)
 end
 
 function QuestService.Start()

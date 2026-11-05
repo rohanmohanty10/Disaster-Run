@@ -110,10 +110,9 @@ local function button(props: { [string]: any }, color: Color3?): TextButton
 end
 
 local function clear(frame: Instance)
+	-- Everything, layouts included: each render adds its own UIListLayout.
 	for _, child in frame:GetChildren() do
-		if child:IsA("GuiObject") then
-			child:Destroy()
-		end
+		child:Destroy()
 	end
 end
 
@@ -178,6 +177,15 @@ local function renderQuests()
 	Make.new("UIListLayout", { Padding = UDim.new(0, 10), Parent = body })
 	if d.Quests.Day ~= today() then
 		Make.Label({ Size = UDim2.new(1, 0, 0, 30), TextColor3 = Theme.SubText, Text = "New quests are on their way...", Parent = body })
+		-- Saved quests are from an earlier day: ask the server to roll today's (the data update
+		-- re-renders this panel).
+		if not ui.QuestRefreshPending then
+			ui.QuestRefreshPending = true
+			task.spawn(function()
+				Net.Request("RefreshQuests")
+				ui.QuestRefreshPending = nil
+			end)
+		end
 		return
 	end
 	for index, entry in d.Quests.List do

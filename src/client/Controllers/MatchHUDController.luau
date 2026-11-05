@@ -385,12 +385,12 @@ local function updateSpectate()
 	end
 	spectateIndex = ((spectateIndex - 1) % #alive) + 1
 	local target = alive[spectateIndex]
-	if target ~= spectating then
+	local humanoid = target.Character and target.Character:FindFirstChildOfClass("Humanoid")
+	-- Re-assert every frame: an eliminated Runner can respawn (Roblox auto-respawn), and the
+	-- camera scripts snap the camera back to their own new body.
+	if humanoid and (target ~= spectating or camera.CameraSubject ~= humanoid) then
 		spectating = target
-		local humanoid = target.Character and target.Character:FindFirstChildOfClass("Humanoid")
-		if humanoid then
-			camera.CameraSubject = humanoid
-		end
+		camera.CameraSubject = humanoid
 	end
 	ui.SpectateName.Text = `Spectating {target.DisplayName}`
 end
@@ -402,8 +402,9 @@ local function updateTracker()
 		end
 	end
 	for _, player in Players:GetPlayers() do
-		-- Fog of War: Runners hidden in fog are left off the God's tracker (GAME_PLAN.md 4B).
-		local hidden = player.Character ~= nil and player.Character:GetAttribute("Concealed") == true
+		-- Fog of War (GAME_PLAN.md 4B) and Time Erasure hide Runners from the God's tracker too.
+		local hidden = player.Character ~= nil
+			and (player.Character:GetAttribute("Concealed") == true or player.Character:GetAttribute("TimeErased") == true)
 		if player:GetAttribute("Role") == "Runner" and not hidden then
 			local eliminated = player:GetAttribute("Eliminated") == true
 			local finished = player:GetAttribute("Finished") == true

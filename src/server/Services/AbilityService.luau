@@ -131,6 +131,11 @@ local function canUse(player: Player, character: Model, index: number): (boolean
 	if not Characters.IsAlive(character) or not StatusEffectService.CanCast(character) then
 		return false, kit, skill, nil
 	end
+	-- Runners safe in the Sanctuary are invulnerable for the rest of the round: no skills, so they
+	-- can't sabotage the Runners still crossing (Time Stop, Void, swaps...).
+	if role == "Runner" and player:GetAttribute("Finished") then
+		return false, kit, skill, "You're safe in the Sanctuary!"
+	end
 	local ready = player:GetAttribute(`Cooldown{index}`)
 	if type(ready) == "number" and ready > now() then
 		return false, kit, skill, nil

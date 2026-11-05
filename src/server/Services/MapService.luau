@@ -161,15 +161,37 @@ local function pickChunk(rng: Random, index: number): string
 end
 
 -- A hazard strip across the playable width with a bridge over each open lane.
+-- Is the character standing on a bridge (or its ramps)? Raycasts straight down from the root.
+local bridgeParams = RaycastParams.new()
+bridgeParams.FilterType = Enum.RaycastFilterType.Exclude
+local function onBridge(character: Model, root: BasePart): boolean
+	bridgeParams.FilterDescendantsInstances = { character }
+	local result = workspace:Raycast(root.Position, Vector3.new(0, -8, 0), bridgeParams)
+	local name = result and result.Instance.Name
+	return name == "Bridge" or name == "BridgeRamp"
+end
+
 local function placeChasm(folder: Folder, chunkZ: number, open: { [number]: boolean }, rng: Random)
 	local cfg = MapConfig
 	local hazard = cfg.Hazard
 	local kindName = if rng:NextNumber() < 0.5 then "Lava" else "Quicksand"
 	local kind = hazard.Kinds[kindName]
 	local floorY = cfg.Origin.Y
-	local pit = block(folder, kindName, Vector3.new(cfg.PlayableWidth, 0.4, hazard.Depth), CFrame.new(cfg.Origin.X, floorY + 0.2, chunkZ), kind.Color, kind.Material, { CanCollide = false })
-	pit:SetAttribute("HazardKind", kindName)
-	CollectionService:AddTag(pit, "Hazard")
+	local pit = block(folder, kindName, Vector3.new(cfg.PlayableWidth, 0.4, hazard.Depth), CFrame.new(cfg.Origin.X, floorY + 0.2, chunkZ), kind.Color, kind.Material, { CanCollide = false, CanQuery = false })
+	-- The damage zone spans the whole canyon, slopes included, so the strip can't be walked
+	-- around along the valley sides. Only the bridges are safe (see hazardTick).
+	local zone = block(folder, `{kindName}Zone`, Vector3.new(cfg.Width, cfg.SlopeHeight + 6, hazard.Depth), CFrame.new(cfg.Origin.X, floorY + (cfg.SlopeHeight + 6) / 2, chunkZ), kind.Color, kind.Material, { CanCollide = false, CanQuery = false, Transparency = 1 })
+	zone:SetAttribute("HazardKind", kindName)
+	CollectionService:AddTag(zone, "Hazard")
+	-- Visual: the strip continues up both valley slopes. Each slope rises toward its cliff, so a
+	-- sheet through the middle of the slope, tilted by the slope angle, lies on its surface.
+	local slopeLength = math.sqrt(cfg.SlopeDepth ^ 2 + cfg.SlopeHeight ^ 2)
+	local slopeAngle = math.atan2(cfg.SlopeHeight, cfg.SlopeDepth)
+	for _, side in { -1, 1 } do
+		local center = CFrame.new(cfg.Origin.X + side * (cfg.Width / 2 - cfg.SlopeDepth / 2), floorY + cfg.SlopeHeight / 2 + 0.2, chunkZ)
+		block(folder, kindName, Vector3.new(slopeLength, 0.4, hazard.Depth), center * CFrame.Angles(0, 0, slopeAngle * side), kind.Color, kind.Material, { CanCollide = false, CanQuery = false })
+	end
+	local _ = pit
 	if kindName == "Lava" then
 		local glow = Instance.new("PointLight")
 		glow.Color = kind.Color
@@ -287,8 +309,11 @@ local function hazardTick()
 				if hazard:IsA("BasePart") then
 					local localPoint = hazard.CFrame:PointToObjectSpace(root.Position)
 					local half = hazard.Size / 2
-					local onFloor = root.Position.Y < hazard.Position.Y + 4.2 -- a bridge lifts you above this
-					if onFloor and math.abs(localPoint.X) <= half.X and math.abs(localPoint.Z) <= half.Z then
+					local inside = math.abs(localPoint.X) <= half.X and math.abs(localPoint.Y) <= half.Y and math.abs(localPoint.Z) <= half.Z
+					-- Jumping over it is fine: only Runners standing on something (not a bridge) burn.
+					local grounded = character:FindFirstChildOfClass("Humanoid") ~= nil
+						and (character:FindFirstChildOfClass("Humanoid") :: Humanoid).FloorMaterial ~= Enum.Material.Air
+					if inside and grounded and not onBridge(character, root) then
 						local kind = MapConfig.Hazard.Kinds[hazard:GetAttribute("HazardKind") :: string]
 						if kind then
 							CombatService.Afflict(nil, character, {

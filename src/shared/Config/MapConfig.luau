@@ -10,6 +10,7 @@ MapConfig.Width = 170
 MapConfig.WallHeight = 60
 
 MapConfig.SlopeDepth = 22 -- grassy valley slopes along both cliffs; cover stays off them
+MapConfig.SlopeHeight = 14 -- height of those slopes (tools/build_world.py)
 MapConfig.PlayableWidth = MapConfig.Width - MapConfig.SlopeDepth * 2
 
 MapConfig.ChunkLength = 100

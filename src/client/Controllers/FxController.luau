@@ -215,8 +215,11 @@ hazardArrow = function(target: Vector3, duration: number)
 end
 
 -- Red pulse when a strike is about to land near the local Runner.
+local DANGER_RANGE = 25 -- studs (GAME_PLAN.md 5C: strikes targeting within 25 studs)
+
 local function dangerCheck(info: { [string]: any })
-	if LocalPlayer:GetAttribute("Role") ~= "Runner" or typeof(info.CFrame) ~= "CFrame" then
+	-- Silent telegraphs are a second warning for the same cast (Flame Arrow's flight path).
+	if LocalPlayer:GetAttribute("Role") ~= "Runner" or typeof(info.CFrame) ~= "CFrame" or info.Silent then
 		return
 	end
 	local character = LocalPlayer.Character
@@ -224,9 +227,26 @@ local function dangerCheck(info: { [string]: any })
 	if not root then
 		return
 	end
-	local center = (info.CFrame :: CFrame).Position
-	local reach = (tonumber(info.Radius) or tonumber(info.Length) or 10) + 25
-	if ((root.Position - center) * Vector3.new(1, 0, 1)).Magnitude > reach then
+	local cf = info.CFrame :: CFrame
+	local flatRoot = Vector3.new(root.Position.X, 0, root.Position.Z)
+	local center: Vector3
+	local edgeDistance: number
+	if info.Shape == "Line" then
+		-- Nearest point on the line segment; distance from its edge.
+		local length = tonumber(info.Length) or 40
+		local start = Vector3.new(cf.Position.X, 0, cf.Position.Z)
+		local direction = Vector3.new(cf.LookVector.X, 0, cf.LookVector.Z)
+		direction = if direction.Magnitude > 0.01 then direction.Unit else Vector3.new(0, 0, -1)
+		local along = math.clamp((flatRoot - start):Dot(direction), 0, length)
+		local nearest = start + direction * along
+		center = Vector3.new(nearest.X, cf.Position.Y, nearest.Z)
+		edgeDistance = (flatRoot - nearest).Magnitude - (tonumber(info.Width) or 6) / 2
+	else
+		center = cf.Position
+		local radius = tonumber(info.Radius) or tonumber(info.Length) or 10
+		edgeDistance = (flatRoot - Vector3.new(center.X, 0, center.Z)).Magnitude - radius
+	end
+	if edgeDistance > DANGER_RANGE then
 		return
 	end
 	local duration = tonumber(info.Duration) or 1

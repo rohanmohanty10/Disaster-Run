@@ -83,7 +83,8 @@ end
 
 -- Handles the "Shove" ability action. data.Direction is the client's camera look (validated).
 function ShoveService.TryShove(player: Player, character: Model, data: { [string]: any })
-	if player:GetAttribute("Role") == "God" or not Characters.IsAlive(character) then
+	-- Gods can't shove; neither can Runners already safe in the Sanctuary (they're invulnerable).
+	if player:GetAttribute("Role") == "God" or player:GetAttribute("Finished") or not Characters.IsAlive(character) then
 		return
 	end
 	if not StatusEffectService.CanCast(character) or not StatusEffectService.CanMove(character) then
@@ -125,11 +126,15 @@ end
 function ShoveService.Init() end
 
 function ShoveService.Start()
-	Players.PlayerAdded:Connect(function(player)
+	local function watch(player: Player)
 		player.CharacterAdded:Connect(function()
 			player:SetAttribute("ShoveReady", nil)
 		end)
-	end)
+	end
+	for _, player in Players:GetPlayers() do
+		watch(player)
+	end
+	Players.PlayerAdded:Connect(watch)
 end
 
 return ShoveService

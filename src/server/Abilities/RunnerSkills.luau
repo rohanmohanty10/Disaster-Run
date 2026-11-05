@@ -473,7 +473,8 @@ function RunnerSkills.Init()
 	-- Substitution / Silver Reflex / Epitaph: the first hit while armed is cancelled and you blink away.
 	CombatService.AddInterceptor(function(attacker, victim)
 		local state = armed[victim]
-		if not state then
+		-- Environment damage (lava / quicksand ticks) has no attacker: it must not use up the dodge.
+		if not state or attacker == nil then
 			return false
 		end
 		if os.clock() > state.Until then

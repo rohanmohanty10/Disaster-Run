@@ -110,21 +110,23 @@ function GachaService.Spin(player: Player, role: any, spinType: any): Requests.R
 		return Requests.Fail("Locked", "This slot is locked!")
 	end
 
+	-- Roll first (nothing is changed yet), then charge: if the roll ever errors, the player
+	-- keeps their spin.
+	local tableName = Roller.TableFor(roleData, spinType)
+	local boosted = if roleData.BoostedKit ~= "" then roleData.BoostedKit else nil
+	local unixNow = os.time()
+	local kitId, rarity = Roller.Roll(role, tableName, boosted, rng, unixNow)
+	-- During an event banner, the Lucky Secret pity guarantees the featured Secret (GAME_PLAN 3C).
+	local featured = if tableName == "LuckySecretPity" then Banners.FeaturedSecret(role, unixNow) else nil
+	if featured then
+		kitId, rarity = featured, "Secret"
+	end
+
 	local paid, paidWithCash, reason, message = charge(data, roleData, spinType)
 	if not paid then
 		return Requests.Fail(reason :: string, message)
 	end
 	lastSpin[player] = now
-
-	local tableName = Roller.TableFor(roleData, spinType)
-	local boosted = if roleData.BoostedKit ~= "" then roleData.BoostedKit else nil
-	local now = os.time()
-	local kitId, rarity = Roller.Roll(role, tableName, boosted, rng, now)
-	-- During an event banner, the Lucky Secret pity guarantees the featured Secret (GAME_PLAN 3C).
-	local featured = if tableName == "LuckySecretPity" then Banners.FeaturedSecret(role, now) else nil
-	if featured then
-		kitId, rarity = featured, "Secret"
-	end
 	Roller.UpdatePity(roleData, spinType, tableName, rarity)
 	roleData.TotalSpins += 1
 

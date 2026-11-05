@@ -200,15 +200,12 @@ local function insideSanctuary(position: Vector3): boolean
 	return math.abs(localPoint.X) <= half.X and math.abs(localPoint.Y) <= half.Y + 6 and math.abs(localPoint.Z) <= half.Z
 end
 
--- A finish only counts if the movement checks trust the player and the run took at least as
--- long as the fastest legitimate crossing (MovementConfig.AntiCheat.MinCrossingSpeedFactor).
-local function finishIsBelievable(player: Player, runStarted: number): boolean
-	if not MovementService.IsTrusted(player) then
-		return false
-	end
+-- A run that reached the Sanctuary faster than the fastest legitimate crossing
+-- (MovementConfig.AntiCheat.MinCrossingSpeedFactor) can't be real.
+local function finishTooFast(runStarted: number): boolean
 	local length = (course.Sanctuary.Position - course.Start.Position).Magnitude
 	local fastest = length / (MovementConfig.SprintSpeed * MovementConfig.AntiCheat.MinCrossingSpeedFactor)
-	return os.clock() - runStarted >= fastest
+	return os.clock() - runStarted < fastest
 end
 
 local function progressOf(position: Vector3): number
@@ -467,11 +464,15 @@ local function playRound(): { Player }
 						task.spawn(payCash, player, RoundConfig.Rewards.MidPoint, "Mid-point", ProgressionConfig.XP.MidPoint)
 						task.spawn(quest, player, "MidPoints")
 					end
-					if insideSanctuary(root.Position) and not finishIsBelievable(player, started) then
-						-- Too fast, or just flagged by the movement checks: back to the start.
-						warn(`[RoundService] Refused a Sanctuary finish from {player.Name}`)
+					local inSanctuary = insideSanctuary(root.Position)
+					if inSanctuary and finishTooFast(started) then
+						-- Impossibly fast: a teleport. Back to the start.
+						warn(`[RoundService] Refused a Sanctuary finish from {player.Name} (too fast)`)
 						MoveGrace.Teleport(character :: Model, course.Start * CFrame.new(0, 3, 0))
-					elseif insideSanctuary(root.Position) then
+					elseif inSanctuary and not MovementService.IsTrusted(player) then
+						-- Just flagged by the movement checks: the finish waits until they're trusted
+						-- again (a few seconds), so one false positive never costs a whole run.
+					elseif inSanctuary then
 						info.Finished = true
 						player:SetAttribute("Finished", true)
 						player:SetAttribute("Progress", 1)
