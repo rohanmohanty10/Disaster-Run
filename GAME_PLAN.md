@@ -99,10 +99,13 @@ The full list of God and Runner kits, with every skill, cooldown, cost, damage v
 - **Runner health:** 100 HP.
 - **No one-shots:** a single God cast deals at most **60 damage** to one Runner, no matter how many bolts or meteors land. This is enforced per cast in the combat pipeline (`CombatService.Afflict`).
 - **Shared damage ceiling:** a Runner can't take more than a set amount of God damage per second from all Gods combined, so a big God team can't delete someone instantly. *(Value tuned in playtests.)*
-- **The first two Legendary God kits** are rebuilt from the fruit-powers reference (`references/FruitGame/ReplicatedStorage/SkillCallbacks/DevilFruit/`). They keep the same moves, charge timings and VFX modules:
-  - **Thunder God:** Lightning Dragon, Lightning Wrath, Raigo.
-  - **Gravity Lord:** Meteor Strike, Gravity Dominance (aimed at the reticle instead of centred on the God), Meteor Fury.
-- **Reference limits:** the fruit-powers and round-loop references have **no server scripts** in the repo (their save tool can't capture them). Server hitboxes, damage values and meteor physics are rebuilt on our own combat core. Animations and meshes stored inside those scripts need their asset IDs from the original place files.
+- **The first two Legendary God kits** are **Thunder God** (Lightning Dragon, Lightning Wrath, Raigo) and **Gravity Lord** (Meteor Strike, Gravity Dominance aimed at the reticle, Meteor Fury). Their moves and timings are in `ABILITIES.md`. Their signature visuals are **original effects** built in code (`src/client/Controllers/SkillFx.luau`):
+  - **Lightning Dragon:** a serpent of light weaving down the line.
+  - **Lightning Wrath:** a storm cloud with jagged bolts.
+  - **Raigo:** a sinking storm sphere that detonates.
+  - **Meteor Strike / Meteor Fury:** burning meteors with craters and debris.
+  - **Gravity Dominance:** a violet pressure dome with crushing rings.
+- **Assets policy:** game assets (code, UI, animations, sounds, meshes) must be **our own** or properly licensed. The reference archives are for studying mechanics only, never for copying into the game. See `ROADMAP.md` → *Replace reference-derived assets*.
 
 ---
 

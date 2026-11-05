@@ -16,6 +16,7 @@ src/
 │   │   ├── ShowcaseStage.luau        -- ✅ Avatar showcase stage + camera behind the vault screens
 │   │   ├── Net.luau                  -- ✅ Safe request wrapper
 │   │   ├── CombatController.luau     -- ✅ Applies own knockback / ragdoll, DODGED + damage pop-ups, void screen
+│   │   ├── SkillFx.luau              -- ✅ Signature kit visuals (Thunder God, Gravity Lord)
 │   │   ├── CameraController.luau     -- God RTS orthographic camera & Runner 3rd-person spring camera
 │   │   ├── MovementController.luau   -- Runner sprint, stamina drain, slide/dodge iframes
 │   │   └── StatusEffectController.luau -- Stun/Silence/Void screen distortion effects
@@ -34,7 +35,7 @@ src/
 │   │   ├── RoundService.luau         -- Multi-round match lifecycle (rounds loop until 1 survivor; dead Runners become Gods)
 │   │   ├── StatusEffectService.luau  -- ✅ Stacking CC / iframe states (Section 1)
 │   │   ├── HitboxService.luau        -- ✅ Box / sphere hitboxes + target filters (Section 2)
-│   │   └── MapService.luau           -- Procedural 100-stud canyon chunk generator & destructible cover
+│   │   └── MapService.luau           -- ✅ Simple generated canyon + per-round cover (MapConfig.luau)
 │   └── init.server.luau              -- ✅ Service loader (Init, then Start)
 ├── shared/
 │   ├── Data/

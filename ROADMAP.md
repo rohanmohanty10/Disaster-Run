@@ -57,21 +57,30 @@ Tasks higher up unblock the ones below them. Pick from the top when you can.
 
 ### 2–6. Abilities, Runner, God, round loop, match UI — ✅ written, waiting on a Studio test (see Done)
 Follow-ups once tested:
-- ⬜ Signature VFX per kit (port the FruitGame Goro / Gravity effect modules; the code VFX are placeholders)
+- ✅ Signature VFX for Thunder God and Gravity Lord (original, `SkillFx.luau`)
+- ⬜ Signature VFX for the other kits (same approach: original effects in `SkillFx.luau`; the generic element VFX are placeholders)
 - ⬜ Kit animations and sounds (asset ids needed — see `AnimationConfig.luau`)
 - ⬜ God Pass priority for picking the starting Gods
 - ⬜ Runner stamina is tracked on the client: move it server-side before launch
 - ⬜ "Muting" for Infinite Void needs all sounds routed through one SoundGroup
 
-### 6b. Fog of War (`GAME_PLAN.md` Section 4B)
+### 6b. Fog of War (`GAME_PLAN.md` Section 4B) — 💡 idea only, don't build until Rohan says so
 - ⬜ `FogService`: `FogZone` volumes, `Concealed` / `Exposed` attributes, exposure timers, spawn-fog cast blocking
 - ⬜ Client: thick fog and hidden Runners for Gods, light haze for Runners, white exposure highlight, tracker/reticle support
-- ⬜ Fog patch placement on the map (waits for the map, which is on hold)
+- ⬜ Fog patch placement on the map
 
-### 7. ⏸️ Map and destruction — on hold
+### 7. Map and destruction
+- ✅ Simple generated canyon (`MapService.luau`, `MapConfig.luau`): floor, walls, start bunker + barrier, Sanctuary gate, cover reshuffled every round (ruins / pillars / low walls are destructible, boulders permanent). Plain on purpose.
+- ⏸️ Proper chunk art, chokepoint hazards (bridges over pits), real voxel destruction — on hold
 - ⏸️ `MapService`: canyon from 100-stud chunks
 - ⏸️ Destructible cover (port of BattleGame `DebreeService`)
 - If a test map is needed before then, keep it very basic or reuse a map from the reference games, and check with Rohan first.
+
+### 7b. ⚠️ Replace reference-derived assets (before publishing)
+- ⬜ **Vault and HUD GUIs** (`src/gui/*.rbxmx`) were converted from a reference game's UI export, including its images. Redesign them (same layout ideas, our own art) or rebuild them in code.
+- ⬜ **Rarity row template and gradients** (`src/assets/UI/`) come from the same export. Replace them.
+- ⬜ **Animation ids** in `AnimationConfig.luau` belong to other games. They won't play in ours anyway (Roblox only plays animations owned by the game's owner). Make or commission our own and upload them under the Disaster Run account or group.
+- ⬜ **Lock icon ids** in `UIConfig.luau`: replace them with our own uploads.
 
 ### 8. Economy extras
 - ⬜ Divine Shard shop
@@ -91,4 +100,4 @@ Follow-ups once tested:
 
 ## Known gaps in the references
 - **FruitGame and ValleyRun have no server scripts**, so their damage, hitbox and round logic is rebuilt from the design docs.
-- **Animations and meshes stored inside FruitGame scripts** (Goro and Zushi moves, meteor model) need exporting from the original place file.
+- **The references are other developers' games**, saved with a game-copying tool. Use them only to understand how mechanics work. Don't copy their code, UI, animations, sounds or meshes into Disaster Run.

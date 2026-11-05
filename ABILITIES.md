@@ -141,8 +141,7 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 #### Thunder God  `ThunderGod`
 > *"Self-proclaimed god of the sky. Lightning answers to him, and so will you."*
 
-**Element:** Lightning · **Inspired by:** The self-proclaimed god of the sky (fruit-powers reference, Goro kit)
- · **Reference:** `references/FruitGame/ReplicatedStorage/SkillCallbacks/DevilFruit/Goro-Goro.luau`
+**Element:** Lightning · **Inspired by:** The self-proclaimed god of the sky
 
 | Key | Skill | Shape | Damage | Cooldown | Energy | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
@@ -153,8 +152,7 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 #### Gravity Lord  `GravityLord`
 > *"A blind swordsman who sees everything that matters. He asks the sky for a meteor, and the sky always says yes."*
 
-**Element:** Gravity · **Inspired by:** The blind swordsman who pulls meteors from the sky (fruit-powers reference, Zushi kit)
- · **Reference:** `references/FruitGame/ReplicatedStorage/SkillCallbacks/DevilFruit/Zushi-Zushi.luau`
+**Element:** Gravity · **Inspired by:** The blind swordsman who pulls meteors from the sky
 
 | Key | Skill | Shape | Damage | Cooldown | Energy | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
