@@ -253,3 +253,45 @@ The `references/SorceryGame/` archive provides the exact implementation of Gojo'
 | **Combat Ragdoll** | `references/SorceryGame/ServerScriptService/Scripts/Game/Modules/Player/Character/Combat/Ragdoll.luau` | Character physics unbinding on knockback impacts |
 | **Projectile Pipeline** | `references/SorceryGame/ServerScriptService/Scripts/Game/Modules/Player/Character/Combat/Projectiles/Projectile.luau` | High-speed linear projectiles with collision sweeps and pierce options |
 | **Havoc Environmental Destruction** | `references/SorceryGame/ServerScriptService/Scripts/HavocHandler/Havoc/Havoc.luau` | 1,361-line mesh and spatial havoc physics engine |
+
+---
+
+## 9. Gameplay layer — ✅ written (steps 1–5)
+
+### Abilities (`AbilityService` + `src/server/Abilities/`)
+- Every skill's numbers are in `Kits.luau`. Its **`Behavior`** table picks a template and its parameters, e.g. `{ T = "Circle", R = 14, Tel = 1.3, Charge = 10, Dmg = 40, DmgEdge = 20, Ragdoll = 1.5 }`.
+- **God templates** (`GodSkills.luau`): `Circle`, `Line`, `Cone`, `Homing`, `Rain`. Options: `Charge`, `RMin`, `DmgMax`, `Bolts`, `Chain`, `Linger`, `Shots`, `DmgEdge`, `HealthPercent`, `RootAtFull`, `Blind`, `Invert`, `Outline`, `Burn`, `DestroyCover`.
+- **Runner templates** (`RunnerSkills.luau`): `Buff`, `Dash`, `AirJump`, `Blink`, `Arm`, `Decoy`, `Rush`, `Shove`, `Swap`, `Pull`, `Domain`, `TimeStop`, `Rewind`.
+- **Adding a kit:** add it to `ABILITIES.md` and `Kits.luau` with a `Behavior` per skill. It works straight away. Only write a new template for genuinely new mechanics.
+- **Input:** `Ability` remote (`"Press"` / `"Release"`, skill index, `{ Target, Direction, Move }`). Held God skills stream their aim point over the unreliable `Aim` remote.
+- **Replicated on the player:** `Cooldown1..5` (server time when ready), `Energy` / `MaxEnergy`, `Charging`.
+
+### Runner movement (`MovementController`, client)
+- WalkSpeed is recomputed every frame: sprint/walk × `SpeedMultiplier` (server slows) × `SpeedBoost` (buffs), and 0 while `MovementLocked`.
+- **Controls:**
+  - Shift: sprint
+  - Ctrl or C: slide (the server grants 0.35s iframes)
+  - Left Alt: shift lock
+  - Space in the air: extra jumps (Gale Step)
+  - Q / E / R: skills
+
+### God view (`GodController`, client)
+- Active when the player's `Role` is `"God"` and a match is running.
+- **Controls:**
+  - WASD: pan
+  - Scroll: zoom (60–220)
+  - Mouse: aim the reticle
+  - 1–5: cast (hold to charge)
+
+### Round loop (`RoundService`)
+- **States** live on ReplicatedStorage: `RoundState`, `RoundEndsAt`, `RoundNumber`, `MatchActive`.
+- **Players** get `Role`, `InRound`, `Progress`, `Finished`, `Eliminated`.
+- **Course:** `workspace.Course` with parts `StartSpawn` and `Sanctuary` if it exists. Otherwise there are just two markers on the baseplate (`RoundConfig.DefaultCourse`). **No map is built.**
+- **Studio:** 1 player is enough to start a match.
+
+### Testing
+- `/test round start` skips the intermission.
+- `/test round god` or `/test round runner` sets your role for solo matches.
+- `/test round end` ends the round or match.
+- `/test role runner` lets you use Runner skills in the lobby (against the dummies).
+- `/test round god` then `/test round start` lets you try the God view solo, with the dummies as targets.

@@ -22,7 +22,7 @@ Status key: ✅ done · 🔨 in progress · ⬜ to do · ⏸️ on hold
 
 | Task | Owner | Branch | Notes |
 | :--- | :--- | :--- | :--- |
-| **Combat core: Studio test** | Rohan | `claude/festive-fermat-xqcs68` | Code is written. Test with the dummies and `/test` chat commands, then merge. |
+| **Studio test of combat + steps 1–5** | Rohan | `claude/festive-fermat-xqcs68` | Abilities, Runner/God gameplay, round loop and match UI are written. Test with `/test` commands (see `FRAMEWORK_PLAN.md` → Testing), then merge. |
 
 ---
 
@@ -41,6 +41,11 @@ Status key: ✅ done · 🔨 in progress · ⬜ to do · ⏸️ on hold
 | Kit data | 15 God and 16 Runner kits with descriptions and numbers | `src/shared/Data/Kits.luau` |
 | Combat core *(needs a Studio test)* | Stacking status effects (stun, slow, root, silence, iframes, ragdoll, void), box/sphere hitboxes with the 4 target filters, build-once ragdolls, knockback, the `Afflict` hit pipeline with 60-per-cast and per-second damage caps, kill/assist credit, DODGED and damage pop-ups | `StatusEffectService`, `HitboxService`, `RagdollService`, `KnockbackService`, `CombatService`, `CombatController` (usage in `FRAMEWORK_PLAN.md` Sections 1–2) |
 | Test tools | 3 respawning test dummies and `/test` chat commands (Studio / creator only) | `DevTestService.luau` |
+| Ability framework *(needs a Studio test)* | One pipeline for all 69 skills: role + kit lookup, cooldowns, God energy, charge/hold skills, aim updates, passives; data-driven behaviours (Circle, Line, Cone, Homing, Rain, Buff, Dash, Blink, Arm, Decoy, Swap, Pull, Domain, Time Stop, Rewind…) | `AbilityService.luau`, `src/server/Abilities/`, `Behavior` tables in `Kits.luau` |
+| Runner gameplay *(needs a Studio test)* | Sprint + stamina, slide with 0.35s iframes, near-miss stamina refunds, Valley Run locomotion animations, Left Alt shift lock, Q/E/R skills | `MovementController.luau`, `AbilityController.luau`, `AnimationConfig.luau` |
+| God gameplay *(needs a Studio test)* | Overhead camera (WASD pan, 60–220 zoom), ground reticle per skill shape, 1–5 hotbar, energy regen, telegraphs and danger warnings | `GodController.luau`, `FxController.luau` |
+| Round loop *(needs a Studio test)* | Intermission → Gods picked → rounds → dead Runners become Gods → last survivor wins; Sanctuary finish, mid-point, Cash payouts, kills/assists, MVP stats | `RoundService.luau`, `RoundConfig.luau` |
+| Match UI *(needs a Studio test)* | Round bar + timer, banners, FINAL RUN, notice feed, Runner HUD, God HUD + tracker, spectating, MVP leaderboard (built in code) | `MatchHUDController.luau`, `Make.luau` |
 
 ---
 
@@ -50,34 +55,13 @@ Tasks higher up unblock the ones below them. Pick from the top when you can.
 
 ### 1. Combat core — ✅ written, waiting on a Studio test (see Done)
 
-### 2. Ability framework
-- ⬜ Base ability class: cooldowns, energy (God) and stamina (Runner) costs, can't cast while stunned or silenced
-- ⬜ Reads every number from `Kits.luau`; one module per kit
-
-### 3. Runner gameplay
-- ⬜ Sprint and stamina (speed 26, 100 stamina, 20/s drain, regen after 1.5s)
-- ⬜ Slide/roll with a 0.35s iframe; near-miss stamina refund
-- ⬜ Third-person shiftlock camera
-- ⬜ Runner HUD: stamina gauge, ability slots (`Q`/`E`/`R`), danger warning
-- ⬜ First kits: Quick Feet → Flash Step → Shinobi → the rest of `ABILITIES.md`
-
-### 4. God gameplay
-- ⬜ Overhead camera with zoom (60–220 studs)
-- ⬜ Ground reticle (circle, line, cone) and telegraph warnings
-- ⬜ Calamity Energy (150 max, 10/s regen)
-- ⬜ God HUD: hotbar `1`–`5`, energy bar, runner tracker
-- ⬜ First kits: Rockfall → Thunder God → Gravity Lord → the rest. Thunder God and Gravity Lord reuse the FruitGame VFX; their animations and meteor model still need exporting from the original place.
-
-### 5. Round loop
-- ⬜ `RoundService`: intermission → role selection → rounds → dead Runners become Gods → last survivor wins
-- ⬜ Sets the `InRound` attribute, which already blocks spins and kit swaps
-- ⬜ Cash payouts per round (`GAME_PLAN.md` Section 6A)
-- ⬜ Spectating
-
-### 6. Match UI
-- ⬜ Round banners and timer, "FINAL RUN" moment
-- ⬜ End-of-match MVP leaderboard and awards (`GAME_PLAN.md` Section 6C)
-- ⬜ **Decision needed:** build these as `.rbxmx` screens (like the vaults) or with a code UI library (React or Fusion)
+### 2–6. Abilities, Runner, God, round loop, match UI — ✅ written, waiting on a Studio test (see Done)
+Follow-ups once tested:
+- ⬜ Signature VFX per kit (port the FruitGame Goro / Gravity effect modules; the code VFX are placeholders)
+- ⬜ Kit animations and sounds (asset ids needed — see `AnimationConfig.luau`)
+- ⬜ God Pass priority for picking the starting Gods
+- ⬜ Runner stamina is tracked on the client: move it server-side before launch
+- ⬜ "Muting" for Infinite Void needs all sounds routed through one SoundGroup
 
 ### 7. ⏸️ Map and destruction — on hold
 - ⏸️ `MapService`: canyon from 100-stud chunks
