@@ -1,6 +1,6 @@
 # ABILITIES — God Cataclysms & Runner Reflexes
 
-Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 Runner kits** across six rarities.
+Every kit a player can roll from the two gacha vaults. **15 God kits** and **21 Runner kits** across six rarities.
 
 > **Source of truth:** this file and `src/shared/Data/Kits.luau` hold the same data. When a number changes, change both.
 > Descriptions follow the house style used by the vault screen: a kit has a one-line flavour **description** (shown under the kit name when it's rolled), and each skill has a plain **mechanical description**.
@@ -16,6 +16,7 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 
 - **God controls:** skills on `1`–`4`, ultimate on `5`. Aimed with the ground reticle. Every attack shows a warning telegraph (0.5s–1.5s) before it lands.
 - **God resource:** **Calamity Energy**, 150 max, regenerates 10/s.
 - **Runner controls:** skills on `Q` and `E`, ultimate on `R`.
+- **Every Runner kit has two abilities.** Like the styles in the basketball reference, each Runner kit gives you two skills to use, one on `Q` and one on `E`, at every rarity. Higher rarities add on top of the pair: Mythical kits add a passive, and Secret kits add an ultimate on `R`.
 - **Runner resource:** **Stamina**, 100 max (shared with sprinting).
 - **Runner health:** 100 HP.
 - **Damage rule:** a single God cast deals **at most 60 damage** to one Runner, so nothing one-shots a full-health Runner. Lines marked "(max X)" show the per-cast cap for multi-hit skills.
@@ -26,11 +27,11 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 
 | Rarity | Normal odds | Lucky odds | God kits | Runner kits |
 | :--- | :---: | :---: | :---: | :---: |
 | ⚪ **Common** | 55% | — | Rockfall, Gale Palm, Ember Spark | Quick Feet, Second Wind, Bounce |
-| 🔵 **Rare** | 30% | — | Frost Warden, Tidecaller, Fire Fist | Flash Step, Moonwalk, Dive Roll |
-| 🟣 **Epic** | 11.5% | — | Sand Calamity, Shadow Weaver, Magma Admiral | Shinobi, Brawler, Clap Swapper |
-| 🟠 **Legendary** | 3% | 92% | Thunder God, Gravity Lord, Light Admiral | Instant Transmission, Godspeed, Wind Walker |
-| 🔴 **Mythical** | 0.49% | 7% | World Shaker, Black Flame Avenger | Ultra Instinct, Metavision |
-| 🌈 **Secret** | 0.01% | 1% | King of Curses | The Honored One, Time Lord |
+| 🔵 **Rare** | 30% | — | Frost Warden, Tidecaller, Fire Fist | Flash Step, Moonwalk, Dive Roll, Sticky Fingers |
+| 🟣 **Epic** | 11.5% | — | Sand Calamity, Shadow Weaver, Magma Admiral | Shinobi, Brawler, Clap Swapper, Scary Monsters |
+| 🟠 **Legendary** | 3% | 92% | Thunder God, Gravity Lord, Light Admiral | Instant Transmission, Godspeed, Wind Walker, Red Hot Chili Pepper |
+| 🔴 **Mythical** | 0.49% | 7% | World Shaker, Black Flame Avenger | Ultra Instinct, Metavision, King Crimson |
+| 🌈 **Secret** | 0.01% | 1% | King of Curses | The Honored One, Time Lord, Made in Heaven |
 
 ---
 
@@ -227,7 +228,7 @@ _Normal: 0.01% total, 0.01% each · Lucky: 1% total, 1% each_
 
 ## 🏃 Runner Reflexes
 
-### ⚪ Common — 1 skill (speed burst)
+### ⚪ Common — 2 skills (speed burst + utility)
 _Normal: 55% total, 18.33% each_
 
 #### Quick Feet  `QuickFeet`
@@ -238,6 +239,7 @@ _Normal: 55% total, 18.33% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Burst Step** | Self | — | 10s | 15 | +35% movement speed for 2s. |
+| `E` | **Light Feet** | Self | — | 16s | 0 | For 3s, sprinting costs no stamina. |
 
 #### Second Wind  `SecondWind`
 > *"Tired? Not anymore. Catch your breath and keep running."*
@@ -247,6 +249,7 @@ _Normal: 55% total, 18.33% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Deep Breath** | Self | — | 14s | 0 | Instantly restores 50 stamina and gives +15% speed for 1.5s. |
+| `E` | **Grit** | Self | — | 18s | 10 | Grit your teeth: you take 25% less damage for 2s. |
 
 #### Bounce  `Bounce`
 > *"Spring-loaded sneakers and a whole lot of confidence."*
@@ -256,9 +259,10 @@ _Normal: 55% total, 18.33% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Spring Jump** | Self | — | 8s | 10 | Your next jump goes 1.8x higher. |
+| `E` | **Double Hop** | Self | — | 14s | 15 | For 4s you can jump once more in the air. |
 
-### 🔵 Rare — 1 skill (dive/vault, 0.35s iframes)
-_Normal: 30% total, 10% each_
+### 🔵 Rare — 2 skills (dive/vault, 0.35s iframes)
+_Normal: 30% total, 7.5% each_
 
 #### Flash Step  `FlashStep`
 > *"Blink and you'll miss it. Literally."*
@@ -268,6 +272,7 @@ _Normal: 30% total, 10% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Flash Step** | Dash (16) | — | 9s | 20 | Dash 16 studs in your move direction with 0.35s of iframes. |
+| `E` | **Step Chain** | Dash x2 | — | 13s | 25 | Two quick flash steps, 8 studs each, with 0.25s of iframes on each. |
 
 #### Moonwalk  `Moonwalk`
 > *"Kick the air hard enough and it kicks back."*
@@ -277,6 +282,7 @@ _Normal: 30% total, 10% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Sky Step** | Air jump | — | 9s | 20 | Kick off the air mid-jump, launching up and forward 14 studs with 0.35s of iframes. Once per jump. |
+| `E` | **Low Gravity** | Self | — | 14s | 15 | For 4s your jumps go 1.5x higher. |
 
 #### Dive Roll  `DiveRoll`
 > *"Duck, roll, survive. Repeat until home."*
@@ -286,9 +292,20 @@ _Normal: 30% total, 10% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Dive Roll** | Dash (12) | — | 8s | 15 | Dive-roll forward 12 studs with 0.35s of iframes. You keep your sprint speed. |
+| `E` | **Baseball Slide** | Slide (14) | — | 10s | 15 | Slide feet-first 14 studs with 0.35s of iframes. |
+
+#### Sticky Fingers  `StickyFingers`
+> *"Open a zipper, step through, zip it shut. Walls are just doors he hasn't opened yet."*
+
+**Element:** Zipper · **Inspired by:** The zipper stand of the gangster with a dream · **Reference:** UniverseGame (*Zipper Glide*, *Pocket Dimension*)
+
+| Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
+| :---: | :--- | :--- | :--- | :---: | :---: | :--- |
+| `Q` | **Zipper Glide** | Dash (18) | — | 10s | 20 | Glide 18 studs along the ground on a zipper track with 0.35s of iframes. |
+| `E` | **Pocket Dimension** | Blink (14) | — | 15s | 25 | Unzip the surface in front of you and come out the other side, up to 14 studs in your move direction. Goes straight through walls and cover, with 0.35s of iframes. |
 
 ### 🟣 Epic — 2 skills (substitution / sabotage)
-_Normal: 11.5% total, 3.83% each_
+_Normal: 11.5% total, 2.875% each_
 
 #### Shinobi  `Shinobi`
 > *"Believe it: the log took the hit, not him."*
@@ -320,8 +337,18 @@ _Normal: 11.5% total, 3.83% each_
 | `Q` | **Swap Clap** | Target (35) | — | 20s | 25 | Swap places with any Runner within 35 studs that you can see. Perfect for putting them where the strike is about to land. |
 | `E` | **Shove** | Cone (6) | — | 8s | 10 | Shove the Runner in front of you 14 studs. |
 
+#### Scary Monsters  `ScaryMonsters`
+> *"Scales, claws and a very bad attitude. Extinct? Not today."*
+
+**Element:** Dinosaur · **Inspired by:** The stand that turns its user into a dinosaur · **Reference:** StandGame (*Dino Full Form*, *Dino Dash*)
+
+| Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
+| :---: | :--- | :--- | :--- | :---: | :---: | :--- |
+| `Q` | **Dino Form** | Self | — | 22s | 20 | Turn into a raptor for 5s: +30% speed and you can't be knocked back. |
+| `E` | **Dino Dash** | Rush (12) | — | 11s | 20 | Charge forward as a raptor. The first Runner you hit is knocked back 20 studs and stunned for 0.6s. |
+
 ### 🟠 Legendary — 2 skills (blink / hyper-slide)
-_Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
+_Normal: 3% total, 0.75% each · Lucky: 92% total, 23% each_
 
 #### Instant Transmission  `InstantTransmission`
 > *"Two fingers to the forehead and he's already gone."*
@@ -353,8 +380,18 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 | `Q` | **Gale Step** | Self | — | 18s | 20 | For 4s you can jump up to 3 times in the air. |
 | `E` | **Tailwind Slide** | Slide (20) | — | 12s | 25 | Hyper-slide 20 studs with 0.4s of iframes. You leave a wind trail that gives other Runners +15% speed. |
 
+#### Red Hot Chili Pepper  `RedHotChiliPepper`
+> *"Rides the power lines and plays the riff loud. Catch him if you can."*
+
+**Element:** Electricity · **Inspired by:** The electric stand that lives in the power grid · **Reference:** StandGame (*Electric Charge*, *Electric Discharge*)
+
+| Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
+| :---: | :--- | :--- | :--- | :---: | :---: | :--- |
+| `Q` | **Power Line Dive** | Blink (30) | — | 14s | 30 | Hold for 0.2s, then dive into the current and come out up to 30 studs toward your aim, with 0.5s of iframes. |
+| `E` | **Electric Discharge** | Circle (r10) | — | 16s | 25 | Release a burst of electricity around you. Runners within 10 studs are shocked: stunned for 0.6s and knocked back. |
+
 ### 🔴 Mythical — 2 skills + passive
-_Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_
+_Normal: 0.49% total, 0.163% each · Lucky: 7% total, 2.33% each_
 
 #### Ultra Instinct  `UltraInstinct`
 > *"His body moves before his mind does. Silver eyes, silent feet."*
@@ -380,8 +417,20 @@ _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_
 
 **Passive — Flow State:** See God telegraphs 0.8s earlier than everyone else, with red trajectory lines.
 
+#### King Crimson  `KingCrimson`
+> *"Time is erased. Only he gets to remember what happened in it."*
+
+**Element:** Time · **Inspired by:** The boss's stand that erases time · **Reference:** UniverseGame (*Time Erase*, *Teleport*, *Epitaph*)
+
+| Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
+| :---: | :--- | :--- | :--- | :---: | :---: | :--- |
+| `Q` | **Time Erase** | Self | — | 28s | 30 | Erase the next 1.5s of time. You're invulnerable and 40% faster while it skips, and nothing that happens in it can touch you. Plays the time-skip screen effect. |
+| `E` | **Timeskip** | Blink (18) | — | 10s | 20 | Skip forward 18 studs in the direction you're moving, with 0.3s of iframes. |
+
+**Passive — Epitaph:** See a few seconds into the future: God telegraphs warn you 0.8s earlier than everyone else, with red trajectory lines. *(Uses the same early-warning system as Metavision's Flow State.)*
+
 ### 🌈 Secret — 2 skills + ultimate
-_Normal: 0.01% total, 0.005% each · Lucky: 1% total, 0.5% each_
+_Normal: 0.01% total, 0.0033% each · Lucky: 1% total, 0.33% each_
 
 #### The Honored One  `HonoredOne`
 > *"Throughout heaven and earth, he alone is the honored one."*
@@ -405,11 +454,23 @@ _Normal: 0.01% total, 0.005% each · Lucky: 1% total, 0.5% each_
 | `E` | **Rewind** | Self | — | 25s | 30 | Return to where you were 3s ago and get back the health you lost in that time (up to 40). |
 | `R` | **Time Stop** ⭐ | Global | — | 80s | 50 | ULTIMATE. Stop time for 2.5s. You're completely invulnerable, other Runners are frozen for 1.5s, and God telegraphs pause. |
 
+#### Made in Heaven  `MadeInHeaven`
+> *"Time accelerates toward a new universe. Everyone else is standing still."*
+
+**Element:** Time · **Inspired by:** The priest's stand that accelerates time · **Reference:** UniverseGame (*Godly Speed*, *Hand of Destiny*, *Made In Heaven*)
+
+| Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
+| :---: | :--- | :--- | :--- | :---: | :---: | :--- |
+| `Q` | **Godly Speed** | Blink (25) | — | 10s | 25 | Teleport up to 25 studs in the direction you're moving, with 0.4s of iframes. |
+| `E` | **Hand of Destiny** | Cone (8) | — | 14s | 20 | Strike the Runner in front of you. They're slowed by 60% for 2s. |
+| `R` | **Made in Heaven** ⭐ | Global | — | 90s | 50 | ULTIMATE. Accelerate time for 6s. You move 80% faster and sprint for free, and every other Runner is slowed by 40%. But time speeds up for the Gods too: their current cooldowns are cut in half. |
+
 ---
 
 ## Defaults & balance notes
 
 - **Starter kits:** new players start with **Rockfall** (God) and **Quick Feet** (Runner) in slot 1.
 - **All numbers are first-pass values for playtesting.** Damage, cooldowns and costs live in `Kits.luau`, so they can be tuned without touching ability code.
+- **Stand kits:** Sticky Fingers, Scary Monsters, Red Hot Chili Pepper, King Crimson and Made in Heaven come from the StandGame and UniverseGame references. Their animation and sound ids are in `src/shared/Data/StandAssets.luau`, and their UI / screen-effect models are in `src/assets/Stands` (`ReplicatedStorage.Assets.Stands`).
 - **Ability code isn't built yet.** This doc and `Kits.luau` define what each kit does. The skills themselves get implemented on the combat core (`FRAMEWORK_PLAN.md`).
 - **Naming:** several names (Amaterasu, Raigo, Infinite Void, Instant Transmission and so on) come straight from anime. They're great for players recognising a move, but worth a final naming pass before release in case any need changing.

@@ -88,7 +88,7 @@ function AbilityService.Prepare(player: Player)
 	if kit and kit.Passive then
 		if kit.Passive.Name == "Autonomous Reflex" then
 			player:SetAttribute("Passive_AutonomousReflex", true)
-		elseif kit.Passive.Name == "Flow State" then
+		elseif kit.Passive.Name == "Flow State" or kit.Passive.Name == "Epitaph" then
 			player:SetAttribute("Passive_FlowState", true)
 		end
 	end

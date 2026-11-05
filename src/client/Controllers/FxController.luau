@@ -298,6 +298,38 @@ handlers.TimeStop = function(info)
 	screenFlash(Color3.new(1, 1, 1), 0.4, 0.3)
 end
 
+-- Made in Heaven: everything takes on a washed-out, sped-up look for the whole acceleration.
+handlers.TimeAccel = function(info)
+	local duration = math.clamp(tonumber(info.Duration) or 6, 0.2, 12)
+	colorEffect("TimeAccel", duration, { Saturation = -0.4, Contrast = 0.25, TintColor = Color3.fromRGB(200, 255, 230) })
+	screenFlash(Color3.fromRGB(220, 255, 240), 0.3, 0.4)
+end
+
+-- Plays a screen effect template from ReplicatedStorage.Assets.Stands (copied from the
+-- reference games). Each template is a ScreenGui with a disabled LocalScript that runs the
+-- effect and then destroys the gui, e.g. King Crimson's TimeSkipEffect flipbook.
+handlers.ScreenFx = function(info)
+	if type(info.Name) ~= "string" then
+		return
+	end
+	local assets = ReplicatedStorage:FindFirstChild("Assets")
+	local stands = assets and assets:FindFirstChild("Stands")
+	local template = stands and stands:FindFirstChild(info.Name, true)
+	if not template or not template:IsA("ScreenGui") then
+		return
+	end
+	local gui = template:Clone()
+	gui.ResetOnSpawn = false
+	gui.IgnoreGuiInset = true
+	gui.DisplayOrder = 60
+	gui.Parent = PlayerGui
+	local runner = gui:FindFirstChildOfClass("LocalScript")
+	if runner then
+		runner.Enabled = true
+	end
+	Debris:AddItem(gui, 3)
+end
+
 handlers.Blind = function(info)
 	screenFlash(Color3.fromRGB(255, 250, 230), math.clamp(tonumber(info.Duration) or 1, 0.2, 5), 0)
 end

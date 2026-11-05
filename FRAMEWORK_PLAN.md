@@ -39,6 +39,7 @@ src/
 ├── shared/
 │   ├── Data/
 │   │   ├── Kits.luau                 -- ✅ Every God & Runner kit (mirrors ABILITIES.md)
+│   │   ├── StandAssets.luau          -- ✅ Animation / sound ids for the 5 stand Runner kits
 │   │   └── Rarities.luau             -- ✅ Rarity order, colours, vault rarities
 │   ├── Gacha/
 │   │   └── Roller.luau               -- ✅ Pure odds / roll / pity maths shared by server and client
@@ -56,7 +57,8 @@ src/
 │   │   └── Remotes.luau              -- ✅ Centralized remote definitions
 │   └── Util/                         -- ✅ Signal, Format, NumberStack, Characters, Knockback
 ├── gui/                              -- ✅ HUD, GodVault, RunnerVault ScreenGuis (.rbxmx, built by tools/build_vault_ui.py)
-└── assets/UI/                        -- ✅ RarityTitle row template, RarityGradients
+├── assets/UI/                        -- ✅ RarityTitle row template, RarityGradients
+└── assets/Stands/                    -- ✅ Stand UI / screen effects (King Crimson TimeSkipEffect, charge bars)
 ```
 
 ✅ = built. Everything else is still to do.

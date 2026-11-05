@@ -4,7 +4,7 @@
 -- (SelfMove remote); the server grants iframes and does everything that affects others.
 --
 -- Templates: Buff, Dash, AirJump, Blink, Arm, Decoy, Rush, Shove, Swap, Pull, Domain,
---            TimeStop, Rewind.
+--            TimeStop, Rewind, Burst, Accelerate.
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -92,7 +92,13 @@ function RunnerSkills.Buff(ctx: Context)
 		StatusEffectService.Apply(character, "Rooted", b.Root, { Force = true })
 	end
 	if b.KnockbackImmune then
-		Common.TimedAttribute(character, "KnockbackImmune", true, b.Root or 1.5)
+		-- true = for as long as the root lasts; a number = that many seconds.
+		local duration = if type(b.KnockbackImmune) == "number" then b.KnockbackImmune else (b.Root or 1.5)
+		Common.TimedAttribute(character, "KnockbackImmune", true, duration)
+	end
+	if b.ScreenFx then
+		-- A screen effect template from ReplicatedStorage.Assets.Stands (e.g. King Crimson's time skip).
+		Common.FxTo(ctx.Player, { Kind = "ScreenFx", Name = b.ScreenFx })
 	end
 	if b.Path then
 		selfMove(ctx, { Kind = "Path", Duration = b.Path })
@@ -167,21 +173,29 @@ function RunnerSkills.Blink(ctx: Context)
 		end
 	end
 	local root = ctx.Root
-	local goal = ctx.Aim or (root.Position + ctx.Look * b.Dist)
-	local offset = (goal - root.Position) * Vector3.new(1, 0, 1)
-	if offset.Magnitude > b.Dist then
-		offset = offset.Unit * b.Dist
+	local offset
+	if b.UseMove then
+		-- Teleport the full distance in the direction you're moving (Godly Speed, Timeskip).
+		offset = ctx.Move * b.Dist
+	else
+		local goal = ctx.Aim or (root.Position + ctx.Look * b.Dist)
+		offset = (goal - root.Position) * Vector3.new(1, 0, 1)
+		if offset.Magnitude > b.Dist then
+			offset = offset.Unit * b.Dist
+		end
+		if offset.Magnitude < 1 then
+			offset = ctx.Look * b.Dist
+		end
 	end
-	if offset.Magnitude < 1 then
-		offset = ctx.Look * b.Dist
-	end
-	-- Stop short of walls.
-	local params = RaycastParams.new()
-	params.FilterType = Enum.RaycastFilterType.Exclude
-	params.FilterDescendantsInstances = { ctx.Character }
-	local wall = workspace:Raycast(root.Position, offset, params)
-	if wall then
-		offset = offset.Unit * math.max(wall.Distance - 2, 0)
+	-- Stop short of walls, unless the skill goes through them (Pocket Dimension).
+	if not b.ThroughWalls then
+		local params = RaycastParams.new()
+		params.FilterType = Enum.RaycastFilterType.Exclude
+		params.FilterDescendantsInstances = { ctx.Character }
+		local wall = workspace:Raycast(root.Position, offset, params)
+		if wall then
+			offset = offset.Unit * math.max(wall.Distance - 2, 0)
+		end
 	end
 	local landing = Common.Ground(root.Position + offset) + Vector3.new(0, 3, 0)
 	CombatService.GiveIFrames(ctx.Character, b.IFrames)
@@ -260,8 +274,9 @@ function RunnerSkills.Shove(ctx: Context)
 	local shape: Common.Shape = { Kind = "Line", CFrame = CFrame.lookAt(root.Position, root.Position + ctx.Look), Length = b.Range + 2, Width = 5 }
 	for _, victim in Common.Targets(ctx.Player, shape, "RunnersPvP", 1) do
 		CombatService.Afflict(ctx.Player, victim, {
-			Stun = 0.3,
-			Knockback = { Direction = ctx.Look, Power = b.KB.Power, Lift = b.KB.Lift },
+			Stun = if b.Stun ~= nil then (if b.Stun > 0 then b.Stun else nil) else 0.3,
+			Slow = b.Slow, -- { Factor, Duration }, e.g. Hand of Destiny
+			Knockback = if b.KB then { Direction = ctx.Look, Power = b.KB.Power, Lift = b.KB.Lift } else nil,
 		})
 	end
 end
@@ -358,6 +373,47 @@ function RunnerSkills.Rewind(ctx: Context)
 		local lost = chosen.Health - humanoid.Health
 		if lost > 0 then
 			humanoid.Health = math.min(humanoid.MaxHealth, humanoid.Health + math.min(lost, b.HealMax))
+		end
+	end
+end
+
+-- A burst around you that hits every other Runner in range (Electric Discharge).
+function RunnerSkills.Burst(ctx: Context)
+	local b = ctx.Behavior
+	local center = ctx.Root.Position
+	Common.Fx({ Kind = "Impact", Shape = "Circle", CFrame = CFrame.new(center), Radius = b.R, Element = b.Element or "Lightning" })
+	for _, victim in Common.Targets(ctx.Player, { Kind = "Circle", CFrame = CFrame.new(center), Radius = b.R }, "RunnersPvP") do
+		local victimRoot = Characters.GetRoot(victim)
+		local away = if victimRoot then Common.Flat(victimRoot.Position - center, ctx.Look) else ctx.Look
+		CombatService.Afflict(ctx.Player, victim, {
+			Stun = b.Stun,
+			Knockback = if b.KB then { Direction = away, Power = b.KB.Power, Lift = b.KB.Lift } else nil,
+		})
+	end
+end
+
+-- Time acceleration (Made in Heaven): you speed up, every other Runner slows down,
+-- and the Gods' cooldowns tick faster too, so it's a gamble.
+function RunnerSkills.Accelerate(ctx: Context)
+	local b = ctx.Behavior
+	Common.TimedAttribute(ctx.Character, "SpeedBoost", b.Speed, b.Duration)
+	Common.TimedAttribute(ctx.Character, "FreeSprint", true, b.Duration)
+	Common.Fx({ Kind = "TimeAccel", Duration = b.Duration, Caster = ctx.Character })
+	Common.Fx({ Kind = "Buff", Character = ctx.Character, Duration = b.Duration })
+	for _, other in otherRunners(ctx) do
+		CombatService.Afflict(ctx.Player, other, { Slow = { Factor = b.Slow, Duration = b.Duration } })
+	end
+	if b.GodCooldownCut then
+		local now = workspace:GetServerTimeNow()
+		for _, player in Players:GetPlayers() do
+			if player:GetAttribute("Role") == "God" then
+				for i = 1, 5 do
+					local ready = player:GetAttribute(`Cooldown{i}`)
+					if type(ready) == "number" and ready > now then
+						player:SetAttribute(`Cooldown{i}`, now + (ready - now) * b.GodCooldownCut)
+					end
+				end
+			end
 		end
 	end
 end
