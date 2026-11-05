@@ -1,6 +1,6 @@
 # ABILITIES — God Cataclysms & Runner Reflexes
 
-Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 Runner kits** across six rarities.
+Every kit a player can roll from the two gacha vaults. **15 God kits** and **17 Runner kits** across six rarities.
 
 > **Source of truth:** this file and `src/shared/Data/Kits.luau` hold the same data. When a number changes, change both.
 > Descriptions follow the house style used by the vault screen: a kit has a one-line flavour **description** (shown under the kit name when it's rolled), and each skill has a plain **mechanical description**.
@@ -28,7 +28,7 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 
 | ⚪ **Common** | 55% | — | Rockfall, Gale Palm, Ember Spark | Quick Feet, Second Wind, Bounce |
 | 🔵 **Rare** | 30% | — | Frost Warden, Tidecaller, Fire Fist | Flash Step, Moonwalk, Dive Roll |
 | 🟣 **Epic** | 11.5% | — | Sand Calamity, Shadow Weaver, Magma Admiral | Shinobi, Brawler, Clap Swapper |
-| 🟠 **Legendary** | 3% | 92% | Thunder God, Gravity Lord, Light Admiral | Instant Transmission, Godspeed, Wind Walker |
+| 🟠 **Legendary** | 3% | 92% | Thunder God, Gravity Lord, Light Admiral | Instant Transmission, Godspeed, Wind Walker, Crimson Epitaph |
 | 🔴 **Mythical** | 0.49% | 7% | World Shaker, Black Flame Avenger | Ultra Instinct, Metavision |
 | 🌈 **Secret** | 0.01% | 1% | King of Curses | The Honored One, Time Lord |
 
@@ -320,8 +320,8 @@ _Normal: 11.5% total, 3.83% each_
 | `Q` | **Swap Clap** | Target (35) | — | 20s | 25 | Swap places with any Runner within 35 studs that you can see. Perfect for putting them where the strike is about to land. |
 | `E` | **Shove** | Cone (6) | — | 8s | 10 | Shove the Runner in front of you 14 studs. |
 
-### 🟠 Legendary — 2 skills (blink / hyper-slide)
-_Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
+### 🟠 Legendary — 2 skills (blink / hyper-slide / time)
+_Normal: 3% total, 0.75% each · Lucky: 92% total, 23% each_
 
 #### Instant Transmission  `InstantTransmission`
 > *"Two fingers to the forehead and he's already gone."*
@@ -352,6 +352,17 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Gale Step** | Self | — | 18s | 20 | For 4s you can jump up to 3 times in the air. |
 | `E` | **Tailwind Slide** | Slide (20) | — | 12s | 25 | Hyper-slide 20 studs with 0.4s of iframes. You leave a wind trail that gives other Runners +15% speed. |
+
+#### Crimson Epitaph  `CrimsonEpitaph`
+> *"Only the result remains. The moment the strike landed simply never happened."*
+
+**Element:** Time · **Inspired by:** The stand that erases time and reads the future (Stand Game / Universe Game King Crimson)
+ · **Reference:** `references/UniverseGame/ReplicatedStorage/ReplicatedStorage/ReplicatedModules/StatsFolder/King Crimson/` (moves, and the `KCR` Requiem skin for sounds and VFX)
+
+| Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
+| :---: | :--- | :--- | :--- | :---: | :---: | :--- |
+| `Q` | **Time Erasure** | Self | — | 24s | 30 | Erase time for 4s. Nobody else can see or hear you, not even the Gods, and you move 25% faster. Strikes still hurt if they land on you. |
+| `E` | **Epitaph** | Self | — | 16s | 25 | See 2.5s into the future. The first hit you'd take never happens: you appear 12 studs ahead with 0.5s of iframes. If a Runner hit you, you appear behind them instead and they're stunned for 0.5s. |
 
 ### 🔴 Mythical — 2 skills + passive
 _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_

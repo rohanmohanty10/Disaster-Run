@@ -4,12 +4,16 @@
 --   telegraphs (fill up until impact), impacts (flash + particles + shake), lingering zones,
 --   bolts, blinks, buffs, domains, screen effects (blind, invert, time stop) and the Runner
 --   danger warning (GAME_PLAN.md 5C) — Flow State sees it as soon as a strike is aimed.
+--   Crimson Epitaph uses King Crimson Requiem's sounds and screen flipbook from the Universe Game
+--   reference (references/UniverseGame/.../StatsFolder/King Crimson/KCR.luau, EffectsFolder/Devs).
 
 local Lighting = game:GetService("Lighting")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
+local RunService = game:GetService("RunService")
+local SoundService = game:GetService("SoundService")
 
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
@@ -41,6 +45,35 @@ local ELEMENT_COLORS: { [string]: Color3 } = {
 	Void = Color3.fromRGB(120, 80, 255),
 }
 local WARNING = Color3.fromRGB(255, 50, 50)
+
+-- King Crimson Requiem (Universe Game "KCR") effects.
+local KCR = {
+	Aura = ColorSequence.new(Color3.fromRGB(229, 140, 50), Color3.fromRGB(255, 209, 70)),
+	Gold = Color3.fromRGB(255, 190, 60),
+	Ghost = Color3.fromRGB(255, 0, 0), -- the "future" afterimages in erased time
+	EraseAmbient = Color3.fromRGB(170, 0, 255),
+	-- TimeSkipEffect ScreenGui: one frame per render step, then it's removed.
+	TimeSkipFrames = {
+		"rbxassetid://4573462670", "rbxassetid://4573463247", "rbxassetid://4573464191", "rbxassetid://4573465237",
+		"rbxassetid://4573466633", "rbxassetid://4573467848", "rbxassetid://4573468665", "rbxassetid://4573469255",
+		"rbxassetid://4573469861", "rbxassetid://4573470481", "rbxassetid://4573472230", "rbxassetid://4573472712",
+		"rbxassetid://4573473408", "rbxassetid://4573474618", "rbxassetid://4573475743", "rbxassetid://4573476483",
+		"rbxassetid://4573476928", "rbxassetid://4573477493",
+	},
+	Sounds = {
+		TimeEraseActivate = { 132737888411258, 2 },
+		TimeErase = { 92398148614754, 2 },
+		TimeEraseAmbient = { 119790813077891, 2 },
+		TimeEraseAmbientPanic = { 104987889246525, 2 },
+		TimeEraseEnd = { 135088920361860, 2 },
+		TimeEraseVoiceline = { { 106361416034079, 117290096927626 }, 3.15 },
+		TimeEraseEndVoiceline = { { 126623927211510, 107343713446046 }, 3.15 },
+		Witness = { 114931859797524, 2.25 },
+		WitnessVoiceline = { { 115988461911371, 137087356206753 }, 3.15 },
+		WitnessHit = { 136172569339289, 3.25 },
+		WitnessHitVoiceline = { { 106977915373308, 92908927079802 }, 3.15 },
+	} :: { [string]: { any } },
+}
 
 local folder: Folder
 local danger: Frame
@@ -176,6 +209,250 @@ local function dangerCheck(info: { [string]: any })
 		local tween = TweenService:Create(danger, TweenInfo.new(0.5, Enum.EasingStyle.Sine), { BackgroundTransparency = 1 })
 		tween:Play()
 	end)
+end
+
+-- ------------------------------------------------------------------ King Crimson Requiem
+-- Plays a KCR sound. With a parent part it's 3D; without one it's local to this player.
+local function kcrSound(name: string, parent: Instance?): Sound?
+	local entry = KCR.Sounds[name]
+	if not entry then
+		return nil
+	end
+	local id = entry[1]
+	if type(id) == "table" then
+		id = id[math.random(1, #id)]
+	end
+	local sound = Instance.new("Sound")
+	sound.Name = name
+	sound.SoundId = `rbxassetid://{id}`
+	sound.Volume = entry[2] or 2
+	if parent then
+		sound.Parent = parent
+		sound:Play()
+	else
+		sound.Parent = SoundService
+		SoundService:PlayLocalSound(sound)
+	end
+	sound.Ended:Once(function()
+		sound:Destroy()
+	end)
+	Debris:AddItem(sound, 30)
+	return sound
+end
+
+-- The TimeSkipEffect flipbook across the whole screen.
+local function timeSkipFlash()
+	local gui = Instance.new("ScreenGui")
+	gui.Name = "TimeSkipEffect"
+	gui.IgnoreGuiInset = true
+	gui.DisplayOrder = 60
+	gui.ResetOnSpawn = false
+	local image = Instance.new("ImageLabel")
+	image.BackgroundTransparency = 1
+	image.Size = UDim2.fromScale(1, 1)
+	image.Parent = gui
+	gui.Parent = PlayerGui
+	for _, frame in KCR.TimeSkipFrames do
+		image.Image = frame
+		RunService.RenderStepped:Wait()
+	end
+	gui:Destroy()
+end
+
+local function rootOf(character: any): BasePart?
+	if typeof(character) ~= "Instance" or not character:IsA("Model") then
+		return nil
+	end
+	return Characters.GetRoot(character)
+end
+
+local function goldEmitter(parent: Instance, props: { [string]: any }): ParticleEmitter
+	local emitter = Instance.new("ParticleEmitter")
+	emitter.Color = KCR.Aura
+	emitter.LightEmission = 1
+	emitter.LockedToPart = true
+	emitter.Transparency = NumberSequence.new({ NumberSequenceKeypoint.new(0, 0.3), NumberSequenceKeypoint.new(1, 1) })
+	for key, value in props do
+		(emitter :: any)[key] = value
+	end
+	emitter.Parent = parent
+	return emitter
+end
+
+-- Characters hidden from this client during someone's Time Erasure.
+local erased: { [Model]: boolean } = {}
+local erasedLoop: RBXScriptConnection? = nil
+
+local function setHidden(character: Model, hidden: boolean)
+	for _, d in character:GetDescendants() do
+		if d:IsA("BasePart") or d:IsA("Decal") then
+			d.LocalTransparencyModifier = if hidden then 1 else 0
+		elseif d:IsA("Sound") then
+			-- TimeErasureMute: you can't hear an erased Runner either.
+			local mute = d:FindFirstChild("TimeErasureMute")
+			if hidden and not mute then
+				local eq = Instance.new("EqualizerSoundEffect")
+				eq.Name = "TimeErasureMute"
+				eq.Priority = 1000
+				eq.HighGain, eq.MidGain, eq.LowGain = -80, -80, -80
+				eq.Parent = d
+			elseif not hidden and mute then
+				mute:Destroy()
+			end
+		end
+	end
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		humanoid.DisplayDistanceType = if hidden then Enum.HumanoidDisplayDistanceType.None else Enum.HumanoidDisplayDistanceType.Viewer
+	end
+end
+
+local function hideErased(character: Model, duration: number)
+	erased[character] = true
+	if not erasedLoop then
+		erasedLoop = RunService.RenderStepped:Connect(function()
+			for c in erased do
+				setHidden(c, true)
+			end
+		end)
+	end
+	local start = os.clock()
+	repeat
+		task.wait(0.1)
+	until os.clock() - start >= duration or character:GetAttribute("TimeErased") ~= true or not character.Parent
+	erased[character] = nil
+	if character.Parent then
+		setHidden(character, false)
+	end
+	if next(erased) == nil and erasedLoop then
+		erasedLoop:Disconnect()
+		erasedLoop = nil
+	end
+end
+
+-- A red see-through copy of a character's body, left where they are (the KC "future" ghost).
+local function ghostOf(character: Model): Model
+	local ghost = Instance.new("Model")
+	ghost.Name = "TimeEraseGhost"
+	for _, d in character:GetChildren() do
+		if d:IsA("BasePart") and d.Name ~= "HumanoidRootPart" then
+			local copy = part({ Size = d.Size, CFrame = d.CFrame, Color = KCR.Ghost, Transparency = 0.7, Material = Enum.Material.ForceField })
+			copy.Parent = ghost
+		end
+	end
+	ghost.Parent = folder
+	return ghost
+end
+
+-- What the erasing Runner sees: the world shatters and fades, the sky turns purple,
+-- and every other Runner leaves red afterimages showing where they're heading.
+local function eraseWorld(character: Model, duration: number)
+	task.spawn(timeSkipFlash)
+	kcrSound("TimeEraseActivate")
+	kcrSound("TimeErase")
+	kcrSound("TimeEraseVoiceline")
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	local panic = humanoid and humanoid.Health <= humanoid.MaxHealth * 0.35
+	local ambient = kcrSound(if panic then "TimeEraseAmbientPanic" else "TimeEraseAmbient")
+
+	local root = Characters.GetRoot(character)
+	local origin = if root then root.Position else Vector3.zero
+	local world = workspace:FindFirstChild("Course") or workspace
+	local skip: { Instance } = { folder }
+	for _, player in Players:GetPlayers() do
+		if player.Character then
+			table.insert(skip, player.Character)
+		end
+	end
+	for _, name in { "AbilityDecoys", "TestDummies", "GodReticle", "HitboxDebug" } do
+		local f = workspace:FindFirstChild(name)
+		if f then
+			table.insert(skip, f)
+		end
+	end
+	local function skipped(d: Instance): boolean
+		for _, s in skip do
+			if d == s or d:IsDescendantOf(s) then
+				return true
+			end
+		end
+		return false
+	end
+
+	-- Nearby pieces fly apart and shrink away; the real world stays as a faint outline
+	-- (fully invisible would hide the obstacles you're running through).
+	local saved: { [Instance]: number } = {}
+	for _, d in world:GetDescendants() do
+		if (d:IsA("BasePart") and not d:IsA("Terrain")) or d:IsA("Decal") or d:IsA("Texture") then
+			if not skipped(d) then
+				local p = d :: any
+				saved[d] = p.LocalTransparencyModifier
+				p.LocalTransparencyModifier = 0.85
+				if d:IsA("BasePart") and d.Transparency < 1 and (d.Position - origin).Magnitude <= 50 and d.Size.Magnitude < 150 then
+					local shard = part({ Size = d.Size, CFrame = d.CFrame, Color = d.Color, Material = d.Material, Transparency = d.Transparency })
+					local r = math.random
+					TweenService:Create(shard, TweenInfo.new(0.7, Enum.EasingStyle.Quad), {
+						CFrame = shard.CFrame * CFrame.Angles(math.rad(r(-360, 360)), math.rad(r(-360, 360)), math.rad(r(-360, 360))) * CFrame.new(r(-50, 50), r(-25, 25), r(-25, 25)),
+					}):Play()
+					task.delay(0.15, function()
+						TweenService:Create(shard, TweenInfo.new(0.55, Enum.EasingStyle.Quad), { Size = Vector3.zero }):Play()
+					end)
+					Debris:AddItem(shard, 0.75)
+				end
+			end
+		end
+	end
+
+	local oldAmbient = Lighting.Ambient
+	Lighting.Ambient = KCR.EraseAmbient
+	local atmosphere = Lighting:FindFirstChildOfClass("Atmosphere")
+	local oldAtmosphere = if atmosphere then { atmosphere.Density, atmosphere.Glare, atmosphere.Haze } else nil
+	if atmosphere then
+		atmosphere.Density, atmosphere.Glare, atmosphere.Haze = 0, 0, 0
+	end
+	local tint = Instance.new("ColorCorrectionEffect")
+	tint.Name = "TimeErase"
+	tint.TintColor = Color3.fromRGB(215, 170, 255)
+	tint.Saturation = -0.25
+	tint.Contrast = 0.15
+	tint.Parent = Lighting
+
+	local ghosts: { Model } = {}
+	local start = os.clock()
+	local nextGhost = 0
+	repeat
+		local elapsed = os.clock() - start
+		if elapsed >= nextGhost then
+			nextGhost += 1
+			for _, player in Players:GetPlayers() do
+				local other = player.Character
+				if other and other ~= character and player:GetAttribute("Role") == "Runner" and Characters.IsAlive(other) then
+					table.insert(ghosts, ghostOf(other))
+				end
+			end
+		end
+		task.wait(0.05)
+	until os.clock() - start >= duration or character:GetAttribute("TimeErased") ~= true or not character.Parent
+
+	for d, value in saved do
+		if d.Parent then
+			(d :: any).LocalTransparencyModifier = value
+		end
+	end
+	for _, ghost in ghosts do
+		ghost:Destroy()
+	end
+	Lighting.Ambient = oldAmbient
+	if atmosphere and oldAtmosphere then
+		atmosphere.Density, atmosphere.Glare, atmosphere.Haze = oldAtmosphere[1], oldAtmosphere[2], oldAtmosphere[3]
+	end
+	tint:Destroy()
+	if ambient then
+		ambient:Destroy()
+	end
+	kcrSound("TimeEraseEnd")
+	kcrSound("TimeEraseEndVoiceline")
+	timeSkipFlash()
 end
 
 -- ------------------------------------------------------------------ handlers
@@ -315,6 +592,128 @@ end
 handlers.Dodged = function(info)
 	if typeof(info.Position) == "Vector3" then
 		burst(info.Position, Color3.fromRGB(120, 220, 255), 15)
+	end
+end
+
+handlers.TimeErase = function(info)
+	local character = info.Character
+	if typeof(character) ~= "Instance" or not character:IsA("Model") then
+		return
+	end
+	local duration = math.clamp(tonumber(info.Duration) or 4, 0.2, 15)
+	if character == LocalPlayer.Character then
+		eraseWorld(character, duration)
+	else
+		hideErased(character, duration)
+	end
+end
+
+-- Epitaph on: the KCR forehead face plus the counter aura. Off: they fade out.
+handlers.Epitaph = function(info)
+	local character = info.Character
+	local root = rootOf(character)
+	if not root then
+		return
+	end
+	local model = character :: Model
+	local head = model:FindFirstChild("Head") :: BasePart?
+	if not info.On then
+		for _, name in { "_Epitaph", "EpitaphCounter" } do
+			local fx = model:FindFirstChild(name)
+			if fx then
+				fx.Name ..= "Off"
+				for _, d in fx:GetDescendants() do
+					if d:IsA("ParticleEmitter") or d:IsA("Trail") then
+						d.Enabled = false
+					elseif d:IsA("BasePart") then
+						TweenService:Create(d, TweenInfo.new(0.4), { Transparency = 1 }):Play()
+					end
+				end
+				Debris:AddItem(fx, 2.5)
+			end
+		end
+		return
+	end
+	if model:FindFirstChild("_Epitaph") then
+		return
+	end
+	kcrSound("Witness", root)
+	kcrSound("WitnessVoiceline", root)
+
+	if head then
+		-- Epitaph's little face on the forehead.
+		local face = Instance.new("Part")
+		face.Name = "_Epitaph"
+		face.Shape = Enum.PartType.Ball
+		face.Size = Vector3.one * 0.45
+		face.Color = KCR.Gold
+		face.Material = Enum.Material.Neon
+		face.CanCollide, face.CanQuery, face.CanTouch, face.Massless = false, false, false, true
+		face.CFrame = head.CFrame * CFrame.new(0, 0.25, -head.Size.Z / 2)
+		local weld = Instance.new("WeldConstraint")
+		weld.Part0, weld.Part1 = head, face
+		weld.Parent = face
+		local attachment = Instance.new("Attachment")
+		attachment.Parent = face
+		goldEmitter(attachment, {
+			Rate = 25,
+			Lifetime = NumberRange.new(0.3, 0.6),
+			Speed = NumberRange.new(0.5, 1.5),
+			Size = NumberSequence.new({ NumberSequenceKeypoint.new(0, 0.5), NumberSequenceKeypoint.new(1, 0) }),
+			SpreadAngle = Vector2.new(180, 180),
+		})
+		face.Parent = model
+	end
+
+	-- The counter aura around the body.
+	local counter = Instance.new("Part")
+	counter.Name = "EpitaphCounter"
+	counter.Size = Vector3.new(5, 2.5, 5)
+	counter.Transparency = 1
+	counter.CanCollide, counter.CanQuery, counter.CanTouch, counter.Massless = false, false, false, true
+	counter.CFrame = root.CFrame * CFrame.Angles(0, math.rad(90), 0)
+	local weld = Instance.new("WeldConstraint")
+	weld.Part0, weld.Part1 = root, counter
+	weld.Parent = counter
+	local attachment = Instance.new("Attachment")
+	attachment.Parent = counter
+	goldEmitter(attachment, {
+		Rate = 40,
+		Lifetime = NumberRange.new(0.5, 0.8),
+		Speed = NumberRange.new(2, 4),
+		Size = NumberSequence.new({ NumberSequenceKeypoint.new(0, 0.35), NumberSequenceKeypoint.new(0.5, 0.6), NumberSequenceKeypoint.new(1, 0) }),
+		Shape = Enum.ParticleEmitterShape.Cylinder,
+		ShapeStyle = Enum.ParticleEmitterShapeStyle.Surface,
+		ShapeInOut = Enum.ParticleEmitterShapeInOut.Outward,
+		Acceleration = Vector3.new(0, 6, 0),
+	})
+	attachment.CFrame = CFrame.Angles(0, 0, math.rad(90))
+	local highlight = Instance.new("Highlight")
+	highlight.FillColor = KCR.Gold
+	highlight.OutlineColor = Color3.fromRGB(255, 209, 70)
+	highlight.FillTransparency = 0.85
+	highlight.Adornee = model
+	highlight.Parent = counter
+	counter.Parent = model
+end
+
+-- Epitaph triggered: the hit never happened.
+handlers.EpitaphHit = function(info)
+	local character = info.Character
+	local root = rootOf(character)
+	kcrSound("WitnessHit", root)
+	kcrSound("WitnessHitVoiceline", root)
+	if character == LocalPlayer.Character then
+		task.spawn(timeSkipFlash)
+	end
+	for _, key in { "From", "To" } do
+		local position = info[key]
+		if typeof(position) == "Vector3" then
+			local ball = part({ Shape = Enum.PartType.Ball, Size = Vector3.one * 4, Position = position, Color = KCR.Gold, Transparency = 0.2 })
+			TweenService:Create(ball, TweenInfo.new(0.35), { Size = Vector3.one * 9, Transparency = 1 }):Play()
+			Debris:AddItem(ball, 0.4)
+			burst(position, KCR.Gold, 20)
+		end
 	end
 end
 

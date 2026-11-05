@@ -4,7 +4,7 @@
 -- (SelfMove remote); the server grants iframes and does everything that affects others.
 --
 -- Templates: Buff, Dash, AirJump, Blink, Arm, Decoy, Rush, Shove, Swap, Pull, Domain,
---            TimeStop, Rewind.
+--            TimeStop, Rewind, TimeErase.
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -34,7 +34,7 @@ export type Context = {
 
 local RunnerSkills = {}
 
-type Armed = { Kind: string, Until: number, Teleport: number, IFrames: number, Player: Player }
+type Armed = { Kind: string, Until: number, Teleport: number, IFrames: number, Stun: number?, Player: Player }
 local armed: { [Model]: Armed } = {}
 
 type Sample = { Time: number, CFrame: CFrame, Health: number }
@@ -196,9 +196,34 @@ function RunnerSkills.Arm(ctx: Context)
 		Until = os.clock() + b.Window,
 		Teleport = b.Teleport,
 		IFrames = b.IFrames,
+		Stun = b.Stun,
 		Player = ctx.Player,
 	}
+	if b.Kind == "Epitaph" then
+		-- King Crimson Requiem's Epitaph: forehead face + counter aura while the window is open.
+		local character = ctx.Character
+		Common.Fx({ Kind = "Epitaph", Character = character, On = true, Duration = b.Window })
+		task.delay(b.Window, function()
+			local state = armed[character]
+			if state and state.Kind == "Epitaph" and os.clock() >= state.Until - 0.05 then
+				armed[character] = nil
+				Common.Fx({ Kind = "Epitaph", Character = character, On = false })
+			end
+		end)
+		return
+	end
 	Common.Fx({ Kind = "Buff", Character = ctx.Character, Duration = b.Window, Style = b.Kind })
+end
+
+-- Time Erasure (King Crimson Requiem): the Gods lose sight of you while time is erased.
+function RunnerSkills.TimeErase(ctx: Context)
+	local b = ctx.Behavior
+	local character = ctx.Character
+	Common.TimedAttribute(character, "TimeErased", true, b.Duration)
+	if b.Speed then
+		Common.TimedAttribute(character, "SpeedBoost", b.Speed, b.Duration)
+	end
+	Common.Fx({ Kind = "TimeErase", Character = character, Duration = b.Duration })
 end
 
 function RunnerSkills.Decoy(ctx: Context)
@@ -364,8 +389,8 @@ end
 
 -- ------------------------------------------------------------------ setup
 function RunnerSkills.Init()
-	-- Substitution / Silver Reflex: the first hit while armed is cancelled and you blink away.
-	CombatService.AddInterceptor(function(_, victim)
+	-- Substitution / Silver Reflex / Epitaph: the first hit while armed is cancelled and you blink away.
+	CombatService.AddInterceptor(function(attacker, victim)
 		local state = armed[victim]
 		if not state then
 			return false
@@ -376,6 +401,32 @@ function RunnerSkills.Init()
 		end
 		armed[victim] = nil
 		local root = Characters.GetRoot(victim)
+		if root and state.Kind == "Epitaph" then
+			Common.Fx({ Kind = "Epitaph", Character = victim, On = false })
+			-- Hit by a Runner: appear right behind them (as in the original) and stun them.
+			local attackerCharacter = attacker and attacker.Character
+			local attackerRoot = attackerCharacter and Characters.GetRoot(attackerCharacter)
+			local landing: CFrame
+			if attackerCharacter and attackerRoot and Characters.GetRole(attackerCharacter) == "Runner" and (attackerRoot.Position - root.Position).Magnitude <= 70 then
+				local behind = attackerRoot.Position - Common.Flat(attackerRoot.CFrame.LookVector) * 5
+				landing = CFrame.lookAt(behind, Vector3.new(attackerRoot.Position.X, behind.Y, attackerRoot.Position.Z))
+				local stun = state.Stun
+				local hitter = attackerCharacter :: Model
+				if stun then
+					task.defer(function()
+						CombatService.Afflict(state.Player, hitter, { Stun = stun })
+					end)
+				end
+			else
+				local look = Common.Flat(root.CFrame.LookVector)
+				local spot = Common.Ground(root.Position + look * state.Teleport) + Vector3.new(0, 3, 0)
+				landing = CFrame.lookAt(spot, spot + look)
+			end
+			Common.Fx({ Kind = "EpitaphHit", Character = victim, From = root.Position, To = landing.Position })
+			victim:PivotTo(landing)
+			CombatService.GiveIFrames(victim, state.IFrames)
+			return true
+		end
 		if root then
 			local direction
 			if state.Kind == "SilverReflex" then

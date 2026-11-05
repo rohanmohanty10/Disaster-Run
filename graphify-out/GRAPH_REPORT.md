@@ -1,17 +1,17 @@
 # Graph Report - Disaster-Run  (2026-11-05)
 
 ## Corpus Check
-- 15861 files · ~11,006,940 words
+- 20894 files · ~13,296,790 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 1064 file(s) not represented in the graph (top: .rbxmx 1035, (none) 15, .toml 14)
+- Unclassified: 1240 file(s) not represented in the graph (top: .rbxmx 1211, (none) 15, .toml 14)
 
 ## Summary
-- 66235 nodes · 106850 edges · 8111 communities (1565 shown, 6546 thin omitted)
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 8857 edges (avg confidence: 0.85)
+- 80698 nodes · 128642 edges · 10722 communities (1772 shown, 8950 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 9637 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `37af82f8`
+- Built from commit: `abe80de3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -42,27 +42,29 @@
 - Asserts.luau
 - baseClient.luau
 - v14
-- wallyVFX.luau
-- Explosion.luau
+- pathshortcuts_knitpath_knit
+- replicatedstorage_replicatedmodules_effectshandler
 - serverscriptservice_scripts_game_modules_player_character_combat_attacks_baseattack
 - OpenTextChatService.luau
 - u1_playerscripts_waitforchild
-- v3.start
+- u4.lerp
 - chickenorhero_waitforchild
+- ReplicatedStorage/RelicsXYZ/RelicsPlayer/State.luau
 - NetworkSystem_1.luau
-- script_parent_parent_waitforchild
+- script_parent_waitforchild
 - script_parent_parent_shared_util
 - _G.PauseAnim
-- v22
+- pathshortcuts_replicatedmodules_replicatedlibrary_particlehandler
 - movement_waitforchild
 - otoyaVFX.luau
 - u3.lerp
-- AI.luau
+- SorceryGame/ReplicatedStorage/Modules/Shared/Utilities/Utility.luau
 - script_parent_parent_shared_types
 - StrikerGame/ReplicatedStorage/chrono/Server/Replicate.luau
+- EasingFunctions.luau
 - kunigamiVFX.luau
 - Modules/TopbarPlus/Icon.luau
-- mvpVFX.luau
+- mvpVFX_1.luau
 - AnimationPolicy.luau
 - obj_bezier
 - script_parent_parent_parent_parent_waitforchild
@@ -84,7 +86,8 @@
 - Shared/Zone.luau
 - rolandVFX_1.luau
 - vfxUtil_1.luau
-- SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1.2.6/luau-polyfill/AssertionError/AssertionError.global.luau
+- game_replicatedstorage_waitforchild
+- inspect
 - rolandVFX.luau
 - GhostTraderView.luau
 - Utility/Part_Icles.luau
@@ -200,14 +203,14 @@
 - ReplicaController.luau
 - Specials.luau
 - ReplicaService/Client.luau
-- StrikerGame/ReplicatedStorage/chrono/Server/Receiver.luau
+- Server/Receiver_1.luau
 - _t_1.luau
 - TeamEventCelebration.luau
 - Stylus.luau
 - HandOver.luau
 - ReplicatedStorage/RelicsXYZ.luau
 - v29
-- Server/Index.luau
+- Warp/Index.luau
 - util/Util_1.luau
 - StarterPlayer/PlayerModule/ControlModule/ClickToMoveController.luau
 - HauntClient.client.luau
@@ -219,7 +222,7 @@
 - Modules/ForgeVFX/mod/utility.luau
 - CupTrailerClient.client.luau
 - InvertedSpearThrow/NPC/Animate.client.luau
-- MapVoteClient.client.luau
+- game_waitforchild
 - AssignmentContext.luau
 - RBTreeList.luau
 - script_waitforchild
@@ -234,7 +237,7 @@
 - SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberCommitWork.new.luau
 - JSONEncoder.luau
 - SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraInput.luau
-- u13.preview
+- EffectsHandler.luau
 - HalloweenCrateShow.luau
 - FallenKingStatueClient.client.luau
 - SorceryGame/ReplicatedStorage/Modules/Shared/Utilities/Job.luau
@@ -242,8 +245,8 @@
 - ReplicatedStorage/Part_Icles/Particles.luau
 - Replicator/Client.luau
 - BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveDisplay.luau
-- Core/Inventory.luau
-- v29
+- pathshortcuts_genericmodule
+- LightningModule.luau
 - TailorCodec.luau
 - SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveDisplay.luau
 - util/Zone.luau
@@ -267,7 +270,7 @@
 - MarbleClient.client.luau
 - EmoteClient.client.luau
 - FallenKingBombClient.client.luau
-- Utility/SmartBone/Dependencies/Iris/widgets.luau
+- Game/SmartBone/Dependencies/Iris/widgets.luau
 - MergeMachineClient.client.luau
 - servermodules_iframesservice
 - SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17.2.1/scheduler/forks/SchedulerHostConfig.mock.luau
@@ -285,9 +288,9 @@
 - WheelHandler2D.client.luau
 - script_parent_types
 - Cinabon_Auvens/Animate.client.luau
-- nagiVFX.luau
+- replicatedstorage2_util_animationutil
 - giha271/Animate_1.client.luau
-- SoccerGame/ReplicatedStorage/Controllers/UIController/Shop.luau
+- game_replicatedstorage_replicatedmodules_animations
 - lisin_047/Animate_1.client.luau
 - Client/Index.luau
 - Effects.luau
@@ -301,6 +304,7 @@
 - script_parent_shards
 - Replica.luau
 - WheelHandler.client.luau
+- game_replicatedstorage_replicatedmodules_effectshandler
 - Shared/EmitModule/mod/utility.luau
 - RewardPop.luau
 - View.luau
@@ -339,7 +343,7 @@
 - playIslandShaking
 - Modules/Octree.luau
 - AlbieClient.client.luau
-- ImageEmit_1.luau
+- ReplicatedStorage/Part_Icles/ImageEmit.luau
 - EmoteCatalog.luau
 - hioriVFX.luau
 - hioriVFX_1.luau
@@ -347,9 +351,10 @@
 - HalloweenBundle.luau
 - BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule.luau
 - FreecamScript.client.luau
-- StrikerGame/ReplicatedStorage/chrono/Client/Receiver.luau
+- StrikerGame/ReplicatedStorage/chrono/Client/Sender.luau
 - Matte/Field.luau
 - Matte/Field_1.luau
+- descendant
 - Misc/TemplateRig/Animate.client.luau
 - StyleRig/Animate.client.luau
 - ZoneRig/Animate.client.luau
@@ -368,7 +373,6 @@
 - Cupid Outfit/Rig/Animate.client.luau
 - Diamond Suit/Rig/Animate.client.luau
 - AdRewardsController.luau
-- pkg_shake
 - SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule.luau
 - amadsuba123/Animate.client.luau
 - Eaua56/Animate.client.luau
@@ -384,6 +388,7 @@
 - RunnerSkills.luau
 - MVP2/Animate.client.luau
 - MVP3/Animate.client.luau
+- ReplicatedModules/ItemData.luau
 - QuestClient.client.luau
 - Saves1/Animate.client.luau
 - BaseInstance.lua
@@ -391,7 +396,7 @@
 - ContentTeamClient.client.luau
 - RubyPuffer/Animate.client.luau
 - matedadvani2010/Animate.client.luau
-- KatUtil_1.luau
+- KatUtil.luau
 - PreloadDummy/Animate.client.luau
 - TableToSyntaxString.luau
 - Canvas_1.luau
@@ -412,7 +417,7 @@
 - giha271/newAnimate.client.luau
 - ClientBotAnimator.luau
 - StepOverMotion.luau
-- Utility/SmartBone/Dependencies/Iris.luau
+- script_types
 - Twins.luau
 - MeshFlipbooks.luau
 - lisin_047/newAnimate_1.client.luau
@@ -490,8 +495,9 @@
 - ReplicatedStorage/Part_Icles/EventsSchema.luau
 - EventsSchema_1.luau
 - EventAudienceClient.client.luau
-- Modules/Button.luau
+- AchievementsUI.luau
 - BuildTools/SkillBuilder.luau
+- Angles
 - GiftClient.luau
 - ArmoryClient.client.luau
 - BladeBallClient.client.luau
@@ -502,9 +508,8 @@
 - @quenty_playerthumbnailutils/Promise.luau
 - ParallaxWindows.luau
 - JSON5Decoder.luau
-- GpoClimbing4.luau
+- game_replicatedstorage_replicatedroot_core
 - BuildTools.luau
-- EventsCollision_1.luau
 - Twins_1.luau
 - ReplicatedStorage/Part_Icles/Pool.luau
 - Pool_1.luau
@@ -514,29 +519,29 @@
 - BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/BaseCamera.luau
 - StarterPlayer/PlayerModule/ControlModule.luau
 - steps
-- v41
 - Observability/Codec.luau
 - Observability/Registry.luau
 - akumaVFX.luau
 - akumaVFX_1.luau
 - Rig.luau
-- DebugUtil/Iris.luau
+- FunctionLibrary.luau
 - Playerlist.luau
 - game_replicatedstorage_modules_clienteffects_g_essentials
 - ProServerClient.client.luau
 - MobileBase.luau
-- _G.getTargetNearMouse
+- Mera-Mera.luau
 - Packages/RelicsXYZ/Shared/React.luau
 - BasketballGame/ReplicatedStorage/Packages/_Index/sleitnick_component@2.4.8/component/init.spec.luau
 - BasketballGame/ReplicatedStorage/Packages/_Index/sleitnick_input@2.3.0/input/Gamepad.luau
 - Utility/Part_Icles/Graph.luau
+- BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/CameraWrapper.luau
 - matchIntroVFX.luau
 - NPCInteractions.luau
 - KnifeDisplayRig.luau
 - BasketballGame/ReplicatedStorage/Packages/_Index/sleitnick_component@2.4.8/component.luau
 - Rain.luau
 - GemSkinController.luau
-- ToolService.luau
+- v6
 - replicatedstorage_waitforchild
 - SoccerGame/ReplicatedStorage/Controllers/UIController.luau
 - SoccerGame/ReplicatedStorage/Packages/_Index/sleitnick_input@2.3.0/input/Gamepad.luau
@@ -547,14 +552,15 @@
 - trove_1.luau
 - MapLightingClient.client.luau
 - ReplicatedStorage/Part_Icles/Graph.luau
-- Core/Abilities.luau
+- GPO Zipline.luau
 - v1_waitforchild
 - ContextActionService.luau
 - Graph_1.luau
+- Zipline.luau
 - BaseBlock.new
 - GearJuiceClient.client.luau
 - BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/Invisicam.luau
-- _G.HasItem
+- new
 - DaggerAnimation.luau
 - TailorTransport.luau
 - GlobalNELLeaderboardsController.luau
@@ -584,12 +590,14 @@
 - StarterPlayer/PlayerModule/CameraModule/Invisicam.luau
 - ReplicatedStorage/Part_Icles/Events.luau
 - BuildTools/Dropdown.luau
+- Utils/RichText.luau
 - FallenKingHeartsClient.client.luau
 - GLightning.luau
 - ProximityController.luau
 - Onslaught Normal.luau
 - TopbarIcon_1.luau
-- roact-constant-fork/Component.luau
+- script_parent_symbol
+- StarterPlayer/PlayerModule/CameraModule/BaseCamera.luau
 - Observability/Styles.luau
 - Panels.luau
 - ParticleRecorder.luau
@@ -604,12 +612,12 @@
 - gubbyClient_1.luau
 - MindControlClient.luau
 - MindControlClient_1.luau
-- BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/BaseCamera.luau
+- CameraInput.getRotation
 - Abilities/Ninja/ShadowRelay.luau
 - AudioManager.luau
-- Utility/Part_Icles/Pool.luau
+- mvpVFX.luau
 - MarbleBallClient_1.client.luau
-- rinVFX.luau
+- UwUEffects.luau
 - Sites.luau
 - GetDataRig.luau
 - BufferUtil.luau
@@ -619,7 +627,7 @@
 - Reactor/Display.luau
 - Instances.luau
 - targets/roblox_cli.rs
-- Library.luau
+- ElephantGun.luau
 - BuildTools/Properties.luau
 - CommandCatalog.luau
 - ChoiceSpotlightClient.client.luau
@@ -634,7 +642,7 @@
 - ReplicatedStorage/SmartBone/Dependencies/Iris/widgets/Input.luau
 - Utility/ForgeVFX.luau
 - MainModule.luau
-- v4.start
+- v1.start
 - Domains/DomainHandler/BaseDomain.luau
 - BalloonOfferClient.client.luau
 - baseVFX_1.luau
@@ -645,11 +653,11 @@
 - BasketballGame/ReplicatedStorage/Packages/_Index/sleitnick_trove@1.1.0/trove.luau
 - BasketballGame/ReplicatedStorage/Packages/Janitor.luau
 - Utility/Part_Icles/ScreenEmit.luau
-- commonutils_waitforchild
+- ClientModules/SmartBone/Dependencies/Iris/API.luau
 - FruitGame/StarterPlayer/StarterCharacterScripts/Animate.client.luau
 - IntervalTree.luau
 - SoccerGame/StarterPlayer/StarterPlayerScripts/RbxCharacterSounds/AtomicBinding.luau
-- jobs
+- with
 - SoccerGame/ReplicatedStorage/Packages/_Index/sleitnick_signal@1.5.0/signal.luau
 - Flipbook_1.luau
 - build_vault_ui.py
@@ -678,7 +686,7 @@
 - StarterPlayerScripts/TopbarPlus/Icon/Features/Themes.luau
 - MovementModel.luau
 - CrateDisplayClient.client.luau
-- v3.start
+- BeamLightning.luau
 - catch
 - BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/DebugTracing.luau
 - Nowl.luau
@@ -692,6 +700,7 @@
 - Modules/Utilities.luau
 - GrandTornadoNew.luau
 - SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/DebugTracing.luau
+- StrikerGame/ReplicatedStorage/CmdrClient.luau
 - SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/SchedulingProfiler.luau
 - Shared/TopbarPlus/Icon/Packages/Janitor.luau
 - Shared/TopbarPlus/Icon/Features/Themes.luau
@@ -715,7 +724,7 @@
 - MoonCFrameTimeline_1.luau
 - CreatorTitleOverlay.luau
 - TestSession.lua
-- ValleyRun/ReplicatedStorage/chrono/Server/Replicate.luau
+- SmartBone_OLD/Dependencies/Iris/API.luau
 - ⚡ God Cataclysms
 - BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1.2.6/collections/Map/Map.luau
 - GiveawayView.luau
@@ -732,6 +741,7 @@
 - Shared/Zone/Janitor.luau
 - Modules/RotatedRegion3.luau
 - ReplicatedStorage/SmartBone/Dependencies/Iris/widgets/Menu.luau
+- Climbing2.luau
 - Utilities/Utility.luau
 - Effects/PlanetHotline.luau
 - KnifeClips.luau
@@ -742,14 +752,13 @@
 - SorceryGame/ReplicatedStorage/Modules/Icon.luau
 - SoccerGame/ReplicatedStorage/Packages/_Index/sleitnick_signal@2.0.1/signal.luau
 - BallControlClient.luau
-- BeamLightning.luau
 - BallControlClient_1.luau
 - Particle_Module/Bezier.luau
 - Particle_Module/Bezier_1.luau
 - MeshFrames.luau
 - replicatedstorage_util_meshemitmodule
 - SoundRecorder.luau
-- Wall Combo Old.luau
+- MoveListUI.luau
 - WickerSprite_1.luau
 - Chara/Helper.luau
 - Display_1.luau
@@ -766,13 +775,14 @@
 - FallenKingBossClient.client.luau
 - StarterPlayerScripts/TopbarPlus/Icon/Packages/Janitor.luau
 - SkillBuilder/Branch.luau
-- VfxHandler_1.luau
+- AnimationHandler.luau
 - Utility/Rating/OpenSkill/Gaussian.luau
 - BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/Poppercam.luau
 - u48.GetChatCoreGuiEnabled
-- SimplePath.luau
+- _G.particleEnabled
+- Leaderstats.luau
 - ConquestModules/Zone/ZoneController.luau
-- GunHandle.luau
+- Core.luau
 - Modules/TopbarPlus/Icon/Packages/Janitor.luau
 - goodsignal.luau
 - PartyController.luau
@@ -789,7 +799,7 @@
 - Fields.luau
 - ReplayRecorder.luau
 - Fields_1.luau
-- ZiliEmitModule/obj/Shake.luau
+- Create FX.luau
 - LayerCuts.luau
 - LayerCuts_1.luau
 - MarbleFx.luau
@@ -802,20 +812,20 @@
 - RavenRise.luau
 - StarterPlayer/PlayerModule/CameraModule/Poppercam.luau
 - ArenaMatch.luau
-- TopbarIcon/Features/Overflow.luau
-- PumpkinPedestalClient.client.luau
-- BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule.luau
+- StarterPlayerScripts/TopbarPlus/Icon/Features/Overflow.luau
+- StarterGui/StarterGui/Freecam/FreecamScript.client.luau
+- KnitPackage/_Index/evaera_promise@4.0.0/promise.luau
 - TournamentResultsClient.client.luau
 - BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react@17.2.1/react/ReactElement.luau
 - Utility/ForgeVFX/pkg/Shake.luau
 - Modules/TopbarPlus/Icon/Utility.luau
 - KatUtil/thread.luau
 - Utility/SmartBone/Dependencies/Iris/widgets/Input.luau
-- Observability.luau
+- ClientBridge.luau
 - BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/ZoomController/Popper.luau
-- SorceryGame/ReplicatedStorage/Modules/Shared/Utilities/Utility.luau
+- Combat/UI.luau
 - @quenty_playerthumbnailutils/ServiceBag.luau
-- Observability/ClientRunner.server.luau
+- Observability.luau
 - FXUtil.luau
 - MovementReplicator.luau
 - script_initiatevfx
@@ -840,7 +850,7 @@
 - CameraUtils.restoreMouseBehavior
 - rising_ball_effect.luau
 - rising_ball_effect_1.luau
-- Club.luau
+- Cycle/Janitor.luau
 - ValleyPanels.luau
 - PageList.luau
 - Ground.luau
@@ -851,7 +861,6 @@
 - PumpkinAltar.luau
 - YukiCutIn/mesh_emit.luau
 - ServerBrowserClient.client.luau
-- script_types
 - vfxUtil/ForgeVFX/pkg/Shake.luau
 - vfxUtil/ForgeVFX/pkg/Shake_1.luau
 - Shake_2.luau
@@ -863,7 +872,7 @@
 - CosmeticsLocalScript.client.luau
 - BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera/VehicleCameraCore.luau
 - ImpactDisk.luau
-- ServerClientInfoHandler.luau
+- BaseAnimate.luau
 - BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/Invisicam.luau
 - Soundtracks/MusicController.luau
 - HalloweenShopConfig.luau
@@ -875,7 +884,7 @@
 - SafeKeyStringRep
 - StarterPlayer/PlayerModule/ControlModule/DynamicThumbstick.luau
 - BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/VRNavigation.luau
-- ReplicatedStorage/Modules/Player/Replication.luau
+- Maid/Promise.luau
 - Cosmetics.server.luau
 - Des/_Index/evaera_promise@4.0.0/promise.luau
 - ClickToMoveDisplay.SetEndWaypointTexture
@@ -903,7 +912,7 @@
 - DashAnimation.luau
 - SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/ZoomController/Popper.luau
 - AudioPlayback.luau
-- StrikerGame/ReplicatedStorage/chrono/Shared/Ticker.luau
+- StrikerGame/ReplicatedStorage/chrono/Shared/Signal.luau
 - Shared/Signal_1.luau
 - KarasuAirTrap.luau
 - KarasuAirTrap_1.luau
@@ -930,8 +939,8 @@
 - head.luau
 - SandevistanTrail.luau
 - with
-- Server/Receiver_1.luau
-- ClientMain.client.luau
+- VFX/Gojo/Ruthless Massacre.luau
+- ShipManager.luau
 - HitboxCodec_1.luau
 - BaseAttack.luau
 - game_replicatedstorage_modules_clienteffects_effecthelper_boattween
@@ -959,10 +968,10 @@
 - Shared/TopbarPlus/Icon/Utility.luau
 - BasketballGame/ReplicatedStorage/CmdrClient/Shared/Argument.luau
 - BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberNewContext.new.luau
-- MeshFrames.luau
+- startupModules/PlayerModule/CameraModule/BaseCamera.luau
 - Clone/Animate.server.luau
 - TopbarPlus/Packages/GoodSignal.luau
-- u48.GetTextBounds
+- u48.ExperienceChat.HandleInput
 - Freezing ShatterGrip.luau
 - ContactCatchGeometry.luau
 - StrikerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRBaseCamera.luau
@@ -983,7 +992,7 @@
 - Easing.luau
 - AnimationService.luau
 - Sequences.luau
-- Thread.luau
+- BuildHandler/SkillBuilder.luau
 - baseClient/rin2.luau
 - Tetris.luau
 - StrikerGame/ReplicatedStorage/CmdrClient/Shared/Argument.luau
@@ -993,7 +1002,7 @@
 - Colors.luau
 - Colors_1.luau
 - ClientEffects/VfxHandler.luau
-- DebreeController.luau
+- Materials.luau
 - KIM.luau
 - PlaceRole.luau
 - Recarve_1.luau
@@ -1007,14 +1016,13 @@
 - u4.buildPacks
 - src/init.lua
 - StarterPlayerScripts/TopbarPlus/Icon/Packages/GoodSignal.luau
-- script_presets
-- VFX/Invincible/Holding Back.luau
+- PromiseModule.luau
+- FX/ForgeVFX/pkg/Promise.luau
 - GrandTornadoFinal.luau
 - script_parent_sites
 - SimulationManager.luau
 - BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/TransparencyController.luau
 - CrateReel.luau
-- utils/updateIn.luau
 - ClientFastFlags.luau
 - BasketballGame/StarterPlayer/StarterPlayerScripts/RbxCharacterSounds/AtomicBinding.luau
 - Brio.luau
@@ -1022,7 +1030,7 @@
 - ⬜ To do (in build order)
 - Records.luau
 - CosmeticsSkin.client.luau
-- DebreeService/Stream.luau
+- Libraries/Promise.luau
 - ConquestModules/Signal.luau
 - Modules/CraterHandler/Styles.luau
 - TailorColorHelper.luau
@@ -1035,7 +1043,7 @@
 - Scripts/DomainHandler/BaseDomain.luau
 - ZoroFirstAbility.luau
 - Weapons.luau
-- replicatedstorage_modules_clienteffects_effectutilities
+- u1.NewPrompt
 - client/Controllers/UIController.luau
 - Game/Modules/Player/Character.luau
 - script_camerashakeinstance
@@ -1052,9 +1060,9 @@
 - VfxUtility_1.luau
 - StarterPlayerScripts/TopbarPlus/Icon/Utility.luau
 - Marketplace.luau
-- script_signal
+- FX/ForgeVFX/mod/utility.luau
 - CommandHandler.luau
-- StorefrontClient.luau
+- u1.GetInventorySort
 - util/Zone/Signal.luau
 - Zone/Signal_1.luau
 - WhiteBeardTsunami.luau
@@ -1064,13 +1072,13 @@
 - Cache.luau
 - Minesweeper.luau
 - HostHandler.luau
-- script_parent_waitforchild
+- StrikerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/Gamepad_1.luau
 - StrikerGame/StarterPlayer/StarterPlayerScripts/RbxCharacterSounds/AtomicBinding.luau
 - AtomicBinding_1.luau
 - RoundService.luau
 - ClientBotKnockdown.luau
 - CrateLuck.luau
-- roact-constant-fork/Component.luau
+- Roact/forwardRef.spec.luau
 - GhostKeyDrop.luau
 - SpectateGeometry.luau
 - ServerClientInfoHandler.luau
@@ -1081,15 +1089,15 @@
 - ReadableTextClient.client.luau
 - BasketballGame/ReplicatedStorage/CmdrClient/CmdrInterface/AutoComplete.luau
 - SoccerGame/ReplicatedStorage/Packages/_Index/sleitnick_component@2.4.8/component.luau
-- ClientReplicator/Replicant.luau
+- Roact/RobloxRenderer.luau
 - Client/Camera.luau
 - Des/_Index/sleitnick_component@2.4.8/component.luau
 - Camera/CameraInput.luau
 - resetAll
 - Data/Leaderboards.luau
-- Shared/Zone/ZoneController.luau
 - PlayerEditor.luau
 - BattleGame/ReplicatedStorage/Modules/Icon/Features/Themes.luau
+- _table.luau
 - SimpleSignal.luau
 - GrandTornadoNew.luau
 - StreamingObjectsModule.luau
@@ -1100,9 +1108,10 @@
 - MouseCast.luau
 - SoccerGame/ReplicatedStorage/CmdrClient/CmdrInterface/AutoComplete.luau
 - ShopValueBadgesController.luau
-- u4.lerp
+- MoveController.luau
+- Modules/Promise.luau
 - DamageHandler.luau
-- Chat Commands.server.luau
+- startupModules/PlayerModule/CameraModule/CameraInput.luau
 - HitboxHandler.luau
 - Other/Zone/Janitor.luau
 - RainScript/Rain.luau
@@ -1123,8 +1132,9 @@
 - PartConstants_1.luau
 - MeshFlipbook.luau
 - MeshFlipbook_1.luau
-- PusedoRagdoll.luau
-- u26._reserve
+- Classes/Trove.luau
+- libraryNew.luau
+- BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberWorkLoop.new.luau
 - Player/Data.luau
 - UIProportions.luau
 - HttpApi.luau
@@ -1139,11 +1149,10 @@
 - TopbarPlus/Features/Overflow.luau
 - TopbarPlus/Packages/Janitor.luau
 - @quenty_playerthumbnailutils/JsonToLocalizationTable.luau
-- u163
+- AnimatorService.luau
 - Modules/FastSignal.luau
 - ReplicatedStorage/Modules/Maid.luau
 - AtRest.luau
-- BattleGame/ReplicatedStorage/Modules/Icon/Packages/Janitor.luau
 - DataService.luau
 - Effects/BeinschussCutscene.luau
 - DemonKingCutscene.luau
@@ -1183,6 +1192,7 @@
 - child
 - SessionManager.luau
 - StudioKnifePreviewClient.client.luau
+- script_bezier
 - BuildingMotion.luau
 - CameraShaker/Instance.luau
 - ServerAnalytics.luau
@@ -1195,7 +1205,6 @@
 - Utility/Part_Icles/PoolHide.luau
 - BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/CharacterUtil.luau
 - Pong.luau
-- Climbing2.luau
 - u48.OwnsTextBox
 - BasketballGame/ReplicatedStorage/Controllers/UIController/StyleQuests.luau
 - u7
@@ -1221,8 +1230,10 @@
 - baseClient/aizen_1.luau
 - JumpMiss.luau
 - JumpMiss_1.luau
+- nagiVFX.luau
+- startupModules/PlayerModule/ControlModule/ClickToMoveController.luau
 - Blood ScytheM1Slash.luau
-- game_waitforchild
+- Spring.new
 - camshake_emit.luau
 - camshake_emit_1.luau
 - lightning_emit.luau
@@ -1245,14 +1256,15 @@
 - SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera/VehicleCameraCore.luau
 - vfxUtil/ForgeVFX/mod/recolor.luau
 - recolor_1.luau
-- ClickToMoveDisplay.CancelFailureAnimation
-- SorceryGame/ReplicatedStorage/Modules/Weather.luau
+- packet.luau
+- Libraries/Classes/Sequence.luau
 - PathDisplay_1.luau
 - EmotePieces.luau
 - Game/CandyCorn.luau
 - OutbreakConfig.luau
 - RandomPrizePolicy.luau
 - PumpkinSmoke.luau
+- SoccerGame/ReplicatedStorage/Controllers/UIController/Settings.luau
 - buildJourney
 - drawJourney
 - InGameQuests.luau
@@ -1274,19 +1286,18 @@
 - HttpService.lua
 - Hoster.luau
 - Filter.luau
-- BusoEffect.luau
+- ContextActionModule.luau
 - MochiBuzzcutEndSlam/LightningBolt.luau
 - LightningBoltnoedit.luau
 - MochiHakiLightning/LightningBolt.luau
 - Zeus/LightningBolt.luau
 - UDim2.new
 - ConqHaki/LightningBolt.luau
-- Utility/Part_Icles/Duration.luau
+- script_parent_graph
 - TestPlan.lua
 - _G.raycastWhitelist
-- MoveVelocity.luau
 - Essentials/Mouse.luau
-- ReplicatedStorage/Part_Icles/TexturePin.luau
+- TexturePin_1.luau
 - Modules/LightningBolt.luau
 - LightningBolt3.luau
 - LightningBoltHighlight.luau
@@ -1307,15 +1318,16 @@
 - MurmurHash3.luau
 - Utils/Thumbstick.luau
 - HelpInput.luau
-- u55.KnitStart
+- ByteNet.luau
 - BattleGame/ReplicatedStorage/Modules/CameraShaker/CameraShakeInstance.luau
 - EmitModuleTemp/mod/lerp.luau
 - BasketballGame/ReplicatedStorage/Packages/_Index/sleitnick_timer@1.1.2/timer.luau
 - Des/Chara.luau
+- ReplicatedModules/Zone.luau
 - Parsers/Dash.luau
 - Dash_1.luau
 - RankedRematch.luau
-- vfxUtil/ForgeVFX/effects/lightning.luau
+- v25
 - Mode.luau
 - Mode_1.luau
 - Whole Cake Dialogue.luau
@@ -1355,8 +1367,8 @@
 - Des/Arcade.luau
 - CraftingClient.client.luau
 - AvatarPortraits.luau
-- ReplicatedStorage/Mastery_1.luau
-- JoinEventPrompt.client.luau
+- 6CAHC/Animate.client.luau
+- Droidud1/Animate.client.luau
 - Spotlight.luau
 - CombineConfig.luau
 - BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveDisplay.luau
@@ -1367,10 +1379,10 @@
 - StarterPlayer/PlayerModule/CameraModule/ZoomController/Popper.luau
 - Michael Awakening.luau
 - Billguy/Animate.server.luau
-- with
+- Goatzeppeli_joester/Animate.client.luau
 - _G.tween
 - Utility/Rating/OpenSkill/Constants.luau
-- ScoreBanner.luau
+- Guncellar01/Animate.client.luau
 - BasketballGame/StarterPlayer/StarterCharacterScripts/RagdollR6.server.luau
 - ReplicatedStorage/Modules/Player/Character/Combat/Quicktime.luau
 - Client Task.luau
@@ -1401,17 +1413,18 @@
 - Titles.client.luau
 - GkRig/RagdollR6.server.luau
 - LokiXCharlesReceiver.luau
-- SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberTreeReflection.luau
-- Client/Sender_1.luau
+- hfnx7rbf/Animate.client.luau
+- hyeonimoon/Animate.client.luau
 - TestBootstrap.lua
+- karohe_ti/Animate.client.luau
 - ArenaClient.client.luau
 - Shared/Base64.luau
-- UIBlur.luau
+- Packages/Observer.luau
 - EloCalculator.luau
 - Shared/Rating/OpenSkill/Constants.luau
 - actionUtil_1.luau
 - SoccerGame/StarterPlayer/StarterCharacterScripts/RagdollR6.server.luau
-- BattleGame/ReplicatedStorage/Modules/CameraShaker.luau
+- MOPKOBKA_AKD/Animate.client.luau
 - DashCDHUDNew.client.luau
 - amadsuba123/RagdollR6.server.luau
 - Eaua56/RagdollR6.server.luau
@@ -1419,8 +1432,8 @@
 - Ginobi8/RagdollR6.server.luau
 - matedadvani2010/RagdollR6.server.luau
 - Vtptvppptv/RagdollR6.server.luau
-- Atomize/EffectsModule/CameraShaker.luau
-- Old_Small_Version/EffectsModule/CameraShaker.luau
+- nikita_roblox9585/Animate.client.luau
+- njghbl/Animate.client.luau
 - ballMovement.luau
 - ballMovement_1.luau
 - CLAUDE.md
@@ -1436,7 +1449,7 @@
 - dialogue_1.luau
 - DragModel.luau
 - DragModel_1.luau
-- RAGE/EffectsModule/CameraShaker.luau
+- Player/Animate_1.client.luau
 - Preload.luau
 - Preload_1.luau
 - VerletSim.luau
@@ -1447,7 +1460,7 @@
 - Hope.luau
 - Hope_1.luau
 - Scripts/ProjectileHandler/Projectile.luau
-- AtRest_1.luau
+- Player/Animate.client.luau
 - MOSTRECENTFORGE/mod/common/flipbook.luau
 - MOSTRECENTFORGE/mod/common/flipbook_1.luau
 - vfxUtil/ForgeVFX/mod/common/flipbook.luau
@@ -1465,7 +1478,7 @@
 - ReplicatedFirst/FFlags.luau
 - LazySound.luau
 - CrateCatalog.luau
-- LobbyControlsClient.client.luau
+- roblox_user_5849109059/Animate.client.luau
 - CreatorVisibility.luau
 - MOSTRECENTFORGE/effects/lightning.luau
 - Init.client.luau
@@ -1480,24 +1493,23 @@
 - BuilderClient.client.luau
 - Job.luau
 - Cosmetics.client.luau
+- MoveAction.luau
 - Modules/TopbarPlus/Icon/Features/Overflow.luau
-- BlackBeardFirstAbility.luau
+- UI_Backpack.luau
 - SelfPass/OffBall/CraterHandler/InstanceHandler/InstanceCache.luau
 - CommandManager.luau
 - Skarp/Blitz/OffBall/CraterHandler/InstanceHandler/InstanceCache.luau
 - TrueSkarp/Blitz/OffBall/CraterHandler/InstanceHandler/InstanceCache.luau
 - Utility_1.luau
 - TopbarPlus/Features/Gamepad.luau
-- u1.header
 - List/Global/Ultimate.luau
 - Modules/Particles.luau
-- Game/SmartBone.luau
 - ModeSkillsSet/ThreethousandWorlds.luau
 - NapSoulLightning/Signal/ThreadReuser.luau
 - EffectHelper/GoodSignal.luau
 - Modules/CraterHandler/InstanceHandler/InstanceCache.luau
 - Modules/RotatedRegion3/GJK.luau
-- ApplyBuildingEntries
+- ClientCast.luau
 - Modules/TopbarPlus/Icon/Features/Gamepad.luau
 - GerstnerCalculation.luau
 - WavePlane/Parallel.luau
@@ -1505,7 +1517,7 @@
 - Rowboat.luau
 - Util/RotatedRegion3/GJK.luau
 - Ocean/Parallel.luau
-- BattleGame/ReplicatedStorage/Modules/Icon/Packages/GoodSignal.luau
+- Participant.luau
 - AikuSelfishCaptain/CodeEvents.luau
 - CameraPlayback.luau
 - LorenzoAwakeningRules.luau
@@ -1515,7 +1527,7 @@
 - Smartbone/Dependencies/ActorScript.client.luau
 - SorceryGame/ReplicatedStorage/Modules/Icon/Packages/Janitor.luau
 - Movement.luau
-- Modules/StormLightning.luau
+- sleitnick_table-util@1.1.4/table-util.luau
 - EffectUtility.luau
 - EffectUtility_1.luau
 - slice
@@ -1539,7 +1551,7 @@
 - StarterPlayerScripts/TopbarPlus/Icon/Features/Gamepad.luau
 - StarterPlayerScripts/TopbarPlus/Icon/VERSION.luau
 - ClientCurr.client.luau
-- SorceryGame/ReplicatedStorage/Modules/Shared/Utilities/DistanceFade.luau
+- CameraInput.getTogglePan
 - BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/VehicleController.luau
 - DashCDHUD.client.luau
 - vfxUtil/ForgeVFX/services/effects.luau
@@ -1549,7 +1561,7 @@
 - u10
 - ChestnutMochi.luau
 - SandCam.luau
-- ForgeVFX/mod/lerp_1.luau
+- Sequence_V3.luau
 - PoisonCam.luau
 - TweenParticlesScale.luau
 - Driven.luau
@@ -1570,14 +1582,13 @@
 - SoccerGame/ReplicatedStorage/Packages/_Index/sleitnick_input@2.3.0/input/PreferredInput.luau
 - MOSTRECENTFORGE/mod/lerp.luau
 - Color3.lua
-- u55.Open
+- Libraries/Classes/Signal.luau
 - BufferUtilOld.luau
 - Reflection.luau
 - decode
 - SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraUI.luau
 - WhiteBeardFirstAbility.luau
 - ClientEffects/ForgeVFX/pkg/Shake.luau
-- Modules/Mesh.luau
 - baseClient/dawnwalker.luau
 - baseClient/dawnwalker_1.luau
 - MeshEmitter_1.luau
@@ -1615,35 +1626,37 @@
 - u31
 - SkeletonHand.luau
 - FxController.luau
+- UI_Shop.luau
 - Other/Zone/Signal.luau
-- u90
-- BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRCamera.luau
+- R15.luau
+- VRBaseCamera.new
 - CharacterVFX.luau
-- LightningModule.luau
+- startupModules/PlayerModule/ControlModule/ClickToMoveDisplay.luau
 - EmoteMenuClient.client.luau
 - NPC2.client.luau
 - BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/Gamepad.luau
 - BuildHandler/SkillBuilder/BaseBlock.luau
-- RankedController.luau
-- AdRewardCard.luau
+- Ability.luau
+- ReplicatedStorage/ReplicatedStorage/CmdrClient/Shared/Util.luau
 - Domains/DomainHandler.luau
 - Icon-Old/Utility.luau
 - SinkClient.client.luau
 - ClientEffects/LightningBolt.luau
-- replicatedstorage_modules_shared_utilities_eventservice
+- BaseEvent/DeadDrop.luau
 - Game/SmartBone/Dependencies/Utilities.luau
 - script_parent_signal
 - Game/SmartBone/Dependencies/Iris/demoWindow.luau
-- CompassV2.client.luau
+- ClientLibrary/Fusion.luau
 - Projectiles/ProjectileHandler.luau
 - DeepCopyWithMetatables
 - DeepCopyPure
 - DeepEqualsPure
-- TrajectoryPreview_1.luau
+- Sequence_V2.luau
 - inOutElastic
 - util/Util.luau
 - EmotePlayback.luau
 - Shared/EmitModule/mod/lerp.luau
+- UI_Chroma/ColorPicker.luau
 - datause/index.md
 - Error
 - VFX/Meaty Michael/Drake's Love.luau
@@ -1651,7 +1664,7 @@
 - BasketballGame/ReplicatedStorage/Controllers/BallController.luau
 - ISAAC.luau
 - PurchaseAnalytics.luau
-- StarterPackClient.client.luau
+- FunctionUtils/_t.luau
 - Test Flow
 - createSettings.lua
 - InternalExperiments.luau
@@ -1667,18 +1680,21 @@
 - Utility/Rating/OpenSkill/Statistics.luau
 - Vector3.lua
 - BasketballGame/ReplicatedStorage/Packages/Knit/KnitClient.luau
-- playEntryAnimation
+- StrikerGame/ReplicatedStorage/chrono/Server/Receiver.luau
 - GAME PLAN & SYSTEM DESIGN SPECIFICATION
-- ReplicatorClient.luau
+- Thread
 - ClientConfigs.luau
-- SoccerGame/ReplicatedStorage/Packages/_Index/sleitnick_comm@1.0.1/comm/Server/RemoteSignal.luau
-- Lapse Pull.luau
+- Utility/TableUtil.luau
+- replicatedstorage_packages_signal
+- startupModules/PlayerModule/ControlModule/VRNavigation.luau
 - vfxUtil/ForgeVFX/mod/lerp.luau
+- ReplicatedStorage/SmartBone/Dependencies/Iris/Internal.luau
 - AES.luau
 - AikuSelfishCaptainReceiver.luau
 - ClientInputHandler.luau
 - Shared/Modules/Signal.luau
 - serde.luau
+- UI_Inventory.luau
 - VFX/Emit.luau
 - ClientEffects/ForgeVFX/obj/ObjectCache.luau
 - compareDeep
@@ -1688,23 +1704,24 @@
 - RandomModules/BeamEmit.luau
 - DashCooldown.luau
 - Game/SmartBone/Components/Collision/Collider.luau
-- GhostTraderClient.client.luau
+- presentation_waitforchild
 - WeaponsHandler.luau
 - BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRBaseCamera.luau
-- Universal/Custom.luau
+- newsaefx.luau
 - Utility/ProfileStore.luau
 - Utils/Spring.luau
 - ProfileStoreBackup.luau
+- R6.luau
 - LeaderboardModule.luau
 - SoccerGame/ReplicatedStorage/Packages/Janitor.luau
 - SorceryGame/ReplicatedStorage/Modules/Icon/Utility.luau
-- MovesetHandler.luau
+- DirectoryUtil.luau
 - Chara/Sequencer.luau
 - Jukebox.luau
 - Packages/_Index/sleitnick_signal@2.0.3/signal.luau
-- baseClient/shidou.luau
-- BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRCamera.luau
-- SoundClient.luau
+- UI_Skins.luau
+- Bat_Nighttime/Rain.luau
+- QTE.luau
 - SeaEffects.client.luau
 - SorceryGame/ReplicatedStorage/Modules/Shared/Utilities/WindShake.luau
 - LeafDebris.luau
@@ -1717,26 +1734,28 @@
 - ReplicatedStorage/Modules/Player/Character/Combat.luau
 - GamepadLockon.luau
 - BufferUtilOldOld.luau
-- u102
+- WorldService.luau
+- Entry.luau
 - Utility/ForgeVFX/mod/lerp.luau
+- Bezier3.luau
+- UI_Draft.luau
 - replicatedstorage_modules_clienteffects_effectutilities
 - Uplink.luau
-- VFX/Walter/This, Is Candy..luau
-- playRewardOpen
-- resetItems
+- Freecam.luau
+- Roact/Component.spec/context.spec.luau
+- WS_OUT_OF_BODY/Animate.client.luau
 - InputMode.luau
 - BuildingDebrisController.luau
 - GUIResize.luau
 - HitboxCaster.luau
 - Hell Memories.luau
 - Characters/Zoro/scrapped/Asura.luau
-- FlushWithFloor
 - Installation
 - StunHandlerOld.luau
 - Atomize/EffectsModule/RocksModule/PartCache.luau
 - Icon-Old/Features/Themes.luau
 - BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/Keyboard.luau
-- AI/Detection.luau
+- sleitnick_option@1.0.3/option.luau
 - Icon-Old/Packages/GoodSignal.luau
 - Shared/Snapshots_1.luau
 - AsuraNew/SlashModule.luau
@@ -1756,8 +1775,8 @@
 - ClickToMoveDisplay.SetWaypointTexture
 - ClickToMoveDisplay.GetWaypointsAlwaysOnTop
 - ClickToMoveDisplay.GetWaypointTexture
-- CreatorClient.client.luau
-- WeaponVFXClient.client.luau
+- ClientModules/CameraShaker/CameraShakeInstance.luau
+- ClientModules/SmartBone/Dependencies/Iris/widgets.luau
 - Welding.luau
 - VisualizerCache.luau
 - VoxelSerializer.luau
@@ -1766,9 +1785,10 @@
 - Input.client.luau
 - PiratesCallClient.client.luau
 - SpawnEffect.client.luau
-- u5.RunCommandString
+- Gameplay/AbilityService.luau
+- MovementReplicator/Replicant.luau
 - ReplicatedStorage/Modules/Player/Character/Combat/Mouse.luau
-- BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1.2.6/luau-polyfill/AssertionError/AssertionError.global.luau
+- UI_Moveset.luau
 - CameraHandler.luau
 - GrandTornado/TornadoRockModule.luau
 - GrandTornadoNew/TornadoRockModule.luau
@@ -1779,13 +1799,13 @@
 - Modules/Icon/Features/Gamepad.luau
 - Modules/Icon/VERSION.luau
 - HuntersCloth.luau
-- playNewImpact
+- Killua_Coil_Lightning.luau
 - Pulse.luau
 - SanjiSpectre.luau
 - BuildTools/Actions.luau
 - Client/Frustum.luau
 - CrewsUI.luau
-- playJumpScare
+- ReplicatedModules/Animations.luau
 - Gomu-Gomu.luau
 - AssetsLoader.luau
 - ClientEffects/FloorTrail.luau
@@ -1798,21 +1818,22 @@
 - v4
 - StrikerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/PathDisplay.luau
 - KeySetup.luau
-- u5.RunCommandString
+- DataSource.luau
 - KeysSequence.luau
-- Replication/Projectiles.luau
+- Utility/SmartBone/Dependencies/Iris/widgets.luau
 - Janitor
-- StrikerGame/ReplicatedStorage/chrono/Shared/Snapshots.luau
+- ClientEffects/ForgeVFX/mod/lerp.luau
+- ReplicatedStorage/SmartBone/Dependencies/Iris/widgets.luau
 - Game/SmartBone/Components/Collision/Colliders/Triangle.luau
-- outBounce
+- u55
 - BuildingDebris.luau
 - DrownService.server.luau
-- CameraInput.getZoomDelta
+- ClientControllers/MoveInputController.luau
 - TestEZ CLI
 - RbxTypedPromise
 - ClientEffects/ForgeVFX/effects/sound.luau
-- BattleGame/ReplicatedStorage/Modules/Icon/Elements/Dropdown.luau
-- Global/WallRun.luau
+- u2
+- SmartBone_OLD/Dependencies/Iris/widgets.luau
 - _G.customEmit
 - Maximum Output - Purple.luau
 - Camera/Popper.luau
@@ -1821,7 +1842,7 @@
 - Game/SmartBone/Dependencies/Debug/Gizmo/Gizmo.luau
 - HotbarModule.luau
 - StrikerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera/VehicleCameraCore.luau
-- Waves.luau
+- v25.start
 - Meaty Michael Slap.luau
 - GLightning/Draw.luau
 - Frustum_1.luau
@@ -1833,33 +1854,37 @@
 - Status.luau
 - Utils/Text.luau
 - EmitTarget_1.luau
-- Suke-Suke.luau
+- VergilVFX.luau
 - Home
 - Getting ProfileStore
 - ConquestModules/Zone/Janitor.luau
-- FastCast.luau
+- sleitnick_component@2.4.5/component/init.spec.luau
+- sleitnick_input@1.3.3/input/Gamepad.luau
 - Shared/TopbarPlus/Icon/Packages/GoodSignal.luau
-- Examples
+- AssetService.luau
 - NewspaperViewer.luau
 - DataTypes.luau
-- DataIndex.luau
+- PacketChart.luau
 - List/Chara/Atonement.luau
 - Holstering.luau
 - Browser/Confirmations.luau
 - Chara/Controller.luau
 - List/Meaty Michael/Drake's Love.luau
-- VehicleController.new
 - BuildingRemains.luau
+- insert
 - ClientHandlers/Vault.luau
 - CurseOfShower.luau
 - VFX/Meaty Michael/The Last Oil.luau
 - Game/SmartBone/Dependencies/Debug/ImOverlay/CeiveImOverlay.luau
 - TransactionHandler.luau
 - Session.luau
-- Util/RotatedRegion3/Vertices.luau
-- DailyQuestTrackerController.luau
-- List/Gojo/Reverse Cursed Technique.luau
+- loading redo_1.client.luau
+- cinderVFX.luau
+- SpectateController.luau
 - MOSTRECENTFORGE/mod/lerp_1.luau
+- ClientModules/SmartBone/Components/Bone.luau
+- startupModules/PlayerModule/CameraModule/Invisicam.luau
+- _Trove.luau
 - VFX/Accelerator/Carnal Revolution.luau
 - Lethal Wound Finisher.luau
 - Network/SyncSystem.luau
@@ -1870,7 +1895,7 @@
 - Game/SmartBone/Components/Collision/ColliderObject.luau
 - Geometry.luau
 - Abbreviate Time.luau
-- inElastic
+- StarterPlayer/PlayerModule/CameraModule/VRBaseCamera.luau
 - troubleshooting/index.md
 - installation.md
 - BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/TouchJump.luau
@@ -1878,18 +1903,20 @@
 - Book.luau
 - ItemSpawnHandler.luau
 - Packages/Indicator.luau
+- FlightHandler/Flight.luau
 - SeatVehicle.luau
 - createEnum.lua
 - ClientEffects/kill.luau
 - startcounting.luau
 - ultimatekill.luau
 - Utility/Part_Icles/Flipbook.luau
-- SpecialDestruction.luau
+- u8.SetCategory
 - Threading.luau
-- SwordStyles/Stark Gun.luau
+- BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRBaseCamera.luau
+- format
 - baseClient/shidou_1.luau
 - ClientAnnouncementHandler.luau
-- ReplicatedStorage/Part_Icles/Duration.luau
+- SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRBaseCamera.luau
 - EditedBugoVFX.luau
 - Caption_1.luau
 - I'm A Mystery/FrameMarker.luau
@@ -1899,11 +1926,12 @@
 - script_meshemit
 - devproducts/index.md
 - MAD STUDIO - ProfileStore
-- PS+/ModuleScript.luau
+- Rigging.luau
 - PumpkinRoll.luau
 - ClassicThumbstick.luau
 - intro.md
 - Combat/Actions.luau
+- cinderVFX_1.luau
 - Replication/Effects.luau
 - VFXModule.luau
 - Yuki_Emit.luau
@@ -1912,6 +1940,7 @@
 - BubbleHandler.luau
 - Occupant.server.luau
 - Game/SmartBone/Dependencies/Debug/Gizmo/Gizmos/Mesh.luau
+- Gradient.luau
 - StandHandler.luau
 - 3DSpinVFX/Create.luau
 - Vignette/Create.luau
@@ -1940,7 +1969,6 @@
 - BuildHandler/Builder.luau
 - ProductsNewer.luau
 - MusicManager.luau
-- DebreeImpact.server.luau
 - SorceryGame/ReplicatedStorage/Modules/Icon/Features/Gamepad.luau
 - Icon-Old/Features/Gamepad.luau
 - SorceryGame/ReplicatedStorage/Modules/Icon/VERSION.luau
@@ -1956,7 +1984,7 @@
 - Game/SmartBone/Components/Collision/Colliders/Capsule.luau
 - Unstuck.luau
 - RemoteCooldown.luau
-- Boneshiver.luau
+- Dot
 - InUsePreloading.client.luau
 - MoonMeshAnimator.luau
 - SharmMeshVFX.luau
@@ -1973,26 +2001,291 @@
 - promise/README.md
 - testez-cli
 - StatusEffectService.luau
-- Elo's Sledgehammer.luau
-- Iceborn Katana.luau
-- u6.GrandEntranceSlam
-- Shusui.luau
-- baseClient/aiku2.luau
-- baseClient/aiku2_1.luau
+- startupModules/PlayerModule/ControlModule.luau
+- tablekit.luau
+- _math.luau
+- Sharm Rocks.luau
+- MappedRegionsController.luau
 - CoinMovement.luau
 - StunIndicator.client.luau
+- v1
+- GetSortedFOV
+- bachiraVFX_1.luau
 - merge
 - RankedRematch_1.luau
-- util/SyncSystem.luau
+- GravityController/Collider.luau
+- startupModules/PlayerModule/CameraModule/CameraUtils.luau
 - util/SyncSystem_1.luau
 - Util/Signal.luau
+- _Signal.luau
+- SorceryGame/ReplicatedStorage/Modules/Icon/Features/Themes.luau
+- SmartBone_OLD/Components/Bone.luau
+- UGrain_Click_Minigame.luau
+- Tesseract_Mount.luau
+- sleitnick_trove@0.4.1/trove.luau
 - TopbarIcon/Elements/Caption.luau
 - Shared/TopbarPlus/Icon/Elements/Caption.luau
-- inOutElastic
-- ProjectileRenderer.client.luau
-- u1.start
+- ReplicatedModules/SimplePath.luau
+- Services/TagService.luau
+- UI_StatInfo.luau
+- DialogueGUI/UI_DialogueHandler.client.luau
+- u43._new
+- BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/SchedulingProfiler.luau
+- ReplicatedStorage/SmartBone/Components/Bone.luau
+- u43._new
+- MirageBladesVFX.luau
+- Xtal.luau
+- CinematicClass.luau
+- sleitnick_component@2.4.5/component.luau
+- sleitnick_signal@1.2.0/signal.luau
+- ReplicatedModules/Zone/ZoneController.luau
+- FXService.luau
 - Util/Format.luau
 - v76
+- ReplicatedStorage/Modules/Player/Character.luau
+- LootPlan.luau
+- MeshFrames_1.luau
+- ClientModules/RotatedRegion3.luau
+- ClientModules/SmartBone/Dependencies/Gizmo.luau
+- SmartBone_OLD/Dependencies/Gizmo.luau
+- GOT_Rhythm_Minigame.luau
+- HighlightController/Janitor.luau
+- RegionModule.luau
+- Region.luau
+- LoadGravityCameraSetup.luau
+- GravityController.luau
+- CommonUtil.luau
+- game_replicatedstorage
+- u8.Open
+- BuildTools/Preferences.luau
+- ImageEmit_1.luau
+- startupModules/PlayerModule/CameraModule/Poppercam.luau
+- ClientCast/ClientHandler.client.luau
+- NUCLEAR-POSE.luau
+- Scope.luau
+- QuestUI.luau
+- Services/InputService.luau
+- game_replicatedstorage_usergenerated_lang_asserts
+- ForPairs.luau
+- FX/ForgeVFX/obj/ObjectCache.luau
+- newFromMilky.luau
+- ReplicatedStorage/Mastery.luau
+- YukiCutIn/mesh_emit_1.luau
+- ClientModules/SmartBone/Dependencies/Iris/widgets/Input.luau
+- SmartBone_OLD/Dependencies/Iris/widgets/Input.luau
+- startupModules/PlayerModule/CameraModule/VehicleCamera/VehicleCameraCore.luau
+- BezierTween.luau
+- Classes/Particle.luau
+- Bites The Dust.luau
+- XenoFunctions.luau
+- Tesseract_Mount/Vector4.luau
+- WhitelistHandler.luau
+- Replica/ReplicaClient.luau
+- DeathClient.client.luau
+- BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberTreeReflection.luau
+- Modules/ForgeVFX/pkg/Shake_1.luau
+- BountyHuntingServiceClient.luau
+- Michael Awakening.luau
+- v22
+- Modules/Invisibility.luau
+- ReplicatedStorage/ReplicatedStorage/Modules/Maid.luau
+- MOSTRECENTFORGE/effects/lightning_1.luau
+- startupModules/PlayerModule/CameraModule/OrbitalCamera.luau
+- startupModules/PlayerModule/CameraModule/VehicleCamera.luau
+- startupModules/PlayerModule/CameraModule/ZoomController/Popper.luau
+- Killua_RVFX/Lightning/PartCache/Table.luau
+- PaleVisual_Rewrite/Util.luau
+- Sharm Rocks/PartCache/Table.luau
+- CC/Lightning/PartCache/Table.luau
+- Dio Death.luau
+- Hit_VoronoiDiagram/PartCache/Table.luau
+- Tesseract_Pose/Vector4.luau
+- ReplicatedLibrary/PartCache/Table.luau
+- FX/ForgeVFX/effects/lightning.luau
+- StarterPlayer/PlayerModule/CameraModule/OrbitalCamera.luau
+- StarterPlayer/PlayerModule/CameraModule/VRCamera.luau
+- StarterPlayer/PlayerModule/CameraModule/VRVehicleCamera.luau
+- WhiteBeardBlastClutch.luau
+- BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRVehicleCamera.luau
+- DragonTatsumaki.luau
+- Projectiles/Projectile.luau
+- InGameExplorerShared/Signal.luau
+- baseClient/rin2_1.luau
+- Particle_Module.luau
+- ForgeVFX/services/effects_1.luau
+- ClientModules/CameraShaker.luau
+- ReplicatedStorage/ReplicatedStorage/CmdrClient/Shared/Argument.luau
+- VFXForge Mesh Emit.luau
+- FortunesAlgorithm.luau
+- LightingManager.luau
+- server.luau
+- Client/RemoteConfig.luau
+- Barrage Effect.luau
+- Killua/Powerplex.luau
+- .travis.yml
+- u31
+- u66
+- Character/Title.luau
+- DataConverter.luau
+- Batmobile/Scripts/Client/FX/Audio.luau
+- Response.luau
+- Anubis_Cutscene/Vignette.luau
+- ReplicatedModules/Zone/Signal.luau
+- FX/ForgeVFX/services/effects.luau
+- Replica/ReplicaShared/Maid.luau
+- Xtal/Classes/Signal.luau
+- UI_PlanetShaperDialogue.luau
+- UI_Quotes.luau
+- ReplicatedStorage/EmitModule/mod/lerp.luau
+- UsernameCache.luau
+- ProductManager.luau
+- BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/ZoomController.luau
+- CrewsUI.luau
+- u1.New
+- Signals/FastSignal.luau
+- LocalizationCache.luau
+- GuiParticles.luau
+- Particle_Module/PartCache.luau
+- PartCache_1.luau
+- wallyVFX_1.luau
+- FuzzySearch.luau
+- ReplicatedStorage/ReplicatedStorage/CmdrClient/CmdrInterface/AutoComplete.luau
+- ClientCast/Signal.luau
+- Killua_RVFX/Lightning/PartCache/PartCache.luau
+- SecGokuEffects/MeshEffect.luau
+- Sharm Rocks/PartCache.luau
+- CC/Lightning/PartCache/PartCache.luau
+- ValleyRun/ReplicatedStorage/chrono/Shared/Snapshots.luau
+- TimeWarpClient.client.luau
+- ShowcaseStage.luau
+- ClientModules/LightningBolt.luau
+- Hotbar/Handler.client.luau
+- DevilFruit/Magu-Magu.luau
+- Placement.luau
+- Debris2.luau
+- ReplicatedStorage/ReplicatedStorage/Modules/RichText.luau
+- LunarisService.luau
+- ReplicatedStorage/Quests.luau
+- Batmobile/Scripts/Client/Camera.luau
+- Scripts/Client.server.luau
+- BezierTween/Signal.luau
+- Minigame_Chase.luau
+- LM_COLOR_CORRECTION.luau
+- CleanObject.luau
+- FX/ForgeVFX/effects/sound.luau
+- ReplicaServer.luau
+- UI_Combo.luau
+- HandlerOld.client.luau
+- Modules/ForgeVFX/effects/sound.luau
+- Leveling.luau
+- AenoirEmitOld.luau
+- RAGE/EffectsModule.luau
+- EventUtility.luau
+- List/Accelerator/Tectonic Control.luau
+- Onslaught.luau
+- TopbarIcon/Elements/Dropdown.luau
+- TopbarIcon/Features/Overflow.luau
+- Batmobile/Scripts/Client/InputCategorizer.luau
+- BatmobileOLD/Scripts/Client/InputCategorizer.luau
+- ReplicatedModules/Zone/ZoneController/Tracker.luau
+- Output.luau
+- Killua_RVFX/Lightning/LightningBolt2.luau
+- CC/Lightning/LightningBolt2.luau
+- Cycle.luau
+- FXHandler.luau
+- Hitbox/Projectile.luau
+- Wrapper.luau
+- LevelingInfo.luau
+- Killua.luau
+- FX/ForgeVFX/mod/recolor.luau
+- Libraries/Thread.luau
+- UI_MiddleNotifications.luau
+- SoulShock.luau
+- Hitbox/Raycast.luau
+- CombatController/Core/Cooldown.luau
+- ZoroAbility4Counter.luau
+- u48.TransparencyMask
+- u89
+- ReplicatedStorage/ReplicatedStorage/Modules/LightningBolt.luau
+- handleButton
+- emit
+- u4.BallBrickFinder
+- Network/SyncSystem_1.luau
+- Rodux/Signal.luau
+- ClientModules/SmartBone/Dependencies/Iris/widgets/Window.luau
+- SmartBone_OLD/Dependencies/Iris/widgets/Window.luau
+- ClientModules/TweenModule.luau
+- Metro Man.luau
+- ReplicatedModules/Skins.luau
+- ReplicatedModules/Zone/OldSignal.luau
+- process/read.luau
+- WheelMain.client.luau
+- UI_DailyQuests.luau
+- BoostInput.luau
+- BalloonLift.luau
+- BoneRattle.luau
+- TrueSkarp/Blitz/OffBall/CraterHandler/Styles.luau
+- Ranked/Season.luau
+- BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/LegacyCamera.luau
+- size
+- Part_Icles/Sound.luau
+- Sound_1.luau
+- ClientControllers/PingController.luau
+- ClientModules/RotatedRegion3/GJK.luau
+- MAYHEM_HookCreator.luau
+- SPR Arrow Prison.luau
+- RegionModule/GJK.luau
+- FX/ForgeVFX/mod/common/flipbook.luau
+- Replica/ReplicaShared/Signal.luau
+- TagConstructor.luau
+- DNClient.client.luau
+- UI_Hakis.luau
+- UI_SubPower.luau
+- StarterPlayerScripts/TopbarPlus/Icon/Elements/Caption.luau
+- CosmeticIcon.luau
+- u4.sceneEnabled
+- getVoiceDialogue
+- u4.bodyVelocity
+- UI_DraftPlayerList.luau
+- ClientControllers/CombatController.luau
+- CombatController/Functions.luau
+- CharacterModules/Camera.luau
+- Overwrite_Button.luau
+- Uryu_Prison.luau
+- _Emit Particles.luau
+- FX.luau
+- UtilityLibrary.luau
+- Recursive
+- UI_NocturnusExhaustBar.luau
+- UI_UGrainBar.luau
+- UI_UmbraBar.luau
+- UI_SoundGroups.luau
+- u43.prototype._andThen
+- u48.InstanceBind.new
+- RashomonCamera.luau
+- recu
+- FunctionLibrary/Splitter.luau
+- PlayerInput.luau
+- HUD/Main/MobileSupport/Shiftlock/ShiftGUI.client.luau
+- HUDBackup/Main/MobileSupport/Shiftlock/ShiftGUI.client.luau
+- RecycledSpawn.luau
+- MeshEmit
+- Hot Chocolate Throw.luau
+- PoissonSampling.luau
+- Vignette/Physics.luau
+- TagService/Tag.luau
+- ReputationInfo.luau
+- PVPApologize/UI_Button.luau
+- u4.cutsceneAll
+- u8
+- cleanupOne
+- deepEqual
+- GetDataByteSize
+- Add
+- Add
+- Add
+- PigInstructor.luau
+- Load
 
 ## God Nodes (most connected - your core abstractions)
 1. `_G.MeetReq()` - 528 edges
@@ -2009,71 +2302,71 @@
 ## Surprising Connections (you probably didn't know these)
 - `[2.5.0]` --references--> `done()`  [INFERRED]
   Packages/_Index/evaera_promise@4.0.0/promise/CHANGELOG.md → references/ValleyRun/StarterPlayer/StarterPlayerScripts/TutorialClient.client.luau
-- `Changed` --references--> `catch()`  [INFERRED]
-  Packages/_Index/evaera_promise@4.0.0/promise/CHANGELOG.md → references/BattleGame/ServerScriptService/Systems/Characters/Crocodile/RegularSkillSet/SablesServer.luau
-- `Chaining` --references--> `catch()`  [INFERRED]
-  Packages/_Index/evaera_promise@4.0.0/promise/docs/Examples.md → references/BattleGame/ServerScriptService/Systems/Characters/Crocodile/RegularSkillSet/SablesServer.luau
-- `A Better Alternative to `spawn`, `wait`, and `delay`` --references--> `spawn()`  [INFERRED]
-  Packages/_Index/evaera_promise@4.0.0/promise/docs/Tour.md → references/ValleyRun/StarterPlayer/StarterPlayerScripts/CrossyRoadClient.client.luau
 - `:StartSessionAsync()` --references--> `Cancel()`  [INFERRED]
   ServerPackages/_Index/lm-loleris_profilestore@1.0.3/profilestore/docs/api.md → references/SorceryGame/ReplicatedStorage/Modules/Player/Replication/Global/Yuki_FOV.luau
+- `A Better Alternative to `spawn`, `wait`, and `delay`` --references--> `spawn()`  [INFERRED]
+  Packages/_Index/evaera_promise@4.0.0/promise/docs/Tour.md → references/ValleyRun/StarterPlayer/StarterPlayerScripts/CrossyRoadClient.client.luau
+- `Changed` --references--> `catch()`  [INFERRED]
+  Packages/_Index/evaera_promise@4.0.0/promise/CHANGELOG.md → references/BattleGame/ServerScriptService/Systems/Characters/Crocodile/RegularSkillSet/SablesServer.luau
+- `Changed` --references--> `catch()`  [INFERRED]
+  Packages/_Index/evaera_promise@4.0.0/promise/CHANGELOG.md → references/BattleGame/ServerScriptService/Systems/Characters/Crocodile/RegularSkillSet/SablesServer.luau
 
 ## Import Cycles
 - None detected.
 
-## Communities (8111 total, 6546 thin omitted)
+## Communities (10722 total, 8950 thin omitted)
 
 ### Community 0 - "_G.MeetReq"
 Cohesion: 0.01
-Nodes (295): v144(), v1.check(), v1.check(), v1.check(), v1.check(), v1.check(), v1.check(), v1.check() (+287 more)
+Nodes (312): v144(), v1.check(), v1.check(), v1.check(), v1.check(), v1.check(), _G.castingSkill(), _G.fw() (+304 more)
 
 ### Community 1 - "actionUtil.luau"
 Cohesion: 0.01
-Nodes (49): FovRenderStepped(), v1.KimCamera(), v1.KuniCamera(), v1.StealCamera(), emit(), run_dash(), emit(), run_dash() (+41 more)
+Nodes (57): holdingSpace(), v1.skill1(), v1.skill3(), holdingSpace(), v1.skill1(), v1.skill3(), getMoveDirection(), holdingSpace() (+49 more)
 
 ### Community 2 - "game_replicatedstorage_modules_skills"
 Cohesion: 0.01
-Nodes (19): u8(), v1.check(), u8(), v1.setup(), u9(), v1.setup(), v1.setup(), v1.setup() (+11 more)
+Nodes (17): u8(), v1.check(), u8(), v1.setup(), u9(), v1.setup(), v1.setup(), v1.setup() (+9 more)
 
 ### Community 3 - "mod_utility"
 Cohesion: 0.02
-Nodes (17): readBezierAttributes(), readBezierAttributes(), addEnabledEffect(), addEnabledEffect(), createLoader(), loadTextures(), createLoader(), loadTextures() (+9 more)
+Nodes (22): v101(), v136(), v153(), v96(), readBezierAttributes(), readBezierAttributes(), addEnabledEffect(), createLoader() (+14 more)
 
 ### Community 4 - "_G.PlaySound"
 Cohesion: 0.01
-Nodes (181): _restoreAuthoredEnabled(), u7(), v3.start(), v1.start(), v1.start(), v1.start(), v1.start(), v1.start() (+173 more)
+Nodes (146): Lemur Changelog, Master, v0.1.0 (November 28, 2017), u7(), v3.start(), v1.start(), v1.start(), v1.start() (+138 more)
 
 ### Community 5 - "vfxUtil.luau"
 Cohesion: 0.02
-Nodes (58): applyBarState(), bindRinBar(), tryAutoBind(), v1.bind(), build_core_layers(), find_image_label(), v1.bind(), wait_for_template() (+50 more)
+Nodes (58): build_core_layers(), find_image_label(), v1.bind(), wait_for_template(), spawnAll(), spawnEntity(), aura_check(), clear_aura() (+50 more)
 
 ### Community 6 - "MoonPropertyAnimator.luau"
-Cohesion: 0.01
-Nodes (51): apply_recolor(), v1.dawnwalker_awaken(), v1.dawnwalker_blinding_autogoal(), v1.dawnwalker_blinding_special(), apply_recolor(), v1.dawnwalker_awaken(), v1.dawnwalker_blinding_autogoal(), v1.dawnwalker_blinding_special() (+43 more)
+Cohesion: 0.02
+Nodes (35): apply_recolor(), v1.dawnwalker_awaken(), v1.dawnwalker_blinding_autogoal(), v1.dawnwalker_blinding_special(), apply_recolor(), v1.dawnwalker_awaken(), v1.dawnwalker_blinding_autogoal(), v1.dawnwalker_blinding_special() (+27 more)
 
 ### Community 7 - "game_replicatedstorage_modules_fastwait"
 Cohesion: 0.03
-Nodes (54): v6.start(), v1.start(), length(), u45(), u9.new(), u9.setPoints(), v1.start(), u7() (+46 more)
+Nodes (49): _restoreAuthoredEnabled(), _G.getEffect(), u17(), v6.start(), v1.start(), length(), u45(), u9.new() (+41 more)
 
 ### Community 8 - "_G.checkRenderDistance"
 Cohesion: 0.01
-Nodes (95): _G.checkRenderDistance(), v1.start(), v1.start(), v1.start(), u7(), v1.start(), v1.start(), v1.start() (+87 more)
+Nodes (94): _G.checkRenderDistance(), v1.start(), v1.start(), v1.start(), u7(), v1.start(), v1.start(), v1.start() (+86 more)
 
 ### Community 9 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberBeginWork.new.luau"
 Cohesion: 0.03
-Nodes (83): coerceRef(), warnOnFunctionType(), u1.getCurrentFiberOwnerNameInDevOrNull(), createFiber(), createFiberFromScope(), createFiberFromTypeAndProps(), bailoutHooks(), finishClassComponent() (+75 more)
+Nodes (86): getCurrentComponentErrorInfo(), getDeclarationErrorAddendum(), jsxWithValidation(), setCurrentlyValidatingElement(), v2.cloneElementWithValidation(), v2.createElementWithValidation(), v2.jsxWithValidationDynamic(), v2.jsxWithValidationStatic() (+78 more)
 
 ### Community 10 - "game_getservice"
 Cohesion: 0.01
-Nodes (9): Rashomon_Camerawork(), v1.start(), recu(), recu(), recu_to_zero(), recu(), v1.start(), u1.new() (+1 more)
+Nodes (6): recu(), recu(), recu_to_zero(), u1.new(), v4.Do(), StringTable()
 
 ### Community 11 - "SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberBeginWork.new.luau"
 Cohesion: 0.02
-Nodes (95): getCurrentComponentErrorInfo(), getDeclarationErrorAddendum(), jsxWithValidation(), setCurrentlyValidatingElement(), v2.cloneElementWithValidation(), v2.createElementWithValidation(), v2.jsxWithValidationDynamic(), v2.jsxWithValidationStatic() (+87 more)
+Nodes (83): coerceRef(), warnOnFunctionType(), u1.getCurrentFiberOwnerNameInDevOrNull(), createFiber(), createFiberFromScope(), createFiberFromTypeAndProps(), bailoutHooks(), finishClassComponent() (+75 more)
 
 ### Community 12 - "Modules/ForgeVFX/mod/common/bezier.luau"
 Cohesion: 0.02
-Nodes (26): Oklab.fromLinear(), Oklab.fromSRGB(), Oklab.toLinear(), Oklab.toSRGB(), common.getColorAtTimeOklab(), common.getColorWithEasingOklab(), getColorAtTime(), lerp.Color3() (+18 more)
+Nodes (14): u8.getColorAtTimeOklab(), u8.getColorWithEasingOklab(), u61.ColorSequence(), u70(), u61.ColorSequence(), u70(), getColorAtTime(), u17.ColorSequence() (+6 more)
 
 ### Community 13 - "replication.luau"
 Cohesion: 0.02
@@ -2081,15 +2374,15 @@ Nodes (25): CreateSubtitle(), DrawLine(), getLorenzoLine(), runTimer(), setting(
 
 ### Community 14 - "starterPlayer_1.luau"
 Cohesion: 0.02
-Nodes (31): addstyle(), addstyle_temps(), changePage(), createLimitedItemFrame(), createLimitedShop(), deepCopy(), process(), update_style_base() (+23 more)
+Nodes (23): addstyle(), addstyle_temps(), changePage(), createLimitedItemFrame(), createLimitedShop(), deepCopy(), process(), update_style_base() (+15 more)
 
 ### Community 15 - "script_parent_graph"
-Cohesion: 0.02
-Nodes (26): p10.UpdateModel(), _posOffsetFrameDelta(), resolveDuration(), u1.computeItemLifecycle(), u1.computeMaxDuration(), u1.computeTrueLifetime(), _resolveAdornee(), u1.EmitHighlight() (+18 more)
+Cohesion: 0.03
+Nodes (20): getAttachmentLinkCF(), getTargetPosition(), p15.UpdateAttachment(), p15.UpdatePart(), _posOffsetFrameDelta(), p10.UpdateModel(), _posOffsetFrameDelta(), _resolveAdornee() (+12 more)
 
 ### Community 16 - "yukimiyaVFX.luau"
-Cohesion: 0.02
-Nodes (26): u80(), spawnAll(), spawnEntity(), play_ot_video(), previewer(), v1.emperor_eye(), v1.i_cant_sleep(), play_ot_video() (+18 more)
+Cohesion: 0.03
+Nodes (20): u80(), play_ot_video(), previewer(), v1.emperor_eye(), v1.i_cant_sleep(), createData(), v1.yukimiya3Confirm(), v1.yukimiya5() (+12 more)
 
 ### Community 17 - "replication_1.luau"
 Cohesion: 0.02
@@ -2104,12 +2397,12 @@ Cohesion: 0.02
 Nodes (4): ReadF16(), v2.NumberF16(), v4.NumberF16(), WriteF16()
 
 ### Community 20 - "mainreplication.luau"
-Cohesion: 0.03
-Nodes (63): doTransparencyTween(), editButton(), emit(), enable(), get_max_lifetime(), getColorSequence(), getFlowCrowdSource(), getMoveNumber() (+55 more)
+Cohesion: 0.04
+Nodes (59): doTransparencyTween(), editButton(), emit(), enable(), get_max_lifetime(), getColorSequence(), getFlowCrowdSource(), getMoveNumber() (+51 more)
 
 ### Community 21 - "KatUtil.luau"
 Cohesion: 0.02
-Nodes (14): applyNameColor(), doText(), getColor(), retireTexts(), splitGraphemes(), v1.Speak(), u3.delay(), u3.destroy_effect() (+6 more)
+Nodes (13): applyFormState(), v89.GokuFormUI(), applyFormState(), v89.GokuFormUI(), u2.otCutInCommentators(), u2.otCutInReferee(), u2.otCutInCommentators(), u2.otCutInReferee() (+5 more)
 
 ### Community 22 - "isagiVFX.luau"
 Cohesion: 0.05
@@ -2124,84 +2417,96 @@ Cohesion: 0.02
 Nodes (31): dash(), u1.dash(), card(), v1.skill1(), v1.skill2(), v1.skill3(), v1.skill4(), waltz() (+23 more)
 
 ### Community 25 - "v14"
-Cohesion: 0.03
-Nodes (39): v1.start(), v1.start(), v1.start(), PlayAnim(), u28(), v1.start(), u7(), v1.start() (+31 more)
+Cohesion: 0.04
+Nodes (27): v1.start(), v1.start(), v1.start(), PlayAnim(), u28(), v1.start(), u11(), v4.start() (+19 more)
 
-### Community 26 - "wallyVFX.luau"
-Cohesion: 0.28
-Nodes (3): emitall(), v1.LokiDashSuper(), v1.LokiKick()
+### Community 26 - "pathshortcuts_knitpath_knit"
+Cohesion: 0.01
+Nodes (16): CheckIfMaterialCostsIsComplete(), u5.Setup(), GuideToSanji(), u5.Setup(), SetCameraPerspective(), u3.Setup(), DetermineLocation(), u3.Setup() (+8 more)
+
+### Community 27 - "replicatedstorage_replicatedmodules_effectshandler"
+Cohesion: 0.01
+Nodes (70): FadeBeams(), GetPosition(), RaycastMap(), CreateCrack(), RaycastMap(), MapBins(), Update(), DestroyShard() (+62 more)
 
 ### Community 28 - "serverscriptservice_scripts_game_modules_player_character_combat_attacks_baseattack"
 Cohesion: 0.01
-Nodes (132): Permissions.is_permitted(), Utility.CloseThreadSafe(), BaseAttack.new(), Attack.new(), Attack.new(), Attack.new(), Attack:Activate(), Attack.new() (+124 more)
+Nodes (150): Permissions.is_permitted(), Utility.CloseThreadSafe(), CharaSpawner.StopTimer(), BaseAttack.new(), Attack.new(), Attack.new(), Attack.new(), Attack:Activate() (+142 more)
 
 ### Community 29 - "OpenTextChatService.luau"
 Cohesion: 0.02
-Nodes (19): u48.BubbleChatMessage.ReBind(), u48.BubbleChatMessage.SmoothDamp(), u48.BubbleChatMessage.UpdateTransparency(), u48.DistantBubble.ReBind(), u48.DistantBubble.SmoothDamp(), u48.DistantBubble.UpdateTransparency(), u48.ExperienceChat.TextBoxTextChanged(), u48.ExperienceChat.UpdateAutoCompleteBounds() (+11 more)
+Nodes (10): u48.ExperienceChat.UpdateAutoCompleteBounds(), u48.ExperienceChat.UpdateTextBoxPlaceholder(), u48.GetAbsolutePosition(), u48.GetAbsoluteSize(), u48.GetViewportSize(), u48.KeyCodeToChar(), u48.MethodCall(), u48.VirtualClass.__index() (+2 more)
 
 ### Community 30 - "u1_playerscripts_waitforchild"
 Cohesion: 0.01
-Nodes (76): u6.KiloDescend(), u6.KiloRise(), u4.new(), u23(), u6.CupidBurst(), u6.EggsplosiveRift(), u6.Eggsweeper(), u6.EggsplosiveRift() (+68 more)
+Nodes (80): u6.GroundSmash(), u6.GutPunch(), u4.new(), u6.HeavySweep(), u6.ShockwaveSlash(), u6.PitchforkDance(), u6.PitchforkImpale(), u23() (+72 more)
 
-### Community 31 - "v3.start"
-Cohesion: 0.03
-Nodes (59): u4.Cleanup(), u1.batchWaveAt(), u3.CubicBezier(), u3.start(), u10(), v1.start(), NewPuddle(), PlayAnim() (+51 more)
+### Community 31 - "u4.lerp"
+Cohesion: 0.05
+Nodes (29): u80.takeUntil(), u12(), u14(), u23(), u40(), u62(), v1.start(), Lightning() (+21 more)
 
 ### Community 32 - "chickenorhero_waitforchild"
+Cohesion: 0.06
+Nodes (17): play(), canInvite(), formatRemaining(), getNextEvent(), promptEvent(), refreshEvent(), starterHasPriority(), tryInvite() (+9 more)
+
+### Community 33 - "ReplicatedStorage/RelicsXYZ/RelicsPlayer/State.luau"
 Cohesion: 0.05
-Nodes (15): play(), build(), place(), update(), create(), remove(), scan(), available() (+7 more)
+Nodes (4): goBack(), AuraPage(), UgcSkinItem(), u1.FireServer()
 
 ### Community 34 - "NetworkSystem_1.luau"
 Cohesion: 0.05
 Nodes (83): u26._abandon(), u26._admit(), u26.broadcast(), u26._close(), u26._code(), u26._connectionOf(), u26._control(), u26._define() (+75 more)
 
-### Community 35 - "script_parent_parent_waitforchild"
+### Community 35 - "script_parent_waitforchild"
 Cohesion: 0.01
-Nodes (7): FiberRootNode(), v2.createFiberRoot(), FiberRootNode(), v2.createFiberRoot(), advanceTimers(), u50(), u9.new()
+Nodes (16): flat(), FiberRootNode(), v2.createFiberRoot(), advanceTimers(), u50(), setCurrentlyValidatingElement(), flat(), FiberRootNode() (+8 more)
 
 ### Community 36 - "script_parent_parent_shared_util"
 Cohesion: 0.02
-Nodes (4): u2.getGamemode(), u2.init(), u2.getGamemode(), u2.init()
+Nodes (5): Recurse(), u2.getGamemode(), u2.init(), u2.getGamemode(), u2.init()
 
 ### Community 37 - "_G.PauseAnim"
 Cohesion: 0.02
-Nodes (83): _G.raycastIgnoreList(), v1.setup(), u5.ExplosiveGrab(), u5.ExplosiveLeap(), u5.ExplosiveMines(), u5.ExplosiveSwipe(), u5.SelfDestruction(), u5.LoveBomb() (+75 more)
+Nodes (88): _G.raycastIgnoreList(), _G.raycastWithLand(), v1.setup(), u5.ExplosiveGrab(), u5.ExplosiveLeap(), u5.ExplosiveMines(), u5.ExplosiveSwipe(), u5.SelfDestruction() (+80 more)
 
-### Community 38 - "v22"
-Cohesion: 0.15
-Nodes (7): u14(), u1.RemoveFromRender(), v22(), u4.__index.Remove(), v1.Spawn(), u4.__index.Remove(), v24()
+### Community 38 - "pathshortcuts_replicatedmodules_replicatedlibrary_particlehandler"
+Cohesion: 0.01
+Nodes (16): GetFrustumRectAtDistance(), ScreenSlash(), SetCamera(), StopAllAnims(), StopAnim(), FadeLabel(), TypeText(), ClampColorCorrectionTint() (+8 more)
 
 ### Community 40 - "otoyaVFX.luau"
 Cohesion: 0.05
-Nodes (49): applyRecolor(), getAccentColor(), getAura(), toggleSpotlight(), u1.invisibility(), u1.kusarigama_dash(), u1.kusarigama_kick(), u1.shadowstep() (+41 more)
+Nodes (48): applyRecolor(), getAccentColor(), getAura(), toggleSpotlight(), u1.invisibility(), u1.kusarigama_dash(), u1.kusarigama_kick(), u1.shadowstep() (+40 more)
 
 ### Community 41 - "u3.lerp"
-Cohesion: 0.05
-Nodes (86): v37.emit(), v6.emit(), computeJaggedOffset(), generateLightningPoints(), generateProjectilePoints(), generateTransitionPoints(), getBlendedPosition(), getEffectiveSpeed() (+78 more)
+Cohesion: 0.04
+Nodes (95): v37.emit(), v6.emit(), computeJaggedOffset(), generateLightningPoints(), generateProjectilePoints(), generateTransitionPoints(), getBlendedPosition(), getEffectiveSpeed() (+87 more)
 
-### Community 43 - "AI.luau"
-Cohesion: 0.09
-Nodes (32): Move(), Utility.BetweenNumberRange(), Utility.BeyondTime(), Utility.NumberRangeRandom(), Utility.XOR(), Entity._AddCooldown(), Entity.AddCooldownsTo(), Entity._AttemptMove() (+24 more)
+### Community 43 - "SorceryGame/ReplicatedStorage/Modules/Shared/Utilities/Utility.luau"
+Cohesion: 0.02
+Nodes (83): Move(), InRange(), Trigger(), splitTile(), Tile.new(), can_show_blood(), Emit(), EmitParticle() (+75 more)
 
 ### Community 44 - "script_parent_parent_shared_types"
-Cohesion: 0.04
-Nodes (17): Entity.Destroy(), Entity.Disable(), HandleRemoved(), HandleRemoved(), OnCharacterAdded(), OnPlayerAdded(), RegisterPlayer(), UnregisterPlayer() (+9 more)
+Cohesion: 0.03
+Nodes (26): Entity.Destroy(), Entity.Disable(), HandleRemoved(), HandleRemoved(), Check(), DoLoop(), PlayerAdded(), Check() (+18 more)
 
 ### Community 45 - "StrikerGame/ReplicatedStorage/chrono/Server/Replicate.luau"
 Cohesion: 0.03
-Nodes (33): CanInterpolate(), Interpolate(), CanInterpolate(), Interpolate(), CheckEntity(), CheckEntityChanges(), FireEvent(), HandleCFrameSetters() (+25 more)
+Nodes (44): DeserializeFull(), DeserializeYaw(), HandleChanges(), HandleClientOwned(), HandleNewEntity(), HandleReliable(), HandleServerOwned(), PushCFrameFor() (+36 more)
+
+### Community 46 - "EasingFunctions.luau"
+Cohesion: 0.02
+Nodes (16): inBounce(), inElastic(), inOutBounce(), inOutElastic(), outBounce(), outElastic(), outInBounce(), outInElastic() (+8 more)
 
 ### Community 48 - "kunigamiVFX.luau"
 Cohesion: 0.02
-Nodes (47): getPrevAndNextKeyFrames(), sortedKeys(), u1.Play(), PropertyConvert(), v1.StartMeshEmitter(), CreateVFXTimeline(), emit(), GetVFX() (+39 more)
+Nodes (52): PropertyConvert(), v1.StartMeshEmitter(), CreateVFXTimeline(), emit(), GetVFX(), v1.kunigamicounterstart(), v1.kunigamiHeaderAirHit(), v1.kunigamiHeaderAirStartup() (+44 more)
 
 ### Community 50 - "Modules/TopbarPlus/Icon.luau"
 Cohesion: 0.03
-Nodes (4): u15.getIcon(), u15.getIconByUID(), u15.modifyChildTheme(), u15.updateParent()
+Nodes (5): u66(), u15.getIcon(), u15.getIconByUID(), u15.modifyChildTheme(), u15.updateParent()
 
-### Community 51 - "mvpVFX.luau"
-Cohesion: 0.01
-Nodes (18): FovRenderStepped(), v1.KimCamera(), v1.KuniCamera(), v1.StealCamera(), LoadAvatar(), processDescendants(), v1.mvp_auraMonsterMVP(), v1.mvp_LyxBestRapper() (+10 more)
+### Community 51 - "mvpVFX_1.luau"
+Cohesion: 0.03
+Nodes (7): LoadAvatar(), processDescendants(), v1.mvp_auraMonsterMVP(), v1.mvp_LyxBestRapper(), v1.mvp_TripleTMVP(), v1.mvp_vydiaMVP(), weld_hand()
 
 ### Community 52 - "AnimationPolicy.luau"
 Cohesion: 0.05
@@ -2209,23 +2514,23 @@ Nodes (6): v1.prepare(), u1.poseScale(), u1.weights(), add(), buildProxy(), upda
 
 ### Community 53 - "obj_bezier"
 Cohesion: 0.02
-Nodes (6): step(), v32(), u3.__index.Remove(), u8(), updateSampling(), step()
+Nodes (7): step(), v32(), u3.__index.Remove(), u4.fromParams(), u8(), updateSampling(), step()
 
 ### Community 54 - "script_parent_parent_parent_parent_waitforchild"
 Cohesion: 0.07
 Nodes (10): applyProp(), applyProps(), applyTags(), attachBinding(), safelyApplyProperties(), applyProp(), applyProps(), applyTags() (+2 more)
 
 ### Community 55 - "NetworkSystem.luau"
-Cohesion: 0.07
-Nodes (67): u26._abandon(), u26._admit(), u26.broadcast(), u26._close(), u26._code(), u26._connectionOf(), u26._control(), u26._define() (+59 more)
+Cohesion: 0.05
+Nodes (83): u26._abandon(), u26._admit(), u26.broadcast(), u26._close(), u26._code(), u26._connectionOf(), u26._control(), u26._define() (+75 more)
 
 ### Community 56 - "Shared/TopbarPlus/Icon.luau"
 Cohesion: 0.03
 Nodes (5): u2.getIcon(), u2.getIconByUID(), u2.modifyChildTheme(), u2.new(), u2.updateParent()
 
 ### Community 59 - "Modules/ForgeVFX/emitters.luau"
-Cohesion: 0.06
-Nodes (48): u18.attribute_tweener(), u18.beam(), u18.bezier(), u18.camera_shake(), u18.dispatch(), u18.lightning(), u18.mesh(), u18.particle() (+40 more)
+Cohesion: 0.05
+Nodes (64): u18.attribute_tweener(), u18.beam(), u18.bezier(), u18.camera_shake(), u18.dispatch(), u18.lightning(), u18.mesh(), u18.particle() (+56 more)
 
 ### Community 60 - "TopbarIcon.luau"
 Cohesion: 0.03
@@ -2237,7 +2542,7 @@ Nodes (25): available(), pop(), request(), available(), request(), available(), 
 
 ### Community 62 - "EffectUtility.EmitEffects"
 Cohesion: 0.01
-Nodes (288): Play(), Sfx(), Destruction.Bush(), Destruction.Crate(), Destruction.Fence(), Destruction.Glass(), Destruction.Lamp(), Destruction.Pillar() (+280 more)
+Nodes (291): Play(), Sfx(), DashHandler:BackdashFunction(), Destruction.Bush(), Destruction.Crate(), Destruction.Fence(), Destruction.Glass(), Destruction.Lamp() (+283 more)
 
 ### Community 63 - "StarterPlayerScripts/TopbarPlus/Icon.luau"
 Cohesion: 0.03
@@ -2245,11 +2550,11 @@ Nodes (5): u2.getIcon(), u2.getIconByUID(), u2.modifyChildTheme(), u2.new(), u2.
 
 ### Community 64 - "Utility/SmartBone/Dependencies/Iris/API.luau"
 Cohesion: 0.07
-Nodes (47): u1.Button(), u1.Checkbox(), u1.CollapsingHeader(), u1.ComboArray(), u1.ComboEnum(), u1.DragNum(), u1.Indent(), u1.InputColor3() (+39 more)
+Nodes (50): u1.Button(), u1.Checkbox(), u1.CollapsingHeader(), u1.ComboArray(), u1.ComboEnum(), u1.DragNum(), u1.Indent(), u1.InputColor3() (+42 more)
 
 ### Community 65 - "ReplicatedStorage/SmartBone/Dependencies/Iris/API.luau"
-Cohesion: 0.07
-Nodes (49): u1.Button(), u1.Checkbox(), u1.CollapsingHeader(), u1.ComboArray(), u1.ComboEnum(), u1.DragNum(), u1.Indent(), u1.InputColor3() (+41 more)
+Cohesion: 0.08
+Nodes (47): u1.Button(), u1.Checkbox(), u1.CollapsingHeader(), u1.ComboArray(), u1.ComboEnum(), u1.DragNum(), u1.Indent(), u1.InputColor3() (+39 more)
 
 ### Community 66 - "Reactor/Play.luau"
 Cohesion: 0.04
@@ -2264,20 +2569,16 @@ Cohesion: 0.06
 Nodes (43): ability(), arrange(), back(), build(), button(), buy(), buyRow(), chip() (+35 more)
 
 ### Community 70 - "script_parent_log"
-Cohesion: 0.04
+Cohesion: 0.03
 Nodes (12): buildPData(), u2.EmitCameraShake(), u2.EmitCameraShakeAnimate(), buildPData(), u2.EmitCameraShake(), u2.EmitCameraShakeAnimate(), buildPData(), u3.EmitDistortion() (+4 more)
 
 ### Community 71 - "Skin.luau"
-Cohesion: 0.07
-Nodes (33): bigCloseGlyph(), currentRing(), dimOne(), fill(), findRing(), quietGradients(), ring(), surface() (+25 more)
+Cohesion: 0.06
+Nodes (46): bigCloseGlyph(), currentRing(), decor(), dimOne(), fill(), findRing(), glow(), quietGradients() (+38 more)
 
 ### Community 72 - "FootballEventClient.client.luau"
 Cohesion: 0.05
 Nodes (38): art(), ball(), buildCard(), buildHeader(), buildLogo(), buildPick(), buildProgress(), button() (+30 more)
-
-### Community 73 - "Shared/Zone.luau"
-Cohesion: 0.06
-Nodes (8): u8.extend(), u8.new(), v360(), u18._formTouchedConnection(), u18.fromRegion(), u18.new(), u18._partTouchedZone(), u18.trackItem()
 
 ### Community 74 - "rolandVFX_1.luau"
 Cohesion: 0.06
@@ -2287,41 +2588,45 @@ Nodes (48): angelica_added(), angelica_track(), durandal_phase(), fade_out(), of
 Cohesion: 0.04
 Nodes (32): forEachEmitter(), u7.applyAccessoryVfxRecolor(), u7.cache_lighting(), u7.cache_module(), u7.characterHasAccessory(), u7.contain_lighting(), u7.createVFX(), u7.cutscene_lighting() (+24 more)
 
-### Community 77 - "SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1.2.6/luau-polyfill/AssertionError/AssertionError.global.luau"
-Cohesion: 0.32
-Nodes (4): createErrDiff(), ErrorCaptureStackTrace(), inspectValue(), u43.new()
+### Community 76 - "game_replicatedstorage_waitforchild"
+Cohesion: 0.01
+Nodes (34): u1.SetDraftInfoTab(), AddSlot(), u21(), deepCopy(), u1.KeybindFunctions.ResetKeys(), CharacterAdded(), LoadMoves(), UpdateVisibility() (+26 more)
+
+### Community 77 - "inspect"
+Cohesion: 0.05
+Nodes (33): u43.prototype._andThen(), inspect(), v1.debug(), v1.error(), v1.group(), v1.groupCollapsed(), v1.info(), v1.log() (+25 more)
 
 ### Community 78 - "rolandVFX.luau"
 Cohesion: 0.06
 Nodes (48): angelica_added(), angelica_track(), durandal_phase(), fade_out(), offball_scene(), pop_scale(), ranga_phase(), set_move_status() (+40 more)
 
 ### Community 79 - "GhostTraderView.luau"
-Cohesion: 0.04
-Nodes (70): afterimage(), aimArm(), aimC0(), arc(), armOf(), bannerAt(), bodyBoxes(), buildOverlay() (+62 more)
+Cohesion: 0.03
+Nodes (96): afterimage(), aimArm(), aimC0(), applyState(), arc(), armOf(), artPart(), bannerAt() (+88 more)
 
 ### Community 81 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17.2.1/scheduler/forks/SchedulerHostConfig.mock.luau"
-Cohesion: 0.04
-Nodes (23): u3(), u4.new(), v6.__call(), popHostContext(), u4(), unwindInterruptedWork(), endTimer(), getFirstStringKey() (+15 more)
+Cohesion: 0.05
+Nodes (17): u3(), u4.new(), v6.__call(), endTimer(), getFirstStringKey(), profileRootAfterYielding(), profileRootBeforeUnitOfWork(), profileUnitOfWorkBefore() (+9 more)
 
 ### Community 82 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberLane.luau"
-Cohesion: 0.04
-Nodes (22): findUpdateLane(), getEqualOrHigherPriorityLanes(), getHighestPriorityLanes(), v2.computeExpirationTime(), v2.getBumpedLaneForHydration(), v2.getHighestPriorityPendingLanes(), v2.getMostRecentEventTime(), v2.getNextLanes() (+14 more)
+Cohesion: 0.06
+Nodes (20): getEqualOrHigherPriorityLanes(), getHighestPriorityLanes(), v2.computeExpirationTime(), v2.getBumpedLaneForHydration(), v2.getHighestPriorityPendingLanes(), v2.getMostRecentEventTime(), v2.getNextLanes(), v2.markRootEntangled() (+12 more)
 
 ### Community 83 - "SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberLane.luau"
-Cohesion: 0.03
-Nodes (26): copyWithSet(), copyWithSetImpl(), findUpdateLane(), getEqualOrHigherPriorityLanes(), getHighestPriorityLanes(), v2.computeExpirationTime(), v2.getBumpedLaneForHydration(), v2.getHighestPriorityPendingLanes() (+18 more)
+Cohesion: 0.06
+Nodes (20): getEqualOrHigherPriorityLanes(), getHighestPriorityLanes(), v2.computeExpirationTime(), v2.getBumpedLaneForHydration(), v2.getHighestPriorityPendingLanes(), v2.getMostRecentEventTime(), v2.getNextLanes(), v2.markRootEntangled() (+12 more)
 
 ### Community 84 - "mainreplication_1.luau"
-Cohesion: 0.04
-Nodes (59): doTransparencyTween(), editButton(), emit(), enable(), get_max_lifetime(), getColorSequence(), getFlowCrowdSource(), getMoveNumber() (+51 more)
+Cohesion: 0.06
+Nodes (9): getFlowCrowdSource(), replaceFlowCrowdChildren(), setRadialProgress(), u4.biggershockwave(), u4.bright(), u4.Emit(), u4.flowCrowd(), u4.radial_progress() (+1 more)
 
 ### Community 85 - "DebugUtil/Iris/API.luau"
-Cohesion: 0.04
-Nodes (8): u1.Button(), u1.InputText(), u1.SameLine(), u1.TextWrapped(), u1.Tree(), helpMarker(), windowlessDemo(), u1.PopConfig()
+Cohesion: 0.03
+Nodes (25): u1.Button(), u1.ComboArray(), u1.ComboEnum(), u1.InputText(), u1.SameLine(), u1.TextWrapped(), u1.Tree(), helpMarker() (+17 more)
 
 ### Community 86 - "ClientEffects/ForgeVFX/pkg/Promise.luau"
-Cohesion: 0.09
-Nodes (51): awaitHelper(), createAdvancer(), Error:extend(), Error:getErrorChain(), Error.is(), Error.isKind(), Error.new(), Error:__tostring() (+43 more)
+Cohesion: 0.07
+Nodes (61): awaitHelper(), createAdvancer(), Error:extend(), Error:getErrorChain(), Error.is(), Error.isKind(), Error.new(), Error:__tostring() (+53 more)
 
 ### Community 87 - "kuronaVFX.luau"
 Cohesion: 0.06
@@ -2329,7 +2634,7 @@ Nodes (27): emitAll(), kuronaFlash(), u2.clearFetchMark(), u2.closeQuarter(), u2
 
 ### Community 88 - "EmitModule/obj/Promise.luau"
 Cohesion: 0.07
-Nodes (42): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+34 more)
+Nodes (43): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+35 more)
 
 ### Community 89 - "TopbarPlus.luau"
 Cohesion: 0.03
@@ -2348,8 +2653,8 @@ Cohesion: 0.07
 Nodes (42): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+34 more)
 
 ### Community 93 - "vfxUtil/ForgeVFX/pkg/Promise.luau"
-Cohesion: 0.07
-Nodes (42): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+34 more)
+Cohesion: 0.08
+Nodes (40): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+32 more)
 
 ### Community 94 - "vfxUtil/ForgeVFX/pkg/Promise_1.luau"
 Cohesion: 0.08
@@ -2364,15 +2669,15 @@ Cohesion: 0.06
 Nodes (8): pillar_landed(), set_travel(), v6.gremmy_pillar_fly(), v6.gremmy_pillar_ride(), pillar_landed(), set_travel(), v6.gremmy_pillar_fly(), v6.gremmy_pillar_ride()
 
 ### Community 97 - "Promise_3.luau"
-Cohesion: 0.07
-Nodes (42): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+34 more)
+Cohesion: 0.08
+Nodes (41): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+33 more)
 
 ### Community 98 - "EmitModule/pkg/Promise.luau"
 Cohesion: 0.07
 Nodes (42): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+34 more)
 
 ### Community 99 - "BasketballGame/ReplicatedStorage/Packages/_Index/evaera_promise@4.0.0/promise.luau"
-Cohesion: 0.08
+Cohesion: 0.07
 Nodes (41): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+33 more)
 
 ### Community 101 - "Utility/ForgeVFX/pkg/Promise.luau"
@@ -2380,32 +2685,32 @@ Cohesion: 0.08
 Nodes (41): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+33 more)
 
 ### Community 103 - "Matte.luau"
-Cohesion: 0.06
-Nodes (18): applyFlipbookFrame(), buildImageLabelPData(), gatherFlipbookDecals(), preloadEmitAssets(), resolveFrame(), resolveImageParent(), _simulateForward2D(), u1._computeImageLabelEndState() (+10 more)
+Cohesion: 0.05
+Nodes (12): seat(), u1._matteCarry(), u1._matteJoin(), seat(), u1._matteCarry(), u1._matteJoin(), _appendAssetIds(), _resolveAssetId() (+4 more)
 
 ### Community 104 - "LightingController/promise.luau"
 Cohesion: 0.07
 Nodes (42): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+34 more)
 
 ### Community 105 - "UtilityModules/Promise.luau"
-Cohesion: 0.07
-Nodes (42): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+34 more)
+Cohesion: 0.08
+Nodes (40): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+32 more)
 
 ### Community 107 - "v19"
-Cohesion: 0.05
-Nodes (21): u1.Clean(), v1.start(), v1.start(), u7(), v1.start(), crater(), v1.start(), crater() (+13 more)
+Cohesion: 0.07
+Nodes (14): u1.Clean(), v1.start(), v1.start(), u7(), v1.start(), crater(), v1.start(), v1.start() (+6 more)
 
 ### Community 108 - "promise/lib/init.lua"
 Cohesion: 0.09
 Nodes (52): awaitHelper(), createAdvancer(), Error:extend(), Error:getErrorChain(), Error.is(), Error.isKind(), Error.new(), Error:__tostring() (+44 more)
 
 ### Community 109 - "Build.luau"
-Cohesion: 0.04
-Nodes (30): BuildPersistent:character_added(), BuildPersistent:create_gui(), BuildPersistent:create_virtual_client(), BuildPersistent:delete_gui(), BuildPersistent:initialise(), BuildPersistent:initialise_shared_listeners(), BuildPersistent.new(), BuildPersistent:toggle() (+22 more)
+Cohesion: 0.05
+Nodes (28): BuildPersistent:character_added(), BuildPersistent:create_gui(), BuildPersistent:create_virtual_client(), BuildPersistent:delete_gui(), BuildPersistent:initialise(), BuildPersistent.new(), BuildPersistent:toggle(), CameraAdorn.new() (+20 more)
 
 ### Community 110 - "SoccerGame/ReplicatedStorage/Packages/_Index/evaera_promise@4.0.0/promise.luau"
-Cohesion: 0.08
-Nodes (41): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+33 more)
+Cohesion: 0.07
+Nodes (44): u43.prototype._finally(), v163(), u225(), awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack() (+36 more)
 
 ### Community 111 - "EmitAt.luau"
 Cohesion: 0.06
@@ -2420,16 +2725,16 @@ Cohesion: 0.05
 Nodes (24): getcurrentIcon(), mainreplication.characterImage(), u4.ChameleonVolley(), u4.defensiveovertimeReoFlow(), u4.defensiveReoFlow(), u4.offensiveReoFlow(), u4.reoClearCopy(), u4.reoCopy() (+16 more)
 
 ### Community 114 - "SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveController.luau"
-Cohesion: 0.06
-Nodes (10): FindCharacterAncestor(), getCollidableExtentsSize(), GetEquippedTool(), HandleMoveTo(), OnTap(), Pather(), Raycast(), u138.MoveTo() (+2 more)
+Cohesion: 0.05
+Nodes (15): u145.OnCharacterAdded(), ClickToMoveDisplay.CancelFailureAnimation(), FindCharacterAncestor(), getCollidableExtentsSize(), GetEquippedTool(), HandleMoveTo(), OnTap(), Pather() (+7 more)
 
 ### Community 115 - "Modules/ForgeVFX/pkg/Promise.luau"
 Cohesion: 0.08
 Nodes (39): u324(), u327(), u34(), u43(), u44._all(), u44.allSettled(), u44.any(), u44.defer() (+31 more)
 
 ### Community 116 - "Modules/ForgeVFX/pkg/Promise_1.luau"
-Cohesion: 0.08
-Nodes (39): u324(), u327(), u34(), u43(), u44._all(), u44.allSettled(), u44.any(), u44.defer() (+31 more)
+Cohesion: 0.07
+Nodes (42): attachSuspenseRetryListeners(), u324(), u327(), u34(), u43(), u44._all(), u44.allSettled(), u44.any() (+34 more)
 
 ### Community 117 - "Entries.luau"
 Cohesion: 0.08
@@ -2464,12 +2769,12 @@ Cohesion: 0.06
 Nodes (25): lobby(), u1.start(), button(), knifeIcon(), label(), play(), prizeIcon(), rarityColor() (+17 more)
 
 ### Community 125 - "Promise2.luau"
-Cohesion: 0.08
-Nodes (36): u324(), u327(), u34(), u43(), u44._all(), u44.allSettled(), u44.any(), u44.defer() (+28 more)
+Cohesion: 0.07
+Nodes (42): u324(), u327(), u34(), u43(), u44._all(), u44.allSettled(), u44.any(), u44.defer() (+34 more)
 
 ### Community 126 - "v1.start"
-Cohesion: 0.05
-Nodes (38): v73(), v1.start(), setTwoEndPoints(), u9(), v1.start(), v1.Ground(), v30(), v1.start() (+30 more)
+Cohesion: 0.06
+Nodes (29): v1.start(), v1.start(), v1.start(), v1.start(), v1.start(), v1.start(), v26(), v30() (+21 more)
 
 ### Community 129 - "LobbyKnifeDisplays.client.luau"
 Cohesion: 0.08
@@ -2481,11 +2786,11 @@ Nodes (27): arrow(), button(), gradient(), iconPose(), knifeIcon(), label(), nex
 
 ### Community 131 - "Popup.luau"
 Cohesion: 0.01
-Nodes (21): readValue(), fireworkVisuals(), questVisual(), v1.KnitStart(), hasBasePart(), v1.CreateCosmeticIcon(), EMITP(), Emit() (+13 more)
+Nodes (14): readValue(), EMITP(), Emit(), compileFrames(), compileItem(), compileRouting(), getInterpolator(), stepTrack() (+6 more)
 
 ### Community 132 - "Products.luau"
-Cohesion: 0.07
-Nodes (35): u48.StyleBind.Update(), v1.check(), v1.check(), v1.check(), v150(), v166(), v174(), v182() (+27 more)
+Cohesion: 0.03
+Nodes (54): u48.StyleBind.Update(), u12.CheckItems(), v1.check(), u1.adjust(), u1.check(), u6(), u9(), v1.check() (+46 more)
 
 ### Community 133 - "context.spec.luau"
 Cohesion: 0.04
@@ -2501,7 +2806,7 @@ Nodes (3): characterOf(), portrait(), thumbnail()
 
 ### Community 136 - "EventIntroClient.client.luau"
 Cohesion: 0.06
-Nodes (28): shot(), word(), athlete(), avatar(), block(), buildGui(), buildStage(), burst() (+20 more)
+Nodes (27): word(), athlete(), avatar(), block(), buildGui(), buildStage(), burst(), clear() (+19 more)
 
 ### Community 137 - "script_parent_typeregistry"
 Cohesion: 0.06
@@ -2513,10 +2818,10 @@ Nodes (27): acquire(), createPart(), onCast(), onLive(), pathAt(), recordHistory
 
 ### Community 139 - "_G.customWeld"
 Cohesion: 0.05
-Nodes (32): v1.start(), u30(), v1.start(), v1.start(), v1.start(), u6(), v1.start(), u20() (+24 more)
+Nodes (28): u30(), v1.start(), v1.start(), u6(), v1.start(), v1.start(), u14.Connect(), u14.new() (+20 more)
 
 ### Community 140 - "ValleyRun/ReplicatedStorage/chrono/Shared/Entity.luau"
-Cohesion: 0.07
+Cohesion: 0.08
 Nodes (30): CheckModelReplicationMode(), CheckNetworkOwner(), FireEvent(), GetDisabledStateMask(), GetPart(), GetRootPart(), LockCFReplication(), SetClock() (+22 more)
 
 ### Community 141 - "FootballShowClient.client.luau"
@@ -2525,18 +2830,18 @@ Nodes (34): bar(), buildField(), cameraZoom(), cheer(), clearField(), clipIds(),
 
 ### Community 142 - "nagiVFX_1.luau"
 Cohesion: 0.05
-Nodes (11): u55(), disposal(), enableall(), getEmittersLifetime(), quickVFX(), u1.NagiOffBall(), u1.newheavykick(), u1.newheavykicked() (+3 more)
+Nodes (8): disposal(), enableall(), getEmittersLifetime(), quickVFX(), u1.NagiOffBall(), u1.newheavykick(), u1.newheavykicked(), u1.newheavywindup()
 
 ### Community 143 - "SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17.2.1/react-roblox/client/ReactRobloxHostConfig.luau"
-Cohesion: 0.04
-Nodes (19): inspect(), v1.debug(), v1.error(), v1.group(), v1.groupCollapsed(), v1.info(), v1.log(), v1.warn() (+11 more)
+Cohesion: 0.07
+Nodes (8): checkTags(), u4.appendChild(), u4.appendChildToContainer(), u4.clearContainer(), u4.insertBefore(), u4.insertInContainerBefore(), u4.removeChild(), u4.removeChildFromContainer()
 
 ### Community 144 - "BasketballGame/ReplicatedStorage/Controllers/UIController/Settings.luau"
 Cohesion: 0.05
 Nodes (12): u19(), u1.GetInputs(), u1.GetPlatform(), u1.IsInputValid(), u1.OnPlatformChangedConnect(), u3.CloseGui(), u3.CreateSetting(), u3.KnitInit() (+4 more)
 
 ### Community 145 - "SpinWheel.luau"
-Cohesion: 0.07
+Cohesion: 0.06
 Nodes (29): AnimateStep(), BuildSwoop(), Burst(), ClosePopup(), deep_equals(), GetOwned(), NewScene(), OpenPopup() (+21 more)
 
 ### Community 146 - "HalloweenPresentation.luau"
@@ -2544,12 +2849,12 @@ Cohesion: 0.04
 Nodes (34): animateLineDraw(), animateLineErase(), animateSpiderLine(), buildJumpScareBars(), getLineAxis(), layoutJumpScareBars(), playBackdrop(), playBatChestReveal() (+26 more)
 
 ### Community 147 - "Server_1.luau"
-Cohesion: 0.10
+Cohesion: 0.11
 Nodes (27): u10._allocateId(), u10._applyCFrame(), u10._describe(), u10._markDirty(), u10._onCharacterAdded(), u10._onMove(), u10.onPacket(), u10._onPlayerAdded() (+19 more)
 
 ### Community 149 - "replicatedstorage_modules_player_replication_effectutility"
 Cohesion: 0.02
-Nodes (10): Afterimage_Effect(), Distance_Close(), VFX.Aura(), get_root_cf(), mesh(), VFX.Throw(), FormatTime(), RankPlayerTimes() (+2 more)
+Nodes (14): Afterimage_Effect(), Distance_Close(), VFX.Aura(), VFX.Ground(), VFX.Sparks(), OffsetVFXOnItself(), VFX(), get_root_cf() (+6 more)
 
 ### Community 151 - "ReplicatedStorage/Part_Icles/TypeRegistry.luau"
 Cohesion: 0.05
@@ -2564,8 +2869,8 @@ Cohesion: 0.07
 Nodes (18): getStand(), toggleStand(), u1.counter_land(), u1.dio_flow_shot(), u1.dio_skill1_base_start(), u1.dio_skill1_base_volley(), u1.dioGreatestHigh_Steal(), u1.dioGreatestHigh_StealFlow() (+10 more)
 
 ### Community 154 - "StrikerGame/ReplicatedStorage/chrono/Shared/Entity.luau"
-Cohesion: 0.09
-Nodes (29): CheckModelReplicationMode(), CheckNetworkOwner(), FireEvent(), GetPart(), GetRootPart(), SetClock(), SetEntityNetworkOwner(), SetModel() (+21 more)
+Cohesion: 0.10
+Nodes (31): CheckModelReplicationMode(), CheckNetworkOwner(), FireEvent(), GetPart(), GetRootPart(), SetClock(), SetEntityNetworkOwner(), SetModel() (+23 more)
 
 ### Community 155 - "2011xVFX_1.luau"
 Cohesion: 0.06
@@ -2577,7 +2882,7 @@ Nodes (9): advance(), enter(), flowAt(), note(), reaches(), support(), v1.captur
 
 ### Community 158 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_promise@3.5.2/promise.luau"
 Cohesion: 0.07
-Nodes (44): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+36 more)
+Nodes (28): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+20 more)
 
 ### Community 159 - "OverheadRoll.luau"
 Cohesion: 0.09
@@ -2588,8 +2893,8 @@ Cohesion: 0.09
 Nodes (12): Handle(), FlushClientOwned(), FlushEntities(), ReplicatePlayer(), FlushClientOwned(), FlushEntities(), ReplicatePlayer(), u6.seatFull() (+4 more)
 
 ### Community 161 - "v20"
-Cohesion: 0.03
-Nodes (34): u17(), u22(), u22(), u24(), u31(), v32.start(), u22(), v1.start() (+26 more)
+Cohesion: 0.02
+Nodes (46): Apply(), ReturnBigPlanet(), v1.start(), v1.start(), u17(), u22(), u25(), u22() (+38 more)
 
 ### Community 163 - "BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveController.luau"
 Cohesion: 0.06
@@ -2600,20 +2905,20 @@ Cohesion: 0.07
 Nodes (19): add(), attach(), bindRef(), describe(), flow(), jump(), receive(), remove() (+11 more)
 
 ### Community 165 - "Server/RemoteConfig.luau"
-Cohesion: 0.08
-Nodes (17): after_success, before_install, branches, only, env, install, language, sudo (+9 more)
+Cohesion: 0.07
+Nodes (21): createPorts(), u1.new(), u3.new(), createPorts(), Signal.new(), u1.GetEvent(), u1.GetEvent(), u1.new() (+13 more)
 
 ### Community 166 - "SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_promise@3.5.2/promise.luau"
 Cohesion: 0.07
-Nodes (45): v175(), awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor() (+37 more)
+Nodes (28): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+20 more)
 
 ### Community 167 - "ValueViewer.luau"
 Cohesion: 0.12
 Nodes (15): Stylus.bind_to_resize(), ConfirmationUI.new(), ValueViewer:create_item(), ValueViewer:generate_list(), ValueViewer:initialise(), ValueViewer.new(), ValueViewer:reset_frame(), ValueViewer:select() (+7 more)
 
 ### Community 168 - "CameraInput.getRotationActivated"
-Cohesion: 0.01
-Nodes (62): u11.new(), u11.Reset(), u11._StepRotation(), u10.new(), u10.Reset(), u10._StepRotation(), CameraInput.getRotationActivated(), CameraUtils.getLooseBoundingSphere() (+54 more)
+Cohesion: 0.03
+Nodes (12): u11.new(), u11._StepRotation(), u10.new(), u10._StepRotation(), CameraInput.getRotationActivated(), u10._StepRotation(), u11.new(), u11._StepRotation() (+4 more)
 
 ### Community 169 - "Reactor/Shards.luau"
 Cohesion: 0.07
@@ -2621,15 +2926,15 @@ Nodes (18): u1.Preload(), u16(), u39(), u73(), clip(), cut(), cutAgain(), fragme
 
 ### Community 170 - "Modules/Icon.luau"
 Cohesion: 0.04
-Nodes (56): Icon:addToJanitor(), Icon:bindEvent(), Icon:bindToggleItem(), Icon:bindToggleKey(), Icon:clearNotices(), Icon:clipOutside(), Icon:convertLabelToNumberSpinner(), Icon:debounce() (+48 more)
+Nodes (60): updateMaxIconsListener(), Themes.modify(), Icon:addToJanitor(), Icon:bindEvent(), Icon:bindToggleItem(), Icon:bindToggleKey(), Icon:clearNotices(), Icon:clipOutside() (+52 more)
 
 ### Community 171 - "inspect"
-Cohesion: 0.06
-Nodes (29): inspect(), v1.debug(), v1.error(), v1.group(), v1.groupCollapsed(), v1.info(), v1.log(), v1.warn() (+21 more)
+Cohesion: 0.08
+Nodes (15): inspect(), v1.debug(), v1.error(), v1.group(), v1.groupCollapsed(), v1.info(), v1.log(), v1.warn() (+7 more)
 
 ### Community 172 - "StrikerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveController.luau"
 Cohesion: 0.06
-Nodes (10): FindCharacterAncestor(), getCollidableExtentsSize(), GetEquippedTool(), HandleMoveTo(), OnTap(), Pather(), Raycast(), u138.MoveTo() (+2 more)
+Nodes (11): FindCharacterAncestor(), getCollidableExtentsSize(), GetEquippedTool(), HandleMoveTo(), OnTap(), Pather(), Raycast(), u138.MoveTo() (+3 more)
 
 ### Community 173 - "ClickToMoveController_1.luau"
 Cohesion: 0.06
@@ -2640,8 +2945,8 @@ Cohesion: 0.06
 Nodes (5): joints(), repose(), strip(), u1.install(), new()
 
 ### Community 176 - "ReplicatedStorage/Tutorial.luau"
-Cohesion: 0.05
-Nodes (24): copy(), u24.Debounce(), u24.GetMemberInfo(), u24.GetRank(), u24.GetRankInPlace(), u24.Invite.Key(), u24.IsRankAbove(), u24.Notify() (+16 more)
+Cohesion: 0.04
+Nodes (32): copy(), u24.Debounce(), u24.GetMemberInfo(), u24.GetRank(), u24.GetRankInPlace(), u24.Invite.Key(), u24.IsRankAbove(), u24.Notify() (+24 more)
 
 ### Community 177 - "Reactor.luau"
 Cohesion: 0.07
@@ -2659,20 +2964,28 @@ Nodes (17): buildPumpkin(), dress(), gone(), hush(), knifePrize(), picturePrize(
 Cohesion: 0.10
 Nodes (27): u8.array(), u8.children(), u8.instanceIsA(), u8.instanceOf(), u8.integer(), u8.integerConstrained(), u8.integerConstrainedExclusive(), u8.integerMax() (+19 more)
 
+### Community 181 - "Zone_1.luau"
+Cohesion: 0.05
+Nodes (3): u5.fromRegion(), u5.new(), u5._onItemCallback()
+
 ### Community 182 - "KnifeClipPreview.luau"
-Cohesion: 0.10
-Nodes (31): updatePlayingEmote(), bar(), button(), buttonRow(), close(), confetti(), emote(), endGameDay() (+23 more)
+Cohesion: 0.11
+Nodes (30): bar(), button(), buttonRow(), close(), confetti(), emote(), endGameDay(), extras() (+22 more)
 
 ### Community 183 - "presentation_waitforchild"
-Cohesion: 0.09
-Nodes (13): action(), eligible(), render(), startWatching(), u33(), v52(), busy(), refresh() (+5 more)
+Cohesion: 0.16
+Nodes (11): action(), eligible(), render(), startWatching(), u33(), v52(), add(), botTag() (+3 more)
 
 ### Community 185 - "ReplicaClient.luau"
-Cohesion: 0.09
+Cohesion: 0.07
 Nodes (10): u123(), u128(), u137(), u145(), u178(), u39(), u43(), u44() (+2 more)
 
+### Community 186 - "CCPanel.luau"
+Cohesion: 0.02
+Nodes (8): hookDropdown(), u2.SetupDropdowns(), u2.CreateDefaultButton(), u2.new(), u1.BuildPool(), u1.ForPack(), u1.ItemDistribution(), u1.RarityDistribution()
+
 ### Community 187 - "StrikerGame/ReplicatedStorage/chrono/Shared/Entity.luau"
-Cohesion: 0.10
+Cohesion: 0.08
 Nodes (29): CheckModelReplicationMode(), CheckNetworkOwner(), FireEvent(), GetPart(), GetRootPart(), SetClock(), SetEntityNetworkOwner(), SetModel() (+21 more)
 
 ### Community 188 - "ClientEffects/ForgeVFX/emitters.luau"
@@ -2689,15 +3002,15 @@ Nodes (17): body_parts(), buildRuntimeHighlights(), charge_facing(), cloneRuntim
 
 ### Community 191 - "FallenKingSpoils.luau"
 Cohesion: 0.06
-Nodes (41): afterimage(), artPart(), banner(), buildOverlay(), cardFx(), cardPose(), cleanText(), cleanup() (+33 more)
+Nodes (42): afterimage(), artPart(), banner(), buildOverlay(), cardFx(), cardPose(), cleanText(), cleanup() (+34 more)
 
 ### Community 192 - "DebugUtil/Iris/widgets.luau"
 Cohesion: 0.10
 Nodes (10): u1.applyFrameStyle(), u1.applyInputBegan(), u1.applyInputEnded(), u1.applyInteractionHighlights(), u1.applyInteractionHighlightsWithMultiHighlightee(), u1.applyMouseEnter(), u1.applyMouseLeave(), u1.UICorner() (+2 more)
 
 ### Community 193 - "Client_1.luau"
-Cohesion: 0.13
-Nodes (27): u10._add(), u10._applyOwnership(), u10._canInterpolate(), u10._enterCopyMode(), u10._getBuffer(), u10._interpolate(), u10._isOwned(), u10._onAdd() (+19 more)
+Cohesion: 0.10
+Nodes (31): u10._add(), u10._applyOwnership(), u10._canInterpolate(), u10._enterCopyMode(), u10.getAt(), u10._getBuffer(), u10._interpolate(), u10._isOwned() (+23 more)
 
 ### Community 194 - "PirateShowClient.client.luau"
 Cohesion: 0.09
@@ -2709,11 +3022,11 @@ Nodes (9): comma(), rewardIcons(), rewardText(), shortYen(), textLabels(), v2.Bi
 
 ### Community 196 - "HalloweenShopScreen.luau"
 Cohesion: 0.07
-Nodes (20): bladeOf(), breaks(), commas(), drawKnife(), drawModel(), embers(), layoutRow(), nameOf() (+12 more)
+Nodes (17): bladeOf(), commas(), drawKnife(), drawModel(), embers(), layoutRow(), nameOf(), poseModule() (+9 more)
 
 ### Community 199 - "SoccerGame/ReplicatedStorage/Packages/Janitor.luau"
-Cohesion: 0.12
-Nodes (20): AdjustGradientOffset(), DistanceFade.new(), DistanceFade:Step(), SetUpFolders(), UpdateCornerGradient(), UpdateSideGradient(), UpdateTextureOffset(), ApplyCircularGradient() (+12 more)
+Cohesion: 0.09
+Nodes (27): AdjustGradientOffset(), DistanceFade.new(), DistanceFade:Step(), SetUpFolders(), UpdateCornerGradient(), UpdateSideGradient(), UpdateTextureOffset(), ApplyCircularGradient() (+19 more)
 
 ### Community 200 - "ReplicaController.luau"
 Cohesion: 0.08
@@ -2727,7 +3040,7 @@ Nodes (18): u104(), u112(), u117(), u125(), u131(), u135(), u139(), u143() (+10 
 Cohesion: 0.08
 Nodes (21): CreateReplicaBranch(), CreateTableListenerPathIndex(), DestroyReplicaAndDescendantsRecursive(), GetWriteLibFunctionsRecursive(), LoadWriteLib(), ReplicaArrayInsert(), ReplicaArrayRemove(), ReplicaArraySet() (+13 more)
 
-### Community 203 - "StrikerGame/ReplicatedStorage/chrono/Server/Receiver.luau"
+### Community 203 - "Server/Receiver_1.luau"
 Cohesion: 0.08
 Nodes (22): DeserializeEntityPacket(), FireMiddleMans(), GuardLag(), GuardPacket(), GuardVelocity(), HandleEntity(), OnReceive(), RewritePacketCFrame() (+14 more)
 
@@ -2736,27 +3049,27 @@ Cohesion: 0.10
 Nodes (27): u8.array(), u8.children(), u8.instanceIsA(), u8.instanceOf(), u8.integer(), u8.integerConstrained(), u8.integerConstrainedExclusive(), u8.integerMax() (+19 more)
 
 ### Community 205 - "TeamEventCelebration.luau"
-Cohesion: 0.09
-Nodes (19): button(), chime(), close(), cue(), fadeSet(), finish(), firework(), land() (+11 more)
+Cohesion: 0.10
+Nodes (18): button(), chime(), close(), cue(), fadeSet(), finish(), firework(), land() (+10 more)
 
 ### Community 206 - "Stylus.luau"
-Cohesion: 0.02
-Nodes (61): StreamService:bulk_set(), StreamService:decrement(), StreamService:increment(), StreamService:insert(), StreamService:raw_increment(), StreamService:raw_set(), StreamService:raw_toggle(), StreamService:set() (+53 more)
+Cohesion: 0.03
+Nodes (54): Signal.new(), Signal.Wrap(), Stylus:give_instance(), Stylus:give_instance_buffered(), Stylus.new(), Stylus:new_checkbox(), Stylus:new_colorbox(), Stylus:new_instancebox() (+46 more)
 
 ### Community 207 - "HandOver.luau"
 Cohesion: 0.09
 Nodes (20): couldReach(), cutBy(), handOver(), handOverAll(), keepWithin(), leave(), reachedBy(), release() (+12 more)
 
 ### Community 208 - "ReplicatedStorage/RelicsXYZ.luau"
-Cohesion: 0.06
-Nodes (41): addFavoriteImpl(), changeSettingImpl(), createServerAudio(), equipAuraImpl(), equipSkinImpl(), getAuraDataImpl(), getAurasMetadata(), getAuraSnapshotImpl() (+33 more)
+Cohesion: 0.07
+Nodes (37): addFavoriteImpl(), changeSettingImpl(), createServerAudio(), equipAuraImpl(), equipSkinImpl(), getAuraDataImpl(), getAurasMetadata(), getAuraSnapshotImpl() (+29 more)
 
 ### Community 209 - "v29"
-Cohesion: 0.05
-Nodes (23): v3.start(), v4.start(), v5.start(), v1.start(), u1.Droplets(), u1.start(), v1.start(), u6() (+15 more)
+Cohesion: 0.04
+Nodes (33): v3.start(), v4.start(), v5.start(), v15(), v1.start(), v1.start(), u6(), u9() (+25 more)
 
-### Community 210 - "Server/Index.luau"
-Cohesion: 0.06
+### Community 210 - "Warp/Index.luau"
+Cohesion: 0.21
 Nodes (6): u1.Client(), u1.fromClientArray(), u1.fromServerArray(), u1.fromSignalArray(), u1.Server(), u1.Signal()
 
 ### Community 211 - "util/Util_1.luau"
@@ -2784,27 +3097,27 @@ Cohesion: 0.08
 Nodes (19): ballStep(), breakRig(), build(), coinBurst(), faceParts(), fadeHealth(), flashModel(), hideHealth() (+11 more)
 
 ### Community 217 - "Modules/ForgeVFX.luau"
-Cohesion: 0.18
+Cohesion: 0.19
 Nodes (7): u6.reboundfn(), u24.disable(), u24.emit(), u24.emitWithDepth(), u24.enable(), u26(), u35()
 
 ### Community 218 - "ZiliEmitModule/mod/utility.luau"
-Cohesion: 0.07
-Nodes (27): v86(), u12(), v8.emit(), u12(), v7.emit(), v7.emit(), v12(), v36() (+19 more)
+Cohesion: 0.04
+Nodes (36): u12(), v8.emit(), v18.emit(), u12(), v7.emit(), v9.emit(), v7.emit(), u8.calculateEmissionCFrame() (+28 more)
 
 ### Community 219 - "Modules/ForgeVFX/mod/utility.luau"
 Cohesion: 0.06
-Nodes (13): u112(), u13(), u63(), u75(), u6.assembleMeshVFX(), u6.cleanupScope(), u6.copyProperties(), u6.createEmitPromise() (+5 more)
+Nodes (14): u101(), u112(), u13(), u63(), u75(), u6.assembleMeshVFX(), u6.cleanupScope(), u6.copyProperties() (+6 more)
 
 ### Community 220 - "CupTrailerClient.client.luau"
 Cohesion: 0.08
-Nodes (16): actor(), block(), box(), buildGui(), buildGym(), gait(), hold(), looks() (+8 more)
+Nodes (17): CreateButton(), actor(), block(), box(), buildGui(), buildGym(), gait(), hold() (+9 more)
 
 ### Community 221 - "InvertedSpearThrow/NPC/Animate.client.luau"
-Cohesion: 0.11
-Nodes (28): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), onClimbing(), onFreeFall() (+20 more)
+Cohesion: 0.13
+Nodes (23): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), onClimbing(), onFreeFall() (+15 more)
 
-### Community 222 - "MapVoteClient.client.luau"
-Cohesion: 0.39
+### Community 222 - "game_waitforchild"
+Cohesion: 0.13
 Nodes (5): cycle(), eligible(), read(), render(), u1.onVote()
 
 ### Community 223 - "AssignmentContext.luau"
@@ -2812,12 +3125,12 @@ Cohesion: 0.18
 Nodes (14): buildContext(), copyProperties(), runBounded(), setProperty(), v1.GetForPlayers(), v1.GetForServer(), v1.GetPlayerProperties(), v1.GetServerProperties() (+6 more)
 
 ### Community 224 - "RBTreeList.luau"
-Cohesion: 0.05
-Nodes (27): balance(), height(), insert(), is23(), isBalanced(), isBST(), rank(), remove() (+19 more)
+Cohesion: 0.09
+Nodes (14): balance(), height(), is23(), isBalanced(), isBST(), remove(), removeMax(), removeMin() (+6 more)
 
 ### Community 225 - "script_waitforchild"
 Cohesion: 0.01
-Nodes (12): Misc:Destroy(), Misc.Destroyed(), stepTargetZoom(), Zoom.Update(), v1.start(), v23(), DestroyAllVelocities(), FloatRocks.Create() (+4 more)
+Nodes (19): u1.new(), u1.new(), u1.new(), Misc:Destroy(), Misc.Destroyed(), v1.start(), v23(), DestroyAllVelocities() (+11 more)
 
 ### Community 226 - "vfxUtil/ForgeVFX/mod/utility.luau"
 Cohesion: 0.07
@@ -2853,7 +3166,7 @@ Nodes (18): getLegacyWidths(), setTScale(), v10.emit(), v4.emit(), v4.emit(), u2
 
 ### Community 235 - "SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberCommitWork.new.luau"
 Cohesion: 0.08
-Nodes (17): commitAttachRef(), commitLayoutEffectsForProfiler(), commitNestedUnmounts(), commitPlacement(), commitProfilerPassiveEffect(), commitSuspenseComponent(), commitSuspenseHydrationCallbacks(), commitUnmount() (+9 more)
+Nodes (18): commitAttachRef(), commitLayoutEffectsForProfiler(), commitNestedUnmounts(), commitPlacement(), commitProfilerPassiveEffect(), commitSuspenseComponent(), commitSuspenseHydrationCallbacks(), commitUnmount() (+10 more)
 
 ### Community 236 - "JSONEncoder.luau"
 Cohesion: 0.10
@@ -2863,9 +3176,9 @@ Nodes (29): Compact(), Compact5(), CompactExt(), EncodeArray(), EncodeMap(), Enc
 Cohesion: 0.07
 Nodes (15): adjustTouchPitchSensitivity(), inputBegan(), inputChanged(), inputEnded(), isInDynamicThumbstickArea(), resetInputDevices(), resetTouchState(), thumbstick() (+7 more)
 
-### Community 238 - "u13.preview"
-Cohesion: 0.12
-Nodes (27): applyState(), artPart(), deal(), flipShow(), flyKey(), impact(), lockOf(), newCard() (+19 more)
+### Community 238 - "EffectsHandler.luau"
+Cohesion: 0.01
+Nodes (44): u2.UmbraBigSword(), CreateClue(), EmitParticle(), LoopParticle(), Emit(), GroundImpactVFX(), TweenAndClean(), addEntityV2() (+36 more)
 
 ### Community 239 - "HalloweenCrateShow.luau"
 Cohesion: 0.09
@@ -2877,39 +3190,43 @@ Nodes (23): apply(), applyPiece(), box(), buildPanel(), dropThrone(), effect(), 
 
 ### Community 241 - "SorceryGame/ReplicatedStorage/Modules/Shared/Utilities/Job.luau"
 Cohesion: 0.05
-Nodes (30): EmitSingle(), EmitStack.Decrement(), EmitStack.Increment(), Main.new(), Job.Clean(), Job.CleanTask(), Job.Destroy(), Job.Extend() (+22 more)
+Nodes (26): Projectile:Destroy(), Projectile.new(), Projectile:Update(), Projectiles.Create(), Velocity:Create(), Velocity:Destroy(), Velocity:Fire(), Velocity:Remove() (+18 more)
 
 ### Community 242 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberCommitWork.new.luau"
 Cohesion: 0.08
-Nodes (16): commitAttachRef(), commitLayoutEffectsForProfiler(), commitNestedUnmounts(), commitPlacement(), commitProfilerPassiveEffect(), commitSuspenseComponent(), commitSuspenseHydrationCallbacks(), commitUnmount() (+8 more)
+Nodes (17): commitAttachRef(), commitLayoutEffectsForProfiler(), commitNestedUnmounts(), commitPlacement(), commitProfilerPassiveEffect(), commitSuspenseComponent(), commitSuspenseHydrationCallbacks(), commitUnmount() (+9 more)
 
 ### Community 243 - "ReplicatedStorage/Part_Icles/Particles.luau"
 Cohesion: 0.08
 Nodes (12): _hasTransformedAncestor(), parseDuration(), u1.EnableEmit(), u1.EnableEmitChildrenAndRepeatForAttachments(), u1.EnableEmitSingle(), u1.fireEmitter(), _hasTransformedAncestor(), parseDuration() (+4 more)
 
 ### Community 244 - "Replicator/Client.luau"
-Cohesion: 0.11
-Nodes (32): u10.getAt(), u10._add(), u10._applyOwnership(), u10._canInterpolate(), u10._enterCopyMode(), u10.getAt(), u10._getBuffer(), u10._interpolate() (+24 more)
+Cohesion: 0.12
+Nodes (27): u10._add(), u10._applyOwnership(), u10._canInterpolate(), u10._enterCopyMode(), u10._getBuffer(), u10._interpolate(), u10._isOwned(), u10._onAdd() (+19 more)
 
 ### Community 245 - "BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveDisplay.luau"
 Cohesion: 0.08
 Nodes (16): createTrailDots(), CreateWaypointTemplates(), placePathWaypoint(), u14.new(), u14.NewDisplayModel(), u22.new(), u22.NewDisplayModel(), u36.new() (+8 more)
 
-### Community 246 - "Core/Inventory.luau"
-Cohesion: 0.09
-Nodes (3): u25.Initialize(), u40(), u54()
+### Community 246 - "pathshortcuts_genericmodule"
+Cohesion: 0.01
+Nodes (24): CleanInstance(), Effect(), SetVisible(), Add(), Add(), CleanInstance(), CleanInstance(), Lerp() (+16 more)
 
-### Community 247 - "v29"
-Cohesion: 0.17
-Nodes (6): u4.__index.Cleanup(), v29(), u1.displace(), u1.Once(), u4.__index.Cleanup(), u1.displace()
+### Community 247 - "LightningModule.luau"
+Cohesion: 0.06
+Nodes (8): u4.__index.Cleanup(), v29(), u1.displace(), u1.Draw(), u1.Once(), u4.__index.Cleanup(), u1.displace(), u1.Draw()
 
 ### Community 248 - "TailorCodec.luau"
 Cohesion: 0.14
-Nodes (29): u123(), u140(), u185(), u187(), u200(), u212(), u214(), u221() (+21 more)
+Nodes (28): u123(), u140(), u185(), u187(), u200(), u212(), u214(), u221() (+20 more)
 
 ### Community 249 - "SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveDisplay.luau"
 Cohesion: 0.08
 Nodes (16): createTrailDots(), CreateWaypointTemplates(), placePathWaypoint(), u13.new(), u13.NewDisplayModel(), u21.new(), u21.NewDisplayModel(), u35.new() (+8 more)
+
+### Community 250 - "util/Zone.luau"
+Cohesion: 0.05
+Nodes (3): u5.fromRegion(), u5.new(), u5._onItemCallback()
 
 ### Community 251 - "votePoll.luau"
 Cohesion: 0.10
@@ -2928,16 +3245,16 @@ Cohesion: 0.12
 Nodes (20): acquireRocks(), buildRig(), buildRockParams(), buildTrajectories(), startPhysics(), u2.EmitRocks(), u2.EmitRocksAnimate(), u2._refreshRocksAnimate() (+12 more)
 
 ### Community 255 - "u1_iconmodule"
-Cohesion: 0.05
-Nodes (21): setCaptionEnabled(), updatePosition(), updateMaxIcons(), totalChildrenChanged(), v35(), u1.Connect(), updateMaxIcons(), updateChildSize() (+13 more)
+Cohesion: 0.06
+Nodes (14): setCaptionEnabled(), updatePosition(), updateMaxIcons(), totalChildrenChanged(), v35(), u1.Connect(), updateChildSize(), updateMaxIcons() (+6 more)
 
 ### Community 256 - "StrikerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveDisplay.luau"
 Cohesion: 0.08
 Nodes (16): createTrailDots(), CreateWaypointTemplates(), placePathWaypoint(), u13.new(), u13.NewDisplayModel(), u21.new(), u21.NewDisplayModel(), u35.new() (+8 more)
 
 ### Community 257 - "ValleyRun/ReplicatedStorage/chrono/Server/Replicate.luau"
-Cohesion: 0.05
-Nodes (28): TouchJump.new(), u1.SwitchToController(), u1.SwitchToController(), u1.SwitchToController(), DeserializeFull(), DeserializeYaw(), HandleChanges(), HandleClientOwned() (+20 more)
+Cohesion: 0.04
+Nodes (35): DeserializeFull(), DeserializeYaw(), HandleChanges(), HandleClientOwned(), HandleNewEntity(), HandleReliable(), HandleServerOwned(), PushCFrameFor() (+27 more)
 
 ### Community 258 - "ClickToMoveDisplay_1.luau"
 Cohesion: 0.08
@@ -2945,7 +3262,7 @@ Nodes (16): createTrailDots(), CreateWaypointTemplates(), placePathWaypoint(), u
 
 ### Community 259 - "SacrificeScreen.luau"
 Cohesion: 0.09
-Nodes (18): button(), knifeIcon(), label(), lerp(), play(), rarityColor(), rings(), setEnabled() (+10 more)
+Nodes (19): button(), knifeIcon(), label(), lerp(), play(), rarityColor(), rings(), setEnabled() (+11 more)
 
 ### Community 260 - "StarterPlayer/PlayerModule/ControlModule/ClickToMoveDisplay.luau"
 Cohesion: 0.08
@@ -2972,7 +3289,7 @@ Cohesion: 0.08
 Nodes (14): getModeConfig(), updateLockStates(), v6.KnitStart(), v6.UpdateLockStates(), openPickTeamWithAnim(), v1.KnitStart(), findRewardsUI(), getSortedRankTiers() (+6 more)
 
 ### Community 267 - "MarbleClient_1.client.luau"
-Cohesion: 0.07
+Cohesion: 0.08
 Nodes (16): applyOutcome(), closePassParts(), createSpeedTag(), currentHolder(), drive(), getMoveDirection(), launchDash(), measureImpact() (+8 more)
 
 ### Community 268 - "MarbleClient.client.luau"
@@ -2984,12 +3301,12 @@ Cohesion: 0.06
 Nodes (20): u1.play(), place(), back(), cancel(), choose(), open(), openShop(), quick() (+12 more)
 
 ### Community 270 - "FallenKingBombClient.client.luau"
-Cohesion: 0.09
-Nodes (18): attack(), burst(), cardColors(), commas(), damageNumber(), fallingKnife(), guideFrame(), knifeRain() (+10 more)
+Cohesion: 0.07
+Nodes (32): Attack:Activate(), Attack:AddCooldown(), Attack:ApplyContextFormatting(), Attack:ChangeAttackDisplayWithFormatting(), Attack:Close(), Attack:GetBaseDisplayUI(), Attack:GetCurrentBranchInfo(), Attack:GetCurrentDisplayUI() (+24 more)
 
-### Community 271 - "Utility/SmartBone/Dependencies/Iris/widgets.luau"
-Cohesion: 0.04
-Nodes (17): u1.applyFrameStyle(), u1.UICorner(), u1.UIPadding(), u1.applyFrameStyle(), u1.UICorner(), u1.UIPadding(), generateEnumSliderScalar(), generateSliderScalar() (+9 more)
+### Community 271 - "Game/SmartBone/Dependencies/Iris/widgets.luau"
+Cohesion: 0.11
+Nodes (11): generateEnumSliderScalar(), generateSliderScalar(), SliderMouseDown(), updateActiveSlider(), widgets.extend(), widgets.findBestWindowPosForPopup(), widgets.getMouseLocation(), widgets.UICorner() (+3 more)
 
 ### Community 272 - "MergeMachineClient.client.luau"
 Cohesion: 0.09
@@ -3004,8 +3321,8 @@ Cohesion: 0.05
 Nodes (17): u3(), u4.new(), v6.__call(), endTimer(), getFirstStringKey(), profileRootAfterYielding(), profileRootBeforeUnitOfWork(), profileUnitOfWorkBefore() (+9 more)
 
 ### Community 275 - "DebreeService.luau"
-Cohesion: 0.07
-Nodes (68): Explode(), Announce(), ApplyBuildingEntries(), ApplyTsunamiJob(), AttackerPlayer(), Below(), BreakOriginal(), BreakSpecials() (+60 more)
+Cohesion: 0.05
+Nodes (98): Explode(), Flat(), Impact(), AddPieces(), Announce(), ApplyBuildingEntries(), ApplyTsunamiJob(), AttackerPlayer() (+90 more)
 
 ### Community 276 - "EaseFuncs.luau"
 Cohesion: 0.06
@@ -3053,35 +3370,31 @@ Nodes (53): bodyBounds(), buildPreviewRig(), cacheOwnedEmotes(), dbg(), GetEmote
 
 ### Community 287 - "script_parent_types"
 Cohesion: 0.03
-Nodes (7): isValidRoof(), OcclusionDetector._castUp(), OcclusionDetector.new(), GetDisabledStateMask(), StartHumanoidStateWatch(), GetDisabledStateMask(), StartHumanoidStateWatch()
+Nodes (9): GetDisabledStateMask(), StartHumanoidStateWatch(), GetDisabledStateMask(), StartHumanoidStateWatch(), BinarySearchInsertionPoint(), GetAt(), Push(), PushWithCheck() (+1 more)
 
 ### Community 288 - "Cinabon_Auvens/Animate.client.luau"
 Cohesion: 0.11
 Nodes (21): animateTool(), configureAnimationSet(), getExpectedIdle(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing() (+13 more)
 
-### Community 289 - "nagiVFX.luau"
-Cohesion: 0.02
-Nodes (50): flametrails(), trails(), v1.bloodShot(), v1.flameSnareJump(), v1.flameSnareShot(), flametrails(), trails(), v1.bloodShot() (+42 more)
+### Community 289 - "replicatedstorage2_util_animationutil"
+Cohesion: 0.10
+Nodes (4): ruler_target(), v116.mvp_rulerofmyheart(), ruler_target(), v116.mvp_rulerofmyheart()
 
 ### Community 290 - "giha271/Animate_1.client.luau"
 Cohesion: 0.11
 Nodes (21): animateTool(), configureAnimationSet(), getExpectedIdle(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing() (+13 more)
 
-### Community 291 - "SoccerGame/ReplicatedStorage/Controllers/UIController/Shop.luau"
-Cohesion: 0.08
-Nodes (4): u1.BuildPool(), u1.ForPack(), u1.ItemDistribution(), u1.RarityDistribution()
+### Community 291 - "game_replicatedstorage_replicatedmodules_animations"
+Cohesion: 0.01
+Nodes (17): getButtonFromVector(), onMouseMoved(), setLine(), deepCopy(), iterate(), defaultCombo(), v149.CustomInvoke(), defaultCombo() (+9 more)
 
 ### Community 292 - "lisin_047/Animate_1.client.luau"
 Cohesion: 0.11
 Nodes (21): animateTool(), configureAnimationSet(), getExpectedIdle(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing() (+13 more)
 
 ### Community 293 - "Client/Index.luau"
-Cohesion: 0.05
+Cohesion: 0.04
 Nodes (16): v1.start(), u1.Disconnect(), u1.Disconnect(), u1.Fire(), u1.FireTo(), u1.Invoke(), u1.InvokeTo(), u1.new() (+8 more)
-
-### Community 294 - "Effects.luau"
-Cohesion: 0.01
-Nodes (3): Jump(), Click(), HitFx()
 
 ### Community 295 - "lisin_047/Animate.client.luau"
 Cohesion: 0.11
@@ -3104,7 +3417,7 @@ Cohesion: 0.11
 Nodes (21): animateTool(), configureAnimationSet(), getExpectedIdle(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing() (+13 more)
 
 ### Community 300 - "HalloweenPickups.luau"
-Cohesion: 0.08
+Cohesion: 0.09
 Nodes (11): u5.GetCreditKey(), u5.GetCreditKeys(), u5.GetOffer(), u5.GetProductOffer(), u5.GetProductOffers(), u5.IsOfferForProduct(), u12.Fly(), u12.FlyFromPoint() (+3 more)
 
 ### Community 301 - "EzDistort.luau"
@@ -3123,9 +3436,13 @@ Nodes (16): u45.OnNew(), u45.OnSet(), u45.OnWrite(), u123(), u128(), u137(), u14
 Cohesion: 0.08
 Nodes (53): bodyBounds(), buildPreviewRig(), cacheOwnedEmotes(), dbg(), GetEmoteAnim(), GetTargetPos(), maxSlotsOnPage(), playEmote() (+45 more)
 
+### Community 306 - "game_replicatedstorage_replicatedmodules_effectshandler"
+Cohesion: 0.01
+Nodes (20): DetermineLocation(), u4.Setup(), DetermineLocation(), u3.Setup(), DetermineLocation(), u3.Setup(), DetermineLocation(), u3.Setup() (+12 more)
+
 ### Community 307 - "Shared/EmitModule/mod/utility.luau"
-Cohesion: 0.04
-Nodes (25): u46._createList(), u67(), v81(), u21(), u64(), v8.emit(), v39.emit(), getLegacyWidths() (+17 more)
+Cohesion: 0.05
+Nodes (24): u16(), v17.emit(), v27(), u4.Clone(), u4.new(), u4.NextRenderName(), getLegacyWidths(), setTScale() (+16 more)
 
 ### Community 308 - "RewardPop.luau"
 Cohesion: 0.12
@@ -3145,14 +3462,14 @@ Nodes (19): u1.ofModel(), animate(), clearLocal(), diagnose(), endAttack(), ensu
 
 ### Community 312 - "Unpacker.luau"
 Cohesion: 0.02
-Nodes (37): set_disabled(), set_enabled(), TagModifier:on_powered_changed(), TagModifier:pulse(), power_sustain(), TagModifier:on_powered_changed(), set_flip_flop(), TagModifier:pulse() (+29 more)
+Nodes (44): set_disabled(), set_enabled(), TagModifier:on_powered_changed(), TagModifier:pulse(), power_sustain(), TagModifier:on_powered_changed(), set_flip_flop(), TagModifier:pulse() (+36 more)
 
 ### Community 314 - "AbilityBalancing.luau"
 Cohesion: 0.03
 Nodes (8): createDebugPart(), GetAimPointFromCenter(), cleanupState(), finish(), participantsValid(), processCompletion(), distanceToBoxEdgeXZ(), isNearGoalkeeperBoxEdge()
 
 ### Community 315 - "Buffer/Dedicated.luau"
-Cohesion: 0.06
+Cohesion: 0.09
 Nodes (10): u1.UpdateShake(), u11(), u1.create(), u1.Solve(), u1.SolveNorm(), u3(), u1.alloc(), u1.build() (+2 more)
 
 ### Community 316 - "EclipseCutscene.luau"
@@ -3176,24 +3493,20 @@ Cohesion: 0.08
 Nodes (21): allowed(), available(), canOpen(), celebrate(), characterSpawned(), complete(), imageArt(), layout() (+13 more)
 
 ### Community 321 - "MergeDisplayClient.client.luau"
-Cohesion: 0.10
-Nodes (17): Chat(), module:OnKill(), advance(), board(), build(), dress(), emoteSound(), ended() (+9 more)
+Cohesion: 0.07
+Nodes (20): Chat(), module:OnKill(), joined(), refresh(), watch(), advance(), board(), build() (+12 more)
 
 ### Community 322 - "Q"
 Cohesion: 0.11
-Nodes (29): ABILITIES — God Cataclysms & Runner Reflexes, Bounce  `Bounce`, Brawler  `Brawler`, Clap Swapper  `ClapSwapper`, ⚪ Common — 1 skill (speed burst), Defaults & balance notes, Dive Roll  `DiveRoll`, 🟣 Epic — 2 skills (substitution / sabotage) (+21 more)
+Nodes (30): ABILITIES — God Cataclysms & Runner Reflexes, Bounce  `Bounce`, Brawler  `Brawler`, Clap Swapper  `ClapSwapper`, ⚪ Common — 1 skill (speed burst), Crimson Epitaph  `CrimsonEpitaph`, Defaults & balance notes, Dive Roll  `DiveRoll` (+22 more)
 
 ### Community 323 - "RankedMenuClient.client.luau"
 Cohesion: 0.06
 Nodes (25): anchorTo(), card(), ordered(), refreshTimer(), reveal(), rewardText(), setOpen(), show() (+17 more)
 
 ### Community 324 - "SoccerGame/ReplicatedStorage/CmdrClient/Shared/Util.luau"
-Cohesion: 0.12
-Nodes (8): u5.GetNames(), u5.MakeEnumType(), u5.MakeFuzzyFinder(), u5.MakeSequenceType(), u5.Map(), u5.ParsePrefixedUnionType(), u5.SplitPrioritizedDelimeter(), u5.SplitStringSimple()
-
-### Community 325 - "Particle_Module.luau"
-Cohesion: 0.08
-Nodes (4): showTrail(), v1.CreateBezierTrails(), showTrail(), v1.CreateBezierTrails()
+Cohesion: 0.10
+Nodes (16): u5.EncodeEscapedOperator(), u5.EncodeEscapedOperators(), u5.GetNames(), u5.MakeAliasCommand(), u5.MakeEnumType(), u5.MakeFuzzyFinder(), u5.MakeSequenceType(), u5.Map() (+8 more)
 
 ### Community 326 - "Part_Icles/Lightning.luau"
 Cohesion: 0.20
@@ -3205,7 +3518,7 @@ Nodes (16): acquireRope(), buildRig(), u2.EmitRope(), u2.EmitRopeAnimate(), u2._
 
 ### Community 328 - "DataManager.luau"
 Cohesion: 0.05
-Nodes (20): DataManager.addDonation(), DataManager.addEmoteSpins(), DataManager.addGold(), DataManager.addPendingItems(), DataManager.addTotalRobuxSpent(), DataManager.addTotalRobuxSpentOnGifts(), DataManager.buyEmoteSpin(), DataManager.getEmoteSpins() (+12 more)
+Nodes (22): DataManager.addDonation(), DataManager.addEmoteSpins(), DataManager.addGold(), DataManager.addMonthlyKill(), DataManager.addTotalRobuxSpent(), DataManager.addTotalRobuxSpentOnGifts(), DataManager.buyEmoteSpin(), DataManager.CurrentSeason() (+14 more)
 
 ### Community 329 - "TsunamiDestruction.luau"
 Cohesion: 0.17
@@ -3228,8 +3541,8 @@ Cohesion: 0.09
 Nodes (7): renderPoint(), u1.clearRenderedPath(), u1.renderPath(), u1.setCurrentPoints(), u6.ControlCharacterGamepad(), u6.OnHeartbeat(), u6.OnNavigationRequest()
 
 ### Community 334 - "RxBrioUtils.luau"
-Cohesion: 0.12
-Nodes (22): u2.isBrio(), u5.new(), u62.combineLatest(), u62.emitOnDeath(), u62.extend(), u62.flatMap(), u62.flatMapBrio(), u62.map() (+14 more)
+Cohesion: 0.18
+Nodes (20): u2.isBrio(), u5.new(), u62.combineLatest(), u62.emitOnDeath(), u62.extend(), u62.flatMap(), u62.flatMapBrio(), u62.map() (+12 more)
 
 ### Community 335 - "InternalConfigs.luau"
 Cohesion: 0.10
@@ -3257,21 +3570,21 @@ Nodes (18): beginSeal(), buildPrompt(), characterOf(), fizzle(), glow(), marked(
 
 ### Community 342 - "Changelog"
 Cohesion: 0.06
-Nodes (31): [2.0.0], [2.1.0], [2.2.0], [2.3.0], [2.3.1], [2.4.0], [2.5.0], [2.5.1] (+23 more)
+Nodes (33): [2.0.0], [2.1.0], [2.2.0], [2.3.0], [2.3.1], [2.4.0], [2.5.0], [2.5.1] (+25 more)
 
 ### Community 343 - "playIslandShaking"
 Cohesion: 0.67
 Nodes (3): DebreeGround(), finish(), playIslandShaking()
 
 ### Community 344 - "Modules/Octree.luau"
-Cohesion: 0.09
-Nodes (4): u100(), u4.GetOrCreateLowestSubRegion(), u100(), u4.GetOrCreateLowestSubRegion()
+Cohesion: 0.07
+Nodes (10): u2.new(), u3.CreateNode(), u100(), u4.GetOrCreateLowestSubRegion(), GetOrCreateRegion(), GetNeighborsWithinRadius(), u2.CreateNode(), u2.GetOrCreateLowestSubRegion() (+2 more)
 
 ### Community 345 - "AlbieClient.client.luau"
 Cohesion: 0.07
 Nodes (16): adopt(), boardsNear(), buildGui(), copied(), gameSound(), presence(), promptText(), settle() (+8 more)
 
-### Community 346 - "ImageEmit_1.luau"
+### Community 346 - "ReplicatedStorage/Part_Icles/ImageEmit.luau"
 Cohesion: 0.13
 Nodes (24): applyFlipbookFrame(), buildImageLabelPData(), gatherFlipbookDecals(), preloadEmitAssets(), resolveFrame(), resolveImageParent(), _simulateForward2D(), u1._computeImageLabelEndState() (+16 more)
 
@@ -3291,6 +3604,10 @@ Nodes (8): GetVFX(), handleGlacialSide(), trackGlacialContainer(), v1.hioriGlaci
 Cohesion: 0.14
 Nodes (19): buildCard(), clearGrid(), clearResults(), fetchPrices(), hide(), layout(), layoutResults(), load() (+11 more)
 
+### Community 351 - "HalloweenBundle.luau"
+Cohesion: 0.05
+Nodes (52): buildJumpScareBars(), buildPattern(), burstParticlesIn(), burstStarsIn(), cacheStars(), clearEffects(), coverWithPattern(), getPanelPieces() (+44 more)
+
 ### Community 352 - "BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule.luau"
 Cohesion: 0.08
 Nodes (4): v33(), getGamepadRightThumbstickPosition(), u1.calculateRawMoveVector(), u1.UpdateActiveControlModuleEnabled()
@@ -3299,9 +3616,9 @@ Nodes (4): v33(), getGamepadRightThumbstickPosition(), u1.calculateRawMoveVector
 Cohesion: 0.11
 Nodes (14): CheckMacro(), StartFreecam(), StepFreecam(), StopFreecam(), thumbstickCurve(), ToggleFreecam(), u22.Fov(), u22.Pan() (+6 more)
 
-### Community 354 - "StrikerGame/ReplicatedStorage/chrono/Client/Receiver.luau"
-Cohesion: 0.08
-Nodes (21): DeserializeFull(), DeserializeYaw(), HandleChanges(), HandleClientOwned(), HandleNewEntity(), HandleReliable(), HandleServerOwned(), PushCFrameFor() (+13 more)
+### Community 354 - "StrikerGame/ReplicatedStorage/chrono/Client/Sender.luau"
+Cohesion: 0.10
+Nodes (10): CheckEntity(), FireEvent(), Flush(), GetVelocity(), WriteEntity(), CheckEntity(), FireEvent(), Flush() (+2 more)
 
 ### Community 355 - "Matte/Field.luau"
 Cohesion: 0.10
@@ -3310,6 +3627,10 @@ Nodes (12): numbered(), u1.bare(), u1.flipbookTextures(), u1.frames(), u1.frames
 ### Community 356 - "Matte/Field_1.luau"
 Cohesion: 0.10
 Nodes (12): numbered(), u1.bare(), u1.flipbookTextures(), u1.frames(), u1.framesInStep(), u1.maskFrames(), u1.maskFramesInStep(), u1.maskInStep() (+4 more)
+
+### Community 357 - "descendant"
+Cohesion: 0.11
+Nodes (4): u1.CallTrait(), u1.CallTraitWithCheck(), u1.CallTraitWithMetadata(), u1.GetTraitData()
 
 ### Community 358 - "Misc/TemplateRig/Animate.client.luau"
 Cohesion: 0.13
@@ -3332,8 +3653,8 @@ Cohesion: 0.13
 Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing(), onFreeFall() (+9 more)
 
 ### Community 363 - "u48.MultiConnection.new"
-Cohesion: 0.12
-Nodes (28): u48.BubbleChat.new(), u48.BubbleChat.RegisterTextChatMessage(), u48.BubbleChatContainer.AddMessage(), u48.BubbleChatContainer.new(), u48.BubbleChatMessage.new(), u48.CreateUserWhsiper(), u48.DeepPipe(), u48.DistantBubble.new() (+20 more)
+Cohesion: 0.14
+Nodes (26): u48.BubbleChat.RegisterTextChatMessage(), u48.BubbleChatContainer.AddMessage(), u48.BubbleChatContainer.new(), u48.BubbleChatMessage.new(), u48.CreateUserWhsiper(), u48.DeepPipe(), u48.DistantBubble.new(), u48.ExperienceChat.new() (+18 more)
 
 ### Community 365 - "MeltedFlowVFX/Animate.client.luau"
 Cohesion: 0.13
@@ -3349,7 +3670,7 @@ Nodes (3): u2.live(), u2.live(), u1.now()
 
 ### Community 368 - "BundlePanel.luau"
 Cohesion: 0.14
-Nodes (14): abilityCard(), build(), evenSizes(), fetchPrice(), offer(), paint(), productNow(), sound() (+6 more)
+Nodes (13): abilityCard(), build(), evenSizes(), fetchPrice(), offer(), paint(), productNow(), sound() (+5 more)
 
 ### Community 369 - "EmoteStoreClient.luau"
 Cohesion: 0.06
@@ -3405,15 +3726,15 @@ Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), ke
 
 ### Community 384 - "AbilityUtils.luau"
 Cohesion: 0.01
-Nodes (30): convertCopyAbility(), v2.getKit(), shouldUseDivineDestruction(), v3.getKit(), canUseAbility(), getKit(), u6.CanActivateAbility(), u6.ExecuteAbilitySlot() (+22 more)
+Nodes (28): convertCopyAbility(), v2.getKit(), shouldUseDivineDestruction(), v3.getKit(), canUseAbility(), getKit(), u6.CanActivateAbility(), u6.ExecuteAbilitySlot() (+20 more)
 
 ### Community 385 - "Assists1/Animate.client.luau"
 Cohesion: 0.13
 Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing(), onFreeFall() (+9 more)
 
 ### Community 386 - "BasketballGame/ReplicatedStorage/CmdrClient/Shared/Util.luau"
-Cohesion: 0.12
-Nodes (8): u5.GetNames(), u5.MakeEnumType(), u5.MakeFuzzyFinder(), u5.MakeSequenceType(), u5.Map(), u5.ParsePrefixedUnionType(), u5.SplitPrioritizedDelimeter(), u5.SplitStringSimple()
+Cohesion: 0.10
+Nodes (16): u5.EncodeEscapedOperator(), u5.EncodeEscapedOperators(), u5.GetNames(), u5.MakeAliasCommand(), u5.MakeEnumType(), u5.MakeFuzzyFinder(), u5.MakeSequenceType(), u5.Map() (+8 more)
 
 ### Community 387 - "Goals1/Animate.client.luau"
 Cohesion: 0.13
@@ -3424,8 +3745,8 @@ Cohesion: 0.13
 Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing(), onFreeFall() (+9 more)
 
 ### Community 391 - "RunnerSkills.luau"
-Cohesion: 0.11
-Nodes (41): root(), Common.AfflictArgs(), Common.DamageCover(), Common.Flat(), Common.Fx(), Common.FxTo(), Common.Ground(), Common.NearMiss() (+33 more)
+Cohesion: 0.09
+Nodes (42): root(), Common.AfflictArgs(), Common.DamageCover(), Common.Flat(), Common.Fx(), Common.FxTo(), Common.Ground(), Common.NearMiss() (+34 more)
 
 ### Community 392 - "MVP2/Animate.client.luau"
 Cohesion: 0.13
@@ -3435,9 +3756,13 @@ Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), ke
 Cohesion: 0.13
 Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing(), onFreeFall() (+9 more)
 
+### Community 394 - "ReplicatedModules/ItemData.luau"
+Cohesion: 0.01
+Nodes (18): Create(), PlayAndYield(), u1.GetItem(), u1.GetItemInfo(), Activate(), Close(), MakeViewport(), Open() (+10 more)
+
 ### Community 395 - "QuestClient.client.luau"
-Cohesion: 0.10
-Nodes (12): place(), fit(), countdown(), dailyCard(), dailyProducts(), eventCards(), eventDetail(), preview() (+4 more)
+Cohesion: 0.07
+Nodes (16): eligible(), render(), show(), syncWorldReward(), place(), fit(), countdown(), dailyCard() (+8 more)
 
 ### Community 396 - "Saves1/Animate.client.luau"
 Cohesion: 0.13
@@ -3463,9 +3788,9 @@ Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), ke
 Cohesion: 0.13
 Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing(), onFreeFall() (+9 more)
 
-### Community 402 - "KatUtil_1.luau"
-Cohesion: 0.10
-Nodes (8): u3.delay(), u3.destroy_effect(), u3.Emit(), u3.frame_delay(), u3.get_life(), u3.get_track(), u3.tween(), u3.tween_frames()
+### Community 402 - "KatUtil.luau"
+Cohesion: 0.03
+Nodes (36): getLorenzoLine(), u2.AceEaterOffTheBall(), u2.donFlash(), u2.lorenzo4Pass(), u2.lorenzoHorrificIntercept(), u2.lorenzoMarker(), u2.lorenzoOTAwk(), getLorenzoLine() (+28 more)
 
 ### Community 403 - "PreloadDummy/Animate.client.luau"
 Cohesion: 0.13
@@ -3529,11 +3854,11 @@ Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), ke
 
 ### Community 419 - "Game/Modules/Player/Character/Combat.luau"
 Cohesion: 0.03
-Nodes (84): Load(), Utility.ConvertStringAttributeFriendly(), Utility.DeepCopy(), Utility.RaycastWithDebug(), Combat:Afflict(), Combat:AfflictDamage(), Combat:AnticipateGround(), Combat:_AntiTeamStun() (+76 more)
+Nodes (83): Load(), Utility.DeepCopy(), Utility.RaycastWithDebug(), Combat:Afflict(), Combat:AfflictDamage(), Combat:AnticipateGround(), Combat:_AntiTeamStun(), Combat:AwardKillToHighestDamager() (+75 more)
 
 ### Community 420 - "SharedGlobals.luau"
-Cohesion: 0.02
-Nodes (60): v1.start(), v2.start(), u12(), v1.start(), AlignCFrame(), PlayAnim(), v1.start(), v1.start() (+52 more)
+Cohesion: 0.01
+Nodes (82): v1.start(), BeamFade(), TrailFade(), v1.start(), u7(), v1.start(), v2.start(), v5.start() (+74 more)
 
 ### Community 421 - "giha271/newAnimate.client.luau"
 Cohesion: 0.13
@@ -3544,12 +3869,12 @@ Cohesion: 0.05
 Nodes (5): restHead(), u1.show(), pose(), u1.new(), v2.step()
 
 ### Community 424 - "StepOverMotion.luau"
-Cohesion: 0.11
+Cohesion: 0.09
 Nodes (7): u1.cancel(), u1.request(), u1.start(), load(), u1.cancel(), u1.request(), u1.start()
 
-### Community 425 - "Utility/SmartBone/Dependencies/Iris.luau"
-Cohesion: 0.05
-Nodes (34): u2._deepCompare(), u2._deepCopy(), u2._generateRootInstance(), u2._generateSelectionImageObject(), u2._getID(), u1.Append(), u1.ComputedState(), u1.ForceRefresh() (+26 more)
+### Community 425 - "script_types"
+Cohesion: 0.03
+Nodes (28): u1.Append(), u1.ForceRefresh(), u1.UpdateGlobalConfig(), u2._getID(), u2._GetParentWidget(), u1.Append(), u1.ComputedState(), u1.ForceRefresh() (+20 more)
 
 ### Community 426 - "Twins.luau"
 Cohesion: 0.11
@@ -3616,8 +3941,8 @@ Cohesion: 0.13
 Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing(), onFreeFall() (+9 more)
 
 ### Community 442 - "color_srgb"
-Cohesion: 0.11
-Nodes (10): u6.toLinear(), u6.toSRGB(), u6.toLinear(), u6.toSRGB(), u6.toLinear(), u6.toSRGB(), u6.toLinear(), u6.toSRGB() (+2 more)
+Cohesion: 0.10
+Nodes (12): u6.toLinear(), u6.toSRGB(), u6.toLinear(), u6.toSRGB(), u6.toLinear(), u6.toSRGB(), u6.toLinear(), u6.toSRGB() (+4 more)
 
 ### Community 443 - "ItemEffects.luau"
 Cohesion: 0.07
@@ -3676,8 +4001,8 @@ Cohesion: 0.13
 Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing(), onFreeFall() (+9 more)
 
 ### Community 458 - "PacketChart.luau"
-Cohesion: 0.05
-Nodes (7): u9.new(), u9.new(), u8.new(), v9.init(), v29.didMount(), v29.init(), u14()
+Cohesion: 0.09
+Nodes (5): u9.new(), u9.new(), u8.new(), v9.init(), v29.init()
 
 ### Community 460 - "Saifyonkeyz678/Animate.client.luau"
 Cohesion: 0.13
@@ -3701,11 +4026,11 @@ Nodes (9): u1.AndThen(), u1.Assert(), u1.Deserialize(), u1.__eq(), u1.Is(), u1._
 
 ### Community 465 - "NumberUtil.luau"
 Cohesion: 0.01
-Nodes (39): u1.ClearGuiContent(), u1.CloseGui(), u1.KnitInit(), u1.ShowGui(), u2.RepeatGetProductInfo(), u2.SpawnPurchasePrompt(), u3.KnitStart(), u3.RefreshGui() (+31 more)
+Nodes (44): u1.ClearGuiContent(), u1.CloseGui(), u1.KnitInit(), u1.ShowGui(), u2.RepeatGetProductInfo(), u2.SpawnPurchasePrompt(), u3.KnitStart(), u3.RefreshGui() (+36 more)
 
 ### Community 466 - "u50"
-Cohesion: 0.13
-Nodes (16): v1.Create(), u1.Update(), u9(), u38(), u50(), u56(), u4.CreateNode(), u4.KNearestNeighborsSearch() (+8 more)
+Cohesion: 0.07
+Nodes (19): v1.Create(), u1.Start(), u1.Update(), u9(), u38(), u50(), u56(), u100() (+11 more)
 
 ### Community 467 - "Utility/Trove.luau"
 Cohesion: 0.01
@@ -3753,7 +4078,7 @@ Nodes (18): u1.coerceIntoEnum(), u1.getType(), u1.isAAxis(), u1.isABrickColor(),
 
 ### Community 482 - "CutsceneUtils.luau"
 Cohesion: 0.02
-Nodes (27): EnableVFX(), v66(), EnableVFX(), v23(), cleanupManagedSound(), createSoundFromCue(), findDescendantByPath(), flickScore() (+19 more)
+Nodes (28): EnableVFX(), v66(), EnableVFX(), v23(), replaceChar(), cleanupManagedSound(), createSoundFromCue(), findDescendantByPath() (+20 more)
 
 ### Community 483 - "SkyLink (Dont Remove)/LightConfig/Type_1.luau"
 Cohesion: 0.13
@@ -3769,11 +4094,11 @@ Nodes (8): oldest(), v1.give(), oldest(), v1.give(), placeShared(), u1.frame(), 
 
 ### Community 486 - "VFX/Gojo/Ruthless Massacre.luau"
 Cohesion: 0.02
-Nodes (90): EffectUtility.ToggleImpactFrames(), AttributeListener.GetReplicationFromSource(), AttributeListener.new(), Remove(), MoonUtil.AnimateValueWithMoonFile(), Clean(), DisconnectRunner(), OnDisabledSetting() (+82 more)
+Nodes (75): AttributeListener.GetReplicationFromSource(), AttributeListener.new(), Remove(), MoonUtil.AnimateValueWithMoonFile(), Clean(), DisconnectRunner(), OnDisabledSetting(), OnEnabledSetting() (+67 more)
 
 ### Community 487 - "u3.new"
 Cohesion: 0.04
-Nodes (37): u4.new(), u5.new(), u6.new(), u4.new(), u4.FiveThousandBrickFist(), u4.new(), u4.SharkBarrage(), u4.WaterBomb() (+29 more)
+Nodes (36): u4.new(), u5.new(), u6.new(), u4.new(), u4.FearInducement(), u4.HeadThrow(), u4.new(), u4.OnslaughtofShadows() (+28 more)
 
 ### Community 488 - "Shared/Zone/ZoneController/Tracker.luau"
 Cohesion: 0.20
@@ -3784,8 +4109,8 @@ Cohesion: 0.12
 Nodes (14): airhornReport(), build(), cloneVisual(), params(), plan(), remove(), removeSides(), restore() (+6 more)
 
 ### Community 495 - "Modules/DistanceFade.luau"
-Cohesion: 0.14
-Nodes (16): v162(), u119(), u1.AddFace(), u1.Step(), u25(), u30(), u44(), u64() (+8 more)
+Cohesion: 0.09
+Nodes (24): u2.call(), u119(), u1.AddFace(), u1.Step(), u25(), u30(), u44(), u64() (+16 more)
 
 ### Community 496 - "PrivateHostClient.client.luau"
 Cohesion: 0.12
@@ -3800,7 +4125,7 @@ Cohesion: 0.21
 Nodes (15): ensureEmoteSlider(), make(), panel(), shiftForEmote(), skinPanel(), skinSettings(), skinTile(), skinTimer() (+7 more)
 
 ### Community 500 - "MergeEventInfo.luau"
-Cohesion: 0.17
+Cohesion: 0.16
 Nodes (11): build(), card(), countdown(), iconPose(), journeyLevels(), knifeIcon(), sound(), text() (+3 more)
 
 ### Community 502 - "@quenty_playerthumbnailutils/Rx.luau"
@@ -3815,17 +4140,25 @@ Nodes (17): u1.apply(), u1.deleteEvent(), u1.emitCapability(), u1.emitCapability
 Cohesion: 0.15
 Nodes (17): u1.apply(), u1.deleteEvent(), u1.emitCapability(), u1.emitCapabilityReason(), u1.ensure(), u1.ensureEvent(), u1.isValidForItem(), u1.isValidForTypeName() (+9 more)
 
+### Community 506 - "AchievementsUI.luau"
+Cohesion: 0.02
+Nodes (23): NewPrompt(), CollapseEntry(), ExpandEntry(), ToggleEntry(), u3.CreateEntry(), CollapseEntry(), ExpandEntry(), ToggleEntry() (+15 more)
+
 ### Community 507 - "BuildTools/SkillBuilder.luau"
 Cohesion: 0.08
 Nodes (37): SkillBuilder:add_branch(), SkillBuilder:clear_builder(), SkillBuilder:clear_clipboard(), SkillBuilder:confirm(), SkillBuilder:copy_to_clipboard(), SkillBuilder:create_block(), SkillBuilder:create_branch(), SkillBuilder:create_slot() (+29 more)
+
+### Community 508 - "Angles"
+Cohesion: 0.02
+Nodes (43): RandomVectorOffset(), CheckForCollisions(), GameStart(), RandomVectorOffset(), generatepos(), zone(), u2.UmbraObtainmentCutscene(), u2.UmbraSwordImpalement() (+35 more)
 
 ### Community 509 - "GiftClient.luau"
 Cohesion: 0.13
 Nodes (16): key(), stack(), u1.build(), u1.layout(), u1.setStop(), icon(), keyOf(), u1.attach() (+8 more)
 
 ### Community 510 - "ArmoryClient.client.luau"
-Cohesion: 0.11
-Nodes (17): available(), canOpen(), open(), u1.build(), v20(), v22(), v24(), whenBuilt() (+9 more)
+Cohesion: 0.07
+Nodes (24): u387(), u82(), u86(), u90(), available(), canOpen(), open(), u1.build() (+16 more)
 
 ### Community 511 - "BladeBallClient.client.luau"
 Cohesion: 0.12
@@ -3844,12 +4177,12 @@ Cohesion: 0.16
 Nodes (15): u1.apply(), u1.deleteEvent(), u1.ensure(), u1.ensureEvent(), u1.isValidForItem(), u1.isValidForTypeName(), u1.read(), u1.readEnabled() (+7 more)
 
 ### Community 515 - "@quenty_playerthumbnailutils/SpringObject.luau"
-Cohesion: 0.09
-Nodes (7): u12.new(), v14.Init(), v14._showSoftShutdownUI(), u7.new(), u80.throttleTime(), u11.ObserveOnSignal(), u11.ObserveVelocityOnSignal()
+Cohesion: 0.12
+Nodes (6): v14.Init(), u7.new(), u80.throttleTime(), u11.ObserveOnSignal(), u11.ObserveVelocityOnSignal(), u2.AddHandler()
 
 ### Community 516 - "@quenty_playerthumbnailutils/Promise.luau"
-Cohesion: 0.06
-Nodes (20): u4.defer(), u4._executeThen(), u4.isPromise(), u4.new(), u4.rejected(), u4.Resolve(), u4.resolved(), u4.spawn() (+12 more)
+Cohesion: 0.03
+Nodes (42): u4.defer(), u4._executeThen(), u4.isPromise(), u4.new(), u4.Reject(), u4.rejected(), u4.Resolve(), u4.resolved() (+34 more)
 
 ### Community 517 - "ParallaxWindows.luau"
 Cohesion: 0.15
@@ -3859,25 +4192,21 @@ Nodes (17): calcParallax(), CanSee(), GetCorners(), getParallax(), getSizeAndPos
 Cohesion: 0.19
 Nodes (18): codepointToutf8(), formatError(), getNewline(), getWhitespace(), parseBoolean(), parseIdentifier(), parseNumber(), parseString() (+10 more)
 
-### Community 520 - "GpoClimbing4.luau"
-Cohesion: 0.12
-Nodes (8): u18(), u1.setup(), u1.step(), u1.Start(), u1.Update(), u19(), u30(), u6()
+### Community 520 - "game_replicatedstorage_replicatedroot_core"
+Cohesion: 0.02
+Nodes (11): u2.GetActive(), u2.GetActiveTable(), u2.IsActionable(), u2.IsActive(), u2.SetActive(), u1.GetStunTable(), u1.IsStunned(), u1.GetSingleton() (+3 more)
 
 ### Community 521 - "BuildTools.luau"
 Cohesion: 0.04
 Nodes (36): BuildTools:begin_contextual_input(), BuildTools:bind_action(), BuildTools:bind_action_permanent(), BuildTools:close_all(), BuildTools:copy(), BuildTools:cycle_alter_mode(), BuildTools:cycle_tool_mode(), BuildTools:get_bottom_frame_goal() (+28 more)
-
-### Community 522 - "EventsCollision_1.luau"
-Cohesion: 0.07
-Nodes (5): getAttachmentLinkCF(), getTargetPosition(), p15.UpdateAttachment(), p15.UpdatePart(), _posOffsetFrameDelta()
 
 ### Community 523 - "Twins_1.luau"
 Cohesion: 0.10
 Nodes (9): followFile(), followGroup(), followPlain(), followScaled(), meshPart(), newUnit(), u1.follow(), u1.group() (+1 more)
 
 ### Community 524 - "ReplicatedStorage/Part_Icles/Pool.luau"
-Cohesion: 0.14
-Nodes (15): copyBare(), destroyEntry(), discardAllEntries(), getOrInitPool(), resetLateEnds(), u1.acquire(), u1.acquireOrClone(), u1.acquireOrCopyBare() (+7 more)
+Cohesion: 0.07
+Nodes (27): copyBare(), discardAllEntries(), getOrInitPool(), u1.acquire(), u1.acquireOrClone(), u1.acquireOrCopyBare(), u1.flushAll(), u1.flushSource() (+19 more)
 
 ### Community 525 - "Pool_1.luau"
 Cohesion: 0.15
@@ -3885,19 +4214,19 @@ Nodes (15): copyBare(), destroyEntry(), discardAllEntries(), getOrInitPool(), re
 
 ### Community 526 - "UIController/Styles.luau"
 Cohesion: 0.01
-Nodes (29): applyStock(), setupTrueLimitedStockLabel(), v2.LoadPodium(), applyFlagGradient(), setupBuyButton(), setupGiftButton(), setupWorldTournamentBundles(), v3.KnitStart() (+21 more)
+Nodes (43): fireworkVisuals(), questVisual(), v1.KnitStart(), applyStock(), setupTrueLimitedStockLabel(), v2.LoadPodium(), showQueueUI(), v4.KnitStart() (+35 more)
 
 ### Community 527 - "MarbleBallClient.client.luau"
 Cohesion: 0.12
 Nodes (13): drawnBall(), enterLocal(), freeBallPart(), getReady(), hideLobbyButtons(), leaveLocal(), makeGlass(), makeTag() (+5 more)
 
 ### Community 528 - "GearUseClient.client.luau"
-Cohesion: 0.06
-Nodes (15): u1.equippedForRole(), u1.get(), active(), dashDirection(), pop(), request(), active(), pop() (+7 more)
+Cohesion: 0.05
+Nodes (18): u1.equippedForRole(), u1.get(), active(), dashDirection(), pop(), request(), active(), pop() (+10 more)
 
 ### Community 530 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/BaseCamera.luau"
-Cohesion: 0.06
-Nodes (18): BaseCamera:CalculateNewLookCFrameFromArg(), BaseCamera:CalculateNewLookVectorFromArg(), BaseCamera:Cleanup(), BaseCamera:Enable(), BaseCamera:EnterFirstPerson(), BaseCamera:GamepadZoomPress(), BaseCamera:GetCameraToSubjectDistance(), BaseCamera:GetEnabled() (+10 more)
+Cohesion: 0.04
+Nodes (31): u1.new(), u1.Update(), BaseCamera:CalculateNewLookCFrameFromArg(), BaseCamera:CalculateNewLookVectorFromArg(), BaseCamera:Cleanup(), BaseCamera:Enable(), BaseCamera:EnterFirstPerson(), BaseCamera:GamepadZoomPress() (+23 more)
 
 ### Community 531 - "StarterPlayer/PlayerModule/ControlModule.luau"
 Cohesion: 0.05
@@ -3907,13 +4236,9 @@ Nodes (17): _fireCustomInputs(), u3._calculatePlayerInputValues(), u3.CloneInput
 Cohesion: 0.08
 Nodes (29): name, runs-on, steps, strategy, REPO_TOKEN, RUST_BACKTRACE, jobs, cli (+21 more)
 
-### Community 534 - "v41"
-Cohesion: 0.03
-Nodes (39): _G.getEffect(), u17(), u9._render(), u4.Reject(), BeamFade(), TrailFade(), v1.start(), v4.start() (+31 more)
-
 ### Community 536 - "Observability/Codec.luau"
-Cohesion: 0.12
-Nodes (4): quantizeRotation(), u7.cframe(), u7.cframeDelta(), u7.zigzag()
+Cohesion: 0.08
+Nodes (7): quantizeRotation(), u7.cframe(), u7.cframeDelta(), u7.zigzag(), closest(), u1.WriteHead(), writeDrop()
 
 ### Community 538 - "akumaVFX.luau"
 Cohesion: 0.15
@@ -3927,41 +4252,41 @@ Nodes (14): apply_forward_move(), apply_spread(), play_afterimage(), play_black_
 Cohesion: 0.17
 Nodes (10): rebuildRevealMask(), u1.acquireBolt(), u1.buildRig(), u1.flushCFrames(), u1.layoutFor(), rebuildRevealMask(), u1.acquireBolt(), u1.buildRig() (+2 more)
 
-### Community 541 - "DebugUtil/Iris.luau"
-Cohesion: 0.11
-Nodes (17): u1.ComboArray(), u1.ComboEnum(), u2._deepCompare(), u2._deepCopy(), u2._generateRootInstance(), u2._generateSelectionImageObject(), u2._getID(), u1.ComputedState() (+9 more)
-
-### Community 542 - "Playerlist.luau"
-Cohesion: 0.08
-Nodes (8): u14.new(), u13.new(), u16._handlePlayers(), u16.Initialize(), u16.new(), u30(), u51(), u11.new()
+### Community 541 - "FunctionLibrary.luau"
+Cohesion: 0.04
+Nodes (45): u18(), u4.AddGravity(), u4.AddVelocity(), u4.Ban(), u4.CheckPartInfront(), u4.convertToHMS(), u4.Damage(), u4.Debris() (+37 more)
 
 ### Community 543 - "game_replicatedstorage_modules_clienteffects_g_essentials"
-Cohesion: 0.05
-Nodes (9): mirrorDecals(), secondCracks(), setDecals(), scaleSequence(), spawnEffect(), DiveAim.resolve(), makeMapParams(), ReticleController.Start() (+1 more)
+Cohesion: 0.07
+Nodes (9): expandAttachmentVFX(), getScaledSequence(), shrinkAttachmentVFX(), scaleSequence(), spawnEffect(), DiveAim.resolve(), makeMapParams(), ReticleController.Start() (+1 more)
 
 ### Community 545 - "ProServerClient.client.luau"
-Cohesion: 0.12
-Nodes (11): blocked(), dress(), effect(), found(), join(), render(), row(), runUnlock() (+3 more)
+Cohesion: 0.11
+Nodes (12): breaks(), blocked(), dress(), effect(), found(), join(), render(), row() (+4 more)
 
 ### Community 546 - "MobileBase.luau"
-Cohesion: 0.19
-Nodes (10): u23(), u37(), u49(), u7.ChargeSkill(), u7.DoubleCastSkill(), u7._MobileDefault(), u7._MobileTapScreen(), u7.new() (+2 more)
+Cohesion: 0.06
+Nodes (14): u25.Initialize(), u40(), u54(), u116(), u23(), u37(), u49(), u7.ChargeSkill() (+6 more)
 
-### Community 548 - "_G.getTargetNearMouse"
-Cohesion: 0.05
-Nodes (30): _G.getTargetNearMouse(), u66(), u7.ExplosiveSnap(), u7.KamikazeHollow(), u7.MiniHollowBarrage(), u7.NegativeHollow(), u7.SoulUnbound(), u70() (+22 more)
+### Community 548 - "Mera-Mera.luau"
+Cohesion: 0.25
+Nodes (5): u70(), u7.Firefly(), u7.FlameFlight(), u7.FlamePillar(), u7.Hiken()
 
 ### Community 549 - "Packages/RelicsXYZ/Shared/React.luau"
 Cohesion: 0.04
 Nodes (4): goBack(), AuraPage(), UgcSkinItem(), u1.FireServer()
 
 ### Community 550 - "BasketballGame/ReplicatedStorage/Packages/_Index/sleitnick_component@2.4.8/component/init.spec.luau"
-Cohesion: 0.05
-Nodes (22): describe, expect, FOCUS, Inside Tests, it, itFOCUS and itSKIP, SKIP, Check() (+14 more)
+Cohesion: 0.04
+Nodes (32): describe, expect, FOCUS, Inside Tests, it, itFOCUS and itSKIP, SKIP, Check() (+24 more)
 
 ### Community 552 - "Utility/Part_Icles/Graph.luau"
 Cohesion: 0.16
 Nodes (12): _mergeSequenceTimes(), u11.BlendColorGraphWithTime(), u11.BlendGraphWithTime(), u11.InitialEffectiveElapsed(), u11.LerpColorGraph(), u11.LerpColorGraphFast(), u11.LerpGraph(), u11.LerpGraphFast() (+4 more)
+
+### Community 554 - "BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/CameraWrapper.luau"
+Cohesion: 0.04
+Nodes (7): u2.new(), u1.new(), u1.new(), u1.new(), ConnectionUtil.new(), u1.new(), u1.new()
 
 ### Community 555 - "matchIntroVFX.luau"
 Cohesion: 0.19
@@ -3972,7 +4297,7 @@ Cohesion: 0.18
 Nodes (10): deepcopy(), u13(), u130(), u19(), u25(), u30(), u37(), u52() (+2 more)
 
 ### Community 557 - "KnifeDisplayRig.luau"
-Cohesion: 0.12
+Cohesion: 0.11
 Nodes (14): lookOnly(), mirror(), u1.attach(), u1.grip(), u1.stow(), emoteCues(), enter(), loadTrack() (+6 more)
 
 ### Community 558 - "BasketballGame/ReplicatedStorage/Packages/_Index/sleitnick_component@2.4.8/component.luau"
@@ -3982,10 +4307,6 @@ Nodes (4): GetActiveExtensions(), InvokeExtensionFn(), ShouldConstruct(), u20._i
 ### Community 561 - "GemSkinController.luau"
 Cohesion: 0.15
 Nodes (13): activate(), applyProperty(), baseProperties(), deactivate(), hook(), isEligible(), propertiesFor(), refresh() (+5 more)
-
-### Community 563 - "replicatedstorage_waitforchild"
-Cohesion: 0.08
-Nodes (7): u2.CanRunCommands(), u2.KnitStart(), CloseScrolls(), GetEmoteAnim(), InitSlotDisplay(), PlayAnim(), SetupPlayBtn()
 
 ### Community 564 - "SoccerGame/ReplicatedStorage/Controllers/UIController.luau"
 Cohesion: 0.04
@@ -3997,35 +4318,39 @@ Nodes (6): hueRecolor(), u1.comms_ping(), u1.legacyrunDash(), u1.raycastEffect()
 
 ### Community 567 - "ReplicatedStorage/Modules/Player/Character.luau"
 Cohesion: 0.06
-Nodes (32): LuaCharacter:BlockShiftlock(), LuaCharacter:CheckIfMovingForward(), LuaCharacter:ConditionsToShiftlockRoot(), LuaCharacter:GetMoveDirection(), LuaCharacter:GetMoveVector(), LuaCharacter:IsFlyingOrSitting(), LuaCharacter.new(), LuaCharacter:RegisterModel() (+24 more)
+Nodes (25): Utility.cmap(), CustomAttack.Activate(), Attack:Activate(), Attack:AttemptEvasive(), Attack:AttemptWallCombo(), Attack:ConditionToActivate(), Attack:Evasive(), Attack:FrontDash() (+17 more)
 
 ### Community 568 - "Spawner.luau"
-Cohesion: 0.13
-Nodes (12): TagModifier.attribute_updates:AssetId(), TagModifier.attribute_updates:Pitch(), TagModifier.attribute_updates:Volume(), TagModifier:pulse(), update_volume(), copy_attachments_into(), create_enemy(), create_missing_bodypart() (+4 more)
+Cohesion: 0.06
+Nodes (28): copy_attachments_into(), create_enemy(), create_missing_bodypart(), create_sequence(), get_sequence_data(), get_user_id(), TagModifier.attribute_updates:CustomAction(), AI:attack() (+20 more)
 
 ### Community 569 - "MOSTRECENTFORGE/mod/utility.luau"
 Cohesion: 0.05
 Nodes (16): u4.assembleMeshVFX(), u4.cleanupScope(), u4.copyProperties(), u4.createEmitPromise(), u4.findFirstClassWithTag(), u4.getRandomId(), u4.isMeshVFX(), u4.shouldSkipNested() (+8 more)
 
 ### Community 571 - "MapLightingClient.client.luau"
-Cohesion: 0.14
-Nodes (11): u9.define(), u9.define(), u43.define(), u43.define(), u1.receive(), apply(), changed(), paintSky() (+3 more)
+Cohesion: 0.13
+Nodes (12): u9.define(), u9.define(), u10.start(), u43.define(), u43.define(), u1.receive(), apply(), changed() (+4 more)
 
 ### Community 572 - "ReplicatedStorage/Part_Icles/Graph.luau"
 Cohesion: 0.16
 Nodes (12): _mergeSequenceTimes(), u11.BlendColorGraphWithTime(), u11.BlendGraphWithTime(), u11.InitialEffectiveElapsed(), u11.LerpColorGraph(), u11.LerpColorGraphFast(), u11.LerpGraph(), u11.LerpGraphFast() (+4 more)
 
-### Community 573 - "Core/Abilities.luau"
-Cohesion: 0.15
-Nodes (8): u13.Initialize(), u17._handleCharacter(), u17._handleInputs(), u17.Initialize(), u17._toggleDetection(), u17._update(), u10.new(), u15.new()
+### Community 573 - "GPO Zipline.luau"
+Cohesion: 0.48
+Nodes (5): u17._handleCharacter(), u17._handleInputs(), u17.Initialize(), u17._toggleDetection(), u17._update()
 
 ### Community 576 - "Graph_1.luau"
 Cohesion: 0.16
 Nodes (12): _mergeSequenceTimes(), u11.BlendColorGraphWithTime(), u11.BlendGraphWithTime(), u11.InitialEffectiveElapsed(), u11.LerpColorGraph(), u11.LerpColorGraphFast(), u11.LerpGraph(), u11.LerpGraphFast() (+4 more)
 
+### Community 577 - "Zipline.luau"
+Cohesion: 0.07
+Nodes (3): u13.Initialize(), u10.new(), u15.new()
+
 ### Community 578 - "BaseBlock.new"
 Cohesion: 0.03
-Nodes (46): Instances.find_directory(), TagModifier:pulse(), DerivedBlock.new(), DerivedBlock.new(), DerivedBlock.new(), DerivedBlock.new(), DerivedBlock:activate(), DerivedBlock:cancel() (+38 more)
+Nodes (42): cyclic_search(), DerivedBlock.new(), DerivedBlock.new(), DerivedBlock.new(), DerivedBlock.new(), DerivedBlock.new(), BaseBlock.new(), DerivedBlock.new() (+34 more)
 
 ### Community 581 - "GearJuiceClient.client.luau"
 Cohesion: 0.21
@@ -4035,36 +4360,36 @@ Nodes (17): airhornWave(), attached(), burrowDig(), burst(), clampRig(), fartClo
 Cohesion: 0.11
 Nodes (4): AssertTypes(), RayIntersection(), u32.SetMode(), u32.SmartCircleBehavior()
 
-### Community 584 - "_G.HasItem"
-Cohesion: 0.09
-Nodes (13): u12.CheckItems(), u1.adjust(), u1.check(), u6(), u9(), v1.check(), u8(), v1.check() (+5 more)
+### Community 584 - "new"
+Cohesion: 0.05
+Nodes (62): MakeRing(), Add(), Div(), Exp(), fromEulerAnglesXYZ(), fromEulerAnglesYXZ(), _fromOrthonormalizedMatrix(), Log() (+54 more)
 
 ### Community 586 - "DaggerAnimation.luau"
 Cohesion: 0.09
 Nodes (5): loadTrack(), u1.play(), u1.prepare(), u1.release(), u1.stop()
 
 ### Community 587 - "TailorTransport.luau"
-Cohesion: 0.10
-Nodes (18): getColorFromString(), getLayerCollector(), getVector2FromString(), u1.New(), u1.Connect(), u1.Once(), u2.new(), u113() (+10 more)
+Cohesion: 0.31
+Nodes (10): u113(), u130(), u18(), u52(), u72(), u88(), u9(), v1.decode() (+2 more)
 
 ### Community 588 - "GlobalNELLeaderboardsController.luau"
 Cohesion: 0.12
 Nodes (7): comma(), shortYen(), v1.RenderBoard(), commas(), yenStr(), buildRewardLines(), commas()
 
 ### Community 589 - "GiftConfig.luau"
-Cohesion: 0.07
-Nodes (12): u1.pick(), u1.prompt(), u1.shortfall(), u1.giftOnlyOffer(), u1.offer(), noAbilities(), u1.cooldown(), u1.get() (+4 more)
+Cohesion: 0.05
+Nodes (12): u1.pick(), u1.prompt(), u1.shortfall(), noAbilities(), u1.cooldown(), u1.get(), u1.binding(), u1.storeUniverse() (+4 more)
 
 ### Community 591 - "ReplicaServiceListeners.luau"
 Cohesion: 0.18
 Nodes (13): CreateTableListenerPathIndex(), _replica_class.ArrayInsert(), _replica_class.ArrayRemove(), _replica_class.ArraySet(), _replica_class.ListenToArrayInsert(), _replica_class.ListenToArrayRemove(), _replica_class.ListenToArraySet(), _replica_class.ListenToChange() (+5 more)
 
 ### Community 593 - "AwardNoticeClient.client.luau"
-Cohesion: 0.19
-Nodes (11): u487.showWon(), confetti(), cue(), giftBox(), need(), present(), presentGift(), ready() (+3 more)
+Cohesion: 0.22
+Nodes (9): confetti(), cue(), giftBox(), need(), present(), presentGift(), ready(), reveal() (+1 more)
 
 ### Community 594 - "SupplyDropService.server.luau"
-Cohesion: 0.12
+Cohesion: 0.14
 Nodes (13): ItemConfig.Get(), ShopConfig.CrateChances(), ShopConfig.GetItem(), deliverPending(), roll(), Announce(), Drop(), MakeCrate() (+5 more)
 
 ### Community 595 - "profilestore/mkdocs.yml"
@@ -4073,7 +4398,7 @@ Nodes (26): logo, markdown_extensions, nav, API, DataStore Use, Developer Produc
 
 ### Community 596 - "DataInit.server.luau"
 Cohesion: 0.07
-Nodes (16): CharacterEquipment.Apply(), GetEmoteAnim(), Initalize(), isOwner(), PlayerAdded(), setupCharacter(), DataManager.grantGamepass(), GamepassList.GetGamepassId() (+8 more)
+Nodes (19): CharacterEquipment.Apply(), GetEmoteAnim(), Initalize(), isOwner(), PlayerAdded(), setupCharacter(), DataManager.addPendingItems(), DataManager.grantGamepass() (+11 more)
 
 ### Community 597 - "SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/Invisicam.luau"
 Cohesion: 0.11
@@ -4088,8 +4413,8 @@ Cohesion: 0.13
 Nodes (4): u2.new(), u2.newLerpParams(), u3.GetCustomLerp(), u3.UpdateLerpParams()
 
 ### Community 600 - "Packages/Maid.luau"
-Cohesion: 0.04
-Nodes (36): Message:destroy(), Message:hide_close_button(), Message:initialise(), Message.new(), Message.show_next(), Message:toggle_body(), observe_attribute(), cleanup() (+28 more)
+Cohesion: 0.03
+Nodes (61): Message:destroy(), Message:hide_close_button(), Message:initialise(), Message.new(), Message.show_next(), Message:toggle_body(), observe_attribute(), BossBar:get_title() (+53 more)
 
 ### Community 601 - "phainonVFX.luau"
 Cohesion: 0.11
@@ -4124,8 +4449,8 @@ Cohesion: 0.09
 Nodes (7): checkInset(), u23(), checkInset(), decideToHideTopbar(), checkInset(), checkInset(), checkInset()
 
 ### Community 611 - "EmitModule/effects/lightning.luau"
-Cohesion: 0.09
-Nodes (11): readBezierAttributes(), v6.emit(), createSegmentStates(), generateLightningPoints(), generateTransitionPoints(), getBlendedPosition(), readLightningAttributes(), updateTransitionPoints() (+3 more)
+Cohesion: 0.22
+Nodes (7): createSegmentStates(), generateLightningPoints(), generateTransitionPoints(), getBlendedPosition(), readLightningAttributes(), updateTransitionPoints(), v6.emit()
 
 ### Community 612 - "StarterPlayer/PlayerModule/CameraModule/Invisicam.luau"
 Cohesion: 0.11
@@ -4136,8 +4461,12 @@ Cohesion: 0.07
 Nodes (30): u1.cleanup(), u1._compile(), u1.dropDepth(), u1.fire(), u1.getSourceWorldCF(), u1.getWorldCF(), u1.getWorldPosition(), u1._invalidate() (+22 more)
 
 ### Community 614 - "BuildTools/Dropdown.luau"
-Cohesion: 0.14
-Nodes (16): Dropdown:add_option(), Dropdown:clear(), Dropdown:destroy(), Dropdown:initialise(), Dropdown:mount_to(), Dropdown:mount_to_properties(), Dropdown.new(), Dropdown:populate_with_effects() (+8 more)
+Cohesion: 0.09
+Nodes (22): Replication:CollabProxy(), Replication:ConnectToVFXRemotes(), Replication:Destruct(), Replication:FireEffect(), Replication:_Init(), Replication:JoinedCollabEmote(), Instances.get_directory(), Dropdown:add_option() (+14 more)
+
+### Community 615 - "Utils/RichText.luau"
+Cohesion: 0.09
+Nodes (5): u14.new(), u13.new(), u16._handlePlayers(), u51(), u11.new()
 
 ### Community 616 - "FallenKingHeartsClient.client.luau"
 Cohesion: 0.14
@@ -4152,20 +4481,24 @@ Cohesion: 0.17
 Nodes (12): buildEntry(), cleanupEntry(), createHardFillSequence(), hideEntry(), onPromptButtonHoldBegan(), onPromptButtonHoldEnded(), onPromptHidden(), onPromptShown() (+4 more)
 
 ### Community 620 - "Onslaught Normal.luau"
-Cohesion: 0.03
-Nodes (60): EffectUtility.AddSFX(), EffectUtility.Distance_Close(), EffectUtility.Distance_Far(), BloodHandler.BloodRay(), BloodHandler.BloodRays(), BloodHandler.BloodRaysWithoutPreset(), BloodHandler.CanShowBlood(), BloodHandler.ParticleSupportsBlood() (+52 more)
+Cohesion: 0.04
+Nodes (53): EffectUtility.AddSFX(), EffectUtility.Distance_Close(), EffectUtility.Distance_Far(), VFX.Tornado(), AnimationRetriever.new(), AnimationRetriever.RemoveActive(), VFX.HitAnimStarted(), Slash() (+45 more)
 
 ### Community 621 - "TopbarIcon_1.luau"
 Cohesion: 0.03
 Nodes (5): u2.getIcon(), u2.getIconByUID(), u2.modifyChildTheme(), u2.new(), u2.updateParent()
 
-### Community 622 - "roact-constant-fork/Component.luau"
+### Community 622 - "script_parent_symbol"
+Cohesion: 0.03
+Nodes (11): u6.subscribe(), u3.map(), u3.subscribe(), mountFragmentVirtualNode(), mountFunctionVirtualNode(), mountPortalVirtualNode(), updateChildren(), updateFragmentVirtualNode() (+3 more)
+
+### Community 623 - "StarterPlayer/PlayerModule/CameraModule/BaseCamera.luau"
 Cohesion: 0.04
-Nodes (10): u4.new(), u12(), u27(), u31(), u11(), u28(), u38(), u43() (+2 more)
+Nodes (6): u2.StepZoom(), CameraInput.getZoomDelta(), u2.StepZoom(), u2.StepZoom(), u2.StepZoom(), u2.StepZoom()
 
 ### Community 624 - "Observability/Styles.luau"
-Cohesion: 0.19
-Nodes (14): chain(), collect(), compoundMatches(), linksIn(), markNames(), pathMatches(), recordedName(), ruleNames() (+6 more)
+Cohesion: 0.18
+Nodes (15): u1.GetChangesetsForConfig(), chain(), collect(), compoundMatches(), linksIn(), markNames(), pathMatches(), recordedName() (+7 more)
 
 ### Community 625 - "Panels.luau"
 Cohesion: 0.16
@@ -4176,16 +4509,16 @@ Cohesion: 0.13
 Nodes (6): emissionScale(), newWatch(), qualityLevel(), u4.Bind(), u4._scope(), u4._watchPath()
 
 ### Community 627 - "Global/RockHandler.luau"
-Cohesion: 0.09
-Nodes (34): CanSpawnCraterOn(), CreateRockLine(), FetchGround(), RandomSettingToAngles(), RockHandler.Crater(), RockHandler.GenerateRandomOrientation(), RockHandler.GetAdorneeCFrame(), RockHandler.MatchWithRay() (+26 more)
+Cohesion: 0.08
+Nodes (33): RandomSetting(), EffectUtility.ToggleForTime(), CanSpawnCraterOn(), CreateRockLine(), FetchGround(), RandomSettingToAngles(), RockHandler.Crater(), RockHandler.GenerateRandomOrientation() (+25 more)
 
 ### Community 628 - "Library/MeshEmit.luau"
 Cohesion: 0.07
 Nodes (10): RetrieveProperities(), RotateMesh(), u1.Emit(), u1.new(), u1.QuickEmit(), RetrieveProperities(), RotateMesh(), u1.Emit() (+2 more)
 
 ### Community 629 - "Explorer.luau"
-Cohesion: 0.06
-Nodes (16): u1.new(), u1.new(), u1.new(), get_position_modifier(), InstanceCache:add(), InstanceCache.new(), disconnect_all(), Explorer:clear() (+8 more)
+Cohesion: 0.15
+Nodes (10): disconnect_all(), Explorer:clear(), Explorer:destroy(), Explorer:get(), Explorer:initialise(), Explorer.new(), Explorer:update_explorer_query(), get_sub_query() (+2 more)
 
 ### Community 631 - "FastCastRedux.luau"
 Cohesion: 0.16
@@ -4215,21 +4548,25 @@ Nodes (7): getMoveVector(), getRawMoveVector(), isJumpDown(), refreshControlStat
 Cohesion: 0.13
 Nodes (7): getMoveVector(), getRawMoveVector(), isJumpDown(), refreshControlState(), step(), u9.start(), u9.stop()
 
-### Community 639 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/BaseCamera.luau"
-Cohesion: 0.01
-Nodes (65): u2.GetCameraToggleOffset(), u2.new(), u2.Update(), u1.new(), u1.Update(), u1.new(), u1.SetInitialOrientation(), u1.Update() (+57 more)
+### Community 639 - "CameraInput.getRotation"
+Cohesion: 0.04
+Nodes (27): u2.Update(), u1.new(), u1.SetInitialOrientation(), u1.Update(), CameraInput.getRotation(), CameraUtils.GetAngleBetweenXZVectors(), CameraUtils.IsFinite(), CameraUtils.IsFiniteVector3() (+19 more)
 
 ### Community 641 - "AudioManager.luau"
-Cohesion: 0.09
-Nodes (20): AudioManager._cancelTweens(), AudioManager.new(), AudioManager._playWetStep(), AudioManager.setState(), AudioManager.start(), AudioManager.stop(), AudioManager._tween(), makeLoop() (+12 more)
+Cohesion: 0.07
+Nodes (23): AudioManager._cancelTweens(), AudioManager.new(), AudioManager._playWetStep(), AudioManager.setState(), AudioManager.start(), AudioManager.stop(), AudioManager._tween(), makeLoop() (+15 more)
 
-### Community 642 - "Utility/Part_Icles/Pool.luau"
-Cohesion: 0.16
-Nodes (12): copyBare(), discardAllEntries(), getOrInitPool(), u1.acquire(), u1.acquireOrClone(), u1.acquireOrCopyBare(), u1.flushAll(), u1.flushSource() (+4 more)
+### Community 642 - "mvpVFX.luau"
+Cohesion: 0.03
+Nodes (7): LoadAvatar(), processDescendants(), v1.mvp_auraMonsterMVP(), v1.mvp_LyxBestRapper(), v1.mvp_TripleTMVP(), v1.mvp_vydiaMVP(), weld_hand()
 
 ### Community 643 - "MarbleBallClient_1.client.luau"
 Cohesion: 0.12
 Nodes (13): drawnBall(), enterLocal(), freeBallPart(), getReady(), hideLobbyButtons(), leaveLocal(), makeGlass(), makeTag() (+5 more)
+
+### Community 644 - "UwUEffects.luau"
+Cohesion: 0.01
+Nodes (29): FovRenderStepped(), v1.KimCamera(), v1.KuniCamera(), v1.StealCamera(), FovRenderStepped(), v1.KimCamera(), v1.KuniCamera(), v1.StealCamera() (+21 more)
 
 ### Community 645 - "Sites.luau"
 Cohesion: 0.15
@@ -4240,7 +4577,7 @@ Cohesion: 0.09
 Nodes (14): authoredTimescale(), readForceMotion(), u1.readerFor(), u1.readForce(), u1.readReacting(), u1.readReactor(), u1.readRope(), authoredTimescale() (+6 more)
 
 ### Community 647 - "BufferUtil.luau"
-Cohesion: 0.03
+Cohesion: 0.04
 Nodes (46): get_havoc(), Replication:create_effects_in_volume(), Replication:create_replicated_debris(), Replication:delete_replicated_debris(), Replication:initialise(), Replication.new(), Replication:register_havoc(), Replication:spindle() (+38 more)
 
 ### Community 648 - "Sites_1.luau"
@@ -4260,16 +4597,16 @@ Cohesion: 0.24
 Nodes (10): carryTextures(), makeShard(), makeStandIn(), setLocalHidden(), u1.hide(), u1.ownTransparency(), u1.show(), u1.travels() (+2 more)
 
 ### Community 652 - "Instances.luau"
-Cohesion: 0.06
-Nodes (24): CameraAdorn:add(), CameraAdorn:hook_active_updater(), CameraAdorn:remove(), CameraAdorn:reset_subject(), CameraAdorn:update(), ViewCharacter:create_character(), ViewCharacter:destroy(), ViewCharacter:initialise() (+16 more)
+Cohesion: 0.04
+Nodes (38): CameraAdorn:add(), CameraAdorn:hook_active_updater(), CameraAdorn:remove(), CameraAdorn:reset_subject(), CameraAdorn:update(), ViewCharacter:create_character(), ViewCharacter:destroy(), ViewCharacter:initialise() (+30 more)
 
 ### Community 653 - "targets/roblox_cli.rs"
 Cohesion: 0.12
 Nodes (7): DependencyStyle, GitSubmodules, None, Rotriever, SourceInfo, LemurTarget, RobloxCliTarget
 
 ### Community 655 - "BuildTools/Properties.luau"
-Cohesion: 0.08
-Nodes (22): Preferences:create_preference(), Preferences:create_section(), Preferences:get(), Preferences:initialise(), Preferences:initialise_tweens(), Preferences.new(), Preferences:observe(), Preferences:toggle() (+14 more)
+Cohesion: 0.16
+Nodes (8): Properties:clear(), Properties:create_property(), Properties:create_section(), Properties:destroy(), Properties.get_section_for(), Properties:initialise(), Properties.new(), Properties:update_property_frame_size()
 
 ### Community 656 - "CommandCatalog.luau"
 Cohesion: 0.19
@@ -4280,12 +4617,12 @@ Cohesion: 0.15
 Nodes (9): u1.setFocus(), actorById(), setBanner(), startCamera(), stopCamera(), update(), u1.format(), u1.infected() (+1 more)
 
 ### Community 658 - "Packages/RelicsXYZ.luau"
-Cohesion: 0.07
+Cohesion: 0.06
 Nodes (37): addFavoriteImpl(), changeSettingImpl(), createServerAudio(), equipAuraImpl(), equipSkinImpl(), getAuraDataImpl(), getAurasMetadata(), getAuraSnapshotImpl() (+29 more)
 
 ### Community 660 - "ProUnlockCutscene.luau"
-Cohesion: 0.13
-Nodes (12): attachSuspenseRetryListeners(), utility.scaleNumberSequence(), attachSuspenseRetryListeners(), asset(), burst(), scale(), sound(), u111() (+4 more)
+Cohesion: 0.12
+Nodes (13): utility.scaleNumberSequence(), u8.wrap(), asset(), burst(), finish(), scale(), shot(), sound() (+5 more)
 
 ### Community 661 - "StarterPlayer/PlayerModule/CameraModule/CameraInput.luau"
 Cohesion: 0.12
@@ -4296,32 +4633,28 @@ Cohesion: 0.14
 Nodes (7): cancelAnimation(), _hasTransformedAncestor(), u3.AbsoluteDisable(), u3.AbsoluteEnable(), u3._cancelAnimation(), u3.Disable(), u3.EmitAnimate()
 
 ### Community 664 - "Dependencies/Gizmo.luau"
+Cohesion: 0.14
+Nodes (9): deepCopy(), Release(), u19.DoCleaning(), u19.Init(), u19.ScheduleCleaning(), u19.SetEnabled(), u19.TweenProperties(), u19.Digest() (+1 more)
+
+### Community 665 - "Rain2.luau"
 Cohesion: 0.11
-Nodes (12): deepCopy(), Release(), u19.DoCleaning(), u19.Init(), u19.ScheduleCleaning(), u19.SetEnabled(), u19.TweenProperties(), FlashCircle() (+4 more)
-
-### Community 666 - "EmoteHandler.client.luau"
-Cohesion: 0.08
-Nodes (6): u32(), u47(), u1.__index(), u10.Initialize(), u13(), _G.HasBaseItem()
-
-### Community 667 - "Modules/ForgeVFX/pkg/Shake.luau"
-Cohesion: 0.06
-Nodes (9): u4.Clone(), u4.new(), u4.OnSignal(), u4.Clone(), u4.new(), u4.OnSignal(), u1.new(), u31() (+1 more)
+Nodes (3): v134(), v164.SetCollisionMode(), heldDown()
 
 ### Community 668 - "ReplicatedStorage/SmartBone/Dependencies/Iris/widgets/Input.luau"
-Cohesion: 0.22
-Nodes (12): v164.SetCollisionMode(), u126(), u135(), u200(), u224(), u228(), u23(), u54() (+4 more)
+Cohesion: 0.06
+Nodes (37): u9._render(), u7(), v1.start(), u12(), v1.start(), AlignCFrame(), PlayAnim(), v1.start() (+29 more)
 
 ### Community 669 - "Utility/ForgeVFX.luau"
-Cohesion: 0.16
+Cohesion: 0.17
 Nodes (4): bezier.init(), createPartCache(), makeAbstr(), t.init()
 
 ### Community 670 - "MainModule.luau"
 Cohesion: 0.24
 Nodes (17): GenerateCornerPrism(), GenerateCuboid(), GenerateParallelepiped(), GenerateParallelogram(), GeneratePrism(), GenerateRightAngleCornerPrism(), GenerateRightAnglePrism(), GenerateTriangle() (+9 more)
 
-### Community 672 - "v4.start"
+### Community 672 - "v1.start"
 Cohesion: 0.09
-Nodes (29): v1.start(), u22(), u35(), u6(), v1.start(), u104(), u50(), u61() (+21 more)
+Nodes (24): v114(), u104(), u50(), u61(), u62(), u644(), u67(), u69() (+16 more)
 
 ### Community 673 - "Domains/DomainHandler/BaseDomain.luau"
 Cohesion: 0.04
@@ -4347,21 +4680,21 @@ Nodes (6): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread
 Cohesion: 0.23
 Nodes (14): buildGraphs(), buildSeeds(), emitAnimateInternal(), emitClone(), u1.EmitAtmosphere(), u1.EmitAtmosphereAnimate(), u1.EmitBloom(), u1.EmitBloomAnimate() (+6 more)
 
-### Community 687 - "commonutils_waitforchild"
-Cohesion: 0.08
-Nodes (7): u2.new(), u1.new(), u1.new(), u1.new(), ConnectionUtil.new(), u1.new(), u1.new()
+### Community 687 - "ClientModules/SmartBone/Dependencies/Iris/API.luau"
+Cohesion: 0.07
+Nodes (48): u1.Button(), u1.Checkbox(), u1.CollapsingHeader(), u1.ComboArray(), u1.ComboEnum(), u1.DragNum(), u1.Indent(), u1.InputColor3() (+40 more)
 
 ### Community 688 - "FruitGame/StarterPlayer/StarterCharacterScripts/Animate.client.luau"
-Cohesion: 0.16
-Nodes (9): u9.Emit(), u133(), u20(), u25(), u40(), u51(), v154(), v32() (+1 more)
+Cohesion: 0.08
+Nodes (10): u9.Emit(), u133(), u20(), u25(), u40(), u51(), v154(), v32() (+2 more)
 
 ### Community 690 - "SoccerGame/StarterPlayer/StarterPlayerScripts/RbxCharacterSounds/AtomicBinding.luau"
 Cohesion: 0.15
 Nodes (9): reactPriorityToSchedulerPriority(), runWithPriority(), v20(), parsePath(), u8.destroy(), u8.new(), u8._startBoundFn(), u8.unbindRoot() (+1 more)
 
-### Community 691 - "jobs"
-Cohesion: 0.17
-Nodes (11): jobs, linux, macos, windows, runs-on, runs-on, name, on (+3 more)
+### Community 691 - "with"
+Cohesion: 0.11
+Nodes (23): jobs, linux, macos, windows, runs-on, steps, runs-on, steps (+15 more)
 
 ### Community 692 - "SoccerGame/ReplicatedStorage/Packages/_Index/sleitnick_signal@1.5.0/signal.luau"
 Cohesion: 0.14
@@ -4376,31 +4709,31 @@ Cohesion: 0.26
 Nodes (17): build_hud(), build_templates(), build_vault(), child(), children(), clean(), find_path(), keep_only() (+9 more)
 
 ### Community 699 - "BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera/VehicleCameraCore.luau"
-Cohesion: 0.18
+Cohesion: 0.16
 Nodes (3): u10.new(), u19.new(), u46.new()
 
 ### Community 700 - "script_parent"
 Cohesion: 0.01
-Nodes (17): RandomVectorOffsetBetween(), u12.new(), RandomVectorOffset(), RandomVectorOffsetBetween(), u12.new(), RandomVectorOffset(), RandomVectorOffsetBetween(), u12.new() (+9 more)
+Nodes (23): RandomVectorOffsetBetween(), u12.new(), RandomVectorOffset(), RandomVectorOffsetBetween(), u12.new(), RandomVectorOffset(), RandomVectorOffsetBetween(), u12.new() (+15 more)
 
 ### Community 701 - "Analytics/ClientRunner.server.luau"
 Cohesion: 0.17
 Nodes (7): Build(), GetLoadDurationAsync(), GetStartTime(), IsUWP(), IsWindows(), SafeGet(), Send()
 
 ### Community 702 - "CameraUtils.ConvertCameraModeEnumToStandard"
-Cohesion: 0.04
-Nodes (27): u1.GetCameraControlChoice(), u1.GetCameraMovementModeFromSettings(), u1.OnLocalPlayerCameraPropertyChanged(), u1.OnUserGameSettingsPropertyChanged(), u1.Update(), CameraInput.getInputEnabled(), CameraInput.resetInputForFrameEnd(), CameraUtils.ConvertCameraModeEnumToStandard() (+19 more)
+Cohesion: 0.02
+Nodes (46): u1.GetCameraControlChoice(), u1.GetCameraMovementModeFromSettings(), u1.new(), u1.OnLocalPlayerCameraPropertyChanged(), u1.OnUserGameSettingsPropertyChanged(), u1.Update(), CameraInput.getInputEnabled(), CameraInput.resetInputForFrameEnd() (+38 more)
 
 ### Community 705 - "Pieces.luau"
 Cohesion: 0.20
 Nodes (12): add(), addShards(), u1.collect(), u1.isPlainBlock(), u1.ofSet(), u1.ofShard(), u1.parts(), u1.reachesFace() (+4 more)
 
 ### Community 706 - "v5.start"
-Cohesion: 0.07
-Nodes (17): v1.start(), u26(), u7(), v1.start(), u21(), u17(), u18(), u21() (+9 more)
+Cohesion: 0.06
+Nodes (31): u9.calc(), v1.start(), setTwoEndPoints(), u9(), v1.start(), v1.Ground(), v30(), v1.start() (+23 more)
 
 ### Community 707 - "BattleGame/ReplicatedStorage/Modules/Shared/Utilities/WindShake.luau"
-Cohesion: 0.21
+Cohesion: 0.14
 Nodes (12): Normalize(), Settings.new(), WindShake.AddObjectShake(), WindShake.Cleanup(), WindShake.Init(), WindShake.MatchWorkspaceWind(), WindShake.Pause(), WindShake.RemoveObjectShake() (+4 more)
 
 ### Community 708 - "Pieces_1.luau"
@@ -4412,7 +4745,7 @@ Cohesion: 0.15
 Nodes (4): u7.CreatePlane(), u7.InitializeGrid(), u2.new(), u3._InsertRecursive()
 
 ### Community 710 - "FFlags/Server.luau"
-Cohesion: 0.04
+Cohesion: 0.03
 Nodes (5): u3.new(), v1.GetValueChanged(), v3._loadDataStore(), v3.Set(), waitForBudget()
 
 ### Community 711 - "ReplicatedStorage/Part_Icles/ScreenEmit.luau"
@@ -4420,8 +4753,8 @@ Cohesion: 0.23
 Nodes (14): buildGraphs(), buildSeeds(), emitAnimateInternal(), emitClone(), u1.EmitAtmosphere(), u1.EmitAtmosphereAnimate(), u1.EmitBloom(), u1.EmitBloomAnimate() (+6 more)
 
 ### Community 712 - "Buttons/Attack.luau"
-Cohesion: 0.06
-Nodes (10): u116(), u4.protectParent(), u20.init(), u7.new(), v29.render(), u14.init(), u14.render(), u11.init() (+2 more)
+Cohesion: 0.13
+Nodes (3): u7.new(), v29.render(), u13()
 
 ### Community 713 - "ScreenEmit_1.luau"
 Cohesion: 0.23
@@ -4432,8 +4765,8 @@ Cohesion: 0.09
 Nodes (22): guess_lang, Debugging Tests, Installation, Running Tests, Writing Tests, markdown_extensions, codehilite, toc (+14 more)
 
 ### Community 715 - "ClientHandlers/Dash.luau"
-Cohesion: 0.03
-Nodes (55): DashHandler:BackdashFunction(), DashHandler:CanActivate(), DashHandler:ClearAllAnimations(), DashHandler:Dash(), DashHandler:DirectionOnCooldown(), DashHandler:Evasive(), DashHandler:Fire(), DashHandler:FrontDash() (+47 more)
+Cohesion: 0.04
+Nodes (42): DashHandler:CanActivate(), DashHandler:ClearAllAnimations(), DashHandler:Dash(), DashHandler:DirectionOnCooldown(), DashHandler:Evasive(), DashHandler:Fire(), DashHandler:FrontDash(), DashHandler:FrontDashFunction() (+34 more)
 
 ### Community 716 - "RankedRanks.luau"
 Cohesion: 0.21
@@ -4444,8 +4777,8 @@ Cohesion: 0.16
 Nodes (9): label(), shine(), stroke(), u1.build(), u1.medal(), u1.paint(), u1.row(), u1.status() (+1 more)
 
 ### Community 718 - "StarterPlayerScripts/TopbarPlus/Icon/Features/Themes.luau"
-Cohesion: 0.24
-Nodes (16): v28(), u1.apply(), u1.change(), u1.getClippedClone(), u1.getInstanceValue(), u1.getModifications(), u1.getRealInstance(), u1.getThemeValue() (+8 more)
+Cohesion: 0.26
+Nodes (15): u1.apply(), u1.change(), u1.getClippedClone(), u1.getInstanceValue(), u1.getModifications(), u1.getRealInstance(), u1.getThemeValue(), u1.merge() (+7 more)
 
 ### Community 719 - "MovementModel.luau"
 Cohesion: 0.16
@@ -4455,13 +4788,13 @@ Nodes (7): boost(), burst(), redirectsTravel(), rememberTravel(), u1.canBoost(),
 Cohesion: 0.16
 Nodes (10): add(), dancerFor(), endsText(), knifeCopy(), leavingTimer(), prizes(), remove(), restore() (+2 more)
 
-### Community 721 - "v3.start"
-Cohesion: 0.08
-Nodes (16): v1.start(), v2.start(), v3.start(), v2.start(), u4(), v1.applyColors(), u15(), u19() (+8 more)
+### Community 721 - "BeamLightning.luau"
+Cohesion: 0.05
+Nodes (28): v_u_17(), v_u_25(), v_u_2.new(), v_u_37(), v_u_57(), v_u_79(), v_u_88(), v163() (+20 more)
 
 ### Community 722 - "catch"
-Cohesion: 0.09
-Nodes (24): [3.0.0-rc.3] - 2020-07-10, [4.0.0], Changed, Fixed, A Better Alternative to `spawn`, `wait`, and `delay`, Cancellation, Cancellation Propagation, Chaining (+16 more)
+Cohesion: 0.08
+Nodes (27): [3.0.0-rc.3] - 2020-07-10, Fixed, Cancellable animation sequence, Chaining, Examples, IsInGroup wrapper, TweenService wrapper, A Better Alternative to `spawn`, `wait`, and `delay` (+19 more)
 
 ### Community 723 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/DebugTracing.luau"
 Cohesion: 0.25
@@ -4472,8 +4805,8 @@ Cohesion: 0.26
 Nodes (8): u2.blocks(), u2.bypasses(), u2.is_enabled(), u2.is_excluded(), u2.blocks(), u2.bypasses(), u2.is_enabled(), u2.is_excluded()
 
 ### Community 725 - "replicatedstorage_modules_waitforchild"
-Cohesion: 0.10
-Nodes (10): Describe(), renderGold(), stepGold(), updateGold(), Pick(), ShowUpdate(), BeginExitWatch(), CancelQueue() (+2 more)
+Cohesion: 0.08
+Nodes (9): Describe(), hideModel(), restoreModel(), SpecialDestruction.process(), renderGold(), stepGold(), updateGold(), Pick() (+1 more)
 
 ### Community 727 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveController.luau"
 Cohesion: 0.09
@@ -4502,6 +4835,10 @@ Nodes (4): u2.getProductInfo(), u2.primativeDeepEqual(), u2.promiseReturn(), u2.
 ### Community 735 - "SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/DebugTracing.luau"
 Cohesion: 0.25
 Nodes (14): decimalToBinaryString(), formatLanes(), group(), groupEnd(), v1.logCommitStarted(), v1.logCommitStopped(), v1.logForceUpdateScheduled(), v1.logLayoutEffectsStarted() (+6 more)
+
+### Community 736 - "StrikerGame/ReplicatedStorage/CmdrClient.luau"
+Cohesion: 0.04
+Nodes (4): u3.MANAGE(), u3.new(), u3.MANAGE(), u3.new()
 
 ### Community 738 - "SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/SchedulingProfiler.luau"
 Cohesion: 0.19
@@ -4591,9 +4928,9 @@ Nodes (6): loadGithubFromReplication(), parseRawTitle(), v13.reconcileGithub(), 
 Cohesion: 0.11
 Nodes (13): Context.new(), TestResults.createNode(), TestResults.new(), TestResults:visitAllNodes(), TestResults:visualize(), TestSession:addDummyError(), TestSession:calculateTotals(), TestSession:finalize() (+5 more)
 
-### Community 761 - "ValleyRun/ReplicatedStorage/chrono/Server/Replicate.luau"
-Cohesion: 0.09
-Nodes (16): CheckEntity(), CheckEntityChanges(), FireEvent(), HandleCFrameSetters(), HandleEntity(), PushLatest(), SerializeFull(), Update() (+8 more)
+### Community 761 - "SmartBone_OLD/Dependencies/Iris/API.luau"
+Cohesion: 0.07
+Nodes (48): u1.Button(), u1.Checkbox(), u1.CollapsingHeader(), u1.ComboArray(), u1.ComboEnum(), u1.DragNum(), u1.Indent(), u1.InputColor3() (+40 more)
 
 ### Community 762 - "⚡ God Cataclysms"
 Cohesion: 0.09
@@ -4615,9 +4952,13 @@ Nodes (5): fadeOutFX(), mirrorDecals(), secondCracks(), setDecals(), setEmitters
 Cohesion: 0.26
 Nodes (9): CreateRandomBezier(), DisableBeams(), TweenProperty(), TweenVelocity(), u104(), u17(), u59(), u74() (+1 more)
 
+### Community 771 - "@quenty_playerthumbnailutils/BasicPane.luau"
+Cohesion: 0.10
+Nodes (5): u4.isBasicPane(), u4.new(), u12.ObserveFormatByKey(), u9.new(), u2.isSignal()
+
 ### Community 772 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraInput.luau"
 Cohesion: 0.09
-Nodes (20): u2.OnEnabledChanged(), CameraInput.setInputEnabled(), decPanInputCount(), incPanInputCount(), inputBegan(), inputChanged(), inputEnded(), mouseMovement() (+12 more)
+Nodes (20): u2.OnEnabledChanged(), adjustTouchPitchSensitivity(), CameraInput.setInputEnabled(), decPanInputCount(), incPanInputCount(), inputBegan(), inputChanged(), inputEnded() (+12 more)
 
 ### Community 773 - "LinearValue.luau"
 Cohesion: 0.26
@@ -4632,12 +4973,16 @@ Cohesion: 0.15
 Nodes (3): B(), u1.CalculateDerivativeAt(), u1.CalculatePositionAt()
 
 ### Community 777 - "Modules/RotatedRegion3.luau"
-Cohesion: 0.20
-Nodes (10): u26(), u4.Cast(), u4.CastPart(), u4.CornerWedge(), u4.Cylinder(), u4.FindPartsInRegion3WithIgnoreList(), u4.FindPartsInRegion3WithWhiteList(), u4.FromPart() (+2 more)
+Cohesion: 0.16
+Nodes (14): v22(), u4.__index.Remove(), u26(), u4.Cast(), u4.CastPart(), u4.CornerWedge(), u4.Cylinder(), u4.FindPartsInRegion3WithIgnoreList() (+6 more)
 
 ### Community 778 - "ReplicatedStorage/SmartBone/Dependencies/Iris/widgets/Menu.luau"
 Cohesion: 0.18
 Nodes (7): u27(), u9(), v46.ChildAdded(), v46.ChildDiscarded(), v46.Generate(), v46.UpdateState(), v92.Generate()
+
+### Community 779 - "Climbing2.luau"
+Cohesion: 0.04
+Nodes (15): u113(), u15(), u18(), u1.setup(), u1.step(), u102(), u50(), u60() (+7 more)
 
 ### Community 782 - "Utilities/Utility.luau"
 Cohesion: 0.07
@@ -4652,19 +4997,19 @@ Cohesion: 0.19
 Nodes (5): posed(), rest(), u3.attach(), u3.place(), u3.rescale()
 
 ### Community 786 - "BasketballGame/ReplicatedStorage/CmdrClient/Shared/Registry.luau"
-Cohesion: 0.04
-Nodes (5): script, u14.RegisterCommand(), u14.RegisterCommand(), u14.RegisterCommand(), u14.RegisterCommand()
+Cohesion: 0.06
+Nodes (6): script, u14.RegisterCommand(), u14.RegisterCommand(), u14.RegisterCommand(), u14.RegisterCommand(), u14.RegisterCommand()
 
 ### Community 788 - "StaticLegacyLoader.luau"
-Cohesion: 0.07
-Nodes (3): u23.addToInfoMap(), u23.addToInfoMapForMode(), u23.isAvailableInShared()
+Cohesion: 0.06
+Nodes (4): u23.addToInfoMap(), u23.addToInfoMapForMode(), u23.isAvailableInShared(), u1.Get()
 
 ### Community 789 - "ReplicatorSignal.luau"
 Cohesion: 0.15
 Nodes (4): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), u11.new(), u11.Wrap()
 
 ### Community 790 - "SorceryGame/ReplicatedStorage/Modules/Icon.luau"
-Cohesion: 0.04
+Cohesion: 0.05
 Nodes (52): Icon:addToJanitor(), Icon:bindEvent(), Icon:bindToggleItem(), Icon:bindToggleKey(), Icon:call(), Icon:clearNotices(), Icon:clipOutside(), Icon:convertLabelToNumberSpinner() (+44 more)
 
 ### Community 792 - "SoccerGame/ReplicatedStorage/Packages/_Index/sleitnick_signal@2.0.1/signal.luau"
@@ -4674,10 +5019,6 @@ Nodes (4): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread
 ### Community 794 - "BallControlClient.luau"
 Cohesion: 0.17
 Nodes (6): bindActions(), getWorldWishDir(), sendInput(), step(), updateCamera(), v15.start()
-
-### Community 795 - "BeamLightning.luau"
-Cohesion: 0.13
-Nodes (11): v_u_17(), v_u_25(), v_u_2.new(), v_u_37(), v_u_57(), v_u_79(), v_u_88(), v163() (+3 more)
 
 ### Community 796 - "BallControlClient_1.luau"
 Cohesion: 0.17
@@ -4703,9 +5044,9 @@ Nodes (4): emit(), v1.Shove(), emit(), v1.Shove()
 Cohesion: 0.09
 Nodes (6): differs(), serializeCurve(), u18._poll(), u18._read(), u18._watchRemoval(), worldCFrameOf()
 
-### Community 802 - "Wall Combo Old.luau"
-Cohesion: 0.11
-Nodes (20): neweffect(), VFX.End(), VFX.Hit(), VFX.Kick(), VFX.Land(), VFX.Punch(), VFX.Slam(), VFX.DualHandWaterStream() (+12 more)
+### Community 802 - "MoveListUI.luau"
+Cohesion: 0.04
+Nodes (17): u1.GetDisplayQuotes(), u1.GetQuoteInfo(), u1.GetQuotes(), CreateMoveset(), SettingsUpdated(), Update(), RoundToTen(), u3.ConsumeXPItems() (+9 more)
 
 ### Community 803 - "WickerSprite_1.luau"
 Cohesion: 0.18
@@ -4721,14 +5062,14 @@ Nodes (10): carryTextures(), makeShard(), makeStandIn(), setLocalHidden(), u1.hi
 
 ### Community 810 - "SoccerGame/ReplicatedStorage/Packages/Trove.luau"
 Cohesion: 0.02
-Nodes (11): updatePlayingEmote(), GetObjectCleanupFunction(), u7.Add(), makePlayerModel(), v4.LoadVisual(), refreshPrompt(), release(), applyRowerLooks() (+3 more)
+Nodes (12): updatePlayingEmote(), updatePlayingEmote(), GetObjectCleanupFunction(), u7.Add(), makePlayerModel(), v4.LoadVisual(), refreshPrompt(), release() (+4 more)
 
 ### Community 815 - "Layer.luau"
 Cohesion: 0.13
 Nodes (14): build(), dress(), lay(), newSheet(), undress(), v1.new(), v1.place(), build() (+6 more)
 
 ### Community 816 - "GodController.luau"
-Cohesion: 0.14
+Cohesion: 0.13
 Nodes (20): AbilityController.CooldownLeft(), AbilityController.GetKit(), AbilityController.Press(), AbilityController.Release(), AbilityController.Start(), aimPoint(), canCastLocally(), role() (+12 more)
 
 ### Community 819 - "ObjectService.luau"
@@ -4759,9 +5100,9 @@ Nodes (9): barTop(), build(), buildFog(), fadeMusic(), refresh(), refreshFog(), 
 Cohesion: 0.13
 Nodes (11): Branch:clone(), Branch:get_position(), Branch:initialise(), Branch:initialise_defaults(), Branch.new(), Branch:set_binded(), Branch:set_blocks_visible(), Branch:set_selected() (+3 more)
 
-### Community 827 - "VfxHandler_1.luau"
-Cohesion: 0.10
-Nodes (8): DefineCutsceneType(), GetSortedFOV(), IsSettingOn(), u3.CutsceneEndFade(), u3.FadeBright(), u3.Fov(), u3.PlayCutsceneLite(), u3.StartParticles()
+### Community 827 - "AnimationHandler.luau"
+Cohesion: 0.04
+Nodes (24): u1.CreateAnimationById(), u1.CreateAnimationByName(), u1.CreateAnimations(), u1.ParseAnimations(), u1.PlayAnimId(), Cache.ClearCloudsTarget(), Cache.UmbraEmptyMistAfterimage(), Cache.UmbraEmptyMistAfterimageFinisher() (+16 more)
 
 ### Community 829 - "Utility/Rating/OpenSkill/Gaussian.luau"
 Cohesion: 0.24
@@ -4769,19 +5110,23 @@ Nodes (11): erfc(), fromPrecisionMean(), ierfc(), u9.__add(), u9.cdf(), u9.__div
 
 ### Community 832 - "u48.GetChatCoreGuiEnabled"
 Cohesion: 0.16
-Nodes (18): u48.CoreGuiChatConnectionsOwnership(), u48.ExperienceChat.HandleInput(), u48.ExperienceChat.TargetTextChannelChanged(), u48.ExperienceChat.UpdateTextBoxChip(), u48.GetChannelName(), u48.GetChatActive(), u48.GetChatCoreGuiEnabled(), u48.GetCore() (+10 more)
+Nodes (14): u48.BubbleChat.new(), u48.CoreGuiChatConnectionsOwnership(), u48.GetChatActive(), u48.GetChatCoreGuiEnabled(), u48.GetCore(), u48.GetCoreGuiEnabled(), u48.InitializeOpenChat(), u48.SetChatActive() (+6 more)
 
-### Community 833 - "SimplePath.luau"
-Cohesion: 0.14
-Nodes (12): u18.new(), u8.new(), u8.createBezierWithEndpoint(), u13(), u17(), u20(), u37(), u42() (+4 more)
+### Community 833 - "_G.particleEnabled"
+Cohesion: 0.02
+Nodes (73): u4.Cleanup(), v1.start(), PlayAnim(), u20(), v1.start(), v1.start(), u19(), v2.start() (+65 more)
+
+### Community 834 - "Leaderstats.luau"
+Cohesion: 0.09
+Nodes (4): u12.RestrictAngle(), v36(), u9(), v21()
 
 ### Community 835 - "ConquestModules/Zone/ZoneController.luau"
-Cohesion: 0.16
-Nodes (10): u20._deregisterConnection(), u20._deregisterZone(), u20._formHeartbeat(), u20.getGroup(), u20.getTouchingZones(), u20._getZonesAndItems(), u20._registerConnection(), u20._registerZone() (+2 more)
+Cohesion: 0.07
+Nodes (20): u20._deregisterConnection(), u20._deregisterZone(), u20._formHeartbeat(), u20.getGroup(), u20.getTouchingZones(), u20._getZonesAndItems(), u20._registerConnection(), u20._registerZone() (+12 more)
 
-### Community 836 - "GunHandle.luau"
-Cohesion: 0.16
-Nodes (4): u1.Fire(), u1.Reload(), u21(), u53()
+### Community 836 - "Core.luau"
+Cohesion: 0.06
+Nodes (14): u3.GetGameInfo(), u3.GetPlaceInfo(), Load(), u1._Init(), u3.CreateMove(), u3.FindFirstMove(), u3.FindMoves(), u3.GetMoveData() (+6 more)
 
 ### Community 839 - "goodsignal.luau"
 Cohesion: 0.16
@@ -4794,10 +5139,6 @@ Nodes (8): addPartyMember(), addPlayerToList(), clearPartyClones(), clearPlayers
 ### Community 842 - "TeamCityReporter.lua"
 Cohesion: 0.16
 Nodes (18): report(), reportNode(), reportRoot(), teamCityEnterCase(), teamCityEnterSuite(), teamCityEscape(), teamCityFailCase(), teamCityLeaveCase() (+10 more)
-
-### Community 843 - "bachiraVFX.luau"
-Cohesion: 0.06
-Nodes (4): u1.characterImage(), u1.footworkfollowup(), u1.characterImage(), u1.footworkfollowup()
 
 ### Community 846 - "Shared/Rating/OpenSkill/Gaussian.luau"
 Cohesion: 0.24
@@ -4835,9 +5176,9 @@ Nodes (6): sampleLinear(), sampleRadial(), sampleVortex(), u1.heading(), u1.reac
 Cohesion: 0.20
 Nodes (6): sampleLinear(), sampleRadial(), sampleVortex(), u1.heading(), u1.reachesAny(), u1.sample()
 
-### Community 864 - "ZiliEmitModule/obj/Shake.luau"
-Cohesion: 0.09
-Nodes (6): u16(), v17.emit(), v27(), u4.Clone(), u4.new(), u4.NextRenderName()
+### Community 864 - "Create FX.luau"
+Cohesion: 0.04
+Nodes (9): SpawnLightning(), RandomVectorOffset(), u3.new(), CalculateMidpointPolygon(), DrawPolygon(), u4.Draw(), Cubic(), Lerp() (+1 more)
 
 ### Community 865 - "LayerCuts.luau"
 Cohesion: 0.26
@@ -4853,7 +5194,7 @@ Nodes (9): flash(), ring(), sparks(), u1.clash(), u1.dash(), u1.enter(), u1.exit
 
 ### Community 868 - "game_replicatedstorage_modules_swordhandle_swordinfo"
 Cohesion: 0.03
-Nodes (43): _G.preloadFolderName(), u1.New(), u27(), u54(), u7.NitoryuStrike(), u7.RagingWhirl(), u7.RashomonDraw(), u7.TowerClimb() (+35 more)
+Nodes (38): _G.preloadFolderName(), v1.swap(), u7(), u8.CleanSkill(), u8.GetSkillCallback(), v1.start(), v1.start(), u15() (+30 more)
 
 ### Community 870 - "AreaNotifier.client.luau"
 Cohesion: 0.33
@@ -4875,17 +5216,17 @@ Nodes (7): emit(), enable(), v1.Feint(), v1.Grab(), v1.Impact(), v1.Jump(), v1.S
 Cohesion: 0.12
 Nodes (30): Elo.Delta(), Elo.Expected(), arenaFolder(), ArenaMatch.BeforeCharacterSwap(), ArenaMatch.OnPlayerRemoving(), ArenaMatch.Start(), attach(), everyoneLoaded() (+22 more)
 
-### Community 878 - "TopbarIcon/Features/Overflow.luau"
-Cohesion: 0.29
-Nodes (12): u1.getAvailableIcons(), u1.getRealXPositions(), u1.getWidth(), u1.start(), u1.updateAvailableIcons(), u1.updateBoundary(), u1.getAvailableIcons(), u1.getRealXPositions() (+4 more)
+### Community 878 - "StarterPlayerScripts/TopbarPlus/Icon/Features/Overflow.luau"
+Cohesion: 0.50
+Nodes (7): u9.new(), u1.getAvailableIcons(), u1.getRealXPositions(), u1.getWidth(), u1.start(), u1.updateAvailableIcons(), u1.updateBoundary()
 
-### Community 879 - "PumpkinPedestalClient.client.luau"
-Cohesion: 0.22
-Nodes (8): burst(), dress(), fireLook(), flash(), pumpkinsShown(), refreshAll(), setup(), sign()
+### Community 879 - "StarterGui/StarterGui/Freecam/FreecamScript.client.luau"
+Cohesion: 0.07
+Nodes (22): CheckMacro(), GetFocusDistance(), StartFreecam(), StepFreecam(), StopFreecam(), thumbstickCurve(), ToggleFreecam(), u23.Fov() (+14 more)
 
-### Community 880 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule.luau"
-Cohesion: 0.12
-Nodes (16): u1.new(), CameraModule:GetCameraControlChoice(), CameraModule:GetCameraMovementModeFromSettings(), CameraModule.new(), CameraModule:OnCharacterAdded(), CameraModule:OnCharacterRemoving(), CameraModule:OnMouseLockToggled(), CameraModule:OnPlayerAdded() (+8 more)
+### Community 880 - "KnitPackage/_Index/evaera_promise@4.0.0/promise.luau"
+Cohesion: 0.07
+Nodes (46): u281(), u37.prototype.await(), u89(), u44.new(), v1.DisplayFailureWaypoint(), awaitHelper(), createAdvancer(), expectHelper() (+38 more)
 
 ### Community 881 - "TournamentResultsClient.client.luau"
 Cohesion: 0.25
@@ -4907,33 +5248,33 @@ Nodes (12): getPooledThread(), runCallback(), threadWorker(), v2.defer(), v2.del
 Cohesion: 0.38
 Nodes (12): DragMouseDown(), generateButtons(), generateColorDragScalar(), generateDragScalar(), generateEnumSliderScalar(), generateInputScalar(), generateSliderScalar(), getValueByIndex() (+4 more)
 
-### Community 889 - "Observability.luau"
-Cohesion: 0.11
-Nodes (5): closest(), u1.WriteHead(), writeDrop(), refreshCaptureRates(), u1.SetCaptureRateCallback()
+### Community 889 - "ClientBridge.luau"
+Cohesion: 0.04
+Nodes (6): u5.loadIdentifier(), u5.ref(), u5.start(), u5.waitForIdentifier(), u1.ref(), u1.start()
 
 ### Community 890 - "BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/ZoomController/Popper.luau"
 Cohesion: 0.19
 Nodes (4): getCollisionPoint(), queryPoint(), queryViewport(), testPromotion()
 
-### Community 891 - "SorceryGame/ReplicatedStorage/Modules/Shared/Utilities/Utility.luau"
-Cohesion: 0.04
-Nodes (30): UI:CalculateUltimateGradientValue(), UI:InitiateUltimate(), UI:LoadMobileButtonPositions(), UI:ResetMobileButtonPositions(), UI:SaveMobileButtonPositions(), UI:SetUpMobile(), UI:UseOnHotbar(), splitTile() (+22 more)
+### Community 891 - "Combat/UI.luau"
+Cohesion: 0.10
+Nodes (9): UI:CalculateUltimateGradientValue(), UI:InitiateUltimate(), UI:LoadMobileButtonPositions(), UI:ResetMobileButtonPositions(), UI:SaveMobileButtonPositions(), UI:SetUpMobile(), UI:UseOnHotbar(), Utility.AlphaClamp() (+1 more)
+
+### Community 893 - "Observability.luau"
+Cohesion: 0.05
+Nodes (4): stop(), run(), refreshCaptureRates(), u1.SetCaptureRateCallback()
 
 ### Community 894 - "FXUtil.luau"
 Cohesion: 0.08
 Nodes (12): v_u_11(), v_u_15(), v_u_2.Disable(), v_u_2.DisableBeams(), v_u_2.DisableTrails(), v_u_2.Emit(), v_u_2.Enable(), v_u_2.EnableBeamsV2() (+4 more)
 
 ### Community 895 - "MovementReplicator.luau"
-Cohesion: 0.05
-Nodes (51): create_bool_stat(), create_stat_frame(), Diagnostics:add_replicant(), Diagnostics:get_replicant_thumbnail(), Diagnostics:initialise_debugger_stats(), Diagnostics:initialise_replica_stats(), Diagnostics:update_setting(), format_value() (+43 more)
+Cohesion: 0.06
+Nodes (35): create_bool_stat(), create_stat_frame(), Diagnostics:add_replicant(), Diagnostics:get_replicant_thumbnail(), Diagnostics:initialise_debugger_stats(), Diagnostics:initialise_replica_stats(), Diagnostics:update_setting(), format_value() (+27 more)
 
 ### Community 898 - "FruitGame/ReplicatedStorage/ReplicaShared/Maid.luau"
 Cohesion: 0.21
 Nodes (6): u12(), u13.Cleanup(), u13.New(), u20.Add(), u4(), u5()
-
-### Community 899 - "game_replicatedstorage_modules_npcinteractions"
-Cohesion: 0.07
-Nodes (4): u34(), u41(), u9(), v21()
 
 ### Community 900 - "Leaderboards.luau"
 Cohesion: 0.22
@@ -4960,12 +5301,12 @@ Cohesion: 0.04
 Nodes (50): Icon:bindEvent(), Icon:bindToggleItem(), Icon:bindToggleKey(), Icon:call(), Icon:clearNotices(), Icon:clipOutside(), Icon:debounce(), Icon:deselect() (+42 more)
 
 ### Community 911 - "KurisMeshEmitUtility.luau"
-Cohesion: 0.18
-Nodes (4): RetrieveProperities(), RotateMesh(), u1.Emit(), u1.new()
+Cohesion: 0.11
+Nodes (9): u11(), u1.Emit(), u1.enable(), u1.new(), u7(), RetrieveProperities(), RotateMesh(), u1.Emit() (+1 more)
 
 ### Community 912 - "Signal.new"
-Cohesion: 0.04
-Nodes (19): u1.new(), u1.new(), u1.new(), createPorts(), u1.new(), u1.new(), u1.new(), u1.Get() (+11 more)
+Cohesion: 0.03
+Nodes (6): u1.new(), u1.new(), u1.new(), u1.new(), u1.new(), u1.new()
 
 ### Community 913 - "KurisMeshEmitUtility_1.luau"
 Cohesion: 0.18
@@ -4976,12 +5317,12 @@ Cohesion: 0.11
 Nodes (6): u1.calculate(), u1.tuning(), baseProfile(), bladeDash(), v1.get(), variant()
 
 ### Community 919 - "GameAnalytics/GameAnalytics.luau"
-Cohesion: 0.06
+Cohesion: 0.05
 Nodes (21): addToInitializationQueue(), addToInitializationQueueByUserId(), ErrorHandler(), ErrorHandlerFromClient(), isSdkReady(), u1.addBusinessEvent(), u1.addDesignEvent(), u1.addErrorEvent() (+13 more)
 
 ### Community 920 - "CameraUtils.restoreMouseBehavior"
-Cohesion: 0.21
-Nodes (20): u2.Cleanup(), u2.UpdateMouseBehavior(), u1.OnCameraTypeChanged(), CameraInput.disableCameraToggleInput(), CameraInput.enableCameraToggleInput(), CameraUI.setCameraModeToastEnabled(), CameraUI.setCameraModeToastOpen(), CameraUtils.restoreMouseBehavior() (+12 more)
+Cohesion: 0.11
+Nodes (24): u2.Cleanup(), u2.UpdateMouseBehavior(), u1.OnCameraTypeChanged(), BaseCamera:LeaveFirstPerson(), BaseCamera:UpdateMouseBehavior(), CameraInput.disableCameraToggleInput(), CameraInput.enableCameraToggleInput(), CameraUI.setCameraModeToastEnabled() (+16 more)
 
 ### Community 921 - "rising_ball_effect.luau"
 Cohesion: 0.27
@@ -4991,9 +5332,9 @@ Nodes (9): deepCopy(), mergeTables(), spawnBall(), u1.Emit(), u1.EmitContinuous(
 Cohesion: 0.27
 Nodes (9): deepCopy(), mergeTables(), spawnBall(), u1.Emit(), u1.EmitContinuous(), u1.EmitContinuousFromConfig(), u1.EmitFromConfig(), u1.GetConfig() (+1 more)
 
-### Community 923 - "Club.luau"
-Cohesion: 0.12
-Nodes (8): copy(), u24.Debounce(), u24.GetMemberInfo(), u24.GetRank(), u24.GetRankInPlace(), u24.Invite.Key(), u24.IsRankAbove(), u24.Notify()
+### Community 923 - "Cycle/Janitor.luau"
+Cohesion: 0.04
+Nodes (13): u5.LinkToInstances(), u5.new(), v27(), u5.LinkToInstances(), u5.new(), u5.Remove(), SpawnLightning(), u3.__index.Cleanup() (+5 more)
 
 ### Community 924 - "ValleyPanels.luau"
 Cohesion: 0.40
@@ -5027,10 +5368,6 @@ Nodes (4): RetrieveProperities(), RotateMesh(), u1.Emit(), u1.new()
 Cohesion: 0.17
 Nodes (10): availability(), changePage(), clearRows(), permitted(), render(), renderCountries(), request(), setOpen() (+2 more)
 
-### Community 934 - "script_types"
-Cohesion: 0.05
-Nodes (4): RetrieveProperities(), RotateMesh(), u1.Emit(), u1.new()
-
 ### Community 941 - "fs.rs"
 Cohesion: 0.19
 Nodes (6): Error, File, read_dir(), ReadDir, Result, write()
@@ -5044,16 +5381,16 @@ Cohesion: 0.16
 Nodes (19): EmotesModule.init(), EmotesModule.init(), ClearEmoteHighlights(), countUnownedEmotes(), CreateEmoteFrame(), GetEmoteAnim(), getRandomFakeEmote(), isUnlocked() (+11 more)
 
 ### Community 944 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera/VehicleCameraCore.luau"
-Cohesion: 0.22
+Cohesion: 0.24
 Nodes (8): getPitch(), getYaw(), stepSpringAxis(), VariableEdgeSpring.new(), YawPitchSpring:getCFrame(), YawPitchSpring.new(), YawPitchSpring:setGoal(), YawPitchSpring:step()
 
 ### Community 945 - "ImpactDisk.luau"
 Cohesion: 0.19
 Nodes (14): buildRayFn(), resolveSurface(), u1.attach(), u1.detach(), u1.place(), u1.refresh(), u1.write(), buildRayFn() (+6 more)
 
-### Community 946 - "ServerClientInfoHandler.luau"
-Cohesion: 0.12
-Nodes (4): IsValidClientInfo(), u1.Init(), u1.IsValidClientInfo(), UpdateClientInfoCache()
+### Community 946 - "BaseAnimate.luau"
+Cohesion: 0.03
+Nodes (4): u1.Bind(), u9.Once(), u23(), Load()
 
 ### Community 947 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/Invisicam.luau"
 Cohesion: 0.16
@@ -5091,21 +5428,25 @@ Nodes (3): enableThumbstickInput(), setupThumbstickInput(), u6.Enable()
 Cohesion: 0.18
 Nodes (24): PathDisplay.clearRenderedPath(), PathDisplay.renderPath(), PathDisplay.setCurrentPoints(), renderPoint(), retrieveFromPool(), returnToPool(), VRNavigation:BindJumpAction(), VRNavigation:ControlCharacterGamepad() (+16 more)
 
-### Community 959 - "ReplicatedStorage/Modules/Player/Replication.luau"
-Cohesion: 0.16
-Nodes (8): Replication:CollabProxy(), Replication:ConnectToVFXRemotes(), Replication:Destruct(), Replication:FireEffect(), Replication:_Init(), Replication:JoinedCollabEmote(), Instances.get_directory(), SkillBuilder:parse_animation()
+### Community 959 - "Maid/Promise.luau"
+Cohesion: 0.07
+Nodes (45): u118(), u28(), u36(), u37._all(), u37.allSettled(), u37.any(), u37.defer(), u37.delay() (+37 more)
 
 ### Community 960 - "Cosmetics.server.luau"
-Cohesion: 0.16
-Nodes (10): applyOverheadTitle(), canEquipTitle(), Cosmetic(), evalColorSequence(), getTitleChatColor(), getTitleProgress(), getTitlesFolder(), removeOverheadTitle() (+2 more)
+Cohesion: 0.11
+Nodes (15): applyOverheadTitle(), canEquipTitle(), Cosmetic(), evalColorSequence(), getTitleChatColor(), getTitleProgress(), getTitlesFolder(), removeOverheadTitle() (+7 more)
 
 ### Community 961 - "Des/_Index/evaera_promise@4.0.0/promise.luau"
-Cohesion: 0.08
-Nodes (54): Janitor.__index:AddObject(), awaitHelper(), createAdvancer(), Error:extend(), Error:getErrorChain(), Error.is(), Error.isKind(), Error.new() (+46 more)
+Cohesion: 0.07
+Nodes (57): MovementUtil.frequency_loop(), MovementUtil.tween_number(), Attributes:foreach(), awaitHelper(), createAdvancer(), Error:extend(), Error:getErrorChain(), Error.is() (+49 more)
 
 ### Community 962 - "ClickToMoveDisplay.SetEndWaypointTexture"
-Cohesion: 0.09
-Nodes (22): u145.SetEndWaypointTexture(), u145.SetWaypointRadius(), u145.SetWaypointsAlwaysOnTop(), ClickToMove:SetEndWaypointTexture(), ClickToMove:SetWaypointRadius(), ClickToMove:SetWaypointsAlwaysOnTop(), ClickToMoveDisplay.SetEndWaypointTexture(), ClickToMoveDisplay.SetWaypointRadius() (+14 more)
+Cohesion: 0.08
+Nodes (25): u145.SetEndWaypointTexture(), u145.SetWaypointRadius(), u145.SetWaypointsAlwaysOnTop(), ClickToMove:SetEndWaypointTexture(), ClickToMove:SetWaypointRadius(), ClickToMove:SetWaypointsAlwaysOnTop(), ClickToMoveDisplay.SetEndWaypointTexture(), ClickToMoveDisplay.SetWaypointRadius() (+17 more)
+
+### Community 963 - "SoccerGame/ReplicatedStorage/Packages/_Index/sleitnick_component@2.4.8/component/init.spec.luau"
+Cohesion: 0.10
+Nodes (3): Check(), CreateAndCheckAll(), SetAndCheck()
 
 ### Community 964 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17.2.1/scheduler/SchedulerProfiling.luau"
 Cohesion: 0.30
@@ -5125,19 +5466,19 @@ Nodes (6): u4.fromMaid(), u4.new(), u9(), u25(), u26(), v36()
 
 ### Community 969 - "Utility.StopAutoRotate"
 Cohesion: 0.07
-Nodes (26): WallRunHandler:CanActivate(), WallRunHandler:Cast(), WallRunHandler:Fire(), WallRunHandler:GetDirectionWithIndex(), WallRunHandler:_Init(), WallRunHandler.new(), WallRunHandler:NotStunned(), WallRunHandler:OnJump() (+18 more)
+Nodes (27): Jump(), WallRunHandler:CanActivate(), WallRunHandler:Cast(), WallRunHandler:Fire(), WallRunHandler:GetDirectionWithIndex(), WallRunHandler:_Init(), WallRunHandler.new(), WallRunHandler:NotStunned() (+19 more)
 
 ### Community 971 - "Aura Walk Emote.luau"
-Cohesion: 0.25
-Nodes (19): addAutoWalk(), addBodyAura(), addLighting(), addPressure(), addScreen(), afterimage(), alive(), bindTrack() (+11 more)
+Cohesion: 0.11
+Nodes (27): addAutoWalk(), addBodyAura(), addLighting(), addPressure(), addScreen(), afterimage(), alive(), bindTrack() (+19 more)
 
 ### Community 972 - "Other/PartCache/Table.luau"
 Cohesion: 0.21
 Nodes (4): u2.contains(), u2.indexOf(), u2.keyOf(), u2.removeObject()
 
 ### Community 973 - "BuildTools/Dropdown.luau"
-Cohesion: 0.10
-Nodes (24): Attributes.new(), Maid.removing(), BuildTools:load_modifier_frames(), ModifierInsert:create_option(), ModifierInsert:create_section(), ModifierInsert:initialise(), ModifierInsert:initialise_tweens(), ModifierInsert:load_all() (+16 more)
+Cohesion: 0.11
+Nodes (19): Attributes.new(), Maid.removing(), BuildTools:load_modifier_frames(), ModifierInsert:create_option(), Retrieval.get_skill_sets(), Retrieval.get_skills(), ModifierFrame.clear(), ModifierFrame:clear_properties() (+11 more)
 
 ### Community 975 - "util/Zone/ZoneController.luau"
 Cohesion: 0.19
@@ -5148,16 +5489,16 @@ Cohesion: 0.13
 Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing(), onFreeFall() (+9 more)
 
 ### Community 980 - "ReplicatedStorage/SmartBone/Dependencies/Iris/widgets/Window.luau"
-Cohesion: 0.24
-Nodes (8): v125(), u1.SetFocusedWindow(), u33(), u49(), u67(), v105.Generate(), v105.GenerateState(), v105.UpdateState()
+Cohesion: 0.27
+Nodes (7): u1.SetFocusedWindow(), u33(), u49(), u67(), v105.Generate(), v105.GenerateState(), v105.UpdateState()
 
 ### Community 981 - "CharSerDes.luau"
 Cohesion: 0.29
 Nodes (9): _normalizeCFrameOrientation(), u1.ClampForInt16(), u1.DeserializeCFrame(), u1.DeserializeRootCFrame(), u1.SerializeCFrame(), u1.SerializeRootCFrame(), u1.SerializeVector3(), u1.SmartDeserializeRootCFrame() (+1 more)
 
 ### Community 983 - "PacketProfiler.luau"
-Cohesion: 0.06
-Nodes (11): v31(), v36(), v45(), u10.render(), u9(), u23(), v7.init(), v7.render() (+3 more)
+Cohesion: 0.08
+Nodes (6): v45(), u10.render(), u9(), u23(), v7.init(), v7.render()
 
 ### Community 984 - "SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17.2.1/scheduler/SchedulerProfiling.luau"
 Cohesion: 0.30
@@ -5183,9 +5524,9 @@ Nodes (4): getCollisionPoint(), queryPoint(), queryViewport(), testPromotion()
 Cohesion: 0.20
 Nodes (3): assetReady(), u1.template(), u1.update()
 
-### Community 993 - "StrikerGame/ReplicatedStorage/chrono/Shared/Ticker.luau"
-Cohesion: 0.06
-Nodes (18): Check(), DoLoop(), PlayerAdded(), Check(), DoLoop(), PlayerAdded(), acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread() (+10 more)
+### Community 993 - "StrikerGame/ReplicatedStorage/chrono/Shared/Signal.luau"
+Cohesion: 0.21
+Nodes (6): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), u14.Connect(), u14.new(), u26.new(), u4.new()
 
 ### Community 994 - "Shared/Signal_1.luau"
 Cohesion: 0.21
@@ -5228,7 +5569,7 @@ Cohesion: 0.10
 Nodes (8): close(), open(), ready(), refresh(), soulCollected(), soulsChanged(), soulText(), updateSettings()
 
 ### Community 1005 - "Game/SmartBone/Components/Bone.luau"
-Cohesion: 0.15
+Cohesion: 0.16
 Nodes (12): Class:ClipVelocity(), Class:Constrain(), Class:PreUpdate(), Class:SolveTransform(), Class:StepPhysics(), ClipVector(), GetFriction(), IsNaN() (+4 more)
 
 ### Community 1008 - "ReplicatedStorage/Part_Icles/EventsCollision.luau"
@@ -5237,7 +5578,7 @@ Nodes (8): applySnapCFrame(), attachmentBounceLocalPos(), handleBounce(), handle
 
 ### Community 1009 - "Toolbox.luau"
 Cohesion: 0.12
-Nodes (23): AssetQuery.search(), AssetQuery.search_audio(), AssetQuery.search_decal(), AssetQuery.search_model(), PagesWrapper.new(), PagesWrapper.psuedo(), Toolbox:bind_stringbox(), Toolbox:clear() (+15 more)
+Nodes (22): AssetQuery.search(), AssetQuery.search_audio(), AssetQuery.search_decal(), AssetQuery.search_model(), PagesWrapper.new(), PagesWrapper.psuedo(), Toolbox:clear(), Toolbox:create_audio_entry() (+14 more)
 
 ### Community 1010 - "Blade.luau"
 Cohesion: 0.21
@@ -5264,8 +5605,8 @@ Cohesion: 0.20
 Nodes (3): tell(), v1.explain(), v1.refuse()
 
 ### Community 1016 - "HitboxHandler.luau"
-Cohesion: 0.15
-Nodes (9): HB:_Cast(), HB:Clear(), HB:Destroy(), HB:Once(), HB:Start(), HB:Stop(), Projectile:Destroy(), Projectile:Stop() (+1 more)
+Cohesion: 0.13
+Nodes (11): 7. BattleGame Reference Modules (`references/BattleGame/`), GetPartBoundsInBox(), HB:_Cast(), HB:Clear(), HB:Destroy(), HB:Once(), HB:Start(), HB:Stop() (+3 more)
 
 ### Community 1018 - "Serialise/LibDeflate.luau"
 Cohesion: 0.06
@@ -5283,13 +5624,13 @@ Nodes (9): ensureGui(), ensureLoop(), getCharacterTemplate(), getGhost(), getVie
 Cohesion: 0.10
 Nodes (20): runs-on, steps, GITHUB_TOKEN, types, jobs, clabot, name, on (+12 more)
 
-### Community 1022 - "Server/Receiver_1.luau"
-Cohesion: 0.16
-Nodes (11): DeserializeEntityPacket(), FireMiddleMans(), GuardLag(), GuardPacket(), GuardVelocity(), HandleEntity(), OnReceive(), RewritePacketCFrame() (+3 more)
+### Community 1022 - "VFX/Gojo/Ruthless Massacre.luau"
+Cohesion: 0.05
+Nodes (44): EffectUtility.EmitImpactFrames(), EffectUtility.ToggleImpactFrames(), VFX.Hit(), VFX.ImpactFrames(), do_zat_impact_framu(), EmitAttachment(), VFX.AttackerRightArm(), VFX.AttackerRoot() (+36 more)
 
-### Community 1023 - "ClientMain.client.luau"
-Cohesion: 0.03
-Nodes (37): u9(), v1.start(), u7(), v1.start(), u6(), v1.start(), u44.fromEvent(), _G.requestStream() (+29 more)
+### Community 1023 - "ShipManager.luau"
+Cohesion: 0.18
+Nodes (7): u1.ApplySpeed(), u1.Backward(), u1.Flags(), u1.Foward(), u1.Idle(), u30(), _G.ScaleWithFPS()
 
 ### Community 1024 - "HitboxCodec_1.luau"
 Cohesion: 0.27
@@ -5300,7 +5641,7 @@ Cohesion: 0.06
 Nodes (30): BaseAttack:AddCertainCooldown(), BaseAttack:AddCooldown(), BaseAttack:Afflict(), BaseAttack:AntiDashMovestack(), BaseAttack:BasicConditions(), BaseAttack:Cancel(), BaseAttack:Close(), BaseAttack:CloseForRespawn() (+22 more)
 
 ### Community 1026 - "game_replicatedstorage_modules_clienteffects_effecthelper_boattween"
-Cohesion: 0.13
+Cohesion: 0.09
 Nodes (4): GPTween(), lerp(), quadBezier(), spawnTrails()
 
 ### Community 1027 - "Modifiers.luau"
@@ -5328,7 +5669,7 @@ Cohesion: 0.07
 Nodes (36): equip_slot(), Hotbar:cycle_slot(), Hotbar:deselect(), Hotbar:destroy(), Hotbar:equip_slot(), Hotbar.new(), Hotbar:select(), Hotbar:unequip_slot() (+28 more)
 
 ### Community 1033 - "BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/MouseLockController.luau"
-Cohesion: 0.03
+Cohesion: 0.04
 Nodes (13): u1.EnableMouseLock(), u1.OnMouseLockToggled(), CameraUtils.restoreMouseIcon(), CameraUtils.setMouseIconOverride(), getMouse(), u1.EnableMouseLock(), u1.OnMouseLockToggled(), u1.new() (+5 more)
 
 ### Community 1034 - "Modules/Velocity.luau"
@@ -5348,8 +5689,8 @@ Cohesion: 0.29
 Nodes (12): Holding(), HotbarRow(), ItemSlot(), LoadTracks(), OnCharacter(), Refresh(), SetItemAnimating(), SetScope() (+4 more)
 
 ### Community 1040 - "ClaimPop.luau"
-Cohesion: 0.39
-Nodes (11): u1.asset(), u1.counter(), u1.crate(), u1.emote(), u1.given(), u1.journey(), u1.knife(), u1.show() (+3 more)
+Cohesion: 0.16
+Nodes (13): u1.asset(), u1.counter(), u1.crate(), u1.emote(), u1.given(), u1.journey(), u1.knife(), u1.show() (+5 more)
 
 ### Community 1041 - "UtilityModules/Trove.luau"
 Cohesion: 0.04
@@ -5361,7 +5702,7 @@ Nodes (6): scaleRecursive(), scaleRecursive2(), u1.ScaleModel(), u1.ScaleSize(),
 
 ### Community 1045 - "EffectUtility.EmitAttachment"
 Cohesion: 0.04
-Nodes (52): EffectUtility.CloneAndEmit(), EffectUtility.EmitAttachment(), EffectUtility.ToggleAttachment(), VFX.Footstep(), VFX.Grab(), VFX.GrabCrack(), VFX.Hit(), VFX.Kick() (+44 more)
+Nodes (48): EffectUtility.CloneAndEmit(), EffectUtility.EmitAttachment(), EffectUtility.ToggleAttachment(), VFX.Footstep(), VFX.Grab(), VFX.GrabCrack(), VFX.Hit(), VFX.Kick() (+40 more)
 
 ### Community 1047 - "ClientAnalytics.luau"
 Cohesion: 0.24
@@ -5371,21 +5712,17 @@ Nodes (6): checkRateLimit(), sendEvent(), v8.track(), v8.trackCustom(), v8.track
 Cohesion: 0.13
 Nodes (3): main(), pack_library(), lua()
 
-### Community 1051 - "LoadSave.luau"
-Cohesion: 0.10
-Nodes (29): Maid.new(), BuildTools.new(), Draggers.new(), LoadSave:create_slot(), LoadSave:create_slot_object(), LoadSave:create_version(), LoadSave:delete_slot(), LoadSave:get_slot_description() (+21 more)
+### Community 1050 - "BlackBeardThirdAbility.luau"
+Cohesion: 0.08
+Nodes (4): createDebree(), GetRandomPointInFront(), Absorb(), AbsorbFromGround()
 
-### Community 1052 - "Updater.luau"
-Cohesion: 0.11
-Nodes (4): GetEndpointForRequest(), v1.GBRequest(), AggregateMetric(), v1.PrepareServerStateReport()
+### Community 1051 - "LoadSave.luau"
+Cohesion: 0.13
+Nodes (24): Maid.new(), BuildTools.new(), Draggers.new(), LoadSave:create_slot(), LoadSave:create_slot_object(), LoadSave:create_version(), LoadSave:delete_slot(), LoadSave:get_slot_description() (+16 more)
 
 ### Community 1053 - "Shared/TopbarPlus/Icon/Utility.luau"
 Cohesion: 0.18
 Nodes (3): u1.clipOutside(), u1.copyTable(), u1.setVisible()
-
-### Community 1056 - "MeshFrames.luau"
-Cohesion: 0.19
-Nodes (7): firstDecal(), frameIds(), resetToTemplate(), textureSlot(), u1.attach(), u1.readFrames(), u1.readInto()
 
 ### Community 1057 - "Clone/Animate.server.luau"
 Cohesion: 0.15
@@ -5395,9 +5732,9 @@ Nodes (16): animateTool(), getTool(), getToolAnim(), keyFrameReachedFunc(), move
 Cohesion: 0.22
 Nodes (4): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), u13.Connect(), u4.new()
 
-### Community 1060 - "u48.GetTextBounds"
-Cohesion: 0.50
-Nodes (5): u48.BubbleChatMessage.UpdateChat(), u48.DistantBubble.UpdateChat(), u48.FilterSpecialCharacters(), u48.GetTextBounds(), u48.TextChatMessage.UpdateChat()
+### Community 1060 - "u48.ExperienceChat.HandleInput"
+Cohesion: 0.27
+Nodes (11): u48.BubbleChatMessage.UpdateChat(), u48.DistantBubble.UpdateChat(), u48.ExperienceChat.HandleInput(), u48.ExperienceChat.TargetTextChannelChanged(), u48.ExperienceChat.UpdateTextBoxChip(), u48.FilterSpecialCharacters(), u48.GetChannelName(), u48.GetTextBounds() (+3 more)
 
 ### Community 1061 - "Freezing ShatterGrip.luau"
 Cohesion: 0.15
@@ -5444,8 +5781,8 @@ Cohesion: 0.09
 Nodes (39): _chooseToward(), _chooseTowardGhost(), findContentChild(), _forcedDirFromExit(), _forwardOpen(), _forwardOpenGhost(), frightFrame(), ghostDirFrame() (+31 more)
 
 ### Community 1077 - "NumberEditor.luau"
-Cohesion: 0.26
-Nodes (17): NumberEditor:bind_stringbox(), NumberEditor:can_delete_point(), NumberEditor:constrain_text(), NumberEditor:create_point(), NumberEditor:delete_point(), NumberEditor:get_ordered_points(), NumberEditor:get_point_position(), NumberEditor:get_position_to_scale() (+9 more)
+Cohesion: 0.16
+Nodes (21): NumberEditor:bind_stringbox(), NumberEditor:can_delete_point(), NumberEditor:constrain_text(), NumberEditor:create_point(), NumberEditor:delete_point(), NumberEditor:get_ordered_points(), NumberEditor:get_point_position(), NumberEditor:get_position_to_scale() (+13 more)
 
 ### Community 1078 - "profilestore/ProfileStore.luau"
 Cohesion: 0.13
@@ -5460,16 +5797,16 @@ Cohesion: 0.25
 Nodes (5): Evaluate(), FindKeyframes(), LerpArray(), LerpBezierShape(), SolveCubicBezier()
 
 ### Community 1081 - "AnimationService.luau"
-Cohesion: 0.10
-Nodes (3): beginSession(), endSession(), restoreMovement()
+Cohesion: 0.06
+Nodes (12): hookPlayer(), isAdmin(), notify(), onChatted(), beginSession(), endSession(), restoreMovement(), module:RemoveAllStuns() (+4 more)
 
 ### Community 1082 - "Sequences.luau"
 Cohesion: 0.24
 Nodes (5): near(), u1.findShift(), u1.shift(), u1.writeShift(), writeEnd()
 
-### Community 1083 - "Thread.luau"
-Cohesion: 0.16
-Nodes (10): Sequencer:destroy(), Sequencer:jump_to(), Sequencer:start(), Sequencer:stop(), terminate_thread(), Thread:close(), Thread:destroy(), Thread.new() (+2 more)
+### Community 1083 - "BuildHandler/SkillBuilder.luau"
+Cohesion: 0.06
+Nodes (32): create_sequence_skill(), get_attack_slot_data(), Sequencer:destroy(), Sequencer:jump_to(), Sequencer.new(), Sequencer:start(), Sequencer:stop(), SequenceSkill.new() (+24 more)
 
 ### Community 1084 - "baseClient/rin2.luau"
 Cohesion: 0.24
@@ -5496,20 +5833,20 @@ Cohesion: 0.31
 Nodes (9): recolored(), turned(), u1.apply(), u1.driven(), u1.isNeutral(), u1.one(), u1.prepare(), u1.referenceHue() (+1 more)
 
 ### Community 1102 - "ClientEffects/VfxHandler.luau"
-Cohesion: 0.08
-Nodes (7): RandomSetting(), getEmitMultiplier(), getVisualsFolder(), VFX.Emit(), VFX.EmitDescendants(), VFX.EmitEffects(), VFX.MatchGround()
+Cohesion: 0.09
+Nodes (6): getEmitMultiplier(), getVisualsFolder(), VFX.Emit(), VFX.EmitDescendants(), VFX.EmitEffects(), VFX.MatchGround()
 
-### Community 1103 - "DebreeController.luau"
-Cohesion: 0.16
-Nodes (19): CameraPosition(), DebreeController.DustBreak(), DebreeController.Start(), DebreeSound(), Dress(), DustEnabled(), GetPart(), MakePart() (+11 more)
+### Community 1103 - "Materials.luau"
+Cohesion: 0.60
+Nodes (4): Materials.FromIndex(), Materials.FromKey(), Materials.ToIndex(), Materials.ToKey()
 
 ### Community 1105 - "KIM.luau"
 Cohesion: 0.36
 Nodes (5): emit(), enable(), v1.Comp1(), v1.Comp2(), v1.Shine()
 
 ### Community 1106 - "PlaceRole.luau"
-Cohesion: 0.13
-Nodes (13): Config.GetTier(), PlaceRole.IsArena(), PlaceRole.IsLobby(), PlaceRole.IsMain(), PlaceRole.IsStudioTestArena(), Season.Apply(), Season.Current(), snapshot() (+5 more)
+Cohesion: 0.17
+Nodes (10): Config.GetTier(), PlaceRole.IsArena(), PlaceRole.IsLobby(), PlaceRole.IsMain(), PlaceRole.IsStudioTestArena(), insideArena(), Loader.Load(), touchesArena() (+2 more)
 
 ### Community 1107 - "Recarve_1.luau"
 Cohesion: 0.36
@@ -5536,12 +5873,12 @@ Cohesion: 0.24
 Nodes (6): greyOut(), lookOf(), originals(), v1.dim(), v1.looks(), v1.setEnabled()
 
 ### Community 1115 - "EmoteParty.luau"
-Cohesion: 0.15
-Nodes (10): u1.toast(), bind(), breakOut(), keep(), party(), updateBots(), updateOwn(), joined() (+2 more)
+Cohesion: 0.31
+Nodes (6): bind(), breakOut(), keep(), party(), updateBots(), updateOwn()
 
 ### Community 1116 - "u4.buildPacks"
-Cohesion: 0.33
-Nodes (19): bar(), checkMark(), cssBox(), ct(), glow(), gradient(), label(), priceButton() (+11 more)
+Cohesion: 0.30
+Nodes (21): bar(), checkMark(), cssBox(), ct(), glow(), gradient(), label(), priceButton() (+13 more)
 
 ### Community 1117 - "src/init.lua"
 Cohesion: 0.12
@@ -5551,13 +5888,13 @@ Nodes (3): run(), TestPlan.new(), TestPlanner.createPlan()
 Cohesion: 0.22
 Nodes (4): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), u13.Connect(), u4.new()
 
-### Community 1120 - "script_presets"
-Cohesion: 0.16
-Nodes (9): InRange(), Trigger(), BloodHandler.BloodRay(), BloodHandler.BloodRays(), BloodHandler.BloodRaysWithoutPreset(), BloodHandler.CanShowBlood(), BloodHandler.ParticleSupportsBlood(), GrabHandler.Remove() (+1 more)
+### Community 1120 - "PromiseModule.luau"
+Cohesion: 0.08
+Nodes (41): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+33 more)
 
-### Community 1122 - "VFX/Invincible/Holding Back.luau"
-Cohesion: 0.33
-Nodes (5): Impact(), VFX.Grabbed(), VFX.Hit(), VFX.TeleportSFX(), VFX.Windup()
+### Community 1122 - "FX/ForgeVFX/pkg/Promise.luau"
+Cohesion: 0.08
+Nodes (41): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u10.extend() (+33 more)
 
 ### Community 1123 - "GrandTornadoFinal.luau"
 Cohesion: 0.15
@@ -5572,16 +5909,12 @@ Cohesion: 0.29
 Nodes (3): u6.SetEnabled(), u6.Update(), u3.Update()
 
 ### Community 1127 - "BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/TransparencyController.luau"
-Cohesion: 0.04
-Nodes (6): u3.Update(), CameraUtils.Round(), u1.Update(), u1.Update(), u1.Update(), u2.Update()
+Cohesion: 0.03
+Nodes (7): u3.Update(), CameraUtils.Round(), u1.Update(), u1.Update(), u1.Update(), u1.Update(), u2.Update()
 
 ### Community 1128 - "CrateReel.luau"
 Cohesion: 0.16
 Nodes (7): describe(), later(), u12.play(), make(), u5.card(), u5.corner(), u5.text()
-
-### Community 1129 - "utils/updateIn.luau"
-Cohesion: 0.05
-Nodes (5): updateInDeeply(), slice(), u1.CreateLabelReader(), u1.Export(), u1.Validate()
 
 ### Community 1130 - "ClientFastFlags.luau"
 Cohesion: 0.14
@@ -5600,16 +5933,16 @@ Cohesion: 0.17
 Nodes (11): 1. Combat core — ✅ written, waiting on a Studio test (see Done), 2–6. Abilities, Runner, God, round loop, match UI — ✅ written, waiting on a Studio test (see Done), 7. ⏸️ Map and destruction — on hold, 8. Economy extras, 9. Polish and launch, Disaster Run — Roadmap & Status, ✅ Done, How to pick up work (+3 more)
 
 ### Community 1136 - "Records.luau"
-Cohesion: 0.22
-Nodes (20): OnPhysics(), RandomSample(), ReadSize(), ReadTransform(), ReadVector16(), Records.Count(), Records.ReadFlying(), Records.ReadIds() (+12 more)
+Cohesion: 0.12
+Nodes (35): CameraPosition(), DebreeController.DustBreak(), DebreeController.Start(), DebreeSound(), Dress(), DustEnabled(), GetPart(), MakePart() (+27 more)
 
 ### Community 1138 - "CosmeticsSkin.client.luau"
 Cohesion: 0.38
 Nodes (10): Once(), Outline(), Round(), Skin(), SkinGrid(), SkinMain(), SkinSpinners(), SkinTabs() (+2 more)
 
-### Community 1139 - "DebreeService/Stream.luau"
-Cohesion: 0.21
-Nodes (10): Registry.All(), SendSnapshot(), BuildBoxGroups(), PackPhysics(), Stream.BuildGroups(), Stream.SendAbsorb(), Stream.SendCreateTo(), Stream.SendPhysics() (+2 more)
+### Community 1139 - "Libraries/Promise.luau"
+Cohesion: 0.08
+Nodes (42): awaitHelper(), createAdvancer(), expectHelper(), makeErrorHandler(), pack(), packResult(), runExecutor(), u41._all() (+34 more)
 
 ### Community 1140 - "ConquestModules/Signal.luau"
 Cohesion: 0.24
@@ -5636,8 +5969,8 @@ Cohesion: 0.24
 Nodes (4): AcquireRunnerThreadAndCallEventHandler(), CleanupInThread(), RunEventHandlerInFreeThread(), u6.Cleanup()
 
 ### Community 1149 - "HostHandler/Server.luau"
-Cohesion: 0.17
-Nodes (12): set_user_name(), Utility.get_user_identifer(), HostHandler.new(), Server:batch_update_player_count(), Server:bind_to_access_code(), Server.deserialise_server_message(), Server:get_access_code(), Server:get_shutdown_message_from() (+4 more)
+Cohesion: 0.18
+Nodes (11): set_user_name(), Utility.get_user_identifer(), Server:batch_update_player_count(), Server:bind_to_access_code(), Server.deserialise_server_message(), Server:get_access_code(), Server:get_shutdown_message_from(), Server:get_type() (+3 more)
 
 ### Community 1150 - "MadworkMaid.luau"
 Cohesion: 0.29
@@ -5656,16 +5989,16 @@ Cohesion: 0.12
 Nodes (6): QuickFX(), emitAtHRP(), emitAtVictim(), fadeBeams(), playFinalExplosion(), playFinalExplosion2()
 
 ### Community 1156 - "Weapons.luau"
-Cohesion: 0.24
-Nodes (14): Attack:BringBackPreviouslyUsing(), Attack:ChangeCurrentlyUsing(), Attack:CreateAxe(), Attack:CreateChainedBlades(), Attack:CreateSpear(), Attack:HideAll(), Attack.new(), Attack:SetCurrent() (+6 more)
+Cohesion: 0.18
+Nodes (17): Attack:BringBackPreviouslyUsing(), Attack:ChangeCurrentlyUsing(), Attack:CreateAxe(), Attack:CreateChainedBlades(), Attack:CreateSpear(), Attack:HideAll(), Attack.new(), Attack:SetCurrent() (+9 more)
 
-### Community 1157 - "replicatedstorage_modules_clienteffects_effectutilities"
-Cohesion: 0.42
-Nodes (9): getIgnoredFolders(), getVisualsFolder(), playSoundAt(), raycastWhitelist(), setChildrenEnabled(), shakeNear(), spadaCrack(), spawnDebrisRock() (+1 more)
+### Community 1157 - "u1.NewPrompt"
+Cohesion: 0.05
+Nodes (16): u5.Cleanup(), ClearCards(), OnClick(), v41(), ClearCards(), OnClick(), ClearCards(), HandleCardClick() (+8 more)
 
 ### Community 1158 - "client/Controllers/UIController.luau"
-Cohesion: 0.09
-Nodes (17): buildRig(), buildStage(), ShowcaseStage.Show(), stripScripts(), buildToasts(), popInHUD(), scaleStroke(), setupHUD() (+9 more)
+Cohesion: 0.20
+Nodes (13): buildToasts(), popInHUD(), scaleStroke(), setupHUD(), setupStrokes(), UIController.AnimateButton(), UIController.CloseAll(), UIController.GetHUD() (+5 more)
 
 ### Community 1159 - "Game/Modules/Player/Character.luau"
 Cohesion: 0.08
@@ -5715,9 +6048,17 @@ Nodes (3): u1.clipOutside(), u1.copyTable(), u1.setVisible()
 Cohesion: 0.14
 Nodes (19): Marketplace:bind_to_instance_owned(), Marketplace:bind_to_owned(), Marketplace:close_purchase_page(), Marketplace:create_wide_banner_product(), Marketplace:has_gamepass(), Marketplace:has_instance_owned(), Marketplace:has_owned(), Marketplace:has_product() (+11 more)
 
+### Community 1176 - "FX/ForgeVFX/mod/utility.luau"
+Cohesion: 0.05
+Nodes (23): u100(), getBezier(), v7.emit(), v8.emit(), u49.createPropertyTween(), u4.assembleMeshVFX(), u4.cancelToken(), u4.cleanupScope() (+15 more)
+
 ### Community 1177 - "CommandHandler.luau"
-Cohesion: 0.12
-Nodes (18): CommandHandler:GetPermission(), CommandHandler:GetRole(), CommandHandler:IsTargetRestricted(), CommandHandler:PerformCommand(), CommandHandler:PrepareToUseCommand(), CommandHandler:RunCommand(), CommandHandler:TryNotifyRestriction(), CommandWrap() (+10 more)
+Cohesion: 0.13
+Nodes (15): CharaSpawner.Despawn(), CharaSpawner.Spawn(), CharaSpawner.StartTimer(), ToMinutes(), CommandHandler:GetPermission(), CommandHandler:GetRole(), CommandHandler:IsTargetRestricted(), CommandHandler:PerformCommand() (+7 more)
+
+### Community 1178 - "u1.GetInventorySort"
+Cohesion: 0.07
+Nodes (36): v7(), u3.NewDialogue(), u4.__index(), AddSlot(), CreateContainer(), FormatOddsEntry(), GetSort(), HandleResponse() (+28 more)
 
 ### Community 1179 - "util/Zone/Signal.luau"
 Cohesion: 0.24
@@ -5737,11 +6078,11 @@ Nodes (5): LifecycleHooks:_getHooksOfType(), LifecycleHooks.new(), LifecycleHook
 
 ### Community 1184 - "Attributes.luau"
 Cohesion: 0.20
-Nodes (17): Attributes:clear(), Attributes:create(), Attributes:destroy(), Attributes:foreach(), Attributes:get(), Attributes:get_changed(), Attributes:initialise(), Attributes:observe() (+9 more)
+Nodes (17): BuildPersistent:initialise_shared_listeners(), Attributes:clear(), Attributes:create(), Attributes:destroy(), Attributes:get(), Attributes:get_changed(), Attributes:initialise(), Attributes:observe() (+9 more)
 
 ### Community 1185 - "ReplicatedStorage/SmartBone/Components/Bone.luau"
-Cohesion: 0.05
-Nodes (12): u30(), u39(), u53(), u97(), u98.Constrain(), u98.PreUpdate(), u98.StepPhysics(), u16.UpdateThrottling() (+4 more)
+Cohesion: 0.07
+Nodes (5): u98.Constrain(), u16.UpdateThrottling(), u10.GetClosestPoint(), u6(), u7()
 
 ### Community 1187 - "Minesweeper.luau"
 Cohesion: 0.11
@@ -5749,11 +6090,11 @@ Nodes (34): inBounds(), Module:_allMinesFlagged(), Module:_BindFlagAction(), Mod
 
 ### Community 1188 - "HostHandler.luau"
 Cohesion: 0.08
-Nodes (27): attempt_async(), HostHandler:add_viewer(), HostHandler:clear_stale_server_cache(), HostHandler:create_custom_server(), HostHandler:delete_all_servers(), HostHandler:delete_custom_server(), HostHandler.deserialise_server_info(), HostHandler.encode_safe_for_client() (+19 more)
+Nodes (28): attempt_async(), HostHandler:add_viewer(), HostHandler:clear_stale_server_cache(), HostHandler:create_custom_server(), HostHandler:delete_all_servers(), HostHandler:delete_custom_server(), HostHandler.deserialise_server_info(), HostHandler.encode_safe_for_client() (+20 more)
 
-### Community 1190 - "script_parent_waitforchild"
-Cohesion: 0.01
-Nodes (27): u14(), u28(), flat(), TouchThumbstick:Create(), TouchThumbstick:Enable(), TouchThumbstick:OnInputEnded(), v1.start(), flat() (+19 more)
+### Community 1189 - "StrikerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/Gamepad_1.luau"
+Cohesion: 0.08
+Nodes (3): TouchThumbstick:Create(), TouchThumbstick:Enable(), TouchThumbstick:OnInputEnded()
 
 ### Community 1192 - "StrikerGame/StarterPlayer/StarterPlayerScripts/RbxCharacterSounds/AtomicBinding.luau"
 Cohesion: 0.27
@@ -5764,7 +6105,7 @@ Cohesion: 0.27
 Nodes (5): parsePath(), u8.destroy(), u8.new(), u8.unbindRoot(), unbindNodeDescend()
 
 ### Community 1194 - "RoundService.luau"
-Cohesion: 0.14
+Cohesion: 0.13
 Nodes (5): banner(), event(), freshCharacter(), placeGod(), placeRunner()
 
 ### Community 1195 - "ClientBotKnockdown.luau"
@@ -5775,6 +6116,10 @@ Nodes (3): u1.begin(), u1.frame(), u1.ground()
 Cohesion: 0.31
 Nodes (7): u1.current(), u1.lucky(), u1.remap(), u1.revealTag(), u1.tag(), u1.watch(), u1.weights()
 
+### Community 1198 - "Roact/forwardRef.spec.luau"
+Cohesion: 0.04
+Nodes (11): v11.__update(), assign(), encodeId(), v5.__addContext(), v5.__mount(), v5.setState(), v5.__update(), u43() (+3 more)
+
 ### Community 1199 - "GhostKeyDrop.luau"
 Cohesion: 0.31
 Nodes (6): keyIcon(), play(), pop(), screen(), v1.earned(), v1.show()
@@ -5784,8 +6129,8 @@ Cohesion: 0.33
 Nodes (6): u3.bounds(), u3.clamp(), u3.creatorBounds(), u3.inside(), u3.valid(), u3.vector()
 
 ### Community 1203 - "ServerClientInfoHandler.luau"
-Cohesion: 0.09
-Nodes (7): ResolveData(), v1.Init(), ResolveField(), v1.GetLocaleId(), v1.GetRegionId(), v1.OnResolved(), WaitForField()
+Cohesion: 0.08
+Nodes (6): ResolveData(), v1.Init(), IsValidClientInfo(), u1.Init(), u1.IsValidClientInfo(), UpdateClientInfoCache()
 
 ### Community 1205 - "Weapons/Bundles.luau"
 Cohesion: 0.27
@@ -5800,7 +6145,7 @@ Cohesion: 0.18
 Nodes (5): Dir, File, Item, Dir, File
 
 ### Community 1209 - "VectorFuncs.luau"
-Cohesion: 0.38
+Cohesion: 0.32
 Nodes (4): getNormalFromPartFace(), getRotationComponents(), mapOffsetToFace(), normalVectorToFace()
 
 ### Community 1211 - "ReadableTextClient.client.luau"
@@ -5815,16 +6160,16 @@ Nodes (5): SetText(), u2.Select(), u2.Show(), UpdateContainerSize(), UpdateInfoD
 Cohesion: 0.15
 Nodes (4): GetActiveExtensions(), InvokeExtensionFn(), ShouldConstruct(), u20._instantiate()
 
-### Community 1218 - "ClientReplicator/Replicant.luau"
-Cohesion: 0.06
-Nodes (28): BossBar:get_title(), BossBar:hide(), BossBar.new(), BossBar:pause_theme(), BossBar:play_theme(), BossBar:refresh(), BossBar:show(), BossBar:update_bounds() (+20 more)
+### Community 1218 - "Roact/RobloxRenderer.luau"
+Cohesion: 0.05
+Nodes (14): u4.new(), u12(), u27(), u31(), u11(), u28(), u38(), u43() (+6 more)
 
 ### Community 1221 - "Client/Camera.luau"
-Cohesion: 0.07
-Nodes (17): getPlayerFromSeat(), Camera.disable(), Camera.enable(), numLerp(), onRenderStep(), updateCameraPosition(), updateFieldOfView(), onOccupantChanged() (+9 more)
+Cohesion: 0.05
+Nodes (21): getPlayerFromSeat(), Camera.disable(), Camera.enable(), numLerp(), onRenderStep(), updateCameraPosition(), updateFieldOfView(), onOccupantChanged() (+13 more)
 
 ### Community 1222 - "Des/_Index/sleitnick_component@2.4.8/component.luau"
-Cohesion: 0.16
+Cohesion: 0.09
 Nodes (6): Component:FromInstance(), Component:_instantiate(), Component:WaitForInstance(), GetActiveExtensions(), InvokeExtensionFn(), ShouldConstruct()
 
 ### Community 1224 - "Camera/CameraInput.luau"
@@ -5836,20 +6181,20 @@ Cohesion: 0.31
 Nodes (9): resetAll(), stopLoops(), u444.close(), u444.hide(), u5.Close(), u5.CloseOverlay(), u5.ForceClose(), u5.Open() (+1 more)
 
 ### Community 1226 - "Data/Leaderboards.luau"
-Cohesion: 0.18
-Nodes (15): DataManager.addMonthlyKill(), DataManager.CurrentSeason(), DataManager.rollMonthly(), finalRankOf(), getStore(), Leaderboards.FlushPlayer(), Leaderboards.OnProfileLoaded(), Leaderboards.Refresh() (+7 more)
-
-### Community 1227 - "Shared/Zone/ZoneController.luau"
-Cohesion: 0.23
-Nodes (10): u20._deregisterConnection(), u20._deregisterZone(), u20._formHeartbeat(), u20.getGroup(), u20.getTouchingZones(), u20._getZonesAndItems(), u20._registerConnection(), u20._registerZone() (+2 more)
+Cohesion: 0.17
+Nodes (15): finalRankOf(), getStore(), Leaderboards.FlushPlayer(), Leaderboards.Refresh(), lookUpNames(), monthName(), previousSeason(), publish() (+7 more)
 
 ### Community 1229 - "PlayerEditor.luau"
-Cohesion: 0.05
-Nodes (32): create_sequence_skill(), get_attack_slot_data(), PlayerEditor:export(), PlayerEditor:get_builder(), PlayerEditor:get_slot_compressed(), PlayerEditor:get_slot_data(), PlayerEditor:import(), PlayerEditor:initialise() (+24 more)
+Cohesion: 0.07
+Nodes (24): StreamService:bulk_set(), StreamService:decrement(), StreamService:increment(), StreamService:insert(), StreamService:raw_increment(), StreamService:raw_set(), StreamService:raw_toggle(), StreamService:set() (+16 more)
 
 ### Community 1230 - "BattleGame/ReplicatedStorage/Modules/Icon/Features/Themes.luau"
-Cohesion: 0.17
-Nodes (19): Themes.apply(), Themes.change(), Themes.getClippedClone(), Themes.getInstanceValue(), Themes.getModifications(), Themes.getRealInstance(), Themes.getThemeValue(), Themes.merge() (+11 more)
+Cohesion: 0.14
+Nodes (21): getTweenInfo(), updateChildSize(), updateMaxIcons(), updateVisibility(), Themes.apply(), Themes.change(), Themes.getClippedClone(), Themes.getInstanceValue() (+13 more)
+
+### Community 1233 - "_table.luau"
+Cohesion: 0.04
+Nodes (11): Reconcile(), Sync(), u1.getValueFromKeyRecursive(), u1.getValueFromStringPatternRecursive(), u1.sortCached(), u1.toArray(), u1.toArrayCached(), u1.toDict() (+3 more)
 
 ### Community 1237 - "StreamingObjectsModule.luau"
 Cohesion: 0.39
@@ -5879,32 +6224,36 @@ Nodes (5): SetText(), u2.Select(), u2.Show(), UpdateContainerSize(), UpdateInfoD
 Cohesion: 0.31
 Nodes (5): applyGroup(), findTitle(), hasOwnTag(), setTag(), v27.KnitStart()
 
-### Community 1247 - "u4.lerp"
-Cohesion: 0.15
-Nodes (10): u80.takeUntil(), v101(), v136(), v153(), v96(), v113(), v128(), v136() (+2 more)
+### Community 1247 - "MoveController.luau"
+Cohesion: 0.05
+Nodes (7): u1.AddModules(), u1.GetAbilityData(), u1.GetAbilityDirectory(), u1.GetCachedAbility(), u1.CreateLinearVelocity(), u1.CreateTemporaryAttachment(), u1.StepVelocity()
+
+### Community 1248 - "Modules/Promise.luau"
+Cohesion: 0.09
+Nodes (7): u3.defer(), u3._executeThen(), u3.new(), u3.rejected(), u3.resolved(), u3.spawn(), u3.Then()
 
 ### Community 1249 - "DamageHandler.luau"
 Cohesion: 0.14
 Nodes (9): DataManager.addTotalKill(), AddDealtDamage(), module:TakeDamage(), RecordQuestCombat(), AntiTeamModule.CheckForAntiTeam(), AntiTeamModule.LogDamager(), AntiTeamModule.StartAntiTeam(), GetTime() (+1 more)
 
-### Community 1250 - "Chat Commands.server.luau"
-Cohesion: 0.15
-Nodes (9): hookPlayer(), isAdmin(), notify(), onChatted(), module:RemoveAllStuns(), module:Stun(), module:Unstun(), TriggerTags() (+1 more)
+### Community 1250 - "startupModules/PlayerModule/CameraModule/CameraInput.luau"
+Cohesion: 0.05
+Nodes (15): adjustTouchPitchSensitivity(), inputBegan(), inputChanged(), inputEnded(), isInDynamicThumbstickArea(), resetInputDevices(), resetTouchState(), thumbstick() (+7 more)
 
 ### Community 1254 - "HitboxHandler.luau"
-Cohesion: 0.06
-Nodes (28): 1. Status Effect & CC Pipeline (`StatusEffectService`), 2. Hitbox & Targeting Pipeline (`HitboxService`), 3. Match Lifecycle (`RoundService`), 4. Movement, Stamina & Dual Camera System, 5. Procedural Map & Destructible Cover (`MapService`), 6. Player Data Persistence (`DataService`) — ✅ built, 7. BattleGame Reference Modules (`references/BattleGame/`), 8. SorceryGame Reference Modules (`references/SorceryGame/`) (+20 more)
+Cohesion: 0.07
+Nodes (28): 10. UniverseGame Reference Modules (`references/UniverseGame/`), 1. Status Effect & CC Pipeline (`StatusEffectService`), 2. Hitbox & Targeting Pipeline (`HitboxService`), 3. Match Lifecycle (`RoundService`), 4. Movement, Stamina & Dual Camera System, 5. Procedural Map & Destructible Cover (`MapService`), 6. Player Data Persistence (`DataService`) — ✅ built, 8. SorceryGame Reference Modules (`references/SorceryGame/`) (+20 more)
 
 ### Community 1255 - "Other/Zone/Janitor.luau"
 Cohesion: 0.15
-Nodes (13): Janitor.__index:Add(), Janitor.__index:AddObject(), Janitor.__index:Cleanup(), Janitor.__index:Destroy(), Janitor.__index:LinkToInstance(), Janitor.__index:LinkToInstances(), Janitor.__index:Remove(), Janitor.new() (+5 more)
+Nodes (14): Janitor.__index:Add(), Janitor.__index:AddObject(), Janitor.__index:Cleanup(), Janitor.__index:Destroy(), Janitor.__index:LinkToInstance(), Janitor.__index:LinkToInstances(), Janitor.__index:Remove(), Janitor.new() (+6 more)
 
 ### Community 1256 - "RainScript/Rain.luau"
-Cohesion: 0.14
+Cohesion: 0.09
 Nodes (7): connectLoop(), disable(), disableSound(), disconnectLoop(), Rain:Disable(), Rain:Enable(), v3()
 
 ### Community 1257 - "Havoc/Havoc.luau"
-Cohesion: 0.09
+Cohesion: 0.08
 Nodes (16): PartCache.update_cframes(), update_bulk_cframe(), apply_debris_velocity(), Destruction.collapse_whole_structure(), Destruction.create_debris(), Destruction.create_destruction(), Destruction.create_hole(), Destruction.get_ancestor_unit() (+8 more)
 
 ### Community 1258 - "BlackBeardLiberation.luau"
@@ -5963,16 +6312,20 @@ Nodes (6): createTweenInfo(), getTextures(), u1.Attached(), u1.Create(), u1.Quic
 Cohesion: 0.36
 Nodes (6): createTweenInfo(), getTextures(), u1.Attached(), u1.Create(), u1.Quick(), u1.WithScale()
 
-### Community 1276 - "PusedoRagdoll.luau"
-Cohesion: 0.19
-Nodes (11): PsuedoRagdoll:connect_limb_knocker(), PsuedoRagdoll:disable(), PsuedoRagdoll:enable(), PsuedoRagdoll:initialise_joints(), PsuedoRagdoll.new(), PsuedoRagdoll:set_enabled(), Debounce:add(), Debounce:destroy() (+3 more)
+### Community 1276 - "Classes/Trove.luau"
+Cohesion: 0.06
+Nodes (15): GetObjectCleanupFunction(), u8.Add(), u1.BindToSequence(), u1.CreateMoveSequence(), u1.CreateSequence(), u1.GetPlayingSequences(), u1.GetSequences(), u1.CreateState() (+7 more)
 
-### Community 1280 - "u26._reserve"
-Cohesion: 0.17
-Nodes (16): u26._reserve(), u26.writeangle(), u26.writebool(), u26.writebuffer(), u26._writeBytes(), u26.writecframe(), u26.writecolor(), u26.writedirection() (+8 more)
+### Community 1279 - "libraryNew.luau"
+Cohesion: 0.18
+Nodes (4): collectEmitters(), t.ChangeParticleColor(), u1.Open(), u9()
+
+### Community 1280 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberWorkLoop.new.luau"
+Cohesion: 0.05
+Nodes (8): findUpdateLane(), copyWithSet(), copyWithSetImpl(), u1.requestUpdateLane(), findUpdateLane(), copyWithSet(), copyWithSetImpl(), u1.requestUpdateLane()
 
 ### Community 1282 - "Player/Data.luau"
-Cohesion: 0.07
+Cohesion: 0.12
 Nodes (7): ConvertTimePlayed(), Data:DataLoaded(), Data:Destroy(), Data:HasGamepass(), Data:_Init(), Data:InitSettings(), Data.new()
 
 ### Community 1283 - "UIProportions.luau"
@@ -6019,37 +6372,33 @@ Nodes (7): u1.getAvailableIcons(), u1.getRealXPositions(), u1.getWidth(), u1.sta
 Cohesion: 0.57
 Nodes (7): u12(), u4.addJsonToTable(), u4.getOrCreateLocalizationTable(), u4.loadFolder(), u4.loadTable(), u4.localeFromName(), u4.toLocalizationTable()
 
-### Community 1303 - "u163"
-Cohesion: 0.17
-Nodes (11): u2.call(), u101(), u111(), u148(), u163(), u28(), u29.HeightLookup(), u29.NormalLookup() (+3 more)
+### Community 1303 - "AnimatorService.luau"
+Cohesion: 0.06
+Nodes (4): u1.AddAnimations(), u1.CreateAnimation(), u1.GetAnimationFolder(), u1.GetAnimations()
 
 ### Community 1306 - "ReplicatedStorage/Modules/Maid.luau"
 Cohesion: 0.25
 Nodes (3): v10(), u1.Clean(), u1.__newindex()
 
 ### Community 1312 - "AtRest.luau"
-Cohesion: 0.24
-Nodes (9): setMarked(), silenceTree(), treeNeeds(), u1.applies(), u1.needs(), u1.rest(), u1.silence(), u1.silenceHeld() (+1 more)
-
-### Community 1316 - "BattleGame/ReplicatedStorage/Modules/Icon/Packages/Janitor.luau"
-Cohesion: 0.22
-Nodes (10): getPromiseReference(), Janitor.__index:Add(), Janitor.__index:AddObject(), Janitor.__index:AddPromise(), Janitor.__index:Cleanup(), Janitor.__index:Destroy(), Janitor.__index:LinkToInstance(), Janitor.__index:LinkToInstances() (+2 more)
+Cohesion: 0.07
+Nodes (26): setMarked(), silenceTree(), treeNeeds(), u1.applies(), u1.needs(), u1.rest(), u1.silence(), u1.silenceHeld() (+18 more)
 
 ### Community 1317 - "DataService.luau"
 Cohesion: 0.07
-Nodes (32): DataService.Changed(), DataService.Get(), DataService.GetProfile(), DataService.Init(), DataService.WaitFor(), onPlayerAdded(), replicate(), sanitizeRole() (+24 more)
+Nodes (29): DataService.Changed(), DataService.Get(), DataService.GetProfile(), DataService.Init(), DataService.WaitFor(), onPlayerAdded(), replicate(), sanitizeRole() (+21 more)
 
 ### Community 1324 - "Type/Box.luau"
-Cohesion: 0.14
-Nodes (15): Hitbox.Create(), Box:Detect(), Box:GetCFrame(), Box:GetPosition(), Box:Sort(), Box:TranslateAdornee(), Main.new(), Box:Detect() (+7 more)
+Cohesion: 0.10
+Nodes (19): Hitbox.Create(), Box:Detect(), Box:GetCFrame(), Box:GetPosition(), Box:Sort(), Box:TranslateAdornee(), Main.new(), Box:Detect() (+11 more)
 
 ### Community 1325 - "Shared/TopbarPlus/Icon/Features/Overflow.luau"
 Cohesion: 0.54
 Nodes (7): u1.getAvailableIcons(), u1.getRealXPositions(), u1.getWidth(), u1.start(), u1.updateAvailableIcons(), u1.updateBoundary(), u7.new()
 
 ### Community 1328 - "Octree/Octree.luau"
-Cohesion: 0.06
-Nodes (7): u2.new(), u3.CreateNode(), v9.render(), u3.CreateNode(), u2.new(), u30(), v32()
+Cohesion: 0.07
+Nodes (3): u3.CreateNode(), u2.new(), u30()
 
 ### Community 1332 - "WindController/WindShake.luau"
 Cohesion: 0.23
@@ -6058,10 +6407,6 @@ Nodes (10): Settings.new(), WindShake:AddObjectShake(), WindShake:Cleanup(), Win
 ### Community 1333 - "LunarisService_1.luau"
 Cohesion: 0.32
 Nodes (3): getPrevAndNextKeyFrames(), sortedKeys(), u1.Play()
-
-### Community 1338 - "@quenty_playerthumbnailutils/JSONTranslator.luau"
-Cohesion: 0.13
-Nodes (3): u4.new(), u12.ObserveFormatByKey(), u9.new()
 
 ### Community 1339 - "CharacterR15/Animate.server.luau"
 Cohesion: 0.12
@@ -6088,8 +6433,12 @@ Cohesion: 0.32
 Nodes (3): createSparkPart(), emitOne(), v1.Emit()
 
 ### Community 1349 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/TouchJump.luau"
-Cohesion: 0.40
-Nodes (10): TouchJump:CharacterAdded(), TouchJump:Create(), TouchJump:Enable(), TouchJump:EnableButton(), TouchJump:HumanoidChanged(), TouchJump:HumanoidStateEnabledChanged(), TouchJump:_reset(), TouchJump:SetupCharacterAddedFunction() (+2 more)
+Cohesion: 0.15
+Nodes (20): TouchJump:CharacterAdded(), TouchJump:Create(), TouchJump:Enable(), TouchJump:EnableButton(), TouchJump:HumanoidChanged(), TouchJump:HumanoidStateEnabledChanged(), TouchJump.new(), TouchJump:_reset() (+12 more)
+
+### Community 1350 - "Updater.luau"
+Cohesion: 0.07
+Nodes (4): GetEndpointForRequest(), v1.GBRequest(), ParseVersion(), v1.IsVersionOutdated()
 
 ### Community 1351 - "Looks.luau"
 Cohesion: 0.36
@@ -6105,7 +6454,7 @@ Nodes (18): CombatController.Init(), CombatController.Start(), localHumanoid(), 
 
 ### Community 1359 - "game_replicatedstorage_modules_client_weaponvfxrecolor"
 Cohesion: 0.02
-Nodes (54): v1.start(), v1.start(), u10(), v3.start(), u9(), v3.start(), u6(), v2.start() (+46 more)
+Nodes (68): v1.start(), v1.start(), v1.start(), u10(), v1.start(), v1.start(), v1.start(), u10() (+60 more)
 
 ### Community 1361 - "animationUtil_1.luau"
 Cohesion: 0.36
@@ -6128,8 +6477,8 @@ Cohesion: 0.39
 Nodes (6): u1.get(), u1.has(), u1.hold(), u1.release(), u1.set(), u1.unset()
 
 ### Community 1376 - "child"
-Cohesion: 0.05
-Nodes (22): aura_check(), clear_aura(), update_lane(), v1.chigiri_winger(), getLorenzoLine(), u2.AceEaterOffTheBall(), u2.donFlash(), u2.lorenzo4Pass() (+14 more)
+Cohesion: 0.04
+Nodes (4): ReverseTable(), v1.AddRichText(), ReverseTable(), v1.AddRichText()
 
 ### Community 1377 - "SessionManager.luau"
 Cohesion: 0.32
@@ -6139,12 +6488,16 @@ Nodes (3): onUserInput(), sendToServer(), v10.start()
 Cohesion: 0.10
 Nodes (6): bindCamera(), refresh(), setOpen(), updateScale(), refresh(), setOpen()
 
+### Community 1380 - "script_bezier"
+Cohesion: 0.03
+Nodes (3): v162(), u9(), v3.start()
+
 ### Community 1381 - "BuildingMotion.luau"
 Cohesion: 0.21
 Nodes (15): deadline(), endCarry(), identify(), Motion.Clear(), Motion.Flush(), Motion.PushTree(), Motion.Queue(), Motion.Snapshot() (+7 more)
 
 ### Community 1382 - "CameraShaker/Instance.luau"
-Cohesion: 0.07
+Cohesion: 0.08
 Nodes (18): AdjustValueWithSetting(), CameraShaker:Fire(), CameraShaker:Start(), CameraShaker:Update(), CameraShakeInstance:GetState(), CameraShakeInstance:IsFadingIn(), CameraShakeInstance:IsFadingOut(), CameraShakeInstance:IsShaking() (+10 more)
 
 ### Community 1383 - "ServerAnalytics.luau"
@@ -6152,20 +6505,20 @@ Cohesion: 0.18
 Nodes (4): enqueueEvent(), hookFailed(), stampExperiments(), trouble()
 
 ### Community 1384 - "InstanceModifier.luau"
-Cohesion: 0.04
-Nodes (31): cyclic_search(), InstanceModifier:create_prompt(), InstanceModifier:get_combat(), InstanceModifier:has_attribute(), InstanceModifier:init(), InstanceModifier:initialise_attribute_listeners(), InstanceModifier:initialise_attribute_updaters(), InstanceModifier:initialise_cache_output() (+23 more)
+Cohesion: 0.07
+Nodes (28): PsuedoRagdoll:connect_limb_knocker(), PsuedoRagdoll:disable(), PsuedoRagdoll:enable(), PsuedoRagdoll:initialise_joints(), PsuedoRagdoll.new(), PsuedoRagdoll:set_enabled(), Debounce:add(), Debounce:destroy() (+20 more)
 
 ### Community 1385 - "Modifiers/Item.luau"
-Cohesion: 0.22
-Nodes (14): CustomItem:activate(), CustomItem:clear_animations(), CustomItem:create_handle(), CustomItem:deactivate(), CustomItem:destroy(), CustomItem:equipped(), CustomItem:initialise(), CustomItem.new() (+6 more)
+Cohesion: 0.12
+Nodes (19): CustomItem:activate(), CustomItem:clear_animations(), CustomItem:create_handle(), CustomItem:deactivate(), CustomItem:destroy(), CustomItem:equipped(), CustomItem:initialise(), CustomItem.new() (+11 more)
 
 ### Community 1387 - "G_VFX.luau"
 Cohesion: 0.18
 Nodes (8): VFX.customEmit(), VFX.customEmitCFrame(), VFX.Emit(), VFX.emitHitVfx(), VFX.getRayFloor(), VFX.recolorParticles(), VFX.scaleParticle(), VFX.vfxToFloor()
 
 ### Community 1389 - "StarterPlayer/PlayerModule/CommonUtils/CharacterUtil.luau"
-Cohesion: 0.32
-Nodes (8): u1.getCharacter(), u1.getChild(), u1._getOrCreateBoundEvent(), u1.onCharacter(), u1.onChild(), u1.onLocalPlayer(), u4.start(), u4.start()
+Cohesion: 0.23
+Nodes (9): u1.getCharacter(), u1.getChild(), u1._getOrCreateBoundEvent(), u1.onCharacter(), u1.onChild(), u1.onLocalPlayer(), u4.new(), u4.start() (+1 more)
 
 ### Community 1390 - "Utility/Part_Icles/PoolHide.luau"
 Cohesion: 0.43
@@ -6185,7 +6538,7 @@ Nodes (7): u48.ExperienceChat.FocusChanged(), u48.ExperienceChat.SendChatInputBa
 
 ### Community 1399 - "BasketballGame/ReplicatedStorage/Controllers/UIController/StyleQuests.luau"
 Cohesion: 0.05
-Nodes (52): AnimateLineDraw(), AnimateLineErase(), ApplyCategoryInstant(), ApplyPageColors(), ApplyQuestState(), BuildCategoryButtons(), BuildQuestData(), ClearQuestEntries() (+44 more)
+Nodes (19): ApplyPageColors(), ApplyQuestState(), CreateQuestEntry(), DarkenColor(), GetNaturalContentSize(), GetRewardOffPosition(), OffsetPositionX(), OklabToColor() (+11 more)
 
 ### Community 1400 - "u7"
 Cohesion: 0.29
@@ -6208,8 +6561,8 @@ Cohesion: 0.23
 Nodes (10): _run(), u1.finalFrame(), u1.Flip(), u1.FlipBeam(), u1.FlipLayers(), u1.frameIndex(), u1.GetFlipbookSets(), u1.GetSortedTextures() (+2 more)
 
 ### Community 1407 - "_G.matchMaterial"
-Cohesion: 0.04
-Nodes (57): u21(), v2.Create(), u14(), CreateTornado(), SpawnMesh(), SpawnRock(), SpawnWind(), StartMainLoop() (+49 more)
+Cohesion: 0.03
+Nodes (60): u21(), v2.Create(), crater(), v1.start(), crater(), v1.start(), crater(), v1.start() (+52 more)
 
 ### Community 1408 - "vfxUtil/ForgeVFX/effects/sound.luau"
 Cohesion: 0.43
@@ -6236,12 +6589,12 @@ Cohesion: 0.48
 Nodes (5): displayDialogue(), fadeOutLetters(), getInterpolatedColor(), normalizeSpeakerData(), v1.Speak()
 
 ### Community 1419 - "replicatedstorage_packages_maid"
-Cohesion: 0.03
-Nodes (59): Update(), JoinMainPlace:Join(), JoinRankedLobby:Join(), JoinVCServer:Join(), Close(), Settings:CreatePercentageInSection(), Settings:CreateStringInSection(), Settings:CreateTitleEditorInSection() (+51 more)
+Cohesion: 0.02
+Nodes (72): Update(), JoinMainPlace:Join(), JoinRankedLobby:Join(), JoinVCServer:Join(), Close(), Settings:CreatePercentageInSection(), Settings:CreateStringInSection(), Settings:CreateTitleEditorInSection() (+64 more)
 
 ### Community 1420 - "SunaPesado.luau"
-Cohesion: 0.18
-Nodes (10): beginFlight(), effectsFolder(), fadeOutVFX(), getControls(), landRestore(), setEnabled(), setLegs(), spawnSpheres() (+2 more)
+Cohesion: 0.13
+Nodes (18): beginFlight(), effectsFolder(), emitClone(), fadeOutVFX(), getControls(), landRestore(), makeAttachment(), newStartCharge() (+10 more)
 
 ### Community 1421 - "baseClient/aizen.luau"
 Cohesion: 0.43
@@ -6258,6 +6611,18 @@ Nodes (4): emit(), v1.Impact(), v1.Jump(), v1.Land()
 ### Community 1426 - "JumpMiss_1.luau"
 Cohesion: 0.43
 Nodes (4): emit(), v1.Impact(), v1.Jump(), v1.Land()
+
+### Community 1427 - "nagiVFX.luau"
+Cohesion: 0.05
+Nodes (8): disposal(), enableall(), getEmittersLifetime(), quickVFX(), u1.NagiOffBall(), u1.newheavykick(), u1.newheavykicked(), u1.newheavywindup()
+
+### Community 1433 - "startupModules/PlayerModule/ControlModule/ClickToMoveController.luau"
+Cohesion: 0.06
+Nodes (10): FindCharacterAncestor(), getCollidableExtentsSize(), GetEquippedTool(), HandleMoveTo(), OnTap(), Pather(), Raycast(), u155.MoveTo() (+2 more)
+
+### Community 1435 - "Spring.new"
+Cohesion: 0.08
+Nodes (26): u11.Reset(), u10.Reset(), CameraUtils.getLooseBoundingSphere(), Spring.new(), pitchVelocity(), VehicleCamera:_GetFirstPersonLocalOffset(), VehicleCamera:_GetThirdPersonLocalOffset(), VehicleCamera.new() (+18 more)
 
 ### Community 1436 - "camshake_emit.luau"
 Cohesion: 0.43
@@ -6324,20 +6689,20 @@ Cohesion: 0.38
 Nodes (4): cleanup(), debugRay(), u1.Destroy(), u1.fire()
 
 ### Community 1458 - "BattleGame/ReplicatedStorage/Modules/Icon/Packages/GoodSignal.luau"
-Cohesion: 0.12
-Nodes (6): acquireRunnerThreadAndCallEventHandler(), Connection.new(), runEventHandlerInFreeThread(), Signal:Connect(), Signal:Once(), Signal:Wait()
+Cohesion: 0.08
+Nodes (12): acquireRunnerThreadAndCallEventHandler(), Connection.new(), runEventHandlerInFreeThread(), Signal:Connect(), Signal:Once(), Signal:Wait(), acquireRunnerThreadAndCallEventHandler(), Connection.new() (+4 more)
 
 ### Community 1459 - "SoccerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera/VehicleCameraCore.luau"
 Cohesion: 0.18
 Nodes (3): u10.new(), u19.new(), u46.new()
 
-### Community 1466 - "ClickToMoveDisplay.CancelFailureAnimation"
-Cohesion: 0.40
-Nodes (5): u145.OnCharacterAdded(), ClickToMoveDisplay.CancelFailureAnimation(), u138.OnCharacterAdded(), u138.OnCharacterAdded(), u138.OnCharacterAdded()
+### Community 1466 - "packet.luau"
+Cohesion: 0.05
+Nodes (16): u6(), TweenCallback(), u5.Disconnect(), u5.Listen(), u7(), u1.Connect(), u8(), v9.send() (+8 more)
 
-### Community 1468 - "SorceryGame/ReplicatedStorage/Modules/Weather.luau"
-Cohesion: 0.20
-Nodes (6): biDirRandom(), Weather:GetCached(), Weather:_Init(), Weather:_OnRainFrame(), Weather:_OnRainFrameSerial(), Weather:OnRainingStart()
+### Community 1468 - "Libraries/Classes/Sequence.luau"
+Cohesion: 0.05
+Nodes (3): u1.Errored(), u1.FireCallback(), u1.RunFrame()
 
 ### Community 1469 - "PathDisplay_1.luau"
 Cohesion: 0.38
@@ -6358,6 +6723,10 @@ Nodes (5): ask(), settle(), u1.restricted(), u1.start(), watch()
 ### Community 1474 - "PumpkinSmoke.luau"
 Cohesion: 0.38
 Nodes (4): covers(), prune(), tick(), v1.hidden()
+
+### Community 1475 - "SoccerGame/ReplicatedStorage/Controllers/UIController/Settings.luau"
+Cohesion: 0.04
+Nodes (5): deepCopy(), handlePacket(), makeDotCallsError(), u2.get(), u2.init()
 
 ### Community 1477 - "buildJourney"
 Cohesion: 0.33
@@ -6400,8 +6769,8 @@ Cohesion: 0.48
 Nodes (5): localMove(), refresh(), start(), stop(), touchButtons()
 
 ### Community 1490 - "disconnect"
-Cohesion: 0.09
-Nodes (18): FastDefer(), RunFunction(), Yield(), Janitor:LinkToInstances(), Janitor.new(), LinkToInstance(), Remove(), u43.fromEvent() (+10 more)
+Cohesion: 0.07
+Nodes (23): FastDefer(), RunFunction(), Yield(), Janitor:LinkToInstances(), Janitor.new(), LinkToInstance(), Remove(), u43.fromEvent() (+15 more)
 
 ### Community 1495 - "baste.lua"
 Cohesion: 0.27
@@ -6419,37 +6788,33 @@ Nodes (3): Hoster:create_custom_server(), Hoster:moderate_user(), Hoster:throttl
 Cohesion: 0.70
 Nodes (4): Distance(), u12(), v1.filter(), v1.isIn()
 
-### Community 1506 - "BusoEffect.luau"
-Cohesion: 0.73
-Nodes (5): u11(), u13(), u5(), u9(), v1.start()
+### Community 1506 - "ContextActionModule.luau"
+Cohesion: 0.07
+Nodes (19): u344(), u5(), u59(), u616(), luau_load(), u2(), u12(), u62() (+11 more)
 
 ### Community 1511 - "UDim2.new"
 Cohesion: 0.23
 Nodes (6): lerpNumber(), metatable:__add(), prototype:Lerp(), UDim2.new(), metatable:__add(), UDim.new()
 
-### Community 1514 - "Utility/Part_Icles/Duration.luau"
-Cohesion: 0.70
-Nodes (4): resolveDuration(), u1.computeItemLifecycle(), u1.computeMaxDuration(), u1.computeTrueLifetime()
+### Community 1514 - "script_parent_graph"
+Cohesion: 0.03
+Nodes (33): resolveDuration(), u1.computeItemLifecycle(), u1.computeMaxDuration(), u1.computeTrueLifetime(), resolveDuration(), u1.computeItemLifecycle(), u1.computeMaxDuration(), u1.computeTrueLifetime() (+25 more)
 
 ### Community 1515 - "TestPlan.lua"
 Cohesion: 0.29
 Nodes (9): getModifier(), newEnvironment(), TestNode:addChild(), TestNode:getFullName(), TestNode.new(), TestPlan:addChild(), TestPlan:findNodes(), TestPlan:visitAllNodes() (+1 more)
 
 ### Community 1516 - "_G.raycastWhitelist"
-Cohesion: 0.02
-Nodes (67): v15(), v1.start(), v1.start(), v1.start(), v1.start(), u18(), v1.start(), v1.start() (+59 more)
-
-### Community 1517 - "MoveVelocity.luau"
-Cohesion: 0.21
-Nodes (6): Velocities.apply(), Velocities.remove(), VelocityMover:apply(), VelocityMover.new(), VelocityMover.next_id(), VelocityMover.push()
+Cohesion: 0.03
+Nodes (45): u11(), updateRay(), v1.start(), u14(), u1.RemoveFromRender(), v1.Spawn(), u1.Fire(), u1.Reload() (+37 more)
 
 ### Community 1521 - "Essentials/Mouse.luau"
 Cohesion: 0.53
 Nodes (4): u3.GetPosition(), u3.GetTarget(), u3.GetUnitRay(), u3.Raycast()
 
-### Community 1522 - "ReplicatedStorage/Part_Icles/TexturePin.luau"
-Cohesion: 0.09
-Nodes (12): _appendAssetIds(), _resolveAssetId(), u1.pin(), u1.pinSubtree(), u1.unpin(), u1.unpinSubtree(), _appendAssetIds(), _resolveAssetId() (+4 more)
+### Community 1522 - "TexturePin_1.luau"
+Cohesion: 0.27
+Nodes (6): _appendAssetIds(), _resolveAssetId(), u1.pin(), u1.pinSubtree(), u1.unpin(), u1.unpinSubtree()
 
 ### Community 1534 - "SharedGlobals/Mouse.luau"
 Cohesion: 0.53
@@ -6460,11 +6825,11 @@ Cohesion: 0.29
 Nodes (14): bezier._buildEaseLUT(), bezier.forSample(), bezier.getEase(), bezier.getEasedSegmentIndex(), bezier._getEaseRaw(), bezier.getPosition(), bezier.getPositionArcSpace(), bezier.getSegmentIndex() (+6 more)
 
 ### Community 1536 - "UI/Emotes.luau"
-Cohesion: 0.13
-Nodes (17): Emotes:ChangeFocusedEmoteSlot(), Emotes:Create(), Emotes:CreateOnSlot(), Emotes:CreateSlotsInCircle(), Emotes:Init(), Emotes:MakeViewportOnSlot(), Emotes.new(), Emotes:PressedSlotWithEmote() (+9 more)
+Cohesion: 0.11
+Nodes (18): Emotes:ChangeFocusedEmoteSlot(), Emotes:Create(), Emotes:CreateOnSlot(), Emotes:CreateSlotsInCircle(), Emotes:Init(), Emotes:MakeViewportOnSlot(), Emotes.new(), Emotes:PressedSlotWithEmote() (+10 more)
 
 ### Community 1537 - "RegularSkillSet/TowerSlash2.luau"
-Cohesion: 0.53
+Cohesion: 0.50
 Nodes (4): fx(), getDashDistance(), onLanded(), startHit2()
 
 ### Community 1539 - "IsagiBachiraCRReceiver.luau"
@@ -6480,8 +6845,8 @@ Cohesion: 0.22
 Nodes (11): ClashService._applyDraw(), ClashService._applyOutcome(), ClashService._canClash(), ClashService._perfectKnockAway(), ClashService._resolveQTE(), ClashService._resolveRandom(), ClashService._runClash(), ClashService.tryStartClash() (+3 more)
 
 ### Community 1557 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/DynamicThumbstick.luau"
-Cohesion: 0.21
-Nodes (7): DynamicThumbstick:Create(), DynamicThumbstick:Enable(), DynamicThumbstick:FadeThumbstick(), DynamicThumbstick:LayoutMiddleImages(), DynamicThumbstick:MoveStick(), DynamicThumbstick:OnInputEnded(), DynamicThumbstick:UnbindContextActions()
+Cohesion: 0.20
+Nodes (8): DynamicThumbstick:BindContextActions(), DynamicThumbstick:Create(), DynamicThumbstick:Enable(), DynamicThumbstick:FadeThumbstick(), DynamicThumbstick:LayoutMiddleImages(), DynamicThumbstick:MoveStick(), DynamicThumbstick:OnInputEnded(), DynamicThumbstick:UnbindContextActions()
 
 ### Community 1559 - "MurmurHash3.luau"
 Cohesion: 0.60
@@ -6492,20 +6857,12 @@ Cohesion: 0.18
 Nodes (7): createCircularProgressBar(), createProgressBarGradient(), createPrompt(), getScreenGui(), onLoad(), module:ClearUis(), module:ClearUis()
 
 ### Community 1562 - "HelpInput.luau"
-Cohesion: 0.06
-Nodes (17): bind_action(), Flight:destroy(), Flight:disable(), Flight:enable(), Flight:initialise(), Flight.new(), Flight:on_jump(), Flight:toggle() (+9 more)
-
-### Community 1564 - "u55.KnitStart"
-Cohesion: 0.19
-Nodes (14): playEmberBurst(), playEmberLoop(), playGlowLoop(), playRewardPunch(), resetEntryAnimation(), setupButton(), setupHoverFrame(), spawnEmber() (+6 more)
+Cohesion: 0.09
+Nodes (8): InputHelper.IsClick(), InputHelper.IsInteract(), animated_click(), enter_tooltip(), leave_tooltip(), mouse_position(), multiply_udim(), update_padding()
 
 ### Community 1565 - "BattleGame/ReplicatedStorage/Modules/CameraShaker/CameraShakeInstance.luau"
-Cohesion: 0.19
-Nodes (4): CameraShakeInstance:GetState(), CameraShakeInstance:IsFadingIn(), CameraShakeInstance:IsFadingOut(), CameraShakeInstance:IsShaking()
-
-### Community 1566 - "EmitModuleTemp/mod/lerp.luau"
-Cohesion: 0.12
-Nodes (5): v1.KnitStart(), getColorAtTime(), t.ColorSequence(), t.isMaid(), v2()
+Cohesion: 0.10
+Nodes (9): CameraShakeInstance:GetState(), CameraShakeInstance:IsFadingIn(), CameraShakeInstance:IsFadingOut(), CameraShakeInstance:IsShaking(), CameraShakeInstance.new(), CameraShaker:ShakeOnce(), CameraShaker:Start(), CameraShaker:StartShake() (+1 more)
 
 ### Community 1570 - "BasketballGame/ReplicatedStorage/Packages/_Index/sleitnick_timer@1.1.2/timer.luau"
 Cohesion: 0.15
@@ -6514,6 +6871,10 @@ Nodes (4): u13(), u1.new(), u1.Simple(), step()
 ### Community 1571 - "Des/Chara.luau"
 Cohesion: 0.11
 Nodes (15): Helper.playLocalSound(), Helper.stopLocalSounds(), Helper.toFrame(), Module:_breakNow(), Module:Destroy(), Module:Initialize(), Module.new(), Module:setKind() (+7 more)
+
+### Community 1572 - "ReplicatedModules/Zone.luau"
+Cohesion: 0.05
+Nodes (3): u6.fromRegion(), u6._getRegionConstructor(), u6.new()
 
 ### Community 1574 - "Parsers/Dash.luau"
 Cohesion: 0.47
@@ -6527,9 +6888,9 @@ Nodes (3): emit(), v1.Catch(), v1.Dash()
 Cohesion: 0.47
 Nodes (3): ensure_rematch_gui(), resolve_rematch_frames(), v1.RankedRematch()
 
-### Community 1577 - "vfxUtil/ForgeVFX/effects/lightning.luau"
-Cohesion: 0.20
-Nodes (6): createSegmentStates(), generateLightningPoints(), generateTransitionPoints(), getBlendedPosition(), readLightningAttributes(), updateTransitionPoints()
+### Community 1577 - "v25"
+Cohesion: 0.06
+Nodes (20): u4.Wait(), v1.start(), v1.start(), u1.Droplets(), u1.start(), v1.start(), u17(), v1.start() (+12 more)
 
 ### Community 1578 - "Mode.luau"
 Cohesion: 0.53
@@ -6631,13 +6992,13 @@ Nodes (6): Module:isBusy(), Module:Start(), Module:StartSession(), Module:StopSe
 Cohesion: 0.23
 Nodes (7): u104(), u128(), u152(), u45(), u79(), v160(), v168()
 
-### Community 1641 - "ReplicatedStorage/Mastery_1.luau"
-Cohesion: 0.36
-Nodes (12): u8.AddFromCommonTask(), u8.AddFromTask(), u8.AddXP(), u8.BackfillDailies(), u8.DailyRefresh(), u8.DailyWork(), u8.GetDailies(), u8.GetDaily() (+4 more)
+### Community 1641 - "6CAHC/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
-### Community 1642 - "JoinEventPrompt.client.luau"
-Cohesion: 0.24
-Nodes (8): canInvite(), formatRemaining(), getNextEvent(), promptEvent(), refreshEvent(), starterHasPriority(), tryInvite(), updateTimer()
+### Community 1642 - "Droidud1/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
 ### Community 1643 - "Spotlight.luau"
 Cohesion: 0.47
@@ -6649,7 +7010,7 @@ Nodes (4): u1.isFusion(), u1.nameOf(), u1.recipe(), u1.tierOf()
 
 ### Community 1652 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveDisplay.luau"
 Cohesion: 0.12
-Nodes (23): ShowPathFailedFeedback(), ClickToMoveDisplay.CreateEndWaypoint(), ClickToMoveDisplay.CreatePathDisplay(), ClickToMoveDisplay.DisplayFailureWaypoint(), ClickToMoveDisplay.PlayFailureAnimation(), createTrailDots(), EndWaypoint:CreateTween(), EndWaypoint.new() (+15 more)
+Nodes (24): ShowPathFailedFeedback(), ClickToMoveDisplay.CreateEndWaypoint(), ClickToMoveDisplay.CreatePathDisplay(), ClickToMoveDisplay.DisplayFailureWaypoint(), ClickToMoveDisplay.PlayFailureAnimation(), createTrailDots(), EndWaypoint:CreateTween(), EndWaypoint.new() (+16 more)
 
 ### Community 1653 - "ServerBrowserService.server.luau"
 Cohesion: 0.21
@@ -6664,28 +7025,28 @@ Cohesion: 0.19
 Nodes (4): getCollisionPoint(), queryPoint(), queryViewport(), testPromotion()
 
 ### Community 1660 - "Michael Awakening.luau"
-Cohesion: 0.06
-Nodes (23): IsInDistance(), VFX.AttackStart(), VFX.FloorSteak(), VFX.GlowingTrails(), VFX.MichaelTrailAwakening(), VFX.PreSummon(), VFX.StopEffects(), IsInDistance() (+15 more)
+Cohesion: 0.11
+Nodes (15): IsInDistance(), VFX.KickHit(), VFX.Slam(), WallCrater(), Attack:Activate(), Attack:Activate(), MichaelEnemy:destroy(), MichaelEnemy:initialise() (+7 more)
 
 ### Community 1662 - "Billguy/Animate.server.luau"
 Cohesion: 0.14
 Nodes (18): animateTool(), configureAnimationSet(), getRigScale(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing() (+10 more)
 
-### Community 1664 - "with"
-Cohesion: 0.26
-Nodes (12): steps, steps, name, run, uses, with, steps, name (+4 more)
+### Community 1664 - "Goatzeppeli_joester/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
 ### Community 1665 - "_G.tween"
 Cohesion: 0.01
-Nodes (101): v1.start(), crater(), v1.start(), v1.start(), u21(), u7(), v1.start(), v1.start() (+93 more)
+Nodes (104): v1.start(), crater(), v1.start(), v1.start(), u21(), u7(), v1.start(), v1.start() (+96 more)
 
 ### Community 1666 - "Utility/Rating/OpenSkill/Constants.luau"
 Cohesion: 0.60
 Nodes (3): u3.beta(), u3.betaSq(), u3.sigma()
 
-### Community 1684 - "ScoreBanner.luau"
-Cohesion: 0.29
-Nodes (9): PlayBannerSlamShake(), playBasketballArc(), playScoreTrophyFx(), popScoringTeamText(), setScoreBannerReveal(), setScoreBannerRevealClose(), spawnFallingTemplate(), StopContentsWobble() (+1 more)
+### Community 1684 - "Guncellar01/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
 ### Community 1685 - "BasketballGame/StarterPlayer/StarterCharacterScripts/RagdollR6.server.luau"
 Cohesion: 0.70
@@ -6696,8 +7057,8 @@ Cohesion: 0.38
 Nodes (10): QuicktimeHandler.Bind(), QuicktimeHandler.BlinkUI(), QuicktimeHandler.Complete(), QuicktimeHandler.ConvertKeyForComfortableName(), QuicktimeHandler.Destroy(), QuicktimeHandler.FadeUI_In(), QuicktimeHandler.FadeUI_Out(), QuicktimeHandler.Fail() (+2 more)
 
 ### Community 1688 - "Client Task.luau"
-Cohesion: 0.20
-Nodes (7): calculateCFrameBetweenVectors(), cleanupThrownObjects(), debrisSpawner(), getRandomValue(), getTouchingPartsExceptIgnored(), spawnDebrisAt(), v345()
+Cohesion: 0.22
+Nodes (6): calculateCFrameBetweenVectors(), cleanupThrownObjects(), debrisSpawner(), getRandomValue(), getTouchingPartsExceptIgnored(), spawnDebrisAt()
 
 ### Community 1689 - "4jy450/RagdollR6.server.luau"
 Cohesion: 0.70
@@ -6737,15 +7098,15 @@ Nodes (21): PlayerAdded(), AddPlayersCapped(), BuildClientMatchData(), CanJoinMa
 
 ### Community 1701 - "v23"
 Cohesion: 0.04
-Nodes (46): v84(), v1.start(), Apply(), u1.FlyingParts(), u1.MessyCrater(), u1.OrganizedCrater(), u25(), Apply() (+38 more)
+Nodes (47): Apply(), u1.FlyingParts(), u1.MessyCrater(), u1.OrganizedCrater(), Apply(), u1.FlyingParts(), u1.MessyCrater(), u1.OrganizedCrater() (+39 more)
 
 ### Community 1702 - "MochiBuzzcutEndSwing.luau"
 Cohesion: 0.50
 Nodes (4): add_length(), recurse_bones(), set_cf(), v1.start()
 
 ### Community 1704 - "BattleGame/ReplicatedStorage/Modules/Icon/Utility.luau"
-Cohesion: 0.23
-Nodes (7): Overflow.getAvailableIcons(), Overflow.getWidth(), Overflow.start(), Overflow.updateAvailableIcons(), Utility.copyTable(), Utility.createStagger(), Utility.round()
+Cohesion: 0.43
+Nodes (6): Overflow.getAvailableIcons(), Overflow.getWidth(), Overflow.start(), Overflow.updateAvailableIcons(), Utility.createStagger(), Utility.round()
 
 ### Community 1709 - "Jade/Animate.client.luau"
 Cohesion: 0.14
@@ -6792,8 +7153,8 @@ Cohesion: 0.50
 Nodes (4): EndFunction(), cleanupMove(), knockUpward(), OnGroundHit()
 
 ### Community 1759 - "Split.luau"
-Cohesion: 0.25
-Nodes (11): At(), BrokenIn(), Contains(), ContainsPoint(), EstimateCells(), InnerCubeHalf(), Intersects(), OvalIntersects() (+3 more)
+Cohesion: 0.28
+Nodes (10): At(), BrokenIn(), Contains(), ContainsPoint(), EstimateCells(), InnerCubeHalf(), Intersects(), OvalIntersects() (+2 more)
 
 ### Community 1760 - "Titles.client.luau"
 Cohesion: 0.24
@@ -6807,25 +7168,29 @@ Nodes (3): Ragdoll(), replaceJoints(), resetJoints()
 Cohesion: 0.70
 Nodes (4): cleanupState(), finish(), participantsValid(), processTerminal()
 
-### Community 1788 - "SoccerGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberTreeReflection.luau"
-Cohesion: 0.26
-Nodes (7): assertIsMounted(), findCurrentFiberUsingSlowPath(), getNearestMountedFiber(), v1.findCurrentHostFiber(), v1.findCurrentHostFiberWithNoPortals(), v1.isFiberMounted(), v1.isMounted()
+### Community 1788 - "hfnx7rbf/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
-### Community 1791 - "Client/Sender_1.luau"
-Cohesion: 0.23
-Nodes (5): CheckEntity(), FireEvent(), Flush(), GetVelocity(), WriteEntity()
+### Community 1791 - "hyeonimoon/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
 ### Community 1793 - "TestBootstrap.lua"
 Cohesion: 0.29
 Nodes (7): getPath(), isSpecScript(), stripSpecSuffix(), TestBootstrap:getModules(), TestBootstrap:getModulesImpl(), TestBootstrap:run(), toStringPath()
 
+### Community 1795 - "karohe_ti/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
+
 ### Community 1798 - "ArenaClient.client.luau"
 Cohesion: 0.28
 Nodes (12): corner(), label(), make(), myEntry(), readRoster(), rebuildTeams(), secondsLeft(), setSelectCamera() (+4 more)
 
-### Community 1804 - "UIBlur.luau"
-Cohesion: 0.33
-Nodes (10): pop_render(), push_render(), UIBlur:destroy(), UIBlur:get_visible(), UIBlur.new(), UIBlur:render(), UIBlur:set_active(), UIBlur:set_cornered() (+2 more)
+### Community 1804 - "Packages/Observer.luau"
+Cohesion: 0.09
+Nodes (18): ball_rnd(), spawn_ball(), compress_color_sequence(), Class:LoadObject(), Class:m_AppendBone(), Class:m_CreateBoneTree(), Observer.observe_tag(), Observer.observe_tag_at() (+10 more)
 
 ### Community 1805 - "EloCalculator.luau"
 Cohesion: 0.60
@@ -6843,9 +7208,9 @@ Nodes (13): u1.checkGK(), u1.checkReleaseStyle(), u1.checkStyle(), u1.get_walkju
 Cohesion: 0.70
 Nodes (4): createColliderPart(), Ragdoll(), replaceJoints(), resetJoints()
 
-### Community 1812 - "BattleGame/ReplicatedStorage/Modules/CameraShaker.luau"
-Cohesion: 0.22
-Nodes (5): CameraShakeInstance.new(), CameraShaker:ShakeOnce(), CameraShaker:Start(), CameraShaker:StartShake(), CameraShaker:Update()
+### Community 1812 - "MOPKOBKA_AKD/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
 ### Community 1813 - "DashCDHUDNew.client.luau"
 Cohesion: 0.38
@@ -6875,13 +7240,13 @@ Nodes (4): createColliderPart(), Ragdoll(), replaceJoints(), resetJoints()
 Cohesion: 0.70
 Nodes (4): createColliderPart(), Ragdoll(), replaceJoints(), resetJoints()
 
-### Community 1820 - "Atomize/EffectsModule/CameraShaker.luau"
-Cohesion: 0.22
-Nodes (5): CameraShakeInstance.new(), CameraShaker:ShakeOnce(), CameraShaker:Start(), CameraShaker:StartShake(), CameraShaker:Update()
+### Community 1820 - "nikita_roblox9585/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
-### Community 1822 - "Old_Small_Version/EffectsModule/CameraShaker.luau"
-Cohesion: 0.22
-Nodes (5): CameraShakeInstance.new(), CameraShaker:ShakeOnce(), CameraShaker:Start(), CameraShaker:StartShake(), CameraShaker:Update()
+### Community 1822 - "njghbl/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
 ### Community 1838 - "muteOtherEmoteSounds.luau"
 Cohesion: 0.70
@@ -6923,9 +7288,9 @@ Nodes (4): CreateDialogue(), EndDialogue(), getColor(), v1.Speak()
 Cohesion: 0.70
 Nodes (4): CreateDialogue(), EndDialogue(), getColor(), v1.Speak()
 
-### Community 1860 - "RAGE/EffectsModule/CameraShaker.luau"
-Cohesion: 0.22
-Nodes (5): CameraShakeInstance.new(), CameraShaker:ShakeOnce(), CameraShaker:Start(), CameraShaker:StartShake(), CameraShaker:Update()
+### Community 1860 - "Player/Animate_1.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
 ### Community 1861 - "Preload.luau"
 Cohesion: 0.70
@@ -6959,25 +7324,25 @@ Nodes (4): getUI(), v1.New(), v1.Next(), v1.Okay()
 Cohesion: 0.24
 Nodes (6): Projectile:bind_to_update(), Projectile:get_cframe(), Projectile:initialise(), Projectile.new(), Projectile:replicate(), Projectile:stop()
 
-### Community 1873 - "AtRest_1.luau"
-Cohesion: 0.24
-Nodes (9): setMarked(), silenceTree(), treeNeeds(), u1.applies(), u1.needs(), u1.rest(), u1.silence(), u1.silenceHeld() (+1 more)
+### Community 1873 - "Player/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
 ### Community 1885 - "SoccerGame/ReplicatedStorage/Packages/_Index/sleitnick_timer@1.1.2/timer.luau"
 Cohesion: 0.17
 Nodes (3): u13(), u1.new(), u1.Simple()
 
 ### Community 1886 - "Atomize/EffectsModule/CameraShaker/CameraShakeInstance.luau"
-Cohesion: 0.19
-Nodes (4): CameraShakeInstance:GetState(), CameraShakeInstance:IsFadingIn(), CameraShakeInstance:IsFadingOut(), CameraShakeInstance:IsShaking()
+Cohesion: 0.10
+Nodes (9): CameraShakeInstance:GetState(), CameraShakeInstance:IsFadingIn(), CameraShakeInstance:IsFadingOut(), CameraShakeInstance:IsShaking(), CameraShakeInstance.new(), CameraShaker:ShakeOnce(), CameraShaker:Start(), CameraShaker:StartShake() (+1 more)
 
 ### Community 1887 - "HuePicker.luau"
 Cohesion: 0.29
 Nodes (9): HuePicker:bind_colorbox(), HuePicker:get_color(), HuePicker:init_gradient_scale(), HuePicker:init_hue_scale(), HuePicker:initialise_tweens(), HuePicker.new(), HuePicker:set_color_position(), HuePicker:toggle() (+1 more)
 
 ### Community 1888 - "Old_Small_Version/EffectsModule/CameraShaker/CameraShakeInstance.luau"
-Cohesion: 0.19
-Nodes (4): CameraShakeInstance:GetState(), CameraShakeInstance:IsFadingIn(), CameraShakeInstance:IsFadingOut(), CameraShakeInstance:IsShaking()
+Cohesion: 0.10
+Nodes (9): CameraShakeInstance:GetState(), CameraShakeInstance:IsFadingIn(), CameraShakeInstance:IsFadingOut(), CameraShakeInstance:IsShaking(), CameraShakeInstance.new(), CameraShaker:ShakeOnce(), CameraShaker:Start(), CameraShaker:StartShake() (+1 more)
 
 ### Community 1889 - "EmoteVFX.luau"
 Cohesion: 0.24
@@ -6999,9 +7364,9 @@ Nodes (5): Callback(), Util.EventFrequency(), Util.GetAnimationFromId(), Util.Ge
 Cohesion: 0.70
 Nodes (4): u1.get(), u1.offer(), u1.pick(), u1.poseEmote()
 
-### Community 1897 - "LobbyControlsClient.client.luau"
-Cohesion: 0.60
-Nodes (3): canAFK(), toggleAFK(), update()
+### Community 1897 - "roblox_user_5849109059/Animate.client.luau"
+Cohesion: 0.11
+Nodes (29): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), lookForControllerManager(), onClimbing() (+21 more)
 
 ### Community 1899 - "MOSTRECENTFORGE/effects/lightning.luau"
 Cohesion: 0.20
@@ -7020,8 +7385,8 @@ Cohesion: 0.21
 Nodes (6): v_u_16(), v_u_1.Emit(), v_u_1.new(), v_u_1.PlayFlipbook(), v_u_20(), v_u_25()
 
 ### Community 1905 - "RAGE/EffectsModule/CameraShaker/CameraShakeInstance.luau"
-Cohesion: 0.19
-Nodes (4): CameraShakeInstance:GetState(), CameraShakeInstance:IsFadingIn(), CameraShakeInstance:IsFadingOut(), CameraShakeInstance:IsShaking()
+Cohesion: 0.10
+Nodes (9): CameraShakeInstance:GetState(), CameraShakeInstance:IsFadingIn(), CameraShakeInstance:IsFadingOut(), CameraShakeInstance:IsShaking(), CameraShakeInstance.new(), CameraShaker:ShakeOnce(), CameraShaker:Start(), CameraShaker:StartShake() (+1 more)
 
 ### Community 1908 - "MenuScaleClient.client.luau"
 Cohesion: 0.60
@@ -7039,9 +7404,17 @@ Nodes (7): Job.Clean(), Job.CleanTask(), Job.Destroy(), Job.Extend(), Job.Task()
 Cohesion: 0.14
 Nodes (10): behaviourOf(), HumanoidDied(), spawnDummy(), startBehaviour(), stopBehaviour(), movesetInfo(), playReadyBurst(), readyLabel() (+2 more)
 
+### Community 1915 - "MoveAction.luau"
+Cohesion: 0.06
+Nodes (3): u1.HandleInput(), u1.QueueMove(), u1._Start()
+
 ### Community 1917 - "Modules/TopbarPlus/Icon/Features/Overflow.luau"
 Cohesion: 0.36
 Nodes (9): u1.Deload(), u78(), u1.getAvailableIcons(), u1.getRealXPositions(), u1.getWidth(), u1.start(), u1.updateAvailableIcons(), u1.updateBoundary() (+1 more)
+
+### Community 1918 - "UI_Backpack.luau"
+Cohesion: 0.09
+Nodes (18): item(), CacheAdd(), CacheRemove(), CompileItemFromTool(), ConnectCharacter(), DiscardItems(), FindFirstEmptySlot(), FindHotbarSlotAt() (+10 more)
 
 ### Community 1919 - "SelfPass/OffBall/CraterHandler/InstanceHandler/InstanceCache.luau"
 Cohesion: 0.67
@@ -7063,10 +7436,6 @@ Nodes (3): clearTables(), u1.new(), u5()
 Cohesion: 0.18
 Nodes (3): u1.clipOutside(), u1.copyTable(), u1.setVisible()
 
-### Community 1928 - "u1.header"
-Cohesion: 0.26
-Nodes (12): decor(), glow(), resolveIcon(), shimmer(), skinZ(), topZ(), u1.footer(), u1.header() (+4 more)
-
 ### Community 1932 - "List/Global/Ultimate.luau"
 Cohesion: 0.19
 Nodes (20): Attack:Activate(), Attack:BarDraining(), Attack:BarPaused(), Attack:CloseForRespawn(), Attack:DrainThreadActive(), Attack:ForceSetValue(), Attack:GetFunction(), Attack:HasAnUltimate() (+12 more)
@@ -7087,9 +7456,9 @@ Nodes (6): acquireRunnerThreadAndCallEventHandler(), newConnection(), runEventHa
 Cohesion: 0.67
 Nodes (3): clearTables(), u1.new(), u8()
 
-### Community 1951 - "ApplyBuildingEntries"
-Cohesion: 0.20
-Nodes (11): AddPieces(), BelowFeet(), DebreeService.GetPieceCount(), HitPiece(), NewPiece(), Registry.Add(), Registry.Allocate(), Registry.Available() (+3 more)
+### Community 1951 - "ClientCast.luau"
+Cohesion: 0.07
+Nodes (10): IsValid(), IsValidOwner(), SafeRemoteInvoke(), u1.new(), u27.new(), u28.Start(), u46.GetPing(), u46.SetOwner() (+2 more)
 
 ### Community 1953 - "GerstnerCalculation.luau"
 Cohesion: 0.83
@@ -7099,9 +7468,9 @@ Nodes (3): u30(), u36(), u47()
 Cohesion: 0.83
 Nodes (3): u15(), u26(), v32()
 
-### Community 1968 - "BattleGame/ReplicatedStorage/Modules/Icon/Packages/GoodSignal.luau"
-Cohesion: 0.25
-Nodes (6): acquireRunnerThreadAndCallEventHandler(), Connection.new(), runEventHandlerInFreeThread(), Signal:Connect(), Signal:Once(), Signal:Wait()
+### Community 1968 - "Participant.luau"
+Cohesion: 0.09
+Nodes (19): CloneChar(), End(), Highlight(), Load(), PlaySyncedTrack(), PlaySyncedTracks(), PrepareKeyframes(), RegisterKeyframeUpdate() (+11 more)
 
 ### Community 1970 - "CameraPlayback.luau"
 Cohesion: 0.83
@@ -7112,16 +7481,20 @@ Cohesion: 0.29
 Nodes (7): inUlt(), isTouch(), movesetInfo(), setKeybindText(), setProgress(), setUltName(), showReady()
 
 ### Community 1981 - "Smartbone/Dependencies/ActorScript.client.luau"
-Cohesion: 0.24
-Nodes (4): Event.OnInvoke(), Initialize(), smoothDelta(), u3.new()
+Cohesion: 0.17
+Nodes (6): Event.OnInvoke(), Initialize(), smoothDelta(), u3.new(), l__Event__1.OnInvoke(), u15()
 
 ### Community 1984 - "SorceryGame/ReplicatedStorage/Modules/Icon/Packages/Janitor.luau"
 Cohesion: 0.14
-Nodes (15): getTweenInfo(), updateChildSize(), updateMaxIcons(), updateMaxIconsListener(), updateVisibility(), getPromiseReference(), Janitor.__index:Add(), Janitor.__index:AddPromise() (+7 more)
+Nodes (16): getTweenInfo(), updateChildSize(), updateMaxIcons(), updateMaxIconsListener(), updateVisibility(), getPromiseReference(), Janitor.__index:Add(), Janitor.__index:AddObject() (+8 more)
 
 ### Community 1985 - "Movement.luau"
-Cohesion: 0.17
-Nodes (24): Main.GetCharacterInfo(), Main.OnCharacterReady(), Main.OnCharactersReady(), MovementHandler:ClearAllAnimations(), MovementHandler:GetAnimation(), MovementHandler:GetAnimationDirectory(), MovementHandler:GetUltimateAnimations(), MovementHandler:_Init() (+16 more)
+Cohesion: 0.26
+Nodes (21): MovementHandler:ClearAllAnimations(), MovementHandler:GetAnimation(), MovementHandler:GetAnimationDirectory(), MovementHandler:GetUltimateAnimations(), MovementHandler:_Init(), MovementHandler:InitStand(), MovementHandler:Jump(), MovementHandler:LoadAnimations() (+13 more)
+
+### Community 1986 - "sleitnick_table-util@1.1.4/table-util.luau"
+Cohesion: 0.07
+Nodes (8): u2(), u21(), u26(), u35(), Reconcile(), v1.Copy(), AirLock(), v1.Copy()
 
 ### Community 1995 - "ThePlixAfterimages.luau"
 Cohesion: 0.83
@@ -7159,13 +7532,13 @@ Nodes (3): u1.getAppVersion(), u1.getLatestVersion(), u1.isUpToDate()
 Cohesion: 0.24
 Nodes (6): CheckWalkDirection(), isRunning(), CheckWalkDirection(), getCurrentIdleTrack(), isModeActive(), isRunning()
 
-### Community 2041 - "SorceryGame/ReplicatedStorage/Modules/Shared/Utilities/DistanceFade.luau"
-Cohesion: 0.36
-Nodes (7): AdjustGradientOffset(), DistanceFade.new(), DistanceFade:Step(), SetUpFolders(), UpdateCornerGradient(), UpdateSideGradient(), UpdateTextureOffset()
+### Community 2041 - "CameraInput.getTogglePan"
+Cohesion: 0.07
+Nodes (17): u2.GetCameraToggleOffset(), u2.new(), CameraInput.getTogglePan(), CameraUtils.map(), ClassicCamera:GetCameraToggleOffset(), ClassicCamera.new(), ClassicCamera:Update(), u2.GetCameraToggleOffset() (+9 more)
 
 ### Community 2043 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/VehicleController.luau"
-Cohesion: 0.33
-Nodes (10): VehicleController:BindContextActions(), VehicleController:ComputeSteer(), VehicleController:ComputeThrottle(), VehicleController:Enable(), VehicleController:OnSteerLeft(), VehicleController:OnSteerRight(), VehicleController:OnThrottleAccel(), VehicleController:OnThrottleDeccel() (+2 more)
+Cohesion: 0.16
+Nodes (17): u1.new(), VehicleController:BindContextActions(), VehicleController:ComputeSteer(), VehicleController:ComputeThrottle(), VehicleController:Enable(), VehicleController.new(), VehicleController:OnSteerLeft(), VehicleController:OnSteerRight() (+9 more)
 
 ### Community 2044 - "DashCDHUD.client.luau"
 Cohesion: 0.23
@@ -7173,7 +7546,11 @@ Nodes (8): buildFill(), buildFlash(), cancel(), cancelTweens(), finish(), play()
 
 ### Community 2045 - "vfxUtil/ForgeVFX/services/effects.luau"
 Cohesion: 0.04
-Nodes (34): u6.emit(), u6.emitFromFolder(), u6.emitNested(), u6.emitOnFinish(), u6.prepareEmitFolder(), u6.prepareEmitOnFinish(), u5.emit(), u5.emitNested() (+26 more)
+Nodes (33): u6.emit(), u6.emitFromFolder(), u6.emitNested(), u6.emitOnFinish(), u6.prepareEmitFolder(), u6.prepareEmitOnFinish(), v12(), v36() (+25 more)
+
+### Community 2064 - "Sequence_V3.luau"
+Cohesion: 0.06
+Nodes (3): u1.Errored(), u1.RunFrame(), frame()
 
 ### Community 2074 - "Driven.luau"
 Cohesion: 0.33
@@ -7192,16 +7569,16 @@ Cohesion: 0.29
 Nodes (7): basePick(), halloweenPick(), shuffled(), u1.card(), u1.day(), u1.pick(), u1.picks()
 
 ### Community 2124 - "ArmoryStyle.luau"
-Cohesion: 0.27
-Nodes (8): card(), dock(), sounds(), stage(), tokens(), u7(), v1.apply(), u1.LoadOrCreateNumberValueParameter()
+Cohesion: 0.31
+Nodes (7): card(), dock(), sounds(), stage(), tokens(), u7(), v1.apply()
 
 ### Community 2136 - "Color3.lua"
 Cohesion: 0.33
 Nodes (5): Color3.fromHSV(), Color3.fromRGB(), Color3.new(), lerpNumber(), prototype:lerp()
 
-### Community 2138 - "u55.Open"
-Cohesion: 0.22
-Nodes (10): getPanelPieces(), playBackdropSweep(), playGlowMask(), playPanelEntrance(), playShine(), playSound(), playSunbursts(), resetPanelEntrance() (+2 more)
+### Community 2138 - "Libraries/Classes/Signal.luau"
+Cohesion: 0.07
+Nodes (6): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), u11.new(), u11.Wrap(), u1.Fire(), u1.newCall()
 
 ### Community 2139 - "BufferUtilOld.luau"
 Cohesion: 0.10
@@ -7214,10 +7591,6 @@ Nodes (5): cleanup(), fadeOutFX(), mirrorDecals(), secondTry(), setDecals()
 ### Community 2151 - "ClientEffects/ForgeVFX/pkg/Shake.luau"
 Cohesion: 0.29
 Nodes (5): Shake:BindToRenderStep(), Shake:Destroy(), Shake:OnSignal(), Shake:Stop(), Shake:Update()
-
-### Community 2152 - "Modules/Mesh.luau"
-Cohesion: 0.29
-Nodes (5): u11(), u1.Emit(), u1.enable(), u1.new(), u7()
 
 ### Community 2163 - "ReplicatedStorage/Part_Icles/NestedEmit.luau"
 Cohesion: 0.18
@@ -7232,8 +7605,8 @@ Cohesion: 0.10
 Nodes (14): DestroyReplicaAndDescendantsRecursive(), GetWriteLibFunctionsRecursive(), LoadWriteLib(), ParseReplicaBranch(), StringPathToArray(), u14.CheckWriteLib(), u14.NewReplica(), u48.ArrayInsert() (+6 more)
 
 ### Community 2202 - "ReplicatedStorage/Part_Icles/Lifecycle.luau"
-Cohesion: 0.07
-Nodes (20): u1.advance(), u1.isSet(), u1.resolve(), u1.step(), u1.advance(), u1.isSet(), u1.resolve(), u1.step() (+12 more)
+Cohesion: 0.11
+Nodes (12): cancelAnimation(), haltEmission(), u3._cancelAnimation(), u3.Disable(), u3.EmitAnimate(), u3.SoftDisable(), cancelAnimation(), haltEmission() (+4 more)
 
 ### Community 2237 - "MusicService.luau"
 Cohesion: 0.40
@@ -7252,20 +7625,32 @@ Cohesion: 0.24
 Nodes (5): cameraHit(), impactFrame(), scaleFx(), scaleNS(), vignette()
 
 ### Community 2488 - "FxController.luau"
-Cohesion: 0.22
-Nodes (5): burst(), dangerCheck(), FxController.Init(), groundShape(), part()
+Cohesion: 0.16
+Nodes (8): burst(), dangerCheck(), ghostOf(), groundShape(), hideErased(), part(), rootOf(), setHidden()
+
+### Community 2490 - "UI_Shop.luau"
+Cohesion: 0.08
+Nodes (9): MakeMapFrame(), ShowMaps(), View(), MakeItemFrame(), PromptPurchase(), Update(), Display(), DisplaySponsorPrompt() (+1 more)
 
 ### Community 2497 - "Other/Zone/Signal.luau"
 Cohesion: 0.27
 Nodes (6): acquireRunnerThreadAndCallEventHandler(), Connection.new(), runEventHandlerInFreeThread(), Signal:Connect(), Signal.new(), Signal:Wait()
 
-### Community 2498 - "u90"
-Cohesion: 0.22
-Nodes (5): u387(), u82(), u86(), u90(), at()
+### Community 2498 - "R15.luau"
+Cohesion: 0.12
+Nodes (25): animateTool(), configureAnimationSet(), configureAnimationSetOld(), getHeightScale(), getToolAnim(), keyFrameReachedFunc(), onClimbing(), onFreeFall() (+17 more)
+
+### Community 2506 - "VRBaseCamera.new"
+Cohesion: 0.04
+Nodes (15): u1.new(), VRBaseCamera.new(), VRCamera.new(), VRCamera:Reset(), VRCamera:Update(), VRCamera:UpdateFirstPersonTransform(), VRCamera:UpdateThirdPersonComfortTransform(), VRCamera:UpdateThirdPersonFollowTransform() (+7 more)
 
 ### Community 2508 - "CharacterVFX.luau"
 Cohesion: 0.38
 Nodes (8): anchorOffset(), attach(), CharacterVFX._despawn(), CharacterVFX.setCharacter(), CharacterVFX.setState(), CharacterVFX._spawn(), CharacterVFX.stop(), gatherEmitters()
+
+### Community 2509 - "startupModules/PlayerModule/ControlModule/ClickToMoveDisplay.luau"
+Cohesion: 0.08
+Nodes (14): createTrailDots(), CreateWaypointTemplates(), placePathWaypoint(), u20.new(), u20.NewDisplayModel(), u28.new(), u28.NewDisplayModel(), u44.NewDisplayModel() (+6 more)
 
 ### Community 2512 - "EmoteMenuClient.client.luau"
 Cohesion: 0.31
@@ -7283,13 +7668,13 @@ Nodes (8): Gamepad:BindContextActions(), Gamepad:ConnectGamepadConnectionListene
 Cohesion: 0.10
 Nodes (4): BaseBlock:activate(), BaseBlock:cancel(), BaseBlock:close(), BaseBlock:trigger()
 
-### Community 2520 - "RankedController.luau"
-Cohesion: 0.24
-Nodes (3): showQueueUI(), v4.KnitStart(), v4.ShowQueueUI()
+### Community 2520 - "Ability.luau"
+Cohesion: 0.06
+Nodes (3): u3.GetMotorTree(), u3.IterateMotorTree(), u3.WeldModel()
 
-### Community 2524 - "AdRewardCard.luau"
-Cohesion: 0.29
-Nodes (5): formatNumberWithCommas(), formatSpinText(), getCardColor(), getInventoryRarity(), v1.CreateCard()
+### Community 2524 - "ReplicatedStorage/ReplicatedStorage/CmdrClient/Shared/Util.luau"
+Cohesion: 0.09
+Nodes (17): u54(), u5.EncodeEscapedOperator(), u5.EncodeEscapedOperators(), u5.GetNames(), u5.MakeAliasCommand(), u5.MakeEnumType(), u5.MakeFuzzyFinder(), u5.MakeSequenceType() (+9 more)
 
 ### Community 2527 - "Domains/DomainHandler.luau"
 Cohesion: 0.12
@@ -7303,33 +7688,45 @@ Nodes (15): updateMaxIcons(), updateVisibility(), Overflow.getAvailableIcons(), 
 Cohesion: 0.27
 Nodes (5): bindCharacter(), clearDrown(), randomAxis(), randomSpin(), tumbleBody()
 
-### Community 2555 - "replicatedstorage_modules_shared_utilities_eventservice"
-Cohesion: 0.02
-Nodes (71): NewWorld.new(), NewWorld:Spawn(), NewWorld:Start(), NewWorld:StartKira(), BaseEvent.new(), DeadDrop:DropCase(), DeadDrop:End(), DeadDrop:HandleCasePickup() (+63 more)
+### Community 2549 - "ClientEffects/LightningBolt.luau"
+Cohesion: 0.06
+Nodes (4): LightningBolt:Destroy(), LightningBolt:DestroyDissipate(), Projectile:Destroy(), Projectile.new()
+
+### Community 2555 - "BaseEvent/DeadDrop.luau"
+Cohesion: 0.11
+Nodes (24): NewWorld.new(), NewWorld:Spawn(), NewWorld:Start(), NewWorld:StartKira(), BaseEvent.new(), DeadDrop:DropCase(), DeadDrop:End(), DeadDrop:HandleCasePickup() (+16 more)
 
 ### Community 2558 - "script_parent_signal"
 Cohesion: 0.08
 Nodes (4): u1.new(), u1.new(), NumberStack.Add(), NumberStack.Remove()
 
 ### Community 2559 - "Game/SmartBone/Dependencies/Iris/demoWindow.luau"
-Cohesion: 0.17
-Nodes (16): BoneEditor(), ColliderEditor(), dynamicStyle(), helpMarker(), layoutDemo(), mainMenuBar(), mainMenuBarExample(), recursiveMenu() (+8 more)
+Cohesion: 0.16
+Nodes (17): BoneEditor(), ColliderEditor(), dynamicStyle(), helpMarker(), layoutDemo(), mainMenuBar(), mainMenuBarExample(), recursiveMenu() (+9 more)
+
+### Community 2560 - "ClientLibrary/Fusion.luau"
+Cohesion: 0.07
+Nodes (3): CreateFrameList(), UIStroke(), UITextSizeConstraint()
 
 ### Community 2564 - "Projectiles/ProjectileHandler.luau"
 Cohesion: 0.13
 Nodes (9): ProjectileHandler:add_to_active(), ProjectileHandler:_create(), ProjectileHandler:initialise(), ProjectileHandler:update_projectiles(), Util.get_projectile_saucer(), ProjectileHandler:add_to_active(), ProjectileHandler:create(), ProjectileHandler:get_new_identifier() (+1 more)
 
-### Community 2610 - "TrajectoryPreview_1.luau"
-Cohesion: 0.53
-Nodes (4): resolveAdjustedDirection(), simulate(), u1.BuildCurrent(), u1.Preview()
+### Community 2610 - "Sequence_V2.luau"
+Cohesion: 0.07
+Nodes (4): u1.CreateFromOldSequence(), u1.new(), Validate(), u1.GetCallStack()
 
 ### Community 2675 - "util/Util.luau"
 Cohesion: 0.03
-Nodes (30): LoadPlayersMVPStuff(), LoadPlayersStyleStuff(), mvp_parser(), parser(), player_management(), LoadPlayersMVPStuff(), LoadPlayersStyleStuff(), mvp_parser() (+22 more)
+Nodes (26): spawnAll(), spawnEntity(), play_ot_video(), previewer(), v1.emperor_eye(), v1.i_cant_sleep(), getLastValue(), u6.AttributeTween() (+18 more)
 
 ### Community 2702 - "EmotePlayback.luau"
 Cohesion: 0.28
 Nodes (4): u1.intro(), u1.load(), u1.loop(), u1.once()
+
+### Community 2704 - "UI_Chroma/ColorPicker.luau"
+Cohesion: 0.09
+Nodes (18): radToDeg(), rotateVector(), roundToHundredths(), template(), toPolar(), u1.New(), u1.SetColor(), u1.SetColorFromPos() (+10 more)
 
 ### Community 2743 - "datause/index.md"
 Cohesion: 0.22
@@ -7355,9 +7752,9 @@ Nodes (8): u145.new(), Search(), v4.Next(), v4.Pick(), IsaacInit(), IsaacMix(), 
 Cohesion: 0.13
 Nodes (6): FlushProductPurchaseCache(), GetClientProductInfo(), GetProductInfo(), SanitizeClientProductInfo(), u1.DevProductPurchased(), u1.UpdatePlayerSpend()
 
-### Community 5201 - "StarterPackClient.client.luau"
-Cohesion: 0.11
-Nodes (7): eligible(), render(), show(), syncWorldReward(), popIn(), render(), show()
+### Community 5201 - "FunctionUtils/_t.luau"
+Cohesion: 0.12
+Nodes (23): v105(), u8.array(), u8.children(), u8.instanceIsA(), u8.instanceOf(), u8.integer(), u8.keyOf(), u8.keys() (+15 more)
 
 ### Community 5202 - "Test Flow"
 Cohesion: 0.25
@@ -7365,19 +7762,19 @@ Nodes (7): #1: Load tests, #2: Create test plan, #3: Execute test plan, #4: Repo
 
 ### Community 5205 - "InternalExperiments.luau"
 Cohesion: 0.14
-Nodes (14): buildRecordMap(), disableAssignment(), enableAssignment(), executeServerAssignmentRequest(), queueAssignment(), requeueOnClientInfo(), scheduleContextRefresh(), startAssignmentRefresh() (+6 more)
+Nodes (13): buildRecordMap(), disableAssignment(), enableAssignment(), executeServerAssignmentRequest(), queueAssignment(), requeueOnClientInfo(), scheduleContextRefresh(), startAssignmentRefresh() (+5 more)
 
 ### Community 5206 - "GameAnalytics/Events.luau"
-Cohesion: 0.15
+Cohesion: 0.16
 Nodes (14): addDimensionsToEvent(), addEventToStore(), dequeueMaxEvents(), getEventAnnotations(), processEvents(), u1.addBusinessEvent(), u1.addDesignEvent(), u1.addErrorEvent() (+6 more)
 
 ### Community 5207 - "PerformanceSender.server.luau"
-Cohesion: 0.12
-Nodes (12): captureClientMicroprofiler(), captureDataModelSnapshot(), diag(), diagWarn(), ensureArmed(), getClientMeta(), getRecentAvgFps(), ReportBucket() (+4 more)
+Cohesion: 0.11
+Nodes (15): updateInDeeply(), captureClientMicroprofiler(), captureDataModelSnapshot(), diag(), diagWarn(), ensureArmed(), getClientMeta(), getRecentAvgFps() (+7 more)
 
 ### Community 5209 - "UserGenerated/Logging.luau"
-Cohesion: 0.08
-Nodes (9): any(), u1.new(), u15.Build(), v5(), FormatArgs(), SetLevel(), v11(), v16() (+1 more)
+Cohesion: 0.12
+Nodes (6): any(), FormatArgs(), SetLevel(), v11(), v16(), v29.SetLevel()
 
 ### Community 5212 - "EngagementMarkers.luau"
 Cohesion: 0.10
@@ -7388,11 +7785,11 @@ Cohesion: 0.16
 Nodes (10): AddModule(), AddModuleFolder(), FindModule(), GetModule(), GetPublicModule(), StartSDK(), v1.GetService(), v1.Setup() (+2 more)
 
 ### Community 5226 - "Game/SmartBone/Components/Bone.luau"
-Cohesion: 0.13
+Cohesion: 0.12
 Nodes (8): QueryTransformedWorldCFrame(), QueryTransformedWorldCFrameNonSmartbone(), SolveWind(), u40.DrawOverlay(), u40.PreUpdate(), u40.StepPhysics(), Length(), Class:DrawOverlay()
 
 ### Community 5233 - "Experiments.luau"
-Cohesion: 0.14
+Cohesion: 0.11
 Nodes (8): BuildAssignments(), GetAssignmentsKey(), v1.GetAssignmentsForPlayer(), v1.GetGroupForPlayer(), v1.GetServerAssignments(), v1.ObserveAssignmentsForPlayer(), v1.OnAssignmentsChangedForPlayer(), v1.OnServerAssignmentsChanged()
 
 ### Community 5246 - "Lottie.luau"
@@ -7408,32 +7805,44 @@ Cohesion: 0.39
 Nodes (5): metatable:__add(), metatable:__div(), metatable:__mul(), metatable:__sub(), Vector3.new()
 
 ### Community 5296 - "BasketballGame/ReplicatedStorage/Packages/Knit/KnitClient.luau"
-Cohesion: 0.17
+Cohesion: 0.09
 Nodes (6): BuildService(), DoesControllerExist(), GetMiddlewareForService(), GetServicesFolder(), u3.CreateController(), u3.GetService()
 
-### Community 5326 - "playEntryAnimation"
-Cohesion: 0.31
-Nodes (9): buildPattern(), coverWithPattern(), playBundleBoom(), playEntryAnimation(), playEntryFlash(), playImpactBurst(), playShockwaves(), playSlashes() (+1 more)
+### Community 5326 - "StrikerGame/ReplicatedStorage/chrono/Server/Receiver.luau"
+Cohesion: 0.09
+Nodes (14): DeserializeEntityPacket(), FireMiddleMans(), GuardLag(), GuardPacket(), GuardVelocity(), HandleEntity(), OnReceive(), RewritePacketCFrame() (+6 more)
 
 ### Community 5335 - "GAME PLAN & SYSTEM DESIGN SPECIFICATION"
 Cohesion: 0.09
 Nodes (23): 1. Match Loop & State Machine (Multi-Round Elimination), 2. Ability Framework & Rarity Scaling, 3. Gacha, Inventory & Monetization Engine, 4. Procedural Map & Dynamic Cover Destruction, 5. Complete UI / UX Specifications, 6. Match Cash Rewards & End-of-Match MVP Leaderboard, A. Match Cash Rewards, A. Slot & Storage Model (The Quick-Swap Slot-Lock System) (+15 more)
 
-### Community 5357 - "ReplicatorClient.luau"
-Cohesion: 0.29
-Nodes (5): deepCopy(), handlePacket(), makeDotCallsError(), u2.get(), u2.init()
+### Community 5357 - "Thread"
+Cohesion: 0.17
+Nodes (26): Glue(), v7.GenerateCircle(), v7.GenerateCube(), v7.GenerateDash(), v7.GenerateGlowAura(), v7.GenerateShadow(), v7.GenerateSphere(), v7.GenerateSwirl() (+18 more)
 
 ### Community 5358 - "ClientConfigs.luau"
 Cohesion: 0.18
 Nodes (3): DeepCopy(), DeepFreeze(), v1.Init()
 
-### Community 5362 - "Lapse Pull.luau"
-Cohesion: 0.36
-Nodes (8): Attack:Activate(), Attack:CheckPullOnTarget(), Attack:ConditionToActivate(), Attack:Kick(), Attack.new(), Attack:Pull(), Attack:ResetKickTimer(), NormalPull()
+### Community 5362 - "replicatedstorage_packages_signal"
+Cohesion: 0.06
+Nodes (20): Attack.new(), Attack:Activate(), Attack:CheckPullOnTarget(), Attack:ConditionToActivate(), Attack:Kick(), Attack.new(), Attack:Pull(), Attack:ResetKickTimer() (+12 more)
+
+### Community 5370 - "startupModules/PlayerModule/ControlModule/VRNavigation.luau"
+Cohesion: 0.09
+Nodes (7): renderPoint(), u1.clearRenderedPath(), u1.renderPath(), u1.setCurrentPoints(), u6.ControlCharacterGamepad(), u6.OnHeartbeat(), u6.OnNavigationRequest()
+
+### Community 5414 - "ReplicatedStorage/SmartBone/Dependencies/Iris/Internal.luau"
+Cohesion: 0.11
+Nodes (19): u2._deepCompare(), u2._deepCopy(), u2._generateRootInstance(), u2._generateSelectionImageObject(), u1.Init(), u2._ContinueWidget(), u2._cycle(), u2._deepCompare() (+11 more)
 
 ### Community 5518 - "serde.luau"
 Cohesion: 0.29
 Nodes (3): deepCopy(), v1.serialise(), v1.CreatePlayer()
+
+### Community 5598 - "UI_Inventory.luau"
+Cohesion: 0.09
+Nodes (17): v31(), v21(), initializeUI(), u48.setCameraModeToastEnabled(), u48.setCameraModeToastOpen(), u3.__index.Remove(), DetermineSlotKey(), GetSort() (+9 more)
 
 ### Community 5697 - "ClientEffects/ForgeVFX/obj/ObjectCache.luau"
 Cohesion: 0.36
@@ -7463,9 +7872,9 @@ Nodes (7): DashCooldown.Clear(), DashCooldown.ClearAll(), DashCooldown.GetConfig
 Cohesion: 0.28
 Nodes (3): Class:SetObject(), Class:Step(), Class:UpdateTransform()
 
-### Community 7094 - "GhostTraderClient.client.luau"
-Cohesion: 0.31
-Nodes (4): floating(), lanternSign(), refresh(), setup()
+### Community 7094 - "presentation_waitforchild"
+Cohesion: 0.08
+Nodes (12): camera(), clean(), panel(), refresh(), render(), restore(), busy(), refresh() (+4 more)
 
 ### Community 7095 - "WeaponsHandler.luau"
 Cohesion: 0.28
@@ -7475,17 +7884,25 @@ Nodes (3): module:AddAwakeningSword(), module:RemoveAwakeningSword(), TriggerTra
 Cohesion: 0.17
 Nodes (12): VRBaseCamera:GamepadReset(), VRBaseCamera:GamepadZoomPress(), VRBaseCamera:GetCameraHeight(), VRBaseCamera:getRotation(), VRBaseCamera:GetVRFocus(), VRBaseCamera:OnCurrentCameraChanged(), VRBaseCamera:OnEnabledChanged(), VRBaseCamera:OnHeadScaleChanged() (+4 more)
 
-### Community 7097 - "Universal/Custom.luau"
-Cohesion: 0.20
-Nodes (14): Attack:Activate(), Attack:AddCooldown(), Attack:ApplyContextFormatting(), Attack:ChangeAttackDisplayWithFormatting(), Attack:Close(), Attack:GetBaseDisplayUI(), Attack:GetCurrentBranchInfo(), Attack:GetCurrentDisplayUI() (+6 more)
+### Community 7097 - "newsaefx.luau"
+Cohesion: 0.09
+Nodes (10): CreateVFXTimeline(), GetVFX(), u1.characterImage(), u1.followupcreative(), u1.saenewnewauto(), CreateVFXTimeline(), GetVFX(), u1.characterImage() (+2 more)
 
 ### Community 7100 - "Utility/ProfileStore.luau"
 Cohesion: 0.08
 Nodes (16): AddToDonationBoard(), ClearCurrent(), GetAllTimeData(), GetMonthlyData(), MakeGUI(), SafeCall(), SetCharacters(), UpdateAllTime() (+8 more)
 
+### Community 7101 - "Utils/Spring.luau"
+Cohesion: 0.12
+Nodes (4): u3.Connect(), u3.Fire(), u1.new(), Shoot()
+
 ### Community 7102 - "ProfileStoreBackup.luau"
 Cohesion: 0.13
 Nodes (7): AcquireRunnerThreadAndCallEventHandler(), Profile:EndSession(), Profile:IsActive(), Profile:MessageHandler(), ProfileStore:VersionQuery(), ProfileVersionQuery.New(), RunEventHandlerInFreeThread()
+
+### Community 7103 - "R6.luau"
+Cohesion: 0.12
+Nodes (19): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing(), onFreeFall() (+11 more)
 
 ### Community 7104 - "LeaderboardModule.luau"
 Cohesion: 0.18
@@ -7496,12 +7913,12 @@ Cohesion: 0.12
 Nodes (4): u1.new(), u4.AddPromise(), u4.LinkToInstances(), u4.new()
 
 ### Community 7106 - "SorceryGame/ReplicatedStorage/Modules/Icon/Utility.luau"
-Cohesion: 0.09
-Nodes (24): Overflow.getAvailableIcons(), Overflow.getWidth(), Overflow.start(), Overflow.updateAvailableIcons(), Themes.apply(), Themes.change(), Themes.getClippedClone(), Themes.getInstanceValue() (+16 more)
+Cohesion: 0.14
+Nodes (11): Overflow.getAvailableIcons(), Overflow.getWidth(), Overflow.start(), Overflow.updateAvailableIcons(), Themes.getModifications(), Themes.modify(), Utility.copyTable(), Utility.createStagger() (+3 more)
 
-### Community 7107 - "MovesetHandler.luau"
-Cohesion: 0.36
-Nodes (6): AddBaseMoveset(), ApplyConfig(), GetTableLength(), module:AddBaseMoveset(), module:AddDualMoveset(), Shuffle()
+### Community 7107 - "DirectoryUtil.luau"
+Cohesion: 0.08
+Nodes (5): AddServices(), Merge(), u1.Await(), u1.Get(), u1.MergeFolders()
 
 ### Community 7109 - "Chara/Sequencer.luau"
 Cohesion: 0.18
@@ -7515,17 +7932,17 @@ Nodes (10): Jukebox.new(), Jukebox:Next(), Jukebox:_OnSongEnded(), Jukebox:Play(
 Cohesion: 0.16
 Nodes (11): Module.new(), acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), Signal:Connect(), Signal:ConnectOnce(), Signal:Destroy(), Signal:DisconnectAll(), Signal.new() (+3 more)
 
-### Community 7112 - "baseClient/shidou.luau"
-Cohesion: 0.70
-Nodes (4): getMoveDirection(), holdingSpace(), v1.skill1(), v1.skill3()
+### Community 7112 - "UI_Skins.luau"
+Cohesion: 0.09
+Nodes (11): u10.new(), u11(), ViewportEffect(), CreateButtons(), CreateViewport(), GetStandModel(), Left(), RefreshButtons() (+3 more)
 
-### Community 7113 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRCamera.luau"
-Cohesion: 0.33
-Nodes (6): VRCamera.new(), VRCamera:Reset(), VRCamera:Update(), VRCamera:UpdateFirstPersonTransform(), VRCamera:UpdateThirdPersonComfortTransform(), VRCamera:UpdateThirdPersonFollowTransform()
+### Community 7113 - "Bat_Nighttime/Rain.luau"
+Cohesion: 0.08
+Nodes (4): connectLoop(), disable(), disableSound(), disconnectLoop()
 
-### Community 7114 - "SoundClient.luau"
-Cohesion: 0.36
-Nodes (7): getDistance(), isOccluded(), listenToHumanoid(), playSound(), prepareListener(), removeValue(), tableContains()
+### Community 7114 - "QTE.luau"
+Cohesion: 0.08
+Nodes (3): CreateMinigame(), TransformKeys(), u14.new()
 
 ### Community 7115 - "SeaEffects.client.luau"
 Cohesion: 0.32
@@ -7564,8 +7981,8 @@ Cohesion: 0.43
 Nodes (6): destroyStun(), module:RemoveAllStuns(), module:Stun(), module:Unstun(), refresh(), TriggerTags()
 
 ### Community 7125 - "ReplicatedStorage/Modules/Player/Character/Combat.luau"
-Cohesion: 0.06
-Nodes (31): addCooldown(), AddTool(), Equip(), whiteGradientTween(), Combat:AddCooldown(), Combat:_AttackInputUpdate(), Combat:ChangeAttackKey(), Combat:Connect() (+23 more)
+Cohesion: 0.07
+Nodes (27): Combat:AddCooldown(), Combat:_AttackInputUpdate(), Combat:ChangeAttackKey(), Combat:Connect(), Combat:DestructibleDestroyLoop(), Combat:GetState(), Combat:GetStateChanged(), Combat:_Init() (+19 more)
 
 ### Community 7126 - "GamepadLockon.luau"
 Cohesion: 0.54
@@ -7575,33 +7992,37 @@ Nodes (7): camera.Freecam(), camera.GetTargetsClosestCrosshair(), camera.GetTarg
 Cohesion: 0.15
 Nodes (6): BufferUtil.read_cframe(), BufferUtil.write_cframe(), readi16AsFloat(), readi24(), writeFloatAsi16(), writei24()
 
-### Community 7129 - "u102"
-Cohesion: 0.44
-Nodes (8): u15(), u102(), u50(), u60(), u61(), u66(), u68(), u844()
+### Community 7129 - "WorldService.luau"
+Cohesion: 0.12
+Nodes (19): u1.GetAbilitySkinInfo(), u1.GetAbilitySkinsById(), u1.GetAbilitySkinsByName(), u1.GetSkinId(), u1.GetSkinInfo(), u1.GetSkinName(), u3.AwaitCharacterEntity(), u3.CreateCharacterEntity() (+11 more)
 
-### Community 7132 - "Utility/ForgeVFX/mod/lerp.luau"
-Cohesion: 0.11
-Nodes (4): getColorAtTime(), u17.ColorSequence(), getColorAtTime(), u17.ColorSequence()
+### Community 7131 - "Entry.luau"
+Cohesion: 0.09
+Nodes (4): ImportModules(), u4.AddModule(), u1.GetHandler(), u1.LoadHandler()
+
+### Community 7133 - "Bezier3.luau"
+Cohesion: 0.12
+Nodes (17): u172(), u2(), u241(), u3.fromParts(), u3.new(), u3.random(), u4.Clone(), u4.CreateDerivativeCurve() (+9 more)
 
 ### Community 7138 - "replicatedstorage_modules_clienteffects_effectutilities"
-Cohesion: 0.12
-Nodes (12): expandAttachmentVFX(), getScaledSequence(), shrinkAttachmentVFX(), getIgnoredFolders(), getVisualsFolder(), playSoundAt(), raycastWhitelist(), setChildrenEnabled() (+4 more)
+Cohesion: 0.14
+Nodes (16): getIgnoredFolders(), getVisualsFolder(), playSoundAt(), raycastWhitelist(), setChildrenEnabled(), shakeNear(), spadaCrack(), getIgnoredFolders() (+8 more)
 
 ### Community 7139 - "Uplink.luau"
 Cohesion: 0.28
 Nodes (3): newQueue(), u7.new(), u7.Stop()
 
-### Community 7140 - "VFX/Walter/This, Is Candy..luau"
-Cohesion: 0.33
-Nodes (7): Flashbang.create_flash(), Flashbang.flash_capture_loaded(), VFX.Bag(), VFX.BagExplosion(), VFX.Blast(), VFX.CastBagRay(), VFX.MovementTrail()
+### Community 7140 - "Freecam.luau"
+Cohesion: 0.12
+Nodes (16): u49(), u11(), u139(), u141.Pop(), u141.Push(), u161(), u163(), u171() (+8 more)
 
-### Community 7142 - "playRewardOpen"
-Cohesion: 0.29
-Nodes (7): burstParticlesIn(), playAuraSweep(), playRewardOpen(), playSmoke(), releaseGhouls(), startParticleFloat(), stopParticleFloat()
+### Community 7142 - "Roact/Component.spec/context.spec.luau"
+Cohesion: 0.09
+Nodes (3): captureAllContext(), u48.init(), u53.init()
 
-### Community 7143 - "resetItems"
-Cohesion: 0.29
-Nodes (7): burstStarsIn(), cacheStars(), clearEffects(), hideStars(), playMoon(), resetItems(), stopMoon()
+### Community 7143 - "WS_OUT_OF_BODY/Animate.client.luau"
+Cohesion: 0.14
+Nodes (17): animateTool(), configureAnimationSet(), getTool(), getToolAnim(), keyFrameReachedFunc(), move(), onClimbing(), onFreeFall() (+9 more)
 
 ### Community 7144 - "InputMode.luau"
 Cohesion: 0.50
@@ -7620,12 +8041,8 @@ Cohesion: 0.76
 Nodes (6): dashSounds(), hitSounds(), performFollowUp(), performFollowUp2(), performFollowUp3(), performFollowUp4()
 
 ### Community 7149 - "Characters/Zoro/scrapped/Asura.luau"
-Cohesion: 0.40
+Cohesion: 0.48
 Nodes (5): addClothedLimb(), cloneExtraLimbs(), cloneHeadAccessories(), createGhostRig(), removeFace()
-
-### Community 7150 - "FlushWithFloor"
-Cohesion: 0.60
-Nodes (6): BottomOf(), FlushWithFloor(), InFloorFolder(), IsFloor(), IsGroundSlab(), TopOf()
 
 ### Community 7151 - "Installation"
 Cohesion: 0.29
@@ -7640,16 +8057,16 @@ Cohesion: 0.33
 Nodes (5): assertwarn(), MakeFromTemplate(), PartCacheStatic:Expand(), PartCacheStatic:GetPart(), PartCacheStatic.new()
 
 ### Community 7154 - "Icon-Old/Features/Themes.luau"
-Cohesion: 0.21
-Nodes (14): totalChildrenChanged(), Themes.apply(), Themes.change(), Themes.getClippedClone(), Themes.getInstanceValue(), Themes.getRealInstance(), Themes.getThemeValue(), Themes.merge() (+6 more)
+Cohesion: 0.27
+Nodes (13): Themes.apply(), Themes.change(), Themes.getClippedClone(), Themes.getInstanceValue(), Themes.getRealInstance(), Themes.getThemeValue(), Themes.merge(), Themes.rebuild() (+5 more)
 
 ### Community 7155 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/Keyboard.luau"
-Cohesion: 0.31
-Nodes (9): Keyboard:BindContextActions(), Keyboard:ConnectFocusEventListeners(), Keyboard:Enable(), Keyboard.new(), Keyboard:UpdateJump(), Keyboard:UpdateMovement(), u138.new(), u138.new() (+1 more)
+Cohesion: 0.27
+Nodes (10): Keyboard:BindContextActions(), Keyboard:ConnectFocusEventListeners(), Keyboard:Enable(), Keyboard.new(), Keyboard:UpdateJump(), Keyboard:UpdateMovement(), u138.new(), u138.new() (+2 more)
 
-### Community 7156 - "AI/Detection.luau"
-Cohesion: 0.33
-Nodes (5): Hitbox:Detect(), Hitbox:GetLuaPlayerFrom(), Hitbox:OnIgnoreList(), Hitbox:Sort(), Hitbox:Valid()
+### Community 7156 - "sleitnick_option@1.0.3/option.luau"
+Cohesion: 0.10
+Nodes (9): u1.AndThen(), u1.Assert(), u1.Deserialize(), u1.__eq(), u1.Is(), u1._new(), u1.OrElse(), u1.Some() (+1 more)
 
 ### Community 7157 - "Icon-Old/Packages/GoodSignal.luau"
 Cohesion: 0.29
@@ -7664,8 +8081,8 @@ Cohesion: 0.67
 Nodes (5): emitParticles(), playTween(), SlashModule.Play(), spawnGroundDebris(), spawnSlashDecalPair()
 
 ### Community 7161 - "ClickToMoveDisplay.GetEndWaypointTexture"
-Cohesion: 0.29
-Nodes (7): u145.GetEndWaypointTexture(), ClickToMove:GetEndWaypointTexture(), ClickToMoveDisplay.GetEndWaypointTexture(), u138.GetEndWaypointTexture(), u138.GetEndWaypointTexture(), u138.GetEndWaypointTexture(), u112.GetEndWaypointTexture()
+Cohesion: 0.25
+Nodes (8): u145.GetEndWaypointTexture(), ClickToMove:GetEndWaypointTexture(), ClickToMoveDisplay.GetEndWaypointTexture(), u138.GetEndWaypointTexture(), u138.GetEndWaypointTexture(), u138.GetEndWaypointTexture(), u155.GetEndWaypointTexture(), u112.GetEndWaypointTexture()
 
 ### Community 7162 - "ZoroOniGiri/SlashModule.luau"
 Cohesion: 0.60
@@ -7692,28 +8109,28 @@ Cohesion: 0.47
 Nodes (3): module:Destroy(), module:Start(), module:Stop()
 
 ### Community 7173 - "ClickToMoveDisplay.GetWaypointRadius"
-Cohesion: 0.29
-Nodes (7): u145.GetWaypointRadius(), ClickToMove:GetWaypointRadius(), ClickToMoveDisplay.GetWaypointRadius(), u138.GetWaypointRadius(), u138.GetWaypointRadius(), u138.GetWaypointRadius(), u112.GetWaypointRadius()
+Cohesion: 0.25
+Nodes (8): u145.GetWaypointRadius(), ClickToMove:GetWaypointRadius(), ClickToMoveDisplay.GetWaypointRadius(), u138.GetWaypointRadius(), u138.GetWaypointRadius(), u138.GetWaypointRadius(), u155.GetWaypointRadius(), u112.GetWaypointRadius()
 
 ### Community 7175 - "_G.PlayEffect"
 Cohesion: 0.02
-Nodes (82): Lemur Changelog, Master, v0.1.0 (November 28, 2017), v1.start(), v1.start(), v2.start(), FadeoutString(), v1.start() (+74 more)
+Nodes (99): v1.start(), v1.start(), v2.start(), FadeoutString(), v1.start(), FadeoutString(), v1.start(), v1.start() (+91 more)
 
 ### Community 7176 - "ClickToMoveDisplay.SetWaypointTexture"
-Cohesion: 0.29
-Nodes (7): u145.SetWaypointTexture(), ClickToMove:SetWaypointTexture(), ClickToMoveDisplay.SetWaypointTexture(), u138.SetWaypointTexture(), u138.SetWaypointTexture(), u138.SetWaypointTexture(), u112.SetWaypointTexture()
+Cohesion: 0.25
+Nodes (8): u145.SetWaypointTexture(), ClickToMove:SetWaypointTexture(), ClickToMoveDisplay.SetWaypointTexture(), u138.SetWaypointTexture(), u138.SetWaypointTexture(), u138.SetWaypointTexture(), u155.SetWaypointTexture(), u112.SetWaypointTexture()
 
 ### Community 7177 - "ClickToMoveDisplay.GetWaypointsAlwaysOnTop"
-Cohesion: 0.29
-Nodes (7): u145.GetWaypointsAlwaysOnTop(), ClickToMove:GetWaypointsAlwaysOnTop(), ClickToMoveDisplay.GetWaypointsAlwaysOnTop(), u138.GetWaypointsAlwaysOnTop(), u138.GetWaypointsAlwaysOnTop(), u138.GetWaypointsAlwaysOnTop(), u112.GetWaypointsAlwaysOnTop()
+Cohesion: 0.25
+Nodes (8): u145.GetWaypointsAlwaysOnTop(), ClickToMove:GetWaypointsAlwaysOnTop(), ClickToMoveDisplay.GetWaypointsAlwaysOnTop(), u138.GetWaypointsAlwaysOnTop(), u138.GetWaypointsAlwaysOnTop(), u138.GetWaypointsAlwaysOnTop(), u155.GetWaypointsAlwaysOnTop(), u112.GetWaypointsAlwaysOnTop()
 
 ### Community 7179 - "ClickToMoveDisplay.GetWaypointTexture"
-Cohesion: 0.29
-Nodes (7): u145.GetWaypointTexture(), ClickToMove:GetWaypointTexture(), ClickToMoveDisplay.GetWaypointTexture(), u138.GetWaypointTexture(), u138.GetWaypointTexture(), u138.GetWaypointTexture(), u112.GetWaypointTexture()
+Cohesion: 0.25
+Nodes (8): u145.GetWaypointTexture(), ClickToMove:GetWaypointTexture(), ClickToMoveDisplay.GetWaypointTexture(), u138.GetWaypointTexture(), u138.GetWaypointTexture(), u138.GetWaypointTexture(), u155.GetWaypointTexture(), u112.GetWaypointTexture()
 
-### Community 7180 - "CreatorClient.client.luau"
-Cohesion: 0.36
-Nodes (6): camera(), clean(), panel(), refresh(), render(), restore()
+### Community 7181 - "ClientModules/SmartBone/Dependencies/Iris/widgets.luau"
+Cohesion: 0.09
+Nodes (4): u1.applyFrameStyle(), u1.findBestWindowPosForPopup(), u1.UICorner(), u1.UIPadding()
 
 ### Community 7185 - "Welding.luau"
 Cohesion: 0.70
@@ -7735,17 +8152,21 @@ Nodes (5): build(), dirt(), refreshFilter(), shatter(), sound()
 Cohesion: 0.70
 Nodes (4): Camera(), PlayerAdded(), Ring(), Watch()
 
-### Community 7200 - "u5.RunCommandString"
-Cohesion: 0.29
-Nodes (8): u5.EncodeEscapedOperator(), u5.EncodeEscapedOperators(), u5.MakeAliasCommand(), u5.ParseEscapeSequences(), u5.RunCommandString(), u5.RunEmbeddedCommands(), u5.SplitString(), u5.SubstituteArgs()
+### Community 7200 - "Gameplay/AbilityService.luau"
+Cohesion: 0.15
+Nodes (16): u1.GetAbilityId(), u1.GetAbilityInfo(), u1.GetAbilityName(), DataTransformer(), Reconcile(), u4.CreateAbility(), u4.GetAbilities(), u4.GetAbility() (+8 more)
+
+### Community 7201 - "MovementReplicator/Replicant.luau"
+Cohesion: 0.15
+Nodes (17): remove_replicator(), Replicant:character_added(), Replicant:character_removing(), Replicant:clear_debug(), Replicant:destroy(), Replicant:enter_proximity(), Replicant:initialise_character_resimulation(), Replicant:initialise_debug() (+9 more)
 
 ### Community 7203 - "ReplicatedStorage/Modules/Player/Character/Combat/Mouse.luau"
 Cohesion: 0.23
 Nodes (10): LockOn.new(), LockOn:reset_lock_on(), LockOn:set_lock_on(), LockOn:update_camera(), FakeMouse:AimTo(), FakeMouse:Check(), FakeMouse:CleanRequestLoop(), FakeMouse:InitializeHumanoidAvailability() (+2 more)
 
-### Community 7204 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1.2.6/luau-polyfill/AssertionError/AssertionError.global.luau"
-Cohesion: 0.32
-Nodes (4): createErrDiff(), ErrorCaptureStackTrace(), inspectValue(), u43.new()
+### Community 7204 - "UI_Moveset.luau"
+Cohesion: 0.12
+Nodes (8): BindAttribute(), CharacterAdded(), AddMove(), CharacterAdded(), CreateMoveIndicator(), UpdateFlag(), UpdateFlags(), UpdateHover()
 
 ### Community 7207 - "GrandTornado/TornadoRockModule.luau"
 Cohesion: 0.83
@@ -7771,9 +8192,9 @@ Nodes (3): GlassShatter.Play(), rng(), slice()
 Cohesion: 0.83
 Nodes (3): VERSION.getAppVersion(), VERSION.getLatestVersion(), VERSION.isUpToDate()
 
-### Community 7227 - "playNewImpact"
-Cohesion: 0.31
-Nodes (9): emitClone(), makeAttachment(), newStartCharge(), playNewImpact(), playThrow(), randomPurple(), Essentials.Destroy(), LightningBolt.new() (+1 more)
+### Community 7227 - "Killua_Coil_Lightning.luau"
+Cohesion: 0.15
+Nodes (8): LightningBolt.new(), CreateBolt(), GetClosestPoint(), GetClosestResult(), CreateBolt(), GetClosestPoint(), GetClosestResult(), CreateBolt()
 
 ### Community 7229 - "Pulse.luau"
 Cohesion: 0.20
@@ -7788,12 +8209,12 @@ Cohesion: 0.15
 Nodes (3): Actions:bulk_modify(), Actions:modify(), pv_children()
 
 ### Community 7233 - "CrewsUI.luau"
-Cohesion: 0.09
-Nodes (8): _G.displayMessageWithButton(), hasOnlyOnePattern(), u43(), v11.DisplayMessage(), u43(), u4.Initialize(), u4.Notify(), u4.RemoveNotification()
+Cohesion: 0.14
+Nodes (4): _G.displayMessageWithButton(), hasOnlyOnePattern(), u43(), v11.DisplayMessage()
 
-### Community 7234 - "playJumpScare"
-Cohesion: 0.67
-Nodes (3): buildJumpScareBars(), layoutJumpScareBars(), playJumpScare()
+### Community 7234 - "ReplicatedModules/Animations.luau"
+Cohesion: 0.11
+Nodes (6): u2.FindAnim(), u2.GetAnim(), u2.playClient(), u2.SearchAnim(), CreateSword(), LingeringSword()
 
 ### Community 7235 - "Gomu-Gomu.luau"
 Cohesion: 0.10
@@ -7804,12 +8225,12 @@ Cohesion: 0.29
 Nodes (6): u44(), u7.DesertCutlass(), u7.DesertFlight(), u7.DesertRailgun(), u7.DesertSpada(), u7.DesertStorm()
 
 ### Community 7258 - "DevTestService.luau"
-Cohesion: 0.12
+Cohesion: 0.16
 Nodes (5): front(), run(), strike(), KnockbackService.Apply(), KnockbackService.Resolve()
 
 ### Community 7262 - "Des/_Index/sleitnick_signal@2.0.3/signal.luau"
-Cohesion: 0.11
-Nodes (17): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), Signal:Connect(), Signal:ConnectOnce(), Signal:Destroy(), Signal:DisconnectAll(), Signal.new(), Signal:Once() (+9 more)
+Cohesion: 0.20
+Nodes (8): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), Signal:Connect(), Signal:ConnectOnce(), Signal:Destroy(), Signal:DisconnectAll(), Signal:Once(), Signal:Wait()
 
 ### Community 7302 - "StrikerGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/PathDisplay.luau"
 Cohesion: 0.38
@@ -7819,37 +8240,37 @@ Nodes (3): renderPoint(), u1.clearRenderedPath(), u1.renderPath()
 Cohesion: 0.29
 Nodes (4): v33(), u1.cooldown(), u20(), u56()
 
-### Community 7304 - "u5.RunCommandString"
-Cohesion: 0.29
-Nodes (8): u5.EncodeEscapedOperator(), u5.EncodeEscapedOperators(), u5.MakeAliasCommand(), u5.ParseEscapeSequences(), u5.RunCommandString(), u5.RunEmbeddedCommands(), u5.SplitString(), u5.SubstituteArgs()
+### Community 7304 - "DataSource.luau"
+Cohesion: 0.09
+Nodes (4): v1.KnitStart(), t.isMaid(), v2(), u1.Compile()
 
-### Community 7307 - "Replication/Projectiles.luau"
-Cohesion: 0.36
-Nodes (4): Projectile:Destroy(), Projectile.new(), Projectile:Update(), Projectiles.Create()
+### Community 7307 - "Utility/SmartBone/Dependencies/Iris/widgets.luau"
+Cohesion: 0.10
+Nodes (3): u1.applyFrameStyle(), u1.UICorner(), u1.UIPadding()
 
 ### Community 7394 - "Janitor"
 Cohesion: 0.33
 Nodes (5): Janitor, Performance, Projects that use Janitor, Some less important benefits, Why use Janitor?
 
-### Community 7396 - "StrikerGame/ReplicatedStorage/chrono/Shared/Snapshots.luau"
-Cohesion: 0.33
-Nodes (5): BinarySearchInsertionPoint(), GetAt(), Push(), PushWithCheck(), ShiftElementsRight()
+### Community 7395 - "ClientEffects/ForgeVFX/mod/lerp.luau"
+Cohesion: 0.13
+Nodes (13): Oklab.fromLinear(), Oklab.fromSRGB(), Oklab.toLinear(), Oklab.toSRGB(), common.getColorAtTimeOklab(), common.getColorWithEasingOklab(), getColorAtTime(), lerp.Color3() (+5 more)
+
+### Community 7396 - "ReplicatedStorage/SmartBone/Dependencies/Iris/widgets.luau"
+Cohesion: 0.10
+Nodes (3): u1.applyFrameStyle(), u1.UICorner(), u1.UIPadding()
 
 ### Community 7397 - "Game/SmartBone/Components/Collision/Colliders/Triangle.luau"
-Cohesion: 0.46
-Nodes (7): ClosestPointOnLineSegment(), ClosestPointOnTri(), PointInTriangle(), ProjectOnPlane(), SafeUnit(), SameSide(), dot()
+Cohesion: 0.20
+Nodes (9): ClosestPointOnLineSegment(), ClosestPointOnTri(), PointInTriangle(), ProjectOnPlane(), SafeUnit(), SameSide(), clear(), clearAll() (+1 more)
 
-### Community 7399 - "outBounce"
-Cohesion: 0.25
-Nodes (8): inBounce(), inOutBounce(), outBounce(), outInBounce(), v1.BounceIn(), v1.BounceInOut(), v1.BounceOut(), v1.BounceOutIn()
+### Community 7399 - "u55"
+Cohesion: 0.12
+Nodes (11): u55(), u1.roulettevolley(), u1.roulettevolley(), getColorFromString(), getLayerCollector(), getVector2FromString(), u1.New(), getColorFromString() (+3 more)
 
 ### Community 7400 - "BuildingDebris.luau"
 Cohesion: 0.48
 Nodes (4): Debris.Build(), Debris.Classify(), Debris.Sample(), volume()
-
-### Community 7402 - "CameraInput.getZoomDelta"
-Cohesion: 0.29
-Nodes (7): u2.StepZoom(), BaseCamera:StepZoom(), CameraInput.getZoomDelta(), u2.StepZoom(), u2.StepZoom(), u2.StepZoom(), u2.StepZoom()
 
 ### Community 7403 - "TestEZ CLI"
 Cohesion: 0.40
@@ -7863,17 +8284,17 @@ Nodes (4): Installation, RbxTypedPromise, Types, wally-package-types
 Cohesion: 0.43
 Nodes (4): createSoundClone(), playSingleSound(), selectRandomSound(), sound.emit()
 
-### Community 7408 - "BattleGame/ReplicatedStorage/Modules/Icon/Elements/Dropdown.luau"
-Cohesion: 0.48
-Nodes (5): getTweenInfo(), updateChildSize(), updateMaxIcons(), updateMaxIconsListener(), updateVisibility()
+### Community 7409 - "u2"
+Cohesion: 0.10
+Nodes (7): u1.middleware(), prettyPrint(), u2(), indexHandler(), Check(), u4.Plot(), u1.new()
 
-### Community 7411 - "Global/WallRun.luau"
-Cohesion: 0.33
-Nodes (3): Attack:Activate(), Attack.new(), Attack:ResetActiveTimer()
+### Community 7411 - "SmartBone_OLD/Dependencies/Iris/widgets.luau"
+Cohesion: 0.10
+Nodes (4): u1.applyFrameStyle(), u1.findBestWindowPosForPopup(), u1.UICorner(), u1.UIPadding()
 
 ### Community 7412 - "_G.customEmit"
-Cohesion: 0.01
-Nodes (135): v114(), v1.start(), v1.start(), v1.start(), v1.start(), v1.start(), v1.start(), GenerateWall() (+127 more)
+Cohesion: 0.02
+Nodes (104): v1.start(), v1.start(), v1.start(), v1.start(), v1.start(), v1.start(), GenerateWall(), v1.start() (+96 more)
 
 ### Community 7413 - "Maximum Output - Purple.luau"
 Cohesion: 0.33
@@ -7899,9 +8320,9 @@ Nodes (12): GetHumanoid(), GetStroke(), HotbarModule:AddTool(), HotbarModule:Bin
 Cohesion: 0.18
 Nodes (3): u10.new(), u19.new(), u46.new()
 
-### Community 7421 - "Waves.luau"
-Cohesion: 0.39
-Nodes (5): u1.getWaveAt(), u1.getWaveHeightAround(), u1.getWaveHeightAt(), u1.sampleWaveHeightAt(), u28()
+### Community 7421 - "v25.start"
+Cohesion: 0.05
+Nodes (29): u1.batchWaveAt(), u1.getWaveAt(), u1.getWaveHeightAround(), u1.getWaveHeightAt(), u1.sampleWaveHeightAt(), u28(), v84(), u3.CubicBezier() (+21 more)
 
 ### Community 7422 - "Meaty Michael Slap.luau"
 Cohesion: 0.38
@@ -7912,8 +8333,8 @@ Cohesion: 0.30
 Nodes (9): GamepassGiftingHandler:ConfirmSelection(), GamepassGiftingHandler:CreateGamepassButtons(), GamepassGiftingHandler:CreatePlayerFrames(), GamepassGiftingHandler:FetchFriends(), GamepassGiftingHandler:FilterPlayers(), GamepassGiftingHandler.new(), GamepassGiftingHandler:OpenPlayerSelection(), GamepassGiftingHandler:PopulatePlayers() (+1 more)
 
 ### Community 7427 - "SuperTween.luau"
-Cohesion: 0.14
-Nodes (12): SuperTween:Cancel(), SuperTween:Destroy(), SuperTween:IndexOriginalProperties(), SuperTween:IsWhitelisted(), SuperTween.new(), SuperTween:Play(), SuperTween:PropertyExists(), SuperTween:StartLoop() (+4 more)
+Cohesion: 0.26
+Nodes (8): SuperTween:Cancel(), SuperTween:Destroy(), SuperTween:IndexOriginalProperties(), SuperTween:IsWhitelisted(), SuperTween:Play(), SuperTween:PropertyExists(), SuperTween:StartLoop(), SuperTween:Update()
 
 ### Community 7428 - "Heed My Call.luau"
 Cohesion: 0.23
@@ -7939,9 +8360,9 @@ Nodes (9): ensureListLayout(), makeLetterFrame(), Module.AnimateText(), popState
 Cohesion: 0.30
 Nodes (6): containerPivot(), emitAt(), emitInPlace(), fanOut(), frameOf(), u1.emitTargetInstance()
 
-### Community 7434 - "Suke-Suke.luau"
-Cohesion: 0.33
-Nodes (3): u6.AreaInvisibility(), u6.InvisibleRockThrow(), u6.SelfInvisibility()
+### Community 7434 - "VergilVFX.luau"
+Cohesion: 0.11
+Nodes (5): Cache.VergilJCE(), Cache.VergilRapidSlash(), Cache.VergilUpperSlash(), Cache.VergilVoidSlash(), WrapParticleHandler()
 
 ### Community 7435 - "Home"
 Cohesion: 0.40
@@ -7951,17 +8372,21 @@ Nodes (4): Changes from ProfileService, Home, How does it work?, Should I switch
 Cohesion: 0.40
 Nodes (4): Basic Usage, Getting ProfileStore, Option #1: Get ProfileStore from the Roblox library, Option #2: Github
 
-### Community 7439 - "FastCast.luau"
-Cohesion: 0.47
-Nodes (3): u11(), updateRay(), v1.start()
+### Community 7438 - "sleitnick_component@2.4.5/component/init.spec.luau"
+Cohesion: 0.10
+Nodes (3): Check(), CreateAndCheckAll(), SetAndCheck()
+
+### Community 7439 - "sleitnick_input@1.3.3/input/Gamepad.luau"
+Cohesion: 0.10
+Nodes (3): GetActiveGamepad(), u10.GetThumbstick(), u10._setupGamepad()
 
 ### Community 7440 - "Shared/TopbarPlus/Icon/Packages/GoodSignal.luau"
 Cohesion: 0.22
 Nodes (4): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), u13.Connect(), u4.new()
 
-### Community 7441 - "Examples"
-Cohesion: 0.33
-Nodes (5): Cancellable animation sequence, Chaining, Examples, IsInGroup wrapper, TweenService wrapper
+### Community 7441 - "AssetService.luau"
+Cohesion: 0.13
+Nodes (7): u1.CreateAsset(), u1.GetAsset(), u1.InferClass(), u1.RequireAsset(), u1.ResolvePath(), u30.CreateAsset(), u30.GetAsset()
 
 ### Community 7442 - "NewspaperViewer.luau"
 Cohesion: 0.35
@@ -7970,6 +8395,10 @@ Nodes (9): NewspaperViewer:Close(), NewspaperViewer:GetChoices(), NewspaperViewe
 ### Community 7443 - "DataTypes.luau"
 Cohesion: 0.31
 Nodes (8): DataTypes.CFrame(), DataTypes.Color3(), DataTypes.ColorSequence(), DataTypes.number(), DataTypes.NumberRange(), DataTypes.NumberSequence(), DataTypes.Vector2(), DataTypes.Vector3()
+
+### Community 7446 - "PacketChart.luau"
+Cohesion: 0.11
+Nodes (4): v9.render(), v29.didMount(), u14(), v32()
 
 ### Community 7447 - "List/Chara/Atonement.luau"
 Cohesion: 0.29
@@ -7991,9 +8420,9 @@ Nodes (7): Module:Break(), Module:_damage(), Module:_flashDamage(), Module:Initi
 Cohesion: 0.29
 Nodes (3): Attack.new(), GetOffset(), GetTriangle()
 
-### Community 7454 - "VehicleController.new"
-Cohesion: 0.33
-Nodes (6): u1.new(), VehicleController.new(), u1.new(), u1.new(), u1.new(), u1.new()
+### Community 7457 - "insert"
+Cohesion: 0.12
+Nodes (8): insert(), v96.Insert(), u1.Expand(), u1.GetPart(), u1.new(), u1.Expand(), u1.GetPart(), u1.new()
 
 ### Community 7458 - "ClientHandlers/Vault.luau"
 Cohesion: 0.29
@@ -8015,9 +8444,25 @@ Nodes (6): TransactionHandler:initialise(), TransactionHandler.new(), Products.g
 Cohesion: 0.31
 Nodes (6): Module.Start(), Session:ApplyDamage(), Session:Destroy(), Session:Finish(), Session.new(), Session:RequestComplete()
 
-### Community 7469 - "List/Gojo/Reverse Cursed Technique.luau"
-Cohesion: 0.47
-Nodes (5): Attack:Activate(), Attack:CanReawaken(), Attack:ConditionToActivate(), Attack.new(), Attack:Reawakening()
+### Community 7467 - "loading redo_1.client.luau"
+Cohesion: 0.14
+Nodes (10): LoadPlayersMVPStuff(), LoadPlayersStyleStuff(), mvp_parser(), parser(), player_management(), LoadPlayersMVPStuff(), LoadPlayersStyleStuff(), mvp_parser() (+2 more)
+
+### Community 7468 - "cinderVFX.luau"
+Cohesion: 0.12
+Nodes (5): flametrails(), trails(), v1.bloodShot(), v1.flameSnareJump(), v1.flameSnareShot()
+
+### Community 7469 - "SpectateController.luau"
+Cohesion: 0.22
+Nodes (18): u2.AdjustSpectateeMaximumIndex(), u2.ApplySpectateCamera(), u2.CreateSpectateSwapIndexButton(), u2.EnterSpectateMode(), u2.ExitSpectateMode(), u2.GetCurrentSpectatee(), u2.GetMaximumSpectateIndex(), u2.GetSpectatee() (+10 more)
+
+### Community 7473 - "ClientModules/SmartBone/Components/Bone.luau"
+Cohesion: 0.12
+Nodes (8): QueryTransformedWorldCFrame(), QueryTransformedWorldCFrameNonSmartbone(), SolveWind(), u48.DrawOverlay(), u48.PreUpdate(), u48.StepPhysics(), u48.DrawOverlay(), Length()
+
+### Community 7476 - "startupModules/PlayerModule/CameraModule/Invisicam.luau"
+Cohesion: 0.11
+Nodes (4): AssertTypes(), RayIntersection(), u32.SetMode(), u32.SmartCircleBehavior()
 
 ### Community 7478 - "VFX/Accelerator/Carnal Revolution.luau"
 Cohesion: 0.36
@@ -8051,16 +8496,12 @@ Nodes (7): exploreEdge(), findNearestInterestingPoint(), Geometry.blackboxFindCl
 Cohesion: 0.28
 Nodes (4): ms(), ConvertToHMS(), Format(), FPSAndPingStatisticsUpdate()
 
-### Community 7488 - "inElastic"
-Cohesion: 0.40
-Nodes (6): inElastic(), outElastic(), outInElastic(), v1.ElasticIn(), v1.ElasticOut(), v1.ElasticOutIn()
-
 ### Community 7489 - "troubleshooting/index.md"
 Cohesion: 0.50
 Nodes (3): Problems in Roblox studio testing, Profiles take too long to load, Saving data which Roblox cannot serialize
 
 ### Community 7492 - "BasketballGame/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/TouchJump.luau"
-Cohesion: 0.24
+Cohesion: 0.11
 Nodes (9): u1._setupConfigurations(), u1.UpdateEnabled(), CharacterUtil.getCharacter(), CharacterUtil.getChild(), CharacterUtil.getLocalPlayer(), CharacterUtil._getOrCreateBoundEvent(), CharacterUtil.onCharacter(), CharacterUtil.onChild() (+1 more)
 
 ### Community 7493 - "u48.IsVirtual"
@@ -8078,6 +8519,10 @@ Nodes (6): GenerateSpawnCFrames(), GetAvailableSpawn(), ItemSpawn.new(), ItemSpa
 ### Community 7496 - "Packages/Indicator.luau"
 Cohesion: 0.36
 Nodes (5): Indicator:Destroy(), Indicator:Hide(), Indicator.new(), Indicator:Show(), Indicator:UpdatePosition()
+
+### Community 7497 - "FlightHandler/Flight.luau"
+Cohesion: 0.15
+Nodes (9): bind_action(), Flight:destroy(), Flight:disable(), Flight:enable(), Flight:initialise(), Flight.new(), Flight:on_jump(), Flight:toggle() (+1 more)
 
 ### Community 7498 - "SeatVehicle.luau"
 Cohesion: 0.39
@@ -8099,17 +8544,17 @@ Nodes (5): ChangeEffect(), Clone(), FX:Ended(), FX:Fire(), Modify()
 Cohesion: 0.57
 Nodes (5): _loop(), _oneShot(), v11.Flip(), v11.FlipBeam(), _writeFrame()
 
-### Community 7509 - "SpecialDestruction.luau"
-Cohesion: 0.38
-Nodes (3): hideModel(), restoreModel(), SpecialDestruction.process()
+### Community 7509 - "u8.SetCategory"
+Cohesion: 0.15
+Nodes (19): AnimateLineErase(), ApplyCategoryInstant(), BuildCategoryButtons(), ColorToOklab(), CreateScaleChannels(), HideHero(), LeaveHero(), PlayCategoryExit() (+11 more)
 
 ### Community 7510 - "Threading.luau"
 Cohesion: 0.38
 Nodes (3): run(), u1.performTaskOnGAThread(), u1.scheduleTimer()
 
-### Community 7511 - "SwordStyles/Stark Gun.luau"
-Cohesion: 0.40
-Nodes (3): u6.CeroMetralleta(), u6.RightGun(), u6.SoulWolves()
+### Community 7512 - "format"
+Cohesion: 0.50
+Nodes (4): format(), v1.Fire(), Time(), v1.CreateClock()
 
 ### Community 7513 - "baseClient/shidou_1.luau"
 Cohesion: 0.70
@@ -8118,10 +8563,6 @@ Nodes (4): getMoveDirection(), holdingSpace(), v1.skill1(), v1.skill3()
 ### Community 7514 - "ClientAnnouncementHandler.luau"
 Cohesion: 0.48
 Nodes (5): AnnouncementModule:Announce(), AnnouncementModule:_ProcessQueue(), AnnouncementModule:_ShowAnnouncement(), GraphemeLength(), TypingEffect()
-
-### Community 7515 - "ReplicatedStorage/Part_Icles/Duration.luau"
-Cohesion: 0.70
-Nodes (4): resolveDuration(), u1.computeItemLifecycle(), u1.computeMaxDuration(), u1.computeTrueLifetime()
 
 ### Community 7516 - "EditedBugoVFX.luau"
 Cohesion: 0.38
@@ -8143,9 +8584,9 @@ Nodes (6): ResizeModule.new(), ResizeModule:PropertyExists(), ResizeModule:Resiz
 Cohesion: 0.38
 Nodes (4): Indicator:Destroy(), Indicator:Hide(), Indicator.new(), Indicator:Show()
 
-### Community 7528 - "PS+/ModuleScript.luau"
-Cohesion: 0.38
-Nodes (4): u3.MANAGE(), u3.new(), u3.MANAGE(), u3.new()
+### Community 7528 - "Rigging.luau"
+Cohesion: 0.14
+Nodes (11): u80(), createAdditionalAttachments(), createNoCollides(), createRigJoints(), disableMotorSet(), enableMotorSet(), indexParts(), v1.createRagdollJoints() (+3 more)
 
 ### Community 7529 - "PumpkinRoll.luau"
 Cohesion: 0.60
@@ -8158,6 +8599,10 @@ Nodes (3): enableThumbstickInput(), setupThumbstickInput(), u3.Enable()
 ### Community 7533 - "Combat/Actions.luau"
 Cohesion: 0.48
 Nodes (5): Actions:_Init(), Actions:IsEnabled(), Actions.new(), Actions:SetEnabled(), Actions:UpdateStates()
+
+### Community 7534 - "cinderVFX_1.luau"
+Cohesion: 0.12
+Nodes (5): flametrails(), trails(), v1.bloodShot(), v1.flameSnareJump(), v1.flameSnareShot()
 
 ### Community 7538 - "Replication/Effects.luau"
 Cohesion: 0.60
@@ -8178,6 +8623,10 @@ Nodes (4): RegionUI:dethread(), RegionUI:hide(), RegionUI:set(), RegionUI:tween_
 ### Community 7543 - "BubbleHandler.luau"
 Cohesion: 0.47
 Nodes (3): BubbleHandler:create(), BubbleHandler:pop(), BubbleHandler:update()
+
+### Community 7549 - "Gradient.luau"
+Cohesion: 0.13
+Nodes (6): evalColorSequence(), evalNumberSequence(), u14.CalculateTrueColorSequence(), u14.CalculateTrueTransparencySequence(), u14.EqualizeColorSequenceKeypoints(), u14.EqualizeTransparencySequenceKeypoints()
 
 ### Community 7557 - "StandHandler.luau"
 Cohesion: 0.60
@@ -8208,8 +8657,8 @@ Cohesion: 0.70
 Nodes (4): ClosestPointFunc(), ProjectOnPlane(), SafeUnit(), solve()
 
 ### Community 7584 - "BuildHandler/Builder.luau"
-Cohesion: 0.03
-Nodes (25): Builder:initialise_inventory_data(), Builder:initialise_replica(), Builder.new(), Builder:write_mesh_text(), AI:attack(), AI:destroy(), AI:get_assembly_mass(), AI:get_gyro_enabled() (+17 more)
+Cohesion: 0.04
+Nodes (10): Builder:initialise_inventory_data(), Builder:initialise_replica(), Builder.new(), Builder:write_mesh_text(), can_do_something(), InstanceAllowed.can_copy(), InstanceAllowed.can_modify(), InstanceAllowed.can_remove() (+2 more)
 
 ### Community 7585 - "ProductsNewer.luau"
 Cohesion: 0.60
@@ -8224,8 +8673,8 @@ Cohesion: 0.83
 Nodes (3): VERSION.getAppVersion(), VERSION.getLatestVersion(), VERSION.isUpToDate()
 
 ### Community 7605 - "OldDialogue.luau"
-Cohesion: 0.83
-Nodes (3): Dialogue:Init(), Dialogue.new(), Dialogue:NewConversation()
+Cohesion: 0.60
+Nodes (4): Dialogue:Init(), Dialogue.new(), Dialogue:NewConversation(), CreateDialogue()
 
 ### Community 7606 - "Dojyan.luau"
 Cohesion: 0.83
@@ -8251,21 +8700,29 @@ Nodes (3): IsCFrameSafe(), UnstuckModule:FindNearestSafePosition(), UnstuckModul
 Cohesion: 0.83
 Nodes (3): RemoteAntiSpam.CanFire(), RemoteAntiSpam.Cooldown(), RemoteAntiSpam.OnServerEvent()
 
+### Community 7623 - "Dot"
+Cohesion: 0.16
+Nodes (11): ClosestPointOnLineSegment(), PointInTriangle(), SameSide(), ClosestPointOnLineSegment(), PointInTriangle(), SameSide(), Cross(), Dot() (+3 more)
+
 ### Community 8067 - "StatusEffectService.luau"
-Cohesion: 0.10
-Nodes (10): DataController.Init(), DataController.Start(), Net.Request(), StatusEffectService.CanCast(), get(), getFolder(), Remotes.CreateAll(), Remotes.Event() (+2 more)
+Cohesion: 0.09
+Nodes (13): DataController.Init(), DataController.Start(), Net.Request(), Requests.Fail(), Requests.Init(), Requests.Notify(), StatusEffectService.CanCast(), get() (+5 more)
 
-### Community 8073 - "baseClient/aiku2.luau"
-Cohesion: 0.83
-Nodes (3): holdingSpace(), v1.skill1(), v1.skill3()
+### Community 8072 - "_math.luau"
+Cohesion: 0.12
+Nodes (10): u2.angleAbs(), u2.angleShortest(), u2.clipVelocity(), u2.flatVec(), u2.friction(), u2.getClosestSurfacePoint(), u2.hitboxCheck(), u2.lerpAngle() (+2 more)
 
-### Community 8074 - "baseClient/aiku2_1.luau"
-Cohesion: 0.83
-Nodes (3): holdingSpace(), v1.skill1(), v1.skill3()
+### Community 8073 - "Sharm Rocks.luau"
+Cohesion: 0.22
+Nodes (14): u5.Cleanup(), v35(), applyTextures(), buildRaycastParams(), clearAppearance(), copyAppearance(), returnRock(), scheduleRockReturn() (+6 more)
 
 ### Community 8075 - "CoinMovement.luau"
 Cohesion: 0.40
 Nodes (3): u1._main(), u1.new(), u1.start()
+
+### Community 8079 - "GetSortedFOV"
+Cohesion: 0.18
+Nodes (18): GetSortedFOV(), u4.cutscene_JxBEj_0(), u4.cutsceneBlender(), u4.cutsceneBlenderNoAnim(), u4.cutsceneCamRigWithLetterBox(), u4.cutsceneCamRigWithLetterBoxForIdiots(), u4.CutsceneCustom(), u4.cutsceneHumanoidCamera() (+10 more)
 
 ### Community 8081 - "merge"
 Cohesion: 0.67
@@ -8275,33 +8732,697 @@ Nodes (3): u7.buildFromRig(), u7.buildFromRig(), merge()
 Cohesion: 0.47
 Nodes (3): ensure_rematch_gui(), resolve_rematch_frames(), v1.RankedRematch()
 
-### Community 8110 - "u1.start"
-Cohesion: 0.07
-Nodes (17): u1.start(), u9(), u9.calc(), v1.start(), lerp(), quadBezier(), trailThing(), v32() (+9 more)
+### Community 8084 - "GravityController/Collider.luau"
+Cohesion: 0.13
+Nodes (5): create(), init(), u3.new(), init(), u3.new()
+
+### Community 8085 - "startupModules/PlayerModule/CameraModule/CameraUtils.luau"
+Cohesion: 0.12
+Nodes (3): u1.GamepadLinearToCurve(), u1.IsFinite(), u1.IsFiniteVector3()
+
+### Community 8088 - "_Signal.luau"
+Cohesion: 0.14
+Nodes (12): v1.Connect(), u8(), u9(), connect(), destroy(), fire(), runCallback(), u7.Once() (+4 more)
+
+### Community 8090 - "SorceryGame/ReplicatedStorage/Modules/Icon/Features/Themes.luau"
+Cohesion: 0.21
+Nodes (14): totalChildrenChanged(), Themes.apply(), Themes.change(), Themes.getClippedClone(), Themes.getInstanceValue(), Themes.getRealInstance(), Themes.getThemeValue(), Themes.merge() (+6 more)
+
+### Community 8091 - "SmartBone_OLD/Components/Bone.luau"
+Cohesion: 0.15
+Nodes (5): QueryTransformedWorldCFrame(), QueryTransformedWorldCFrameNonSmartbone(), SolveWind(), u48.PreUpdate(), u48.StepPhysics()
+
+### Community 8092 - "UGrain_Click_Minigame.luau"
+Cohesion: 0.15
+Nodes (6): Abbreviate(), CreateMinigame(), u11.new(), u11.Setup(), u11.SpawnClickPopup(), u11.UpdateUI()
+
+### Community 8098 - "ReplicatedModules/SimplePath.luau"
+Cohesion: 0.15
+Nodes (5): comparePosition(), createVisualWaypoints(), getNonHumanoidWaypoint(), moveToFinished(), u4.Run()
+
+### Community 8099 - "Services/TagService.luau"
+Cohesion: 0.20
+Nodes (12): FindContainer(), u1.CalculateTagTotal(), u1.GetContainer(), u1.GetHighestTag(), u1.GetLegacyTotal(), u1.GetLowestTag(), u1.GetTagLinearTotal(), u1.GetTags() (+4 more)
+
+### Community 8105 - "UI_StatInfo.luau"
+Cohesion: 0.16
+Nodes (6): AddStat(), HookTag(), MultsUpdated(), StatsUpdated(), UnhookTag(), UpdateInfo()
+
+### Community 8107 - "DialogueGUI/UI_DialogueHandler.client.luau"
+Cohesion: 0.15
+Nodes (6): AddResponse(), FormatText(), SetDialogue(), AddResponse(), FormatText(), SetDialogue()
+
+### Community 8108 - "u43._new"
+Cohesion: 0.23
+Nodes (16): u43._all(), u43.allSettled(), u43.any(), u43.delay(), u43.each(), u43.fold(), u43.fromEvent(), u43.is() (+8 more)
+
+### Community 8109 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/SchedulingProfiler.luau"
+Cohesion: 0.19
+Nodes (10): formatLanes(), getWakeableID(), v1.markCommitStarted(), v1.markComponentSuspended(), v1.markForceUpdateScheduled(), v1.markLayoutEffectsStarted(), v1.markPassiveEffectsStarted(), v1.markRenderScheduled() (+2 more)
+
+### Community 8111 - "ReplicatedStorage/SmartBone/Components/Bone.luau"
+Cohesion: 0.17
+Nodes (7): u30(), u39(), u53(), u97(), u98.PreUpdate(), u98.StepPhysics(), u20()
+
+### Community 8112 - "u43._new"
+Cohesion: 0.23
+Nodes (16): u43._all(), u43.allSettled(), u43.any(), u43.delay(), u43.each(), u43.fold(), u43.fromEvent(), u43.is() (+8 more)
+
+### Community 8113 - "MirageBladesVFX.luau"
+Cohesion: 0.23
+Nodes (8): Cache.MirageBladeBlisteringBlades(), Cache.MirageBladeHeavyRain(), Cache.MirageBladeShootSingleBlade(), Cache.MirageBladeSpiralBlades(), Cache.MirageBladeStormBlades(), ShootSingleBladeOnlyZOffset(), TweenOffDistance(), TweenOutBlade()
+
+### Community 8114 - "Xtal.luau"
+Cohesion: 0.18
+Nodes (12): GenerateBonePath(), u1.flat(), v1.Flat(), u1.GenerateMetadata(), v1.Flat(), ActivateHeader(), Compile(), GetContainer() (+4 more)
+
+### Community 8115 - "CinematicClass.luau"
+Cohesion: 0.14
+Nodes (3): deCasteljauPos(), deCasteljauQuat(), u4.Start()
+
+### Community 8116 - "sleitnick_component@2.4.5/component.luau"
+Cohesion: 0.15
+Nodes (4): GetActiveExtensions(), InvokeExtensionFn(), ShouldConstruct(), u20._instantiate()
+
+### Community 8117 - "sleitnick_signal@1.2.0/signal.luau"
+Cohesion: 0.15
+Nodes (6): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), u13.Connect(), u13.new(), u13.Wrap(), u4.new()
+
+### Community 8118 - "ReplicatedModules/Zone/ZoneController.luau"
+Cohesion: 0.19
+Nodes (10): u12._deregisterConnection(), u12._deregisterZone(), u12._formHeartbeat(), u12.getGroup(), u12.getTouchingZones(), u12._getZonesAndItems(), u12._registerConnection(), u12._registerZone() (+2 more)
+
+### Community 8119 - "FXService.luau"
+Cohesion: 0.17
+Nodes (6): LoadIndexEffect(), u30.BatchFireEffects(), u30.BatchLoadEffects(), u30.FireEffect(), u30.LoadEffect(), u30._Start()
 
 ### Community 8124 - "v76"
-Cohesion: 0.09
-Nodes (22): u74.deepReadonly(), u74.readonly(), v76(), u12(), u14(), u23(), u40(), u64() (+14 more)
+Cohesion: 0.05
+Nodes (38): u74.deepReadonly(), u74.readonly(), v76(), u12(), u14(), u23(), u40(), u64() (+30 more)
+
+### Community 8127 - "ReplicatedStorage/Modules/Player/Character.luau"
+Cohesion: 0.22
+Nodes (11): LuaCharacter:BlockShiftlock(), LuaCharacter:CheckIfMovingForward(), LuaCharacter:ConditionsToShiftlockRoot(), LuaCharacter:GetMoveDirection(), LuaCharacter:GetMoveVector(), LuaCharacter:IsFlyingOrSitting(), LuaCharacter.new(), LuaCharacter:RegisterModel() (+3 more)
+
+### Community 8128 - "LootPlan.luau"
+Cohesion: 0.15
+Nodes (3): u24.new(), u2.new(), v1.new()
+
+### Community 8131 - "MeshFrames_1.luau"
+Cohesion: 0.19
+Nodes (7): firstDecal(), frameIds(), resetToTemplate(), textureSlot(), u1.attach(), u1.readFrames(), u1.readInto()
+
+### Community 8132 - "ClientModules/RotatedRegion3.luau"
+Cohesion: 0.21
+Nodes (9): getCorners(), u1.Ball(), u1.CastPart(), u1.CornerWedge(), u1.Cylinder(), u1.FromPart(), u1.new(), u1.Wedge() (+1 more)
+
+### Community 8134 - "ClientModules/SmartBone/Dependencies/Gizmo.luau"
+Cohesion: 0.16
+Nodes (5): deepCopy(), u18.DoCleaning(), u18.ScheduleCleaning(), u18.SetEnabled(), u18.TweenProperties()
+
+### Community 8136 - "SmartBone_OLD/Dependencies/Gizmo.luau"
+Cohesion: 0.16
+Nodes (5): deepCopy(), u18.DoCleaning(), u18.ScheduleCleaning(), u18.SetEnabled(), u18.TweenProperties()
+
+### Community 8139 - "RegionModule.luau"
+Cohesion: 0.21
+Nodes (9): getCorners(), u1.Ball(), u1.CastPart(), u1.CornerWedge(), u1.Cylinder(), u1.FromPart(), u1.new(), u1.Wedge() (+1 more)
+
+### Community 8141 - "Region.luau"
+Cohesion: 0.21
+Nodes (7): ResolveParams(), u1.Ball(), u1.Block(), u1.FromPart(), u1.GetPartsInWorldModel(), u1.new(), u1.Part()
+
+### Community 8142 - "LoadGravityCameraSetup.luau"
+Cohesion: 0.19
+Nodes (4): calculateSpinCFrame(), calculateUpCFrame(), getRotationBetween(), twistAngle()
+
+### Community 8143 - "GravityController.luau"
+Cohesion: 0.19
+Nodes (5): getModelMass(), getRotationBetween(), init(), onGravityStep(), u1.new()
+
+### Community 8144 - "CommonUtil.luau"
+Cohesion: 0.16
+Nodes (5): u1.GetDataFromTable(), u1.GetTween(), u1.ReconcileData(), u1.ResolveTable(), u1.SetTransparency()
+
+### Community 8146 - "u8.Open"
+Cohesion: 0.19
+Nodes (14): AnimateLineDraw(), BuildQuestData(), ClearQuestEntries(), deep_equals(), GetSortedNumericIndexes(), PlayQuestsReveal(), PlaySunburstSpin(), PopulateQuestEntries() (+6 more)
+
+### Community 8148 - "BuildTools/Preferences.luau"
+Cohesion: 0.25
+Nodes (10): Preferences:create_preference(), Preferences:create_section(), Preferences:get(), Preferences:initialise(), Preferences:initialise_tweens(), Preferences.new(), Preferences:observe(), Preferences:toggle() (+2 more)
+
+### Community 8152 - "ImageEmit_1.luau"
+Cohesion: 0.27
+Nodes (12): applyFlipbookFrame(), buildImageLabelPData(), gatherFlipbookDecals(), preloadEmitAssets(), resolveFrame(), resolveImageParent(), _simulateForward2D(), u1._computeImageLabelEndState() (+4 more)
+
+### Community 8156 - "ClientCast/ClientHandler.client.luau"
+Cohesion: 0.15
+Nodes (3): CreateCaster(), UpdateAttachment(), UpdateCasterEvents()
+
+### Community 8157 - "NUCLEAR-POSE.luau"
+Cohesion: 0.19
+Nodes (6): GetAllParts(), GetDecalTextures(), MapBins(), Update(), UpdateColors(), UpdateTextures()
+
+### Community 8158 - "Scope.luau"
+Cohesion: 0.16
+Nodes (3): u1.GetScope(), u1.new(), u1.newRaw()
+
+### Community 8161 - "QuestUI.luau"
+Cohesion: 0.15
+Nodes (3): AddQuest(), AddQuestLine(), u1.AddQuestlineEntry()
+
+### Community 8162 - "Services/InputService.luau"
+Cohesion: 0.22
+Nodes (6): u1.CreateInputGroup(), u1.GetInputGroup(), u1.GetInputGroups(), u1._Init(), u1.ProcessInput(), u1.RemoveInputGroup()
+
+### Community 8163 - "game_replicatedstorage_usergenerated_lang_asserts"
+Cohesion: 0.19
+Nodes (3): u1.new(), u15.Build(), v5()
+
+### Community 8167 - "newFromMilky.luau"
+Cohesion: 0.23
+Nodes (8): u1.dashToDestination(), u1.delayedToDash(), u1.delayedToMove(), u1.moveToDestination(), u1.dashToDestination(), u1.delayedToDash(), u1.delayedToMove(), u1.moveToDestination()
+
+### Community 8168 - "ReplicatedStorage/Mastery.luau"
+Cohesion: 0.36
+Nodes (12): u8.AddFromCommonTask(), u8.AddFromTask(), u8.AddXP(), u8.BackfillDailies(), u8.DailyRefresh(), u8.DailyWork(), u8.GetDailies(), u8.GetDaily() (+4 more)
+
+### Community 8169 - "YukiCutIn/mesh_emit_1.luau"
+Cohesion: 0.18
+Nodes (4): RetrieveProperities(), RotateMesh(), u1.Emit(), u1.new()
+
+### Community 8172 - "ClientModules/SmartBone/Dependencies/Iris/widgets/Input.luau"
+Cohesion: 0.38
+Nodes (12): DragMouseDown(), generateButtons(), generateColorDragScalar(), generateDragScalar(), generateEnumSliderScalar(), generateInputScalar(), generateSliderScalar(), getValueByIndex() (+4 more)
+
+### Community 8173 - "SmartBone_OLD/Dependencies/Iris/widgets/Input.luau"
+Cohesion: 0.38
+Nodes (12): DragMouseDown(), generateButtons(), generateColorDragScalar(), generateDragScalar(), generateEnumSliderScalar(), generateInputScalar(), generateSliderScalar(), getValueByIndex() (+4 more)
+
+### Community 8175 - "startupModules/PlayerModule/CameraModule/VehicleCamera/VehicleCameraCore.luau"
+Cohesion: 0.18
+Nodes (3): u11.new(), u21.new(), u50.new()
+
+### Community 8176 - "BezierTween.luau"
+Cohesion: 0.19
+Nodes (4): binomial(), factorial(), graphPoint(), u1.Play()
+
+### Community 8179 - "Bites The Dust.luau"
+Cohesion: 0.22
+Nodes (7): Flash(), PrepareKeyframes(), RegisterKeyframeUpdate(), RunAcidTrip(), SampleKeyframes(), Snapshot(), Tinted()
+
+### Community 8180 - "XenoFunctions.luau"
+Cohesion: 0.18
+Nodes (3): u1.createTween(), u1.spawnRubble(), u1.spawnVFX()
+
+### Community 8181 - "Tesseract_Mount/Vector4.luau"
+Cohesion: 0.26
+Nodes (9): u1.__add(), u1.Lerp(), u1.new(), u1.Rotate_WZ(), u1.Rotate_WZ_Y(), u1.Rotate_XW_YZ(), u1.Rotate_XY(), u1.Rotate_ZW() (+1 more)
+
+### Community 8183 - "Replica/ReplicaClient.luau"
+Cohesion: 0.22
+Nodes (9): Write(), AcquireRunnerThreadAndCallEventHandler(), ConnectionFire(), LoadWriteLib(), ReplicaNew(), RunEventHandlerInFreeThread(), u39.OnNew(), u39.SetValues() (+1 more)
+
+### Community 8187 - "DeathClient.client.luau"
+Cohesion: 0.17
+Nodes (3): v12(), u2.NewDialogue(), GetSort()
+
+### Community 8188 - "BasketballGame/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17.2.1/react-reconciler/ReactFiberTreeReflection.luau"
+Cohesion: 0.26
+Nodes (7): assertIsMounted(), findCurrentFiberUsingSlowPath(), getNearestMountedFiber(), v1.findCurrentHostFiber(), v1.findCurrentHostFiberWithNoPortals(), v1.isFiberMounted(), v1.isMounted()
+
+### Community 8190 - "BountyHuntingServiceClient.luau"
+Cohesion: 0.17
+Nodes (5): v31(), v36(), v13.render(), u8(), u16.addFormatted()
+
+### Community 8191 - "Michael Awakening.luau"
+Cohesion: 0.26
+Nodes (8): IsInDistance(), VFX.AttackStart(), VFX.Camera(), VFX.FloorSteak(), VFX.GlowingTrails(), VFX.MichaelTrailAwakening(), VFX.PreSummon(), VFX.StopEffects()
+
+### Community 8192 - "v22"
+Cohesion: 0.17
+Nodes (7): v22(), RefreshPlayerlist(), RefreshPlayerlist(), u1.AddClass(), u1.AddLibrary(), u1.Class(), GetSort()
+
+### Community 8193 - "Modules/Invisibility.luau"
+Cohesion: 0.30
+Nodes (7): u12(), u5.AddObject(), u5.RemoveId(), u5.RemoveObject(), u5.SetCharacterInvisible(), u5.SetLimbsInvisible(), u5.SetObjectInvisible()
+
+### Community 8194 - "ReplicatedStorage/ReplicatedStorage/Modules/Maid.luau"
+Cohesion: 0.17
+Nodes (4): u1.Clean(), u1.__newindex(), v15(), u5.Render()
+
+### Community 8195 - "MOSTRECENTFORGE/effects/lightning_1.luau"
+Cohesion: 0.20
+Nodes (6): createSegmentStates(), generateLightningPoints(), generateTransitionPoints(), getBlendedPosition(), readLightningAttributes(), updateTransitionPoints()
+
+### Community 8198 - "startupModules/PlayerModule/CameraModule/ZoomController/Popper.luau"
+Cohesion: 0.21
+Nodes (4): getCollisionPoint(), queryPoint(), queryViewport(), testPromotion()
+
+### Community 8200 - "Killua_RVFX/Lightning/PartCache/Table.luau"
+Cohesion: 0.21
+Nodes (4): u2.contains(), u2.indexOf(), u2.keyOf(), u2.removeObject()
+
+### Community 8201 - "PaleVisual_Rewrite/Util.luau"
+Cohesion: 0.26
+Nodes (7): u1.bezier(), u1.comb(), u1.deepCopy(), u1.desynchronize(), u1.factorial(), u1.getLifetime(), u1.synchronize()
+
+### Community 8202 - "Sharm Rocks/PartCache/Table.luau"
+Cohesion: 0.21
+Nodes (4): u2.contains(), u2.indexOf(), u2.keyOf(), u2.removeObject()
+
+### Community 8203 - "CC/Lightning/PartCache/Table.luau"
+Cohesion: 0.21
+Nodes (4): u2.contains(), u2.indexOf(), u2.keyOf(), u2.removeObject()
+
+### Community 8204 - "Dio Death.luau"
+Cohesion: 0.21
+Nodes (6): createFunkyCylinders(), tween(), wait(), CubicBezier(), u21.Destroy(), u21.new()
+
+### Community 8205 - "Hit_VoronoiDiagram/PartCache/Table.luau"
+Cohesion: 0.21
+Nodes (4): u2.contains(), u2.indexOf(), u2.keyOf(), u2.removeObject()
+
+### Community 8206 - "Tesseract_Pose/Vector4.luau"
+Cohesion: 0.27
+Nodes (8): u1.__add(), u1.new(), u1.Rotate_WZ(), u1.Rotate_WZ_Y(), u1.Rotate_XW_YZ(), u1.Rotate_XY(), u1.Rotate_ZW(), u1.__sub()
+
+### Community 8209 - "ReplicatedLibrary/PartCache/Table.luau"
+Cohesion: 0.21
+Nodes (4): u2.contains(), u2.indexOf(), u2.keyOf(), u2.removeObject()
+
+### Community 8211 - "FX/ForgeVFX/effects/lightning.luau"
+Cohesion: 0.20
+Nodes (6): createSegmentStates(), generateLightningPoints(), generateTransitionPoints(), getBlendedPosition(), readLightningAttributes(), updateTransitionPoints()
+
+### Community 8212 - "StarterPlayer/PlayerModule/CameraModule/OrbitalCamera.luau"
+Cohesion: 0.17
+Nodes (3): u1.LoadOrCreateNumberValueParameter(), u1.new(), u1.Update()
+
+### Community 8214 - "StarterPlayer/PlayerModule/CameraModule/VRVehicleCamera.luau"
+Cohesion: 0.20
+Nodes (6): findObstructions(), u29.new(), u29.Reset(), u29._updateStepRotation(), u29._vrOccludeVignette(), vrOccludeDisplace()
+
+### Community 8217 - "WhiteBeardBlastClutch.luau"
+Cohesion: 0.22
+Nodes (3): mirrorDecals(), secondCracks(), setDecals()
+
+### Community 8218 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRVehicleCamera.luau"
+Cohesion: 0.45
+Nodes (10): pitchVelocity(), VRVehicleCamera:addDrift(), VRVehicleCamera:_GetFirstPersonLocalOffset(), VRVehicleCamera:_GetThirdPersonLocalOffset(), VRVehicleCamera:_StepRotation(), VRVehicleCamera:Update(), VRVehicleCamera:UpdateComfortCamera(), VRVehicleCamera:UpdateRotationCamera() (+2 more)
+
+### Community 8219 - "DragonTatsumaki.luau"
+Cohesion: 0.31
+Nodes (8): u14(), CreateTornado(), SpawnMesh(), SpawnRock(), SpawnWind(), StartMainLoop(), Toggle(), v3.start()
+
+### Community 8222 - "Projectiles/Projectile.luau"
+Cohesion: 0.24
+Nodes (7): Projectile:Destroy(), Projectile:InitHitbox(), Projectile.new(), Projectile:Stop(), Projectiles:Create(), Projectiles:_Init(), Projectiles.new()
+
+### Community 8223 - "InGameExplorerShared/Signal.luau"
+Cohesion: 0.27
+Nodes (8): AddListItem(), DisconnectListItem(), u1.Connect(), u1.Fire(), u1.new(), u1.Wait(), u2.Disconnect(), u2.GetOnDisconnectSignal()
+
+### Community 8225 - "baseClient/rin2_1.luau"
+Cohesion: 0.24
+Nodes (4): applyBarState(), bindRinBar(), tryAutoBind(), v1.bind()
+
+### Community 8228 - "ForgeVFX/services/effects_1.luau"
+Cohesion: 0.27
+Nodes (7): emitWithContext(), u5.emit(), u5.emitFromFolder(), u5.emitNested(), u5.emitOnFinish(), u5.prepareEmitFolder(), u5.prepareEmitOnFinish()
+
+### Community 8233 - "VFXForge Mesh Emit.luau"
+Cohesion: 0.25
+Nodes (6): EmitBeam(), EmitMesh(), InsideMeshVFX(), IsMeshVFX(), SafeEmit(), ScaleTpSequence()
+
+### Community 8234 - "FortunesAlgorithm.luau"
+Cohesion: 0.31
+Nodes (7): Beachline_Add(), Beachline_CheckForCircleEvent(), Beachline_Remove(), Beachline_Search(), GetCircle(), GetParabolaIntersection(), v1.Fortune()
+
+### Community 8235 - "LightingManager.luau"
+Cohesion: 0.24
+Nodes (7): DeepCopy(), DeepHSVShiftData(), u11.Set(), u11.ToJSON(), u11.Transition(), Sync(), Sync()
+
+### Community 8239 - "Client/RemoteConfig.luau"
+Cohesion: 0.22
+Nodes (3): applyDelta(), finishPending(), v8._init()
+
+### Community 8241 - "Killua/Powerplex.luau"
+Cohesion: 0.24
+Nodes (3): u1.GetRandomItemFromTable(), u1.GetTotalWeight(), u1.ShuffleArray()
+
+### Community 8242 - ".travis.yml"
+Cohesion: 0.20
+Nodes (9): after_success, before_install, branches, only, env, install, language, sudo (+1 more)
+
+### Community 8243 - "u31"
+Cohesion: 0.20
+Nodes (5): u4.OnSignal(), u4.OnSignal(), u1.new(), u31(), u4.OnSignal()
+
+### Community 8245 - "u66"
+Cohesion: 0.36
+Nodes (8): u18(), u1.new(), u1.PC_Activate(), u23(), u26(), u66(), v21(), _G.ScaleWithHP()
+
+### Community 8246 - "Character/Title.luau"
+Cohesion: 0.33
+Nodes (7): Find(), GetAllTimeData(), Title:AddGui(), Title:Equip(), Title:_Init(), Title:Set(), Title:Unequip()
+
+### Community 8247 - "DataConverter.luau"
+Cohesion: 0.22
+Nodes (3): u20(), createLoader(), loadTextures()
+
+### Community 8249 - "Batmobile/Scripts/Client/FX/Audio.luau"
+Cohesion: 0.31
+Nodes (6): onHeartbeat(), updateCollisionSounds(), updateSuspensionSounds(), onHeartbeat(), updateCollisionSounds(), updateSuspensionSounds()
+
+### Community 8258 - "Anubis_Cutscene/Vignette.luau"
+Cohesion: 0.29
+Nodes (6): adjustViewModel(), createViewModel(), u25.new(), u25.SetDistance(), u25.UpdateEnabled(), v24.CreateVignette()
+
+### Community 8260 - "ReplicatedModules/Zone/Signal.luau"
+Cohesion: 0.24
+Nodes (5): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), u13.Connect(), u13.new(), u4.new()
+
+### Community 8261 - "FX/ForgeVFX/services/effects.luau"
+Cohesion: 0.31
+Nodes (7): emitWithContext(), u6.emit(), u6.emitFromFolder(), u6.emitNested(), u6.emitOnFinish(), u6.prepareEmitFolder(), u6.prepareEmitOnFinish()
+
+### Community 8262 - "Replica/ReplicaShared/Maid.luau"
+Cohesion: 0.24
+Nodes (4): AcquireRunnerThreadAndCallEventHandler(), CleanupInThread(), RunEventHandlerInFreeThread(), u6.Cleanup()
+
+### Community 8263 - "Xtal/Classes/Signal.luau"
+Cohesion: 0.24
+Nodes (4): acquireRunnerThreadAndCallEventHandler(), runEventHandlerInFreeThread(), u13.Connect(), u4.new()
+
+### Community 8266 - "UI_Quotes.luau"
+Cohesion: 0.27
+Nodes (4): GetDisplayQuote(), Update(), UpdateOrder(), UpdateVisibility()
+
+### Community 8270 - "UsernameCache.luau"
+Cohesion: 0.25
+Nodes (4): v11(), fetchThread(), getUsername(), u1.GetNameFromUserIdAsync()
+
+### Community 8272 - "ProductManager.luau"
+Cohesion: 0.28
+Nodes (5): CheckPurchaseAsync(), ProcessReceipt(), ProductList.GetProductId(), ProductManager.GiftPurchaseRequested(), ProductManager.ProductPurchaseRequested()
+
+### Community 8274 - "CrewsUI.luau"
+Cohesion: 0.28
+Nodes (4): u43(), u4.Initialize(), u4.Notify(), u4.RemoveNotification()
+
+### Community 8275 - "u1.New"
+Cohesion: 0.31
+Nodes (5): getColorFromString(), getLayerCollector(), getVector2FromString(), u1.New(), v139()
+
+### Community 8276 - "Signals/FastSignal.luau"
+Cohesion: 0.25
+Nodes (3): u1.Connect(), u1.Once(), u2.new()
+
+### Community 8277 - "LocalizationCache.luau"
+Cohesion: 0.33
+Nodes (5): ResolveField(), v1.GetLocaleId(), v1.GetRegionId(), v1.OnResolved(), WaitForField()
+
+### Community 8278 - "GuiParticles.luau"
+Cohesion: 0.31
+Nodes (3): addParticle(), getRandomNumberSequence(), r_num()
+
+### Community 8279 - "Particle_Module/PartCache.luau"
+Cohesion: 0.22
+Nodes (3): u1.Expand(), u1.GetPart(), u1.new()
+
+### Community 8280 - "PartCache_1.luau"
+Cohesion: 0.22
+Nodes (3): u1.Expand(), u1.GetPart(), u1.new()
+
+### Community 8281 - "wallyVFX_1.luau"
+Cohesion: 0.28
+Nodes (3): emitall(), v1.LokiDashSuper(), v1.LokiKick()
+
+### Community 8282 - "FuzzySearch.luau"
+Cohesion: 0.33
+Nodes (6): collectAllStrings(), getNestedValue(), levenshtein(), similarity(), u1._extractText(), u1.search()
+
+### Community 8287 - "ReplicatedStorage/ReplicatedStorage/CmdrClient/CmdrInterface/AutoComplete.luau"
+Cohesion: 0.33
+Nodes (5): SetText(), u2.Select(), u2.Show(), UpdateContainerSize(), UpdateInfoDisplay()
+
+### Community 8291 - "Killua_RVFX/Lightning/PartCache/PartCache.luau"
+Cohesion: 0.22
+Nodes (3): u1.Expand(), u1.GetPart(), u1.new()
+
+### Community 8293 - "Sharm Rocks/PartCache.luau"
+Cohesion: 0.22
+Nodes (3): u1.Expand(), u1.GetPart(), u1.new()
+
+### Community 8294 - "CC/Lightning/PartCache/PartCache.luau"
+Cohesion: 0.22
+Nodes (3): u1.Expand(), u1.GetPart(), u1.new()
+
+### Community 8296 - "ValleyRun/ReplicatedStorage/chrono/Shared/Snapshots.luau"
+Cohesion: 0.33
+Nodes (5): BinarySearchInsertionPoint(), GetAt(), Push(), PushWithCheck(), ShiftElementsRight()
+
+### Community 8297 - "TimeWarpClient.client.luau"
+Cohesion: 0.33
+Nodes (6): arrive(), begin(), burst(), ghost(), tint(), trail()
+
+### Community 8298 - "ShowcaseStage.luau"
+Cohesion: 0.31
+Nodes (4): buildRig(), buildStage(), ShowcaseStage.Show(), stripScripts()
+
+### Community 8301 - "Hotbar/Handler.client.luau"
+Cohesion: 0.36
+Nodes (4): addCooldown(), AddTool(), Equip(), whiteGradientTween()
+
+### Community 8302 - "DevilFruit/Magu-Magu.luau"
+Cohesion: 0.29
+Nodes (6): u16(), u17.MagmaEruption(), u17.MagmaFist(), u17.MagmaHound(), u17.MagmaRain(), u17.MagmaSwamp()
+
+### Community 8304 - "Placement.luau"
+Cohesion: 0.36
+Nodes (5): Placement:create_model_for(), Placement:deselect(), Placement:destroy(), Placement.new(), Placement:select()
+
+### Community 8305 - "Debris2.luau"
+Cohesion: 0.36
+Nodes (5): u16(), u1.AddItem(), u1.AddItems(), u9(), v1.Connect()
+
+### Community 8306 - "ReplicatedStorage/ReplicatedStorage/Modules/RichText.luau"
+Cohesion: 0.36
+Nodes (4): getColorFromString(), getLayerCollector(), getVector2FromString(), u1.New()
+
+### Community 8307 - "LunarisService.luau"
+Cohesion: 0.32
+Nodes (3): getPrevAndNextKeyFrames(), sortedKeys(), u1.Play()
+
+### Community 8310 - "Batmobile/Scripts/Client/Camera.luau"
+Cohesion: 0.36
+Nodes (4): cycleCameraMode(), setMode(), cycleCameraMode(), setMode()
+
+### Community 8315 - "BezierTween/Signal.luau"
+Cohesion: 0.32
+Nodes (4): acquireRunnerThreadAndCallEventHandler(), u4.new(), u8.Connect(), u8.Fire()
+
+### Community 8316 - "Minigame_Chase.luau"
+Cohesion: 0.32
+Nodes (4): EnableAllParticles(), FadeLabel(), ShootLaser(), TypeText()
+
+### Community 8324 - "FX/ForgeVFX/effects/sound.luau"
+Cohesion: 0.36
+Nodes (5): createSoundClone(), playSingleSound(), selectRandomSound(), v6.emit(), u4.new()
+
+### Community 8325 - "ReplicaServer.luau"
+Cohesion: 0.29
+Nodes (3): DestroyReplica(), IterateGroup(), u41.Destroy()
+
+### Community 8332 - "HandlerOld.client.luau"
+Cohesion: 0.48
+Nodes (5): CloseScrolls(), GetEmoteAnim(), InitSlotDisplay(), PlayAnim(), SetupPlayBtn()
+
+### Community 8333 - "Modules/ForgeVFX/effects/sound.luau"
+Cohesion: 0.33
+Nodes (3): u21(), u64(), v8.emit()
+
+### Community 8334 - "Leveling.luau"
+Cohesion: 0.33
+Nodes (3): u3.checkBoosted(), u3.lvlup(), u8()
+
+### Community 8335 - "AenoirEmitOld.luau"
+Cohesion: 0.38
+Nodes (3): EmitSingle(), EmitStack.Decrement(), EmitStack.Increment()
+
+### Community 8336 - "RAGE/EffectsModule.luau"
+Cohesion: 0.38
+Nodes (3): Emit(), EnkiduEffectsModule.StartVFX(), Flash()
+
+### Community 8337 - "EventUtility.luau"
+Cohesion: 0.38
+Nodes (3): EventUtility:AnnounceToPlayer(), EventUtility:GetLuaPlayer(), EventUtility:RewardRandomEmote()
+
+### Community 8338 - "List/Accelerator/Tectonic Control.luau"
+Cohesion: 0.48
+Nodes (5): Attack:Activate(), Attack:BlinkStrike(), Attack:Control(), Attack:DoVariant(), Attack.new()
+
+### Community 8339 - "Onslaught.luau"
+Cohesion: 0.43
+Nodes (5): Attack:Activate(), Attack:FeralTakedown(), Attack.new(), Attack:Onslaught(), Attack:SpiralingCascade()
+
+### Community 8341 - "TopbarIcon/Elements/Dropdown.luau"
+Cohesion: 0.38
+Nodes (4): updateChildSize(), updateMaxIcons(), updateMaxIconsListener(), updateVisibility()
+
+### Community 8342 - "TopbarIcon/Features/Overflow.luau"
+Cohesion: 0.62
+Nodes (6): u1.getAvailableIcons(), u1.getRealXPositions(), u1.getWidth(), u1.start(), u1.updateAvailableIcons(), u1.updateBoundary()
+
+### Community 8344 - "Batmobile/Scripts/Client/InputCategorizer.luau"
+Cohesion: 0.52
+Nodes (5): u2._getCategoryOfInputType(), u2._getDefaultInputCategory(), u2._initialize(), u2._onInputTypeChanged(), u2._setLastInputCategory()
+
+### Community 8345 - "BatmobileOLD/Scripts/Client/InputCategorizer.luau"
+Cohesion: 0.52
+Nodes (5): u2._getCategoryOfInputType(), u2._getDefaultInputCategory(), u2._initialize(), u2._onInputTypeChanged(), u2._setLastInputCategory()
+
+### Community 8348 - "ReplicatedModules/Zone/ZoneController/Tracker.luau"
+Cohesion: 0.33
+Nodes (4): playerAdded(), u1.getCharacterSize(), u1.new(), u1.update()
+
+### Community 8355 - "FXHandler.luau"
+Cohesion: 0.43
+Nodes (3): u1.GetQualityLevel(), u1.GetQualityScale(), u1.ScaleQuality()
+
+### Community 8356 - "Hitbox/Projectile.luau"
+Cohesion: 0.38
+Nodes (4): deepCopy(), projectileSetup(), u1.LinearTravel(), u1.new()
+
+### Community 8358 - "LevelingInfo.luau"
+Cohesion: 0.43
+Nodes (5): u1.CalculateLevelsFromXP(), u1.CalculateXPFromLevels(), u1.GetAscensionData(), u1.GetMaxLevel(), u1.GetXPAtLevel()
+
+### Community 8364 - "UI_MiddleNotifications.luau"
+Cohesion: 0.38
+Nodes (4): p1.MassTransparentize(), p1.TweenTransparency(), Transparentize(), TweenObj()
+
+### Community 8366 - "SoulShock.luau"
+Cohesion: 0.43
+Nodes (4): frost(), shatter(), soul(), v1.play()
+
+### Community 8368 - "CombatController/Core/Cooldown.luau"
+Cohesion: 0.53
+Nodes (4): u2.CreateCooldown(), u2.GetCooldown(), u2.GetCooldownFolder(), u2.GetCharacter()
+
+### Community 8371 - "u48.TransparencyMask"
+Cohesion: 0.33
+Nodes (6): u48.BubbleChatMessage.SmoothDamp(), u48.BubbleChatMessage.UpdateTransparency(), u48.DistantBubble.SmoothDamp(), u48.DistantBubble.UpdateTransparency(), u48.ExperienceChat.TextBoxTextChanged(), u48.TransparencyMask()
+
+### Community 8372 - "u89"
+Cohesion: 0.40
+Nodes (6): u89(), u15.getInstance(), u84(), v1.kunigamiBankai(), v1.kunigamiBankai(), claim()
+
+### Community 8375 - "handleButton"
+Cohesion: 0.33
+Nodes (6): editButton(), getMoveNumber(), handleButton(), u4.applyPendingMoveset(), u4.bindHoldButton(), u4.editMoveset()
+
+### Community 8376 - "emit"
+Cohesion: 0.47
+Nodes (6): emit(), enable(), get_max_lifetime(), u4.DestroyTagged(), u4.EmitAttachmentIn(), u4.EmitInBall()
+
+### Community 8377 - "u4.BallBrickFinder"
+Cohesion: 0.33
+Nodes (6): u4.BallBrickFinder(), u4.cameraShake(), u4.commentatorLine(), u4.kaisersunraveling(), u4.PlayGlobalSound(), u4.PlaySound()
+
+### Community 8379 - "Rodux/Signal.luau"
+Cohesion: 0.47
+Nodes (3): immutableAppend(), immutableRemoveValue(), u7.connect()
+
+### Community 8383 - "ClientModules/SmartBone/Dependencies/Iris/widgets/Window.luau"
+Cohesion: 0.40
+Nodes (4): fitPositionToWindowBounds(), fitSizeToWindowBounds(), quickSwapWindows(), u1.SetFocusedWindow()
+
+### Community 8385 - "SmartBone_OLD/Dependencies/Iris/widgets/Window.luau"
+Cohesion: 0.40
+Nodes (4): fitPositionToWindowBounds(), fitSizeToWindowBounds(), quickSwapWindows(), u1.SetFocusedWindow()
+
+### Community 8390 - "Metro Man.luau"
+Cohesion: 0.40
+Nodes (3): AnimateColorCorrectionLoop(), AnimateFOVLoop(), Start()
+
+### Community 8398 - "WheelMain.client.luau"
+Cohesion: 0.47
+Nodes (3): init(), redraw(), update()
+
+### Community 8403 - "BalloonLift.luau"
+Cohesion: 0.60
+Nodes (5): confetti(), flash(), hanging(), sound(), v1.play()
+
+### Community 8404 - "BoneRattle.luau"
+Cohesion: 0.53
+Nodes (4): bones(), dust(), twitch(), v1.play()
+
+### Community 8411 - "Ranked/Season.luau"
+Cohesion: 0.60
+Nodes (3): Season.Apply(), Season.Current(), snapshot()
+
+### Community 8412 - "BattleGame/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/LegacyCamera.luau"
+Cohesion: 0.50
+Nodes (3): LegacyCamera.new(), LegacyCamera:SetCameraToSubjectDistance(), LegacyCamera:Update()
+
+### Community 8418 - "size"
+Cohesion: 0.60
+Nodes (5): rank(), selectRank(), size(), v96.IsRankConsistent(), v96.IsSizeConsistent()
+
+### Community 8483 - "DNClient.client.luau"
+Cohesion: 0.70
+Nodes (4): confirmVictim(), insertVictim(), ugoFill(), updatePage()
+
+### Community 8489 - "UI_SubPower.luau"
+Cohesion: 0.60
+Nodes (3): ComputeWeight(), UpdateData(), UpdateWeight()
+
+### Community 8506 - "u4.sceneEnabled"
+Cohesion: 0.50
+Nodes (4): doTransparencyTween(), u4.sceneEnabled(), u4.team_highlight(), u4.updateGoalTeamIndicator()
+
+### Community 8507 - "getVoiceDialogue"
+Cohesion: 0.67
+Nodes (4): getColorSequence(), getSpeakInfo(), getVoiceDialogue(), u4.localvoice()
+
+### Community 8508 - "u4.bodyVelocity"
+Cohesion: 0.50
+Nodes (4): u4.bodyVelocity(), u4.customBodyVelocity(), u4.destroyVelocity(), u4.fixVelocity()
+
+### Community 8522 - "Uryu_Prison.luau"
+Cohesion: 0.83
+Nodes (3): Generate(), GetCorners(), ScaleCage()
+
+### Community 8546 - "u43.prototype._andThen"
+Cohesion: 0.67
+Nodes (3): u43.prototype._andThen(), v175(), u43.prototype._andThen()
+
+### Community 8547 - "u48.InstanceBind.new"
+Cohesion: 0.67
+Nodes (3): u48.BubbleChatMessage.ReBind(), u48.DistantBubble.ReBind(), u48.InstanceBind.new()
 
 ## Knowledge Gaps
 - **13 isolated node(s):** `Dir`, `File`, `Io`, `NoSource`, `XmlDecode` (+8 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 33016 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **6546 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 41773 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **8950 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `_G.tween()` connect `_G.tween` to `_G.MeetReq`, `script_initiatevfx`, `game_replicatedstorage_modules_skills`, `_G.PlaySound`, `_G.PlayEffect`, `_G.checkRenderDistance`, `game_replicatedstorage_modules_fastwait`, `_G.customWeld`, `v41`, `v14`, `ClientMain.client.luau`, `u1_playerscripts_waitforchild`, `v3.start`, `v4.start`, `v20`, `Talks/Gatekeeper Puff.luau`, `SharedGlobals.luau`, `Freezing ShatterGrip.luau`, `v23`, `_G.PauseAnim`, `_G.getTargetNearMouse`, `u1.start`, `v5.start`, `game_replicatedstorage_modules_client_weaponvfxrecolor`, `v29`, `v3.start`, `u50`, `Mochi-Mochi.luau`, `game_replicatedstorage_modules_swordhandle_swordinfo`, `AreaNotifier.client.luau`, `v19`, `_G.raycastWhitelist`, `_G.customEmit`, `v1.start`, `_G.matchMaterial`?**
-  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `_G.tween()` connect `_G.tween` to `_G.MeetReq`, `script_initiatevfx`, `game_replicatedstorage_modules_skills`, `_G.PlaySound`, `@quenty_playerthumbnailutils/Promise.luau`, `_G.PlayEffect`, `_G.checkRenderDistance`, `game_replicatedstorage_modules_fastwait`, `_G.customWeld`, `v14`, `ReplicatedStorage/SmartBone/Dependencies/Iris/widgets/Input.luau`, `u1_playerscripts_waitforchild`, `u4.lerp`, `v1.start`, `v20`, `Talks/Gatekeeper Puff.luau`, `SharedGlobals.luau`, `Freezing ShatterGrip.luau`, `v23`, `_G.PauseAnim`, `v25`, `u66`, `v76`, `_G.particleEnabled`, `v5.start`, `game_replicatedstorage_modules_client_weaponvfxrecolor`, `v29`, `BeamLightning.luau`, `u50`, `Mochi-Mochi.luau`, `script_bezier`, `AreaNotifier.client.luau`, `v19`, `_G.raycastWhitelist`, `DevilFruit/Magu-Magu.luau`, `_G.customEmit`, `v25.start`, `v1.start`, `_G.matchMaterial`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Are the 527 inferred relationships involving `_G.MeetReq()` (e.g. with `v1.check()` and `v1.check()`) actually correct?**
   _`_G.MeetReq()` has 527 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Dir`, `File`, `Io` to the rest of the system?**
   _13 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `_G.MeetReq` be split into smaller, more focused modules?**
-  _Cohesion score 0.014728834677683782 - nodes in this community are weakly interconnected._
-- **Why does `_G.PlaySound()` connect `_G.PlaySound` to `_G.MeetReq`, `_G.tween`, `_G.PlayEffect`, `_G.checkRenderDistance`, `game_replicatedstorage_modules_fastwait`, `_G.customWeld`, `CoinMovement.luau`, `v41`, `v14`, `Explosion.luau`, `ClientMain.client.luau`, `v3.start`, `v4.start`, `v20`, `SharedGlobals.luau`, `Freezing ShatterGrip.luau`, `v23`, `u1.start`, `v76`, `v5.start`, `_G.footstep`, `game_replicatedstorage_modules_client_weaponvfxrecolor`, `v29`, `v3.start`, `PacketProfiler.luau`, `CraftingClient.client.luau`, `v19`, `_G.raycastWhitelist`, `_G.customEmit`, `v1.start`, `_G.matchMaterial`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+  _Cohesion score 0.013948100092678406 - nodes in this community are weakly interconnected._
+- **Why does `u10.new()` connect `Zipline.luau` to `v76`, `GPO Zipline.luau`?**
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **Are the 526 inferred relationships involving `_G.StamCheck()` (e.g. with `v1.setup()` and `v1.setup()`) actually correct?**
   _`_G.StamCheck()` has 526 INFERRED edges - model-reasoned connections that need verification._
 - **Should `actionUtil.luau` be split into smaller, more focused modules?**
-  _Cohesion score 0.00871211160967036 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.008349988896291361 - nodes in this community are weakly interconnected._
