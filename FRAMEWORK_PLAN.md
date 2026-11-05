@@ -18,6 +18,9 @@ src/
 │   │   ├── CombatController.luau     -- ✅ Applies own knockback / ragdoll, DODGED + damage pop-ups, void screen
 │   │   ├── SkillFx.luau              -- ✅ Signature kit visuals (Thunder God, Gravity Lord, King of Curses)
 │   │   ├── StandFx.luau              -- ✅ Stand visuals (Made in Heaven aura, Time Acceleration, Universe Reset)
+│   │   ├── MenuController.luau       -- ✅ Lobby level bar, daily reward, daily quests, Divine Shard shop
+│   │   ├── FogController.luau        -- ✅ Fog of War visuals (off unless FogConfig.Enabled)
+│   │   ├── Audio.luau                -- ✅ Game-audio SoundGroup (muted by Infinite Void)
 │   │   ├── CameraController.luau     -- God RTS orthographic camera & Runner 3rd-person spring camera
 │   │   ├── MovementController.luau   -- Runner sprint, stamina drain, slide/dodge iframes
 │   │   └── StatusEffectController.luau -- Stun/Silence/Void screen distortion effects
@@ -37,14 +40,23 @@ src/
 │   │   ├── RoundService.luau         -- Multi-round match lifecycle (rounds loop until 1 survivor; dead Runners become Gods)
 │   │   ├── StatusEffectService.luau  -- ✅ Stacking CC / iframe states (Section 1)
 │   │   ├── HitboxService.luau        -- ✅ Box / sphere hitboxes + target filters (Section 2)
-│   │   └── MapService.luau           -- ✅ Simple generated canyon + per-round cover (MapConfig.luau)
+│   │   ├── MapService.luau           -- ✅ Generated canyon: chunk themes, hazards, fog patches (MapConfig.luau)
+│   │   ├── DestructionService.luau   -- ✅ Cover health, cracking, client voxel shatter, roof collapse
+│   │   ├── MovementService.luau      -- ✅ Server-owned stamina + speed checks (MovementConfig.AntiCheat)
+│   │   ├── ShoveService.luau         -- ✅ Every Runner's shoulder-shove (F)
+│   │   ├── FogService.luau           -- ✅ Fog of War: Concealed / Exposed, Spawn Fog cast blocking (off by default)
+│   │   ├── ProgressionService.luau   -- ✅ Levels, XP, reward granting
+│   │   ├── QuestService.luau         -- ✅ Daily quests + daily login reward
+│   │   └── ShopService.luau          -- ✅ Rotating Divine Shard shop
 │   └── init.server.luau              -- ✅ Service loader (Init, then Start)
 ├── shared/
 │   ├── Data/
 │   │   ├── Kits.luau                 -- ✅ Every God & Runner kit (mirrors ABILITIES.md)
 │   │   └── Rarities.luau             -- ✅ Rarity order, colours, vault rarities
 │   ├── Gacha/
-│   │   └── Roller.luau               -- ✅ Pure odds / roll / pity maths shared by server and client
+│   │   ├── Roller.luau               -- ✅ Pure odds / roll / pity maths shared by server and client
+│   │   ├── Banners.luau              -- ✅ Event banners: which kits are rollable now, featured Secret
+│   │   └── ShardShop.luau            -- ✅ Shard shop offers + prices (same on every server)
 │   ├── Config/
 │   │   ├── GachaConfig.luau          -- ✅ Odds, pity caps, costs, refunds, product ids
 │   │   ├── UIConfig.luau             -- ✅ UI sounds, lock icons, stage position
@@ -304,7 +316,10 @@ The `references/SorceryGame/` archive provides the exact implementation of Gojo'
   - `/test area move`: the dummies walk left and right, for practising God aim.
   - `/test area reset`: rebuilds the cover and respawns the dummies. `/test area leave` sends you back to the lobby.
   - Matches skip players in the test area, and you can't enter while you're in a match, so testing and real rounds don't interrupt each other.
-- **Unit tests (no Studio needed):** pure maths lives in `src/shared/Util/StrikeMath.luau` and is tested with Lune: `lune run tests/StrikeMath.spec.luau` from the repo root.
+- **Unit tests (no Studio needed):** pure maths lives in `src/shared/Util/StrikeMath.luau` and `src/shared/Util/ProgressionMath.luau` and is tested with Lune from the repo root: `lune run tests/StrikeMath.spec.luau` and `lune run tests/ProgressionMath.spec.luau`.
+- **Progression and economy:** `/test xp <amount>`, `/test shards <amount>`, `/test daily reset` (claim the daily reward again), `/test quests done` (complete today's quests), `/test stamina` (refill).
+- **Movement checks:** a Runner who moves too fast is pulled back and a `[MovementService] Pulled back ...` warning is printed. If legitimate movement (a new skill) triggers it, call `MoveGrace.Grant(character, seconds)` where that movement starts.
+- **Fog of War:** set `FogConfig.Enabled = true`, start a match, and watch the Spawn Fog and patches from the God view.
 
 
 ---

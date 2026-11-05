@@ -48,6 +48,18 @@ Status key: ✅ done · 🔨 in progress · ⬜ to do · ⏸️ on hold
 | God gameplay *(needs a Studio test)* | Overhead camera (WASD pan, 60–220 zoom), ground reticle per skill shape, 1–5 hotbar, energy regen, telegraphs and danger warnings | `GodController.luau`, `FxController.luau` |
 | Round loop *(needs a Studio test)* | Intermission → Gods picked → rounds → dead Runners become Gods → last survivor wins; Sanctuary finish, mid-point, Cash payouts, kills/assists, MVP stats | `RoundService.luau`, `RoundConfig.luau` |
 | Match UI *(needs a Studio test)* | Round bar + timer, banners, FINAL RUN, notice feed, Runner HUD, God HUD + tracker, spectating, MVP leaderboard (built in code) | `MatchHUDController.luau`, `Make.luau` |
+| Server movement *(needs a Studio test)* | The server owns Runner stamina (sprint drain from observed speed, slide / skill / shove costs, refunds) and checks speed: repeated speed violations or a teleport pull the Runner back. Knockbacks, dashes, ragdolls and server teleports are exempt (`MoveGrace`). Sanctuary finishes are refused from flagged players or impossibly fast runs. | `MovementService.luau`, `shared/Util/MoveGrace.luau`, `MovementConfig.AntiCheat` |
+| Shoulder-shove *(needs a Studio test)* | Every Runner shoves on **F** (mobile button too): nearest Runner in front, knockback + short stagger, no damage, iframes dodge it. Counts as "Shoves Landed" (match stat, quests, XP). | `ShoveService.luau`, `AbilityController.Shove`, `MovementConfig.Shove` |
+| Cover shelters Runners *(needs a Studio test)* | God strikes come from the sky: a Runner with solid cover above them isn't hit. Skills with `DestroyCover` smash the cover first (so they still hit); `IgnoreCover` skips the check. Runners also get directional red arrows toward strikes landing near them. | `Common.Sheltered`, `GodSkills.luau`, `CombatConfig.CoverBlocksStrikes`, `FxController` |
+| God priority *(needs a Studio test)* | Starting Gods: God Pass owners first, then whoever has gone the most matches without starting as God (saved). | `RoundService.startMatch`, `ProgressionMath.PickGods`, `RoundConfig.GodPassGamePassId` (0 = no pass yet) |
+| Levels and XP *(needs a Studio test)* | XP for every match event (alongside Cash), level curve, level-up rewards (1 spin per vault, a Lucky Spin every 10 levels, Cash); 1 spin per vault per match, 2 more for the winner. Level bar in the lobby. | `ProgressionService.luau`, `ProgressionConfig.luau`, `MenuController.luau` |
+| Daily reward + quests *(needs a Studio test)* | 7-day login streak (every claim also gives 3 Boosted Spins per vault); 3 daily quests per player from a pool (survive, kill, dodge, shove, spin...), claimed in the Quests panel. | `QuestService.luau`, `DailyConfig.luau`, `MenuController.luau` |
+| Event banners *(needs a Studio test)* | Kits with an `Event` field only roll during their banner's window; the Lucky Secret pity gives the banner's featured Secret; the vault shows the live banner and time left. No banners are configured yet. | `GachaConfig.Banners`, `shared/Gacha/Banners.luau`, `Roller.Pool` |
+| Divine Shard shop *(needs a Studio test)* | 4 kits per vault, same for every server, new offers every 24h; 250–500 shards by rarity; bought kits go to the vault (Mythical) or a free / the selected slot. | `ShopService.luau`, `shared/Gacha/ShardShop.luau`, `MenuController.luau` |
+| Auto-spin *(needs a Studio test)* | Vault AUTO button: keeps spinning until a chosen rarity or better (Epic+ to Secret), out of spins, or stopped; Cash is only spent if "Use Cash" is on. Skips the reel when the player can skip. | `VaultController.luau` (`SetupAuto`, `RunAuto`) |
+| Map chunks + destruction *(needs a Studio test)* | Chunk themes per 100 studs: Ruins, Bunker (roofed concrete), PillarField, ChasmBridge (lava / quicksand strip with bridges on the open lanes). Broken cover shatters into voxels on clients (no server physics); ruin and bunker roofs collapse when their walls are gone; heavy strikes leave craters. | `MapService.luau`, `DestructionService.luau`, `MapConfig.luau`, `FxController` (`Shatter`, `Crater`) |
+| Fog of War *(built, switched off)* | Spawn Fog + fog patches, Concealed / Exposed, exposure timers, no casting into the Spawn Fog, God-side hiding and highlights, red reticle over the Spawn Fog. Off until Rohan agrees: set `FogConfig.Enabled = true`. | `FogService.luau`, `FogController.luau`, `FogConfig.luau` |
+| Game audio group | Skill and stand sounds go through one SoundGroup, so Infinite Void mutes them. | `Audio.luau`, `CombatController` |
 
 ---
 
@@ -70,21 +82,25 @@ Follow-ups once tested:
 - ⬜ Signature VFX for the other kits (same approach: original effects in `SkillFx.luau`; the generic element VFX are placeholders)
 - ⬜ Skill sounds: paste uploaded ids into `SoundConfig.luau` (per skill, or per element as a fallback)
 - ⬜ Runner kit animations (own uploads; ids in `AnimationConfig.luau`). Gods have none: they're a camera in the sky.
-- ⬜ God Pass priority for picking the starting Gods
-- ⬜ Runner stamina is tracked on the client: move it server-side before launch
-- ⬜ "Muting" for Infinite Void needs all sounds routed through one SoundGroup
+- ✅ God Pass priority for picking the starting Gods (create the game pass, then set `RoundConfig.GodPassGamePassId`)
+- ✅ Runner stamina is server-side (`MovementService`)
+- ✅ Infinite Void mutes game audio (`Audio.luau` SoundGroup)
+- ⬜ Shove animation: `MovementController.PlayAction("Shove")` plays `AnimationConfig.Actions.Shove` once it's added
 
-### 6b. Fog of War (`GAME_PLAN.md` Section 4B) — 💡 idea only, don't build until Rohan says so
-- ⬜ `FogService`: `FogZone` volumes, `Concealed` / `Exposed` attributes, exposure timers, spawn-fog cast blocking
-- ⬜ Client: thick fog and hidden Runners for Gods, light haze for Runners, white exposure highlight, tracker/reticle support
-- ⬜ Fog patch placement on the map
+### 6b. Fog of War (`GAME_PLAN.md` Section 4B) — ✅ built, ⏸️ switched off until Rohan says so
+- ✅ `FogService`: `FogZone` volumes, `Concealed` / `Exposed` attributes, exposure timers, spawn-fog cast blocking
+- ✅ Client (`FogController`): thick fog and hidden Runners for Gods, light haze for Runners, white exposure highlight, tracker/reticle support
+- ✅ Fog patch placement on the map (`MapService`, per chunk)
+- ⬜ Turn it on (`FogConfig.Enabled = true`) and playtest
 
 ### 7. Map and destruction
 - ✅ Green valley course: `Workspace.Course` (`src/map/Course.rbxmx`) has a grass floor with a dirt path, grassy slopes up to mossy cliffs, the start bunker + barrier and the Sanctuary gate. `MapService` reshuffles cover on the flat floor every round: stone ruins, pillars and low walls are destructible; boulders and trees are permanent. Regenerate with `tools/build_world.py`, or edit in Studio and *Save to File* over the `.rbxmx`.
 - ✅ Temporary lobby: `Workspace.Lobby` (`src/map/Lobby.rbxmx`) is a grass plaza with a spawn, hedges, trees, lamps, an arch toward the valley, and **God Vault / Runner Vault kiosks** (walk up and press E). Placeholder until a real lobby is designed.
-- ⏸️ Proper chunk art, chokepoint hazards (bridges over pits), real voxel destruction — on hold
-- ⏸️ `MapService`: canyon from 100-stud chunks
-- ⏸️ Destructible cover (port of BattleGame `DebreeService`)
+- ✅ `MapService`: 100-stud chunks with themes (Ruins, Bunker, PillarField, ChasmBridge), two open lanes each
+- ✅ Chokepoint hazards: lava / quicksand strips with bridges over the open lanes
+- ✅ Destructible cover: health, cracking, voxel shatter on clients, roof collapse (`DestructionService`, written from scratch, not ported)
+- ✅ Craters for heavy strikes (client visual)
+- ⬜ Proper chunk art (the chunks are still plain parts)
 - If a test map is needed before then, keep it very basic or reuse a map from the reference games, and check with Rohan first.
 
 ### 7b. ⚠️ Replace reference-derived assets (before publishing)
@@ -94,15 +110,16 @@ Follow-ups once tested:
 - ⬜ **Lock icon ids** in `UIConfig.luau`: replace them with our own uploads.
 
 ### 8. Economy extras
-- ⬜ Divine Shard shop
-- ⬜ Ad and daily boosted spins (data and `GachaService.GrantAdBoost` already exist)
-- ⬜ Auto-spin
+- ✅ Divine Shard shop
+- ✅ Daily boosted spins (daily reward); ⬜ rewarded video ads aren't hooked up (call `GachaService.GrantAdBoost` from the ad reward once ads are set up)
+- ✅ Auto-spin
+- ✅ Levels / XP, daily login streak, daily quests, event banner system (no banners configured yet)
 - ⬜ Create the Robux products and fill in the ids in `GachaConfig.luau`
 - ⬜ Replace the placeholder sounds in `UIConfig.luau`
 
 ### 9. Polish and launch
 - ⬜ Balance pass (damage, cooldowns, odds)
-- ⬜ Mobile controls
+- ⬜ Mobile controls: Runners have touch buttons (sprint, slide, shove, skills); **the God view still needs touch aiming and panning**
 - ⬜ Performance test with 25 players
 - ⬜ Security review of every request handler
 - ⬜ Final naming pass on anime-named abilities
