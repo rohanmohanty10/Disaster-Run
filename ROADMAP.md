@@ -70,7 +70,7 @@ Follow-ups once tested:
 - ⬜ Fog patch placement on the map
 
 ### 7. Map and destruction
-- ✅ Simple generated canyon (`MapService.luau`, `MapConfig.luau`): floor, walls, start bunker + barrier, Sanctuary gate, cover reshuffled every round (ruins / pillars / low walls are destructible, boulders permanent). Plain on purpose.
+- ✅ Simple canyon: `Workspace.Course` lives in the place (`src/map/Course.rbxmx`, synced by Rojo, visible in Edit mode): floor, walls, start bunker + barrier, Sanctuary gate. `MapService` reshuffles the cover (`Course.Cover`) every round: ruins, pillars and low walls are destructible, boulders are permanent. Plain on purpose. To edit the course, change it in Studio, then right-click it, choose *Save to File* and overwrite `src/map/Course.rbxmx` (Rojo only syncs files → Studio).
 - ⏸️ Proper chunk art, chokepoint hazards (bridges over pits), real voxel destruction — on hold
 - ⏸️ `MapService`: canyon from 100-stud chunks
 - ⏸️ Destructible cover (port of BattleGame `DebreeService`)

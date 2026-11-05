@@ -1,10 +1,12 @@
 --!strict
--- A simple, original canyon course built in code (GAME_PLAN.md Section 4, kept deliberately plain).
---   * Static: floor, canyon walls, start bunker + barrier, Sanctuary gate (workspace.Course)
---   * Per round: cover in 100-stud chunks (ruins, pillars, boulders), reshuffled with a new seed.
---     Ruins and pillars are tagged DestructibleCover with Health; boulders are permanent shelter.
--- If you build your own course, name it "Course" with parts "StartSpawn" and "Sanctuary" and
--- this service leaves it alone (no generated cover).
+-- The simple canyon course (GAME_PLAN.md Section 4, kept deliberately plain).
+--   * Static: Workspace.Course — floor, canyon walls, start bunker + "StartBarrier", Sanctuary gate.
+--     It lives in the place (src/map/Course.rbxmx, synced by Rojo) so it's visible in Edit mode;
+--     edit it in Studio and save it back to that file, or regenerate with tools/build_course.py.
+--     If it's missing, the same course is built here as a fallback.
+--   * Per round: Course.Cover — ruins, pillars, low walls, boulders in 100-stud chunks, reshuffled
+--     with a new seed. Ruins / pillars / walls are DestructibleCover with Health; boulders are
+--     permanent shelter. Set the attribute FixedCover = true on Course to keep hand-placed cover.
 
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -109,6 +111,10 @@ function MapService.Generate(seed: number?)
 	if coverFolder then
 		coverFolder:Destroy()
 	end
+	local old = course and course:FindFirstChild("Cover")
+	if old then
+		old:Destroy()
+	end
 	local folder = Instance.new("Folder")
 	folder.Name = "Cover"
 	coverFolder = folder
@@ -149,11 +155,15 @@ function MapService.SetBarrier(open: boolean)
 end
 
 function MapService.Init()
-	if workspace:FindFirstChild("Course") then
-		return -- a hand-built course is in the place; leave it alone
+	local existing = workspace:FindFirstChild("Course")
+	if existing and existing:IsA("Model") then
+		course = existing
+		local found = existing:FindFirstChild("StartBarrier")
+		barrier = if found and found:IsA("BasePart") then found else nil
+	else
+		course = buildCourse()
 	end
-	course = buildCourse()
-	generated = true
+	generated = not (course :: Model):GetAttribute("FixedCover")
 	MapService.Generate()
 	MapService.SetBarrier(false)
 end
