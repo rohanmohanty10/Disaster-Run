@@ -13,6 +13,10 @@ AdminConfig.Admins = {
 
 AdminConfig.ToggleKey = Enum.KeyCode.F2
 
+-- Equipping a kit from the panel outside a match also puts you in the dev test area as that
+-- role, so you can use it right away (God kit → God view in the sky, Runner kit → Runner).
+AdminConfig.EquipEntersTestArea = true
+
 -- Kits that are fully built (gameplay + their own effects). Shown first, marked in the panel.
 AdminConfig.CompletedKits = {
 	God = { "ThunderGod", "GravityLord" },
