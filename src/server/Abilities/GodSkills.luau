@@ -2,14 +2,18 @@
 -- God skill behaviours, driven by each skill's Behavior table in Kits.luau.
 -- Every strike shows a telegraph first (GAME_PLAN.md: 0.5-1.5s warning), then hits.
 --
--- Templates: Circle, Line, Cone, Homing, Rain. Options a behaviour can add:
+-- Templates: Circle, Line, Cone, Homing, Rain, Arrow. Options a behaviour can add:
 --   Charge (hold up to N s), RMin (radius grows with charge), DmgMax (damage grows with charge),
 --   Bolts (many small strikes inside the circle), Chain (lightning jumps), Linger (damage zone),
---   Shots (repeat the line), DmgEdge (falloff), HealthPercent (Cleave), RootAtFull.
+--   Shots (repeat the line), DmgEdge (falloff), HealthPercent (Cleave), RootAtFull,
+--   Across (Line: cut wall to wall across the canyon), CoverDamage (damage dealt to cover;
+--   defaults to 2x Dmg — use a large number to cut straight through every cover piece).
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
+local StrikeMath = require(ReplicatedStorage.Shared.Util.StrikeMath)
+local MapConfig = require(ReplicatedStorage.Shared.Config.MapConfig)
 
 local Services = script.Parent.Parent.Services
 local CombatService = require(Services.CombatService)
@@ -33,23 +37,30 @@ local function lerp(a: number, b: number, t: number): number
 	return a + (b - a) * t
 end
 
+local function coverDamage(b: { [string]: any }): number
+	return b.CoverDamage or (b.Dmg or 30) * 2
+end
+
 -- Telegraph, wait, then hit everything in the shape. Returns the characters hit.
+-- A telegraph of 0 skips the warning (the caller already showed one, e.g. Arrow).
 local function strike(ctx: Context, shape: Common.Shape, telegraph: number, damageFn: ((Model) -> number?)?, cast: any?): { Model }
 	local b = ctx.Behavior
 	cast = cast or CombatService.NewCast()
-	Common.Fx({
-		Kind = "Telegraph",
-		Shape = shape.Kind,
-		CFrame = shape.CFrame,
-		Radius = shape.Radius,
-		Length = shape.Length,
-		Width = shape.Width,
-		Angle = shape.Angle,
-		Duration = telegraph,
-		Element = b.Vfx,
-		Skill = if ctx.Skill then ctx.Skill.Name else nil,
-	})
-	task.wait(telegraph)
+	if telegraph > 0 then
+		Common.Fx({
+			Kind = "Telegraph",
+			Shape = shape.Kind,
+			CFrame = shape.CFrame,
+			Radius = shape.Radius,
+			Length = shape.Length,
+			Width = shape.Width,
+			Angle = shape.Angle,
+			Duration = telegraph,
+			Element = b.Vfx,
+			Skill = if ctx.Skill then ctx.Skill.Name else nil,
+		})
+		task.wait(telegraph)
+	end
 	Common.Fx({
 		Kind = "Impact",
 		Shape = shape.Kind,
@@ -72,7 +83,7 @@ local function strike(ctx: Context, shape: Common.Shape, telegraph: number, dama
 		end
 	end
 	if b.DestroyCover then
-		Common.DamageCover(shape, (b.Dmg or 30) * 2)
+		Common.DamageCover(shape, coverDamage(b))
 	end
 	Common.NearMiss(shape, hits)
 	return hits
@@ -146,6 +157,10 @@ function GodSkills.Circle(ctx: Context)
 	if b.Linger and not b.Dmg then
 		Common.Fx({ Kind = "Telegraph", Shape = "Circle", CFrame = shape.CFrame, Radius = radius, Duration = b.Tel, Element = b.Vfx, Skill = ctx.Skill.Name })
 		task.wait(b.Tel)
+		if b.DestroyCover then
+			-- Zones like Shrine of Calamity level the cover inside them as they open.
+			Common.DamageCover(shape, coverDamage(b))
+		end
 		if b.RootAtFull and ctx.Charge >= 0.95 then
 			for _, victim in Common.Targets(ctx.Player, shape, "HostileToRunners") do
 				CombatService.Afflict(ctx.Player, victim, { Cast = cast, Root = b.RootAtFull })
@@ -174,7 +189,7 @@ function GodSkills.Circle(ctx: Context)
 		damageFn = function(victim)
 			local humanoid = victim:FindFirstChildOfClass("Humanoid")
 			local health = if humanoid then humanoid.Health else 100
-			return math.clamp(health * b.HealthPercent, b.DmgMin or 0, b.Dmg)
+			return StrikeMath.HealthPercentDamage(health, b.HealthPercent, b.DmgMin or 0, b.Dmg)
 		end
 	end
 	strike(ctx, shape, b.Tel, damageFn, cast)
@@ -183,16 +198,36 @@ function GodSkills.Circle(ctx: Context)
 	end
 end
 
+-- The course bounds, or nil when there's no course in the world (lobby / test place).
+local function courseBounds(): StrikeMath.CourseBounds?
+	if workspace:FindFirstChild("Course") then
+		return StrikeMath.CourseFromConfig(MapConfig)
+	end
+	return nil
+end
+
 function GodSkills.Line(ctx: Context)
 	local b = ctx.Behavior
-	-- The line starts at the reticle and runs along the camera's facing.
-	local start = ctx.Target - ctx.Direction * (b.L * 0.15)
-	local shape: Common.Shape = {
-		Kind = "Line",
-		CFrame = CFrame.lookAt(start, start + ctx.Direction),
-		Length = b.L,
-		Width = b.W,
-	}
+	local shape: Common.Shape
+	if b.Across then
+		-- World Slash: one cut from wall to wall across the canyon at the reticle.
+		local spec = StrikeMath.CrossCanyonLine(ctx.Target, ctx.Direction, courseBounds(), b.L)
+		shape = {
+			Kind = "Line",
+			CFrame = CFrame.lookAt(spec.Start, spec.Start + spec.Direction),
+			Length = spec.Length,
+			Width = b.W,
+		}
+	else
+		-- The line starts at the reticle and runs along the camera's facing.
+		local start = ctx.Target - ctx.Direction * (b.L * 0.15)
+		shape = {
+			Kind = "Line",
+			CFrame = CFrame.lookAt(start, start + ctx.Direction),
+			Length = b.L,
+			Width = b.W,
+		}
+	end
 	local cast = CombatService.NewCast()
 	if b.Wall and b.Linger then
 		Common.Fx({ Kind = "Telegraph", Shape = "Line", CFrame = shape.CFrame, Length = b.L, Width = b.W, Duration = b.Tel, Element = b.Vfx, Skill = ctx.Skill.Name })
@@ -269,7 +304,8 @@ function GodSkills.Homing(ctx: Context)
 		local root = Characters.GetRoot(victim)
 		if root then
 			local point = Common.Ground(root.Position + root.AssemblyLinearVelocity * Vector3.new(1, 0, 1) * (b.Tel * 0.5))
-			task.spawn(strike, ctx, { Kind = "Circle", CFrame = CFrame.new(point), Radius = b.R }, b.Tel, nil, cast)
+			local area: Common.Shape = { Kind = "Circle", CFrame = CFrame.new(point), Radius = b.R }
+			task.spawn(strike, ctx, area, b.Tel, nil, cast)
 		end
 		task.wait(0.15)
 	end
@@ -284,9 +320,33 @@ function GodSkills.Rain(ctx: Context)
 	while os.clock() - started < b.Duration and ctx.IsHeld() do
 		local aim = ctx.GetAim()
 		local point = Common.Ground(aim + Vector3.new(rng:NextNumber(-6, 6), 0, rng:NextNumber(-6, 6)))
-		task.spawn(strike, ctx, { Kind = "Circle", CFrame = CFrame.new(point), Radius = b.R }, b.Tel, nil, cast)
+		local area: Common.Shape = { Kind = "Circle", CFrame = CFrame.new(point), Radius = b.R }
+		task.spawn(strike, ctx, area, b.Tel, nil, cast)
 		task.wait(b.Interval)
 	end
+end
+
+-- A projectile that flies in along the aim and explodes on the reticle (Flame Arrow).
+-- Both the flight path and the blast are telegraphed for the whole wind-up + flight, then the
+-- blast resolves exactly where it was shown. The flight path itself does no damage.
+--   Behavior: R (blast radius), Tel (wind-up), Travel (flight time), Path (flight length),
+--             Height (how high the shot starts, visual only), plus the usual hit options.
+function GodSkills.Arrow(ctx: Context)
+	local b = ctx.Behavior
+	local cast = CombatService.NewCast()
+	local skillName = if ctx.Skill then ctx.Skill.Name else nil
+	local path = StrikeMath.ArrowPath(ctx.Target, ctx.Direction, b.Path or 60)
+	local pathCFrame = CFrame.lookAt(path.Start, path.Start + path.Direction)
+	local blast: Common.Shape = { Kind = "Circle", CFrame = CFrame.new(ctx.Target), Radius = b.R }
+	local warning = b.Tel + (b.Travel or 0.25)
+	local launch = path.Start + Vector3.new(0, b.Height or 30, 0)
+
+	Common.Fx({ Kind = "Telegraph", Shape = "Line", CFrame = pathCFrame, Length = path.Length, Width = b.PathW or 4, Duration = warning, Element = b.Vfx, Skill = skillName, Faint = true, Silent = true })
+	Common.Fx({ Kind = "Telegraph", Shape = "Circle", CFrame = blast.CFrame, Radius = b.R, Duration = warning, Element = b.Vfx, Skill = skillName, From = launch })
+	task.wait(b.Tel)
+	Common.Fx({ Kind = "Projectile", From = launch, To = ctx.Target, Duration = b.Travel or 0.25, Element = b.Vfx, Skill = skillName })
+	task.wait(b.Travel or 0.25)
+	strike(ctx, blast, 0, nil, cast)
 end
 
 -- A small follow-up quake (World Shaker's Aftershock passive).

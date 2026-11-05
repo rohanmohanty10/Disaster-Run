@@ -16,6 +16,7 @@ local RoundConfig = require(ReplicatedStorage.Shared.Config.RoundConfig)
 local MovementConfig = require(ReplicatedStorage.Shared.Config.MovementConfig)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 local Format = require(ReplicatedStorage.Shared.Util.Format)
+local StrikeMath = require(ReplicatedStorage.Shared.Util.StrikeMath)
 
 local Make = require(script.Parent.Make)
 local UIController = require(script.Parent.UIController)
@@ -30,7 +31,7 @@ local MatchHUDController = {}
 
 local gui: ScreenGui
 local ui: { [string]: any } = {}
-local skillButtons: { { Frame: Frame, Cooldown: Frame, Index: number } } = {}
+local skillButtons: { { Frame: Frame, Cooldown: Frame, Index: number, CostLabel: TextLabel, Cost: number } } = {}
 local skillKey = ""
 local spectateIndex = 1
 local spectating: Player? = nil
@@ -164,7 +165,7 @@ local function makeSkillButton(parent: Instance, index: number, keyText: string,
 	local frame = Make.Panel({ Size = UDim2.fromOffset(84, 84), Parent = parent }, if isUlt then Theme.Gold else Theme.Cyan)
 	Make.Label({ Size = UDim2.new(1, -8, 0, 20), Position = UDim2.fromOffset(4, 2), Text = keyText, TextColor3 = Theme.Gold, Parent = frame })
 	Make.Label({ Size = UDim2.new(1, -8, 0, 34), Position = UDim2.fromOffset(4, 24), Text = name, TextWrapped = true, Parent = frame })
-	Make.Label({ Size = UDim2.new(1, -8, 0, 16), Position = UDim2.new(0, 4, 1, -20), Text = if cost > 0 then tostring(cost) else "", TextColor3 = Theme.SubText, Parent = frame })
+	local costLabel = Make.Label({ Size = UDim2.new(1, -8, 0, 16), Position = UDim2.new(0, 4, 1, -20), Text = if cost > 0 then tostring(cost) else "", TextColor3 = Theme.SubText, Parent = frame })
 	local cooldown = Make.new("Frame", {
 		Name = "Cooldown",
 		BackgroundColor3 = Color3.new(0, 0, 0),
@@ -183,7 +184,7 @@ local function makeSkillButton(parent: Instance, index: number, keyText: string,
 	button.MouseButton1Up:Connect(function()
 		AbilityController.Release(index)
 	end)
-	table.insert(skillButtons, { Frame = frame, Cooldown = cooldown, Index = index })
+	table.insert(skillButtons, { Frame = frame, Cooldown = cooldown, Index = index, CostLabel = costLabel, Cost = cost })
 	return frame
 end
 
@@ -422,6 +423,13 @@ local function update(dt: number)
 		local left = AbilityController.CooldownLeft(entry.Index)
 		local fraction = if skill and skill.Cooldown > 0 then left / skill.Cooldown else 0
 		entry.Cooldown.Size = UDim2.fromScale(1, math.clamp(fraction, 0, 1))
+		if entry.Cost > 0 then
+			-- Passives like Four Arms lower the next cost: show the real price, in green.
+			local multiplier = LocalPlayer:GetAttribute("CostMultiplier")
+			local discounted = type(multiplier) == "number" and isGod
+			entry.CostLabel.Text = tostring(if discounted then StrikeMath.DiscountedCost(entry.Cost, multiplier :: number) else entry.Cost)
+			entry.CostLabel.TextColor3 = if discounted then Theme.Green else Theme.SubText
+		end
 	end
 
 	if not isGod then

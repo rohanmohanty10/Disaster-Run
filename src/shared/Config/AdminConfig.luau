@@ -15,7 +15,7 @@ AdminConfig.ToggleKey = Enum.KeyCode.F2
 
 -- Kits that are fully built (gameplay + their own effects). Shown first, marked in the panel.
 AdminConfig.CompletedKits = {
-	God = { "ThunderGod", "GravityLord" },
+	God = { "ThunderGod", "GravityLord", "KingOfCurses" },
 	Runner = {},
 } :: { [string]: { string } }
 

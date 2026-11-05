@@ -60,6 +60,7 @@ Tasks higher up unblock the ones below them. Pick from the top when you can.
 ### 2–6. Abilities, Runner, God, round loop, match UI — ✅ written, waiting on a Studio test (see Done)
 Follow-ups once tested:
 - ✅ Signature VFX for Thunder God and Gravity Lord (original, `SkillFx.luau`)
+- ✅ King of Curses finished: signature effects for all five skills, Dismantle / World Slash / Shrine cut through cover, World Slash crosses the canyon wall to wall, Flame Arrow flies in before it explodes, Four Arms discount shown on the hotbar (`SkillFx.luau`, `GodSkills.luau`, unit tests in `tests/StrikeMath.spec.luau`)
 - ✅ Made in Heaven stand effects: aura matched to StandGame's emitters, Time Acceleration sky race and afterimages, Universe Reset (original, `StandFx.luau`)
 - ✅ Crimson Epitaph (King Crimson) effects: erased-time view, hidden caster, Epitaph face and counter aura, time-skip cut (original, `FxController.luau`; sound slots in `SoundConfig.Stands`)
 - ⬜ Other stands (add them one at a time after Made in Heaven and Crimson Epitaph are tested)

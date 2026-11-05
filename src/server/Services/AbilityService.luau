@@ -7,6 +7,7 @@
 --   Cooldown<i>  server time when skill i is ready again
 --   Energy / MaxEnergy  (Gods)
 --   Charging     index of the skill being held, or nil
+--   CostMultiplier  energy cost multiplier from a passive (Four Arms), or nil for none
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -19,6 +20,7 @@ local TestAreaService = require(script.Parent.TestAreaService)
 local MovementConfig = require(ReplicatedStorage.Shared.Config.MovementConfig)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
+local StrikeMath = require(ReplicatedStorage.Shared.Util.StrikeMath)
 
 local StatusEffectService = require(script.Parent.StatusEffectService)
 local InventoryService = require(script.Parent.InventoryService)
@@ -102,12 +104,13 @@ function AbilityService.Prepare(player: Player)
 	state.Charge = nil
 	state.CastCount = 0
 	state.Discount = 1
+	player:SetAttribute("CostMultiplier", nil)
 end
 
 local function costFor(state: PlayerState, kit: Kits.Kit, skill: Kits.Skill): number
 	local cost = skill.Cost
 	if kit.Passive and kit.Passive.Name == "Four Arms" then
-		cost = math.floor(cost * state.Discount + 0.5)
+		cost = StrikeMath.DiscountedCost(cost, state.Discount)
 	end
 	return cost
 end
@@ -148,7 +151,9 @@ local function spend(player: Player, kit: Kits.Kit, skill: Kits.Skill, index: nu
 	if player:GetAttribute("Role") == "God" then
 		local energy = (player:GetAttribute("Energy") :: number?) or 0
 		player:SetAttribute("Energy", math.max(energy - costFor(state, kit, skill), 0))
+		-- Four Arms: after each skill, the next one costs 15% less.
 		state.Discount = if kit.Passive and kit.Passive.Name == "Four Arms" then 0.85 else 1
+		player:SetAttribute("CostMultiplier", if state.Discount ~= 1 then state.Discount else nil)
 	elseif skill.Cost > 0 then
 		-- Runner stamina lives on the client; tell it to pay.
 		Remotes.Event("Stamina"):FireClient(player, -skill.Cost, "Skill")

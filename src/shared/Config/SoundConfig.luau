@@ -19,6 +19,12 @@ SoundConfig.Skills = {
 	["Meteor Strike"] = { Telegraph = "", Impact = "" },
 	["Gravity Dominance"] = { Telegraph = "", Impact = "" },
 	["Meteor Fury"] = { Telegraph = "", Impact = "" },
+	-- King of Curses (Shrine of Calamity has no impact: its Telegraph slot plays as the domain opens)
+	["Dismantle"] = { Telegraph = "", Impact = "" },
+	["Cleave"] = { Telegraph = "", Impact = "" },
+	["Flame Arrow"] = { Telegraph = "", Impact = "" },
+	["World Slash"] = { Telegraph = "", Impact = "" },
+	["Shrine of Calamity"] = { Telegraph = "", Impact = "" },
 } :: { [string]: { Telegraph: string, Impact: string } }
 
 -- Stand Runner kits: one slot per moment in the skill (played by FxController / StandFx).
