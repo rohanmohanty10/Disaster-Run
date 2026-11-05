@@ -12,6 +12,10 @@ RoundConfig.MatchEndTime = 15 -- MVP leaderboard on screen
 
 RoundConfig.PlayersPerStartingGod = 10 -- round 1: one God per this many players (min 1)
 
+-- Starting Gods are picked by priority (GAME_PLAN.md Section 1): God Pass owners first, then
+-- whoever has gone the most matches without being a starting God. 0 = no God Pass yet.
+RoundConfig.GodPassGamePassId = 0
+
 -- God resource
 RoundConfig.GodEnergy = {
 	Max = 150,

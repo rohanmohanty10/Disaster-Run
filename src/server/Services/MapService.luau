@@ -12,6 +12,12 @@ local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local MapConfig = require(ReplicatedStorage.Shared.Config.MapConfig)
+local FogConfig = require(ReplicatedStorage.Shared.Config.FogConfig)
+local Characters = require(ReplicatedStorage.Shared.Util.Characters)
+local Players = game:GetService("Players")
+
+local CombatService = require(script.Parent.CombatService)
+local FogService = require(script.Parent.FogService)
 
 local MapService = {}
 
@@ -72,6 +78,14 @@ end
 
 -- ------------------------------------------------------------------ cover
 local COVER_TYPES = { "Ruin", "Pillar", "Boulder", "Wall", "Tree", "Tree" }
+local groupCounter = 0
+
+local function destructible(part: BasePart, health: number)
+	part:SetAttribute("Health", health)
+	part:SetAttribute("MaxHealth", health)
+	part:SetAttribute("BaseColor", part.Color)
+	CollectionService:AddTag(part, "DestructibleCover")
+end
 
 local function placeCover(folder: Folder, kind: string, position: Vector3, rng: Random)
 	local cfg = MapConfig
@@ -91,23 +105,111 @@ local function placeCover(folder: Folder, kind: string, position: Vector3, rng: 
 	elseif kind == "Pillar" then
 		local height = rng:NextNumber(12, 20)
 		local pillar = block(folder, "Pillar", Vector3.new(5, height, 5), CFrame.new(position + Vector3.new(0, height / 2, 0)) * yaw, cfg.Colors.Ruin, Enum.Material.Cobblestone)
-		pillar:SetAttribute("Health", cfg.CoverHealth.Pillar)
-		CollectionService:AddTag(pillar, "DestructibleCover")
+		destructible(pillar, cfg.CoverHealth.Pillar)
 	elseif kind == "Wall" then
 		local wall = block(folder, "LowWall", Vector3.new(rng:NextNumber(14, 22), 6, 3), CFrame.new(position + Vector3.new(0, 3, 0)) * yaw, cfg.Colors.Ruin, Enum.Material.Cobblestone)
-		wall:SetAttribute("Health", cfg.CoverHealth.Wall)
-		CollectionService:AddTag(wall, "DestructibleCover")
+		destructible(wall, cfg.CoverHealth.Wall)
+	elseif kind == "Bunker" then
+		-- Concrete bunker: three thick walls and a roof, open toward the start so Runners can duck in.
+		groupCounter += 1
+		local base = CFrame.new(position)
+		local parts = {
+			block(folder, "BunkerWall", Vector3.new(16, 8, 2.5), base * CFrame.new(0, 4, -7), cfg.Colors.Bunker, Enum.Material.Concrete),
+			block(folder, "BunkerWall", Vector3.new(2.5, 8, 14), base * CFrame.new(-7, 4, 0), cfg.Colors.Bunker, Enum.Material.Concrete),
+			block(folder, "BunkerWall", Vector3.new(2.5, 8, 14), base * CFrame.new(7, 4, 0), cfg.Colors.Bunker, Enum.Material.Concrete),
+		}
+		local roof = block(folder, "BunkerRoof", Vector3.new(17, 2, 16), base * CFrame.new(0, 9, 0), cfg.Colors.Bunker, Enum.Material.Concrete)
+		roof:SetAttribute("Roof", true)
+		table.insert(parts, roof)
+		for _, part in parts do
+			part:SetAttribute("Group", groupCounter)
+			destructible(part, cfg.CoverHealth.Bunker)
+		end
 	else
-		-- A small ruin: two walls and a roof slab to hide under.
+		-- A small ruin: two walls and a roof slab to hide under. The roof falls when both walls go.
+		groupCounter += 1
 		local base = CFrame.new(position) * yaw
 		for _, side in { -1, 1 } do
 			local wall = block(folder, "RuinWall", Vector3.new(2, 10, 14), base * CFrame.new(side * 6, 5, 0), cfg.Colors.Ruin, Enum.Material.Cobblestone)
-			wall:SetAttribute("Health", cfg.CoverHealth.Ruin)
-			CollectionService:AddTag(wall, "DestructibleCover")
+			wall:SetAttribute("Group", groupCounter)
+			destructible(wall, cfg.CoverHealth.Ruin)
 		end
 		local roof = block(folder, "RuinRoof", Vector3.new(14, 1.5, 14), base * CFrame.new(0, 10.75, 0), cfg.Colors.Ruin, Enum.Material.Concrete)
-		roof:SetAttribute("Health", cfg.CoverHealth.Ruin)
-		CollectionService:AddTag(roof, "DestructibleCover")
+		roof:SetAttribute("Group", groupCounter)
+		roof:SetAttribute("Roof", true)
+		destructible(roof, cfg.CoverHealth.Ruin)
+	end
+end
+
+local function pickChunk(rng: Random, index: number): string
+	local total = 0
+	for _, entry in MapConfig.Chunks do
+		if not (index == 1 and MapConfig.FirstChunkSafe and entry.Name == "ChasmBridge") then
+			total += entry.Weight
+		end
+	end
+	local roll = rng:NextNumber() * total
+	for _, entry in MapConfig.Chunks do
+		if not (index == 1 and MapConfig.FirstChunkSafe and entry.Name == "ChasmBridge") then
+			roll -= entry.Weight
+			if roll <= 0 then
+				return entry.Name
+			end
+		end
+	end
+	return "Ruins"
+end
+
+-- A hazard strip across the playable width with a bridge over each open lane.
+local function placeChasm(folder: Folder, chunkZ: number, open: { [number]: boolean }, rng: Random)
+	local cfg = MapConfig
+	local hazard = cfg.Hazard
+	local kindName = if rng:NextNumber() < 0.5 then "Lava" else "Quicksand"
+	local kind = hazard.Kinds[kindName]
+	local floorY = cfg.Origin.Y
+	local pit = block(folder, kindName, Vector3.new(cfg.PlayableWidth, 0.4, hazard.Depth), CFrame.new(cfg.Origin.X, floorY + 0.2, chunkZ), kind.Color, kind.Material, { CanCollide = false })
+	pit:SetAttribute("HazardKind", kindName)
+	CollectionService:AddTag(pit, "Hazard")
+	if kindName == "Lava" then
+		local glow = Instance.new("PointLight")
+		glow.Color = kind.Color
+		glow.Range = 30
+		glow.Brightness = 2
+		glow.Parent = pit
+	end
+	local laneWidth = cfg.PlayableWidth / cfg.Lanes
+	for lane in open do
+		local x = cfg.Origin.X - cfg.PlayableWidth / 2 + (lane - 0.5) * laneWidth
+		local h = hazard.BridgeHeight
+		block(folder, "Bridge", Vector3.new(hazard.BridgeWidth, h, hazard.Depth), CFrame.new(x, floorY + h / 2, chunkZ), cfg.Colors.Wood, Enum.Material.WoodPlanks)
+		-- Ramps at both ends so Runners can walk on and off.
+		for _, side in { 1, -1 } do
+			local ramp = Instance.new("WedgePart")
+			ramp.Name = "BridgeRamp"
+			ramp.Anchored = true
+			ramp.Size = Vector3.new(hazard.BridgeWidth, h, 5)
+			ramp.Color = cfg.Colors.Wood
+			ramp.Material = Enum.Material.WoodPlanks
+			-- A wedge is tallest at its back (+Z) face; turn that face toward the bridge.
+			local z = chunkZ + side * (hazard.Depth / 2 + 2.5)
+			ramp.CFrame = CFrame.new(x, floorY + h / 2, z) * CFrame.Angles(0, if side == 1 then math.pi else 0, 0)
+			ramp.Parent = folder
+		end
+	end
+	local _ = rng
+end
+
+-- Fog Patches for this chunk (FogConfig; off unless fog is enabled).
+local function placeFog(folder: Folder, chunkZ: number, rng: Random)
+	if not FogConfig.Enabled then
+		return
+	end
+	local cfg = FogConfig.Patches
+	for _ = 1, rng:NextInteger(cfg.PerChunk.Min, cfg.PerChunk.Max) do
+		local radius = rng:NextNumber(cfg.Radius.Min, cfg.Radius.Max)
+		local x = MapConfig.Origin.X + rng:NextNumber(-MapConfig.PlayableWidth / 2, MapConfig.PlayableWidth / 2)
+		local z = chunkZ + rng:NextNumber(-MapConfig.ChunkLength * 0.4, MapConfig.ChunkLength * 0.4)
+		FogService.MakeZone("Patch", CFrame.new(x, MapConfig.Origin.Y + cfg.Height / 2, z), Vector3.new(radius * 2, cfg.Height, radius * 2), radius, folder)
 	end
 end
 
@@ -142,15 +244,64 @@ function MapService.Generate(seed: number?)
 				openCount += 1
 			end
 		end
-		for lane = 1, cfg.Lanes do
-			if not open[lane] and rng:NextNumber() < cfg.CoverDensity then
-				local x = cfg.Origin.X - cfg.PlayableWidth / 2 + (lane - 0.5) * laneWidth + rng:NextNumber(-3, 3)
-				local z = chunkZ + rng:NextNumber(-cfg.ChunkLength * 0.3, cfg.ChunkLength * 0.3)
-				placeCover(folder, COVER_TYPES[rng:NextInteger(1, #COVER_TYPES)], Vector3.new(x, cfg.Origin.Y, z), rng)
+		local theme = pickChunk(rng, chunk)
+		if theme == "ChasmBridge" then
+			placeChasm(folder, chunkZ, open, rng)
+		else
+			for lane = 1, cfg.Lanes do
+				if not open[lane] and rng:NextNumber() < cfg.CoverDensity then
+					local x = cfg.Origin.X - cfg.PlayableWidth / 2 + (lane - 0.5) * laneWidth + rng:NextNumber(-3, 3)
+					local z = chunkZ + rng:NextNumber(-cfg.ChunkLength * 0.3, cfg.ChunkLength * 0.3)
+					local position = Vector3.new(x, cfg.Origin.Y, z)
+					if theme == "Bunker" then
+						placeCover(folder, if rng:NextNumber() < 0.7 then "Bunker" else "Boulder", position, rng)
+					elseif theme == "PillarField" then
+						for i = 1, rng:NextInteger(2, 3) do
+							local offset = Vector3.new(rng:NextNumber(-laneWidth * 0.3, laneWidth * 0.3), 0, (i - 2) * 12 + rng:NextNumber(-3, 3))
+							placeCover(folder, "Pillar", position + offset, rng)
+						end
+					else
+						placeCover(folder, COVER_TYPES[rng:NextInteger(1, #COVER_TYPES)], position, rng)
+					end
+				end
+			end
+		end
+		placeFog(folder, chunkZ, rng)
+	end
+	folder.Parent = course
+end
+
+-- ------------------------------------------------------------------ hazards
+-- Runners standing in lava / quicksand (not on a bridge) are hurt and slowed.
+local function hazardTick()
+	local hazards = CollectionService:GetTagged("Hazard")
+	if #hazards == 0 then
+		return
+	end
+	local tick = MapConfig.Hazard.Tick
+	for _, player in Players:GetPlayers() do
+		local character = player.Character
+		local root = character and Characters.GetRoot(character)
+		if character and root and Characters.IsAlive(character) and player:GetAttribute("Role") ~= "God" then
+			for _, hazard in hazards do
+				if hazard:IsA("BasePart") then
+					local localPoint = hazard.CFrame:PointToObjectSpace(root.Position)
+					local half = hazard.Size / 2
+					local onFloor = root.Position.Y < hazard.Position.Y + 4.2 -- a bridge lifts you above this
+					if onFloor and math.abs(localPoint.X) <= half.X and math.abs(localPoint.Z) <= half.Z then
+						local kind = MapConfig.Hazard.Kinds[hazard:GetAttribute("HazardKind") :: string]
+						if kind then
+							CombatService.Afflict(nil, character, {
+								Damage = kind.DamagePerSecond * tick,
+								Slow = { Factor = kind.Slow, Duration = tick + 0.3 },
+							})
+						end
+						break
+					end
+				end
 			end
 		end
 	end
-	folder.Parent = course
 end
 
 -- Opens (true) or closes (false) the start barrier.
@@ -176,6 +327,16 @@ function MapService.Init()
 	MapService.SetBarrier(false)
 end
 
-function MapService.Start() end
+function MapService.Start()
+	task.spawn(function()
+		while true do
+			task.wait(MapConfig.Hazard.Tick)
+			local ok, err = pcall(hazardTick :: any)
+			if not ok then
+				warn(`[MapService] Hazard tick failed: {err}`)
+			end
+		end
+	end)
+end
 
 return MapService

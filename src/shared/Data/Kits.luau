@@ -23,6 +23,7 @@ export type Kit = {
 	Desc: string,
 	Skills: { Skill },
 	Passive: { Name: string, Desc: string }?,
+	Event: string?, -- banner-only kit: rollable only while that banner is live (GachaConfig.Banners)
 }
 
 export type Role = "God" | "Runner"

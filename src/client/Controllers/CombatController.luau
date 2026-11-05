@@ -10,6 +10,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
+
+local Audio = require(script.Parent.Audio)
 local Knockback = require(ReplicatedStorage.Shared.Util.Knockback)
 
 local LocalPlayer = Players.LocalPlayer
@@ -107,8 +109,8 @@ end
 -- ------------------------------------------------------------------ infinite void
 local voidEffect: ColorCorrectionEffect? = nil
 
--- Greyed-out, high-contrast screen and a wide FOV while trapped in the void.
--- (Muting audio needs every game sound routed through one SoundGroup; add that with the audio pass.)
+-- Greyed-out, high-contrast screen, a wide FOV and muted game audio (Audio.Group) while trapped
+-- in the void.
 local function setVoid(on: boolean)
 	if on then
 		if not voidEffect then
@@ -121,7 +123,9 @@ local function setVoid(on: boolean)
 		effect.Enabled = true
 		TweenService:Create(effect, TweenInfo.new(0.3), { Saturation = -1, Contrast = 0.8, TintColor = Color3.fromRGB(200, 170, 255) }):Play()
 		TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.4, Enum.EasingStyle.Sine), { FieldOfView = 110 }):Play()
+		Audio.FadeTo(0, 0.3)
 	elseif voidEffect then
+		Audio.FadeTo(1, 0.4)
 		local effect = voidEffect
 		TweenService:Create(effect, TweenInfo.new(0.4), { Saturation = 0, Contrast = 0, TintColor = Color3.new(1, 1, 1) }):Play()
 		TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.4, Enum.EasingStyle.Sine), { FieldOfView = 70 }):Play()

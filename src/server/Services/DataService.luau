@@ -47,7 +47,18 @@ export type PlayerData = {
 		Kills: number,
 		DamageDealt: number,
 		MVPs: number,
+		Shoves: number,
+		Dodges: number,
 	},
+	-- Progression (ProgressionService)
+	Level: number,
+	XP: number, -- XP into the current level
+	-- Daily login streak (DailyService)
+	Daily: { LastClaimDay: number, Streak: number },
+	-- Today's quests (QuestService): picked from DailyConfig.Quests by index
+	Quests: { Day: number, List: { { Id: string, Progress: number, Claimed: boolean } } },
+	-- God priority queue (RoundService): matches since this player last started as a God
+	MatchesSinceGod: number,
 	PurchaseIdCache: { string },
 }
 
@@ -83,7 +94,14 @@ local TEMPLATE: PlayerData = {
 		Kills = 0,
 		DamageDealt = 0,
 		MVPs = 0,
+		Shoves = 0,
+		Dodges = 0,
 	},
+	Level = 1,
+	XP = 0,
+	Daily = { LastClaimDay = 0, Streak = 0 },
+	Quests = { Day = 0, List = {} },
+	MatchesSinceGod = 0,
 	PurchaseIdCache = {},
 }
 
@@ -186,6 +204,8 @@ local function onPlayerAdded(player: Player)
 	local data = profile.Data :: PlayerData
 	sanitizeRole("God", data.God)
 	sanitizeRole("Runner", data.Runner)
+	data.Level = math.max(math.floor(tonumber(data.Level) or 1), 1)
+	data.XP = math.max(tonumber(data.XP) or 0, 0)
 
 	profiles[player] = profile
 	DataService.Loaded:Fire(player, data)

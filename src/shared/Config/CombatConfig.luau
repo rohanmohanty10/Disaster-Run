@@ -17,6 +17,12 @@ CombatConfig.CastMemory = 15 -- seconds a cast id remembers how much damage it d
 CombatConfig.AssistDamage = 20
 CombatConfig.AssistWindow = 10
 
+-- Cover (GAME_PLAN.md Section 1: Runners hide in cover; heavy strikes crumble it).
+-- God strikes come from the sky: a Runner with solid cover above them (a roof, a tree, a bunker)
+-- isn't hit, unless the skill destroys that cover first (DestroyCover) or ignores it (IgnoreCover).
+CombatConfig.CoverBlocksStrikes = true
+CombatConfig.CoverCheckHeight = 80 -- studs above the Runner's head that count as "above"
+
 -- Ragdoll
 CombatConfig.GetUpStunImmunity = 0.5 -- seconds of stun immunity after standing back up
 CombatConfig.MaxRagdollTime = 6

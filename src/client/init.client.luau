@@ -8,11 +8,13 @@ local CONTROLLERS = {
 	"DataController",
 	"UIController",
 	"VaultController",
+	"MenuController",
 	"CombatController",
 	"MovementController",
 	"GodController",
 	"AbilityController",
 	"FxController",
+	"FogController",
 	"MatchHUDController",
 	"AdminController",
 }

@@ -10,6 +10,7 @@ local CombatConfig = require(ReplicatedStorage.Shared.Config.CombatConfig)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
 local Knockback = require(ReplicatedStorage.Shared.Util.Knockback)
+local MoveGrace = require(ReplicatedStorage.Shared.Util.MoveGrace)
 
 export type Options = {
 	Velocity: Vector3?, -- exact velocity, or...
@@ -57,6 +58,7 @@ function KnockbackService.Apply(character: Model, options: Options): boolean
 	local duration = options.Duration or 0.25
 	local player = Players:GetPlayerFromCharacter(character)
 	if player then
+		MoveGrace.Grant(character, duration + 1)
 		Remotes.Event("Knockback"):FireClient(player, velocity, duration)
 	else
 		local root = Characters.GetRoot(character)

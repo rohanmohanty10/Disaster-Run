@@ -237,6 +237,14 @@ local function step(dt: number)
 		end
 	end
 
+	-- The server owns stamina (MovementService). Predict locally, but snap to the server's value
+	-- whenever the two drift apart, so the bar can't lie and sprinting can't outlast the server.
+	local serverStamina = LocalPlayer:GetAttribute("Stamina")
+	if type(serverStamina) == "number" and math.abs(serverStamina - MovementController.Stamina) > 12 then
+		MovementController.Stamina = serverStamina
+		MovementController.StaminaChanged:Fire(serverStamina)
+	end
+
 	-- Speed from sprint × server effects × boosts.
 	local base = if MovementController.Sprinting then MovementConfig.SprintSpeed else MovementConfig.WalkSpeed
 	local multiplier = (character:GetAttribute("SpeedMultiplier") :: number?) or 1

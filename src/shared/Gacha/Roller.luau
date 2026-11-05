@@ -6,6 +6,7 @@ local Shared = script.Parent.Parent
 local Kits = require(Shared.Data.Kits)
 local Rarities = require(Shared.Data.Rarities)
 local GachaConfig = require(Shared.Config.GachaConfig)
+local Banners = require(script.Parent.Banners)
 
 export type SpinType = "Normal" | "Lucky"
 
@@ -39,17 +40,30 @@ function Roller.TableFor(state: PityState, spinType: SpinType): string
 	return "Normal"
 end
 
+-- Kit ids of a rarity that can be rolled at `now` (event kits only while their banner is live).
+function Roller.Pool(role: Kits.Role, rarity: string, now: number): { string }
+	local pool = {}
+	for _, kitId in Kits.ByRarity(role, rarity) do
+		if Banners.IsRollable(role, kitId, now) then
+			table.insert(pool, kitId)
+		end
+	end
+	return pool
+end
+
 -- Every rarity and kit in a table with its chance (0-1), rarities in Rarities.Order.
 -- boostedKit (optional) gets GachaConfig.BoostedKitMultiplier weight inside its rarity.
-function Roller.Chances(role: Kits.Role, tableName: string, boostedKit: string?): { RarityChance }
+-- now: Unix seconds for banner checks (defaults to os.time()).
+function Roller.Chances(role: Kits.Role, tableName: string, boostedKit: string?, now: number?): { RarityChance }
 	local odds = GachaConfig.Odds[tableName]
 	assert(odds, `Unknown odds table {tableName}`)
+	local at = now or os.time()
 
 	local weights: { [string]: number } = {}
 	local total = 0
 	for _, entry in odds do
 		local rarity, weight = entry[1] :: string, entry[2] :: number
-		if #Kits.ByRarity(role, rarity) > 0 then
+		if #Roller.Pool(role, rarity, at) > 0 then
 			weights[rarity] = (weights[rarity] or 0) + weight
 			total += weight
 		end
@@ -61,7 +75,7 @@ function Roller.Chances(role: Kits.Role, tableName: string, boostedKit: string?)
 		local weight = weights[rarity]
 		if weight then
 			local rarityChance = weight / total
-			local ids = Kits.ByRarity(role, rarity)
+			local ids = Roller.Pool(role, rarity, at)
 			local kitWeights: { number } = {}
 			local kitTotal = 0
 			for i, id in ids do
@@ -80,8 +94,8 @@ function Roller.Chances(role: Kits.Role, tableName: string, boostedKit: string?)
 end
 
 -- Rolls one kit. Returns kitId, rarity.
-function Roller.Roll(role: Kits.Role, tableName: string, boostedKit: string?, rng: Random): (string, string)
-	local chances = Roller.Chances(role, tableName, boostedKit)
+function Roller.Roll(role: Kits.Role, tableName: string, boostedKit: string?, rng: Random, now: number?): (string, string)
+	local chances = Roller.Chances(role, tableName, boostedKit, now)
 	local pick = rng:NextNumber()
 	local running = 0
 	local last: KitChance? = nil

@@ -11,16 +11,23 @@ local Services = script.Services
 local SERVICES = {
 	"Requests",
 	"DataService",
+	"ProgressionService", -- levels, XP, reward granting
+	"QuestService", -- daily quests + daily login reward
 	"InventoryService",
 	"GachaService",
 	"MonetizationService",
+	"ShopService", -- rotating Divine Shard shop
 	-- Combat core
 	"StatusEffectService",
 	"RagdollService",
 	"KnockbackService",
 	"HitboxService",
 	"CombatService",
+	"MovementService", -- server-side stamina + speed checks
+	"ShoveService", -- everyone's shoulder-shove (F)
+	"FogService", -- fog of war (off unless FogConfig.Enabled)
 	"AbilityService",
+	"DestructionService", -- cover health, shattering, roof collapse
 	"MapService",
 	"RoundService",
 	"TestAreaService", -- dev test area: try Runner / God kits without a match

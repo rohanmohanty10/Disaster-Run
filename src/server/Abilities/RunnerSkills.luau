@@ -12,6 +12,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
+local MoveGrace = require(ReplicatedStorage.Shared.Util.MoveGrace)
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
 local MovementConfig = require(ReplicatedStorage.Shared.Config.MovementConfig)
 
@@ -19,6 +20,7 @@ local Services = script.Parent.Parent.Services
 local CombatService = require(Services.CombatService)
 local StatusEffectService = require(Services.StatusEffectService)
 local KnockbackService = require(Services.KnockbackService)
+local MovementService = require(Services.MovementService)
 
 local Common = require(script.Parent.Common)
 
@@ -42,6 +44,8 @@ type Sample = { Time: number, CFrame: CFrame, Health: number }
 local history: { [Model]: { Sample } } = {}
 
 local function selfMove(ctx: Context, info: { [string]: any })
+	-- Dashes and air jumps move the Runner faster than they could run: not a speed violation.
+	MoveGrace.Grant(ctx.Character, (tonumber(info.Duration) or 0.4) + 0.8)
 	Remotes.Event("SelfMove"):FireClient(ctx.Player, info)
 end
 
@@ -72,7 +76,7 @@ function RunnerSkills.Buff(ctx: Context)
 		Common.TimedAttribute(character, "SpeedBoost", b.Speed.Mult, b.Speed.Duration)
 	end
 	if b.Stamina then
-		Remotes.Event("Stamina"):FireClient(ctx.Player, b.Stamina, "Skill")
+		MovementService.AddStamina(ctx.Player, b.Stamina, "Skill")
 	end
 	if b.FreeSprint then
 		Common.TimedAttribute(character, "FreeSprint", true, b.FreeSprint)
@@ -198,7 +202,7 @@ function RunnerSkills.Blink(ctx: Context)
 	local landing = Common.Ground(root.Position + offset) + Vector3.new(0, 3, 0)
 	CombatService.GiveIFrames(ctx.Character, b.IFrames)
 	Common.Fx({ Kind = "Blink", From = root.Position, To = landing, Stand = b.Aura })
-	ctx.Character:PivotTo(CFrame.lookAt(landing, landing + ctx.Look))
+	MoveGrace.Teleport(ctx.Character, CFrame.lookAt(landing, landing + ctx.Look))
 end
 
 function RunnerSkills.Arm(ctx: Context)
@@ -335,8 +339,8 @@ function RunnerSkills.Swap(ctx: Context)
 	local mine = ctx.Character:GetPivot()
 	local theirs = target:GetPivot()
 	Common.Fx({ Kind = "Swap", From = mine.Position, To = theirs.Position })
-	ctx.Character:PivotTo(theirs)
-	target:PivotTo(mine)
+	MoveGrace.Teleport(ctx.Character, theirs)
+	MoveGrace.Teleport(target, mine)
 	CombatService.GiveIFrames(ctx.Character, b.IFrames)
 end
 
@@ -390,7 +394,7 @@ function RunnerSkills.Rewind(ctx: Context)
 	end
 	local humanoid = ctx.Character:FindFirstChildOfClass("Humanoid")
 	Common.Fx({ Kind = "Blink", From = ctx.Root.Position, To = chosen.CFrame.Position })
-	ctx.Character:PivotTo(chosen.CFrame)
+	MoveGrace.Teleport(ctx.Character, chosen.CFrame)
 	if humanoid then
 		local lost = chosen.Health - humanoid.Health
 		if lost > 0 then
@@ -500,7 +504,7 @@ function RunnerSkills.Init()
 				landing = CFrame.lookAt(spot, spot + look)
 			end
 			Common.Fx({ Kind = "EpitaphHit", Character = victim, From = root.Position, To = landing.Position })
-			victim:PivotTo(landing)
+			MoveGrace.Teleport(victim, landing)
 			CombatService.GiveIFrames(victim, state.IFrames)
 			return true
 		end
@@ -525,7 +529,7 @@ function RunnerSkills.Init()
 			end
 			local landing = Common.Ground(root.Position + Common.Flat(direction) * state.Teleport) + Vector3.new(0, 3, 0)
 			Common.Fx({ Kind = "Blink", From = root.Position, To = landing })
-			victim:PivotTo(CFrame.lookAt(landing, landing + root.CFrame.LookVector * Vector3.new(1, 0, 1)))
+			MoveGrace.Teleport(victim, CFrame.lookAt(landing, landing + root.CFrame.LookVector * Vector3.new(1, 0, 1)))
 		end
 		CombatService.GiveIFrames(victim, state.IFrames)
 		return true

@@ -22,6 +22,7 @@ local UIController = require(script.Parent.UIController)
 local SkillFx = require(script.Parent.SkillFx)
 local StandFx = require(script.Parent.StandFx)
 local SoundConfig = require(ReplicatedStorage.Shared.Config.SoundConfig)
+local Audio = require(script.Parent.Audio)
 
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui") :: PlayerGui
@@ -61,6 +62,8 @@ local KCR = {
 local folder: Folder
 local danger: Frame
 local overlay: Frame
+local arrowHolder: Frame
+local hazardArrow: (Vector3, number) -> ()
 
 local function colorOf(element: any): Color3
 	return ELEMENT_COLORS[element] or Color3.fromRGB(255, 255, 255)
@@ -168,6 +171,49 @@ local function colorEffect(name: string, duration: number, props: { [string]: an
 	end)
 end
 
+-- A red arrow at the edge of the screen pointing toward an incoming strike (GAME_PLAN.md 5C),
+-- until it lands.
+hazardArrow = function(target: Vector3, duration: number)
+	local arrow = Instance.new("TextLabel")
+	arrow.BackgroundTransparency = 1
+	arrow.AnchorPoint = Vector2.new(0.5, 0.5)
+	arrow.Size = UDim2.fromOffset(46, 46)
+	arrow.Text = "▲"
+	arrow.TextScaled = true
+	arrow.TextColor3 = WARNING
+	arrow.TextStrokeTransparency = 0.3
+	arrow.Font = Enum.Font.GothamBlack
+	arrow.Parent = arrowHolder
+	local started = os.clock()
+	local connection: RBXScriptConnection
+	connection = game:GetService("RunService").RenderStepped:Connect(function()
+		local character = LocalPlayer.Character
+		local root = character and Characters.GetRoot(character)
+		local elapsed = os.clock() - started
+		if not root or elapsed >= duration or not arrow.Parent then
+			connection:Disconnect()
+			arrow:Destroy()
+			return
+		end
+		-- Direction to the strike relative to where the camera faces (top of screen = ahead).
+		local camera = workspace.CurrentCamera
+		local look = camera.CFrame.LookVector * Vector3.new(1, 0, 1)
+		local offset = (target - root.Position) * Vector3.new(1, 0, 1)
+		if look.Magnitude < 0.01 or offset.Magnitude < 2 then
+			arrow.Visible = false
+			return
+		end
+		arrow.Visible = true
+		look, offset = look.Unit, offset.Unit
+		local right = Vector3.new(-look.Z, 0, look.X)
+		local angle = math.atan2(offset:Dot(right), offset:Dot(look)) -- 0 = ahead, +90° = right
+		arrow.Position = UDim2.fromScale(0.5 + math.sin(angle) * 0.38, 0.5 - math.cos(angle) * 0.38)
+		arrow.Rotation = math.deg(angle)
+		-- Pulse faster as impact gets closer.
+		arrow.TextTransparency = 0.15 + 0.35 * (0.5 + 0.5 * math.sin(elapsed * (6 + 10 * elapsed / duration)))
+	end)
+end
+
 -- Red pulse when a strike is about to land near the local Runner.
 local function dangerCheck(info: { [string]: any })
 	if LocalPlayer:GetAttribute("Role") ~= "Runner" or typeof(info.CFrame) ~= "CFrame" then
@@ -192,6 +238,7 @@ local function dangerCheck(info: { [string]: any })
 		local tween = TweenService:Create(danger, TweenInfo.new(0.5, Enum.EasingStyle.Sine), { BackgroundTransparency = 1 })
 		tween:Play()
 	end)
+	hazardArrow(center, math.clamp(duration, 0.1, 5))
 end
 
 -- Plays a skill's Telegraph / Impact sound at the strike (SoundConfig.luau).
@@ -206,6 +253,7 @@ local function playSkillSound(info: { [string]: any }, slot: "Telegraph" | "Impa
 	local sound = Instance.new("Sound")
 	sound.SoundId = id
 	sound.Volume = SoundConfig.Volume
+	sound.SoundGroup = Audio.Group()
 	sound.RollOffMode = Enum.RollOffMode.InverseTapered
 	sound.RollOffMaxDistance = SoundConfig.MaxDistance
 	sound.Parent = anchor
@@ -229,6 +277,7 @@ local function kcrSound(name: string, parent: Instance?): Sound?
 	sound.Name = name
 	sound.SoundId = id
 	sound.Volume = SoundConfig.Volume
+	sound.SoundGroup = Audio.Group()
 	if parent then
 		sound.Parent = parent
 		sound:Play()
@@ -550,6 +599,148 @@ handlers.Bolt = function(info)
 	Debris:AddItem(bolt, 0.35)
 end
 
+-- Broken cover (DestructionService): the part splits into voxels that fly from the impact,
+-- land, and fade. Animated by hand (no physics), so debris never shoves the local player.
+handlers.Shatter = function(info)
+	if typeof(info.CFrame) ~= "CFrame" or typeof(info.Size) ~= "Vector3" then
+		return
+	end
+	local cf: CFrame = info.CFrame
+	local size: Vector3 = info.Size
+	local origin = if typeof(info.Origin) == "Vector3" then info.Origin :: Vector3 else cf.Position
+	local maxCells = math.clamp(tonumber(info.MaxCells) or 40, 1, 120)
+	local cell = math.max(tonumber(info.CellSize) or 3, 0.5)
+	-- Bigger parts use bigger voxels so the count stays under maxCells.
+	while math.ceil(size.X / cell) * math.ceil(size.Y / cell) * math.ceil(size.Z / cell) > maxCells do
+		cell *= 1.25
+	end
+	local nx, ny, nz = math.ceil(size.X / cell), math.ceil(size.Y / cell), math.ceil(size.Z / cell)
+	local piece = Vector3.new(size.X / nx, size.Y / ny, size.Z / nz)
+	local power = tonumber(info.Power) or 45
+	local life = math.clamp(tonumber(info.Life) or 2.5, 0.5, 6)
+	local color = if typeof(info.Color) == "Color3" then info.Color :: Color3 else Color3.fromRGB(150, 146, 136)
+	local material = if typeof(info.Material) == "EnumItem" then info.Material :: Enum.Material else Enum.Material.Concrete
+
+	local params = RaycastParams.new()
+	params.FilterType = Enum.RaycastFilterType.Exclude
+	params.FilterDescendantsInstances = { folder }
+	local ground = workspace:Raycast(cf.Position + Vector3.new(0, 2, 0), Vector3.new(0, -200, 0), params)
+	local groundY = if ground then ground.Position.Y else cf.Position.Y - size.Y / 2
+
+	type Voxel = { Part: Part, Start: Vector3, Velocity: Vector3, Spin: Vector3, Landed: boolean }
+	local voxels: { Voxel } = {}
+	local rng = Random.new()
+	for ix = 1, nx do
+		for iy = 1, ny do
+			for iz = 1, nz do
+				local offset = Vector3.new((ix - 0.5) * piece.X - size.X / 2, (iy - 0.5) * piece.Y - size.Y / 2, (iz - 0.5) * piece.Z - size.Z / 2)
+				local position = (cf * CFrame.new(offset)).Position
+				local away = position - origin
+				away = if away.Magnitude > 0.1 then away.Unit else Vector3.new(rng:NextNumber(-1, 1), 0.5, rng:NextNumber(-1, 1)).Unit
+				local p = part({ Size = piece * 0.95, CFrame = CFrame.new(position) * cf.Rotation, Color = color, Material = material, Transparency = 0 })
+				table.insert(voxels, {
+					Part = p,
+					Start = position,
+					Velocity = away * power * rng:NextNumber(0.4, 1) + Vector3.new(0, rng:NextNumber(15, 35), 0),
+					Spin = Vector3.new(rng:NextNumber(-8, 8), rng:NextNumber(-8, 8), rng:NextNumber(-8, 8)),
+					Landed = false,
+				})
+			end
+		end
+	end
+	burst(origin + Vector3.new(0, 2, 0), color, 20)
+
+	local started = os.clock()
+	local gravity = Vector3.new(0, -workspace.Gravity, 0)
+	local connection: RBXScriptConnection
+	connection = game:GetService("RunService").Heartbeat:Connect(function()
+		local t = os.clock() - started
+		if t >= life then
+			connection:Disconnect()
+			for _, voxel in voxels do
+				voxel.Part:Destroy()
+			end
+			return
+		end
+		local fade = math.clamp((t - (life - 0.6)) / 0.6, 0, 1)
+		for _, voxel in voxels do
+			local p = voxel.Part
+			if not voxel.Landed then
+				local position = voxel.Start + voxel.Velocity * t + gravity * (0.5 * t * t)
+				local floorY = groundY + p.Size.Y / 2
+				if position.Y <= floorY and t > 0.05 then
+					position = Vector3.new(position.X, floorY, position.Z)
+					voxel.Landed = true
+				end
+				local spin = voxel.Spin * t
+				p.CFrame = CFrame.new(position) * CFrame.Angles(spin.X, spin.Y, spin.Z)
+			end
+			p.Transparency = fade
+		end
+	end)
+end
+
+-- A crater for heavy strikes: a dark scorched dip ringed by tilted rocks, which sinks away.
+handlers.Crater = function(info)
+	if typeof(info.CFrame) ~= "CFrame" then
+		return
+	end
+	local center = (info.CFrame :: CFrame).Position
+	local radius = math.clamp(tonumber(info.Radius) or 10, 2, 60)
+	local disc = part({
+		Shape = Enum.PartType.Cylinder,
+		Size = Vector3.new(0.3, radius * 1.5, radius * 1.5),
+		CFrame = CFrame.new(center + Vector3.new(0, 0.12, 0)) * CFrame.Angles(0, 0, math.rad(90)),
+		Color = Color3.fromRGB(45, 38, 32),
+		Material = Enum.Material.Slate,
+		Transparency = 0.1,
+	})
+	local rocks: { Part } = { disc }
+	local count = math.clamp(math.floor(radius * 1.2), 8, 28)
+	local rng = Random.new()
+	for i = 1, count do
+		local angle = (i / count) * math.pi * 2 + rng:NextNumber(-0.1, 0.1)
+		local distance = radius * rng:NextNumber(0.7, 0.85)
+		local position = center + Vector3.new(math.cos(angle) * distance, 0.6, math.sin(angle) * distance)
+		local rockSize = Vector3.new(rng:NextNumber(1.5, 3.5), rng:NextNumber(1, 2.5), rng:NextNumber(1.5, 3.5))
+		local outward = CFrame.lookAt(position, Vector3.new(center.X, position.Y, center.Z))
+		table.insert(rocks, part({
+			Size = rockSize,
+			CFrame = outward * CFrame.Angles(math.rad(rng:NextNumber(20, 40)), 0, math.rad(rng:NextNumber(-15, 15))),
+			Color = Color3.fromRGB(95, 85, 75),
+			Material = Enum.Material.Rock,
+			Transparency = 0,
+		}))
+	end
+	task.delay(6, function()
+		for _, rock in rocks do
+			TweenService:Create(rock, TweenInfo.new(1.5), { Transparency = 1, CFrame = rock.CFrame - Vector3.new(0, 1.5, 0) }):Play()
+			Debris:AddItem(rock, 1.6)
+		end
+	end)
+end
+
+-- The shoulder-shove: a puff in front of the shover, a hit burst on whoever got shoved.
+handlers.Shove = function(info)
+	local character = info.Character
+	if typeof(character) ~= "Instance" or not character:IsA("Model") then
+		return
+	end
+	local root = Characters.GetRoot(character)
+	if not root then
+		return
+	end
+	burst(root.Position + root.CFrame.LookVector * 2.5, Color3.fromRGB(230, 230, 240), 8)
+	local target = info.Target
+	if typeof(target) == "Instance" and target:IsA("Model") then
+		local targetRoot = Characters.GetRoot(target)
+		if targetRoot then
+			burst(targetRoot.Position, Color3.fromRGB(200, 170, 255), 18)
+			shake(targetRoot.Position, 0.6)
+		end
+	end
+end
+
 -- A shot travelling from one point to another (Flame Arrow). Signature visuals in SkillFx.
 handlers.Projectile = function(info)
 	if SkillFx.Projectile(info) then
@@ -819,6 +1010,11 @@ function FxController.Init()
 		NumberSequenceKeypoint.new(1, 0),
 	})
 	gradient.Parent = danger
+	arrowHolder = Instance.new("Frame")
+	arrowHolder.Name = "HazardArrows"
+	arrowHolder.BackgroundTransparency = 1
+	arrowHolder.Size = UDim2.fromScale(1, 1)
+	arrowHolder.Parent = gui
 
 	Remotes.Event("AbilityFx").OnClientEvent:Connect(function(info)
 		if type(info) ~= "table" or type(info.Kind) ~= "string" then

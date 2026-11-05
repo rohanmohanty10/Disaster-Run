@@ -8,10 +8,12 @@ local Kits = require(ReplicatedStorage.Shared.Data.Kits)
 local Rarities = require(ReplicatedStorage.Shared.Data.Rarities)
 local GachaConfig = require(ReplicatedStorage.Shared.Config.GachaConfig)
 local Roller = require(ReplicatedStorage.Shared.Gacha.Roller)
+local Banners = require(ReplicatedStorage.Shared.Gacha.Banners)
 
 local Requests = require(script.Parent.Requests)
 local DataService = require(script.Parent.DataService)
 local InventoryService = require(script.Parent.InventoryService)
+local QuestService = require(script.Parent.QuestService)
 
 local GachaService = {}
 
@@ -116,7 +118,13 @@ function GachaService.Spin(player: Player, role: any, spinType: any): Requests.R
 
 	local tableName = Roller.TableFor(roleData, spinType)
 	local boosted = if roleData.BoostedKit ~= "" then roleData.BoostedKit else nil
-	local kitId, rarity = Roller.Roll(role, tableName, boosted, rng)
+	local now = os.time()
+	local kitId, rarity = Roller.Roll(role, tableName, boosted, rng, now)
+	-- During an event banner, the Lucky Secret pity guarantees the featured Secret (GAME_PLAN 3C).
+	local featured = if tableName == "LuckySecretPity" then Banners.FeaturedSecret(role, now) else nil
+	if featured then
+		kitId, rarity = featured, "Secret"
+	end
 	Roller.UpdatePity(roleData, spinType, tableName, rarity)
 	roleData.TotalSpins += 1
 
@@ -136,6 +144,7 @@ function GachaService.Spin(player: Player, role: any, spinType: any): Requests.R
 
 	InventoryService.Refresh(player)
 	DataService.Changed(player)
+	QuestService.Increment(player, "Spins", 1)
 	-- Purchases already force a save; spins of Mythical+ are worth one too.
 	if Rarities.AtLeast(rarity, "Mythical") then
 		local profile = DataService.GetProfile(player)

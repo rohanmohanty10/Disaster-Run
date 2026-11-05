@@ -10,11 +10,14 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
 local MovementConfig = require(ReplicatedStorage.Shared.Config.MovementConfig)
+local CombatConfig = require(ReplicatedStorage.Shared.Config.CombatConfig)
 local StrikeMath = require(ReplicatedStorage.Shared.Util.StrikeMath)
 
 local Services = script.Parent.Parent.Services
 local CombatService = require(Services.CombatService)
 local HitboxService = require(Services.HitboxService)
+local MovementService = require(Services.MovementService)
+local DestructionService = require(Services.DestructionService)
 
 local Common = {}
 
@@ -136,7 +139,27 @@ function Common.Targets(caster: Player | Model, shape: Shape, filter: string?, m
 	return result
 end
 
--- Damages DestructibleCover parts in a circle or line (basic version until the destruction port).
+-- Is there solid cover (a roof, a tree, a bunker) above this character? God strikes come from
+-- the sky, so a sheltered Runner isn't hit (CombatConfig.CoverBlocksStrikes).
+function Common.Sheltered(character: Model): boolean
+	if not CombatConfig.CoverBlocksStrikes then
+		return false
+	end
+	local head = character:FindFirstChild("Head")
+	local root = Characters.GetRoot(character)
+	local from = if head and head:IsA("BasePart") then head.Position else (if root then root.Position + Vector3.new(0, 1.5, 0) else nil)
+	if not from then
+		return false
+	end
+	local params = RaycastParams.new()
+	params.FilterType = Enum.RaycastFilterType.Exclude
+	params.FilterDescendantsInstances = characterList()
+	params.RespectCanCollide = true
+	local result = workspace:Raycast(from, Vector3.new(0, CombatConfig.CoverCheckHeight, 0), params)
+	return result ~= nil and result.Instance.Anchored
+end
+
+-- Damages DestructibleCover parts in a circle or line (DestructionService breaks them up).
 function Common.DamageCover(shape: Shape, damage: number)
 	local size, cframe
 	if shape.Kind == "Line" then
@@ -152,15 +175,7 @@ function Common.DamageCover(shape: Shape, damage: number)
 		local inShape = shape.Kind ~= "Circle"
 			or StrikeMath.InCircle(part.Position, shape.CFrame.Position, (shape.Radius or 8) + math.max(part.Size.X, part.Size.Z) / 2)
 		if inShape and CollectionService:HasTag(part, "DestructibleCover") and part.Anchored then
-			local health = (part:GetAttribute("Health") :: number?) or 100
-			health -= damage
-			part:SetAttribute("Health", health)
-			if health <= 0 then
-				CollectionService:RemoveTag(part, "DestructibleCover")
-				part.Anchored = false
-				part.AssemblyLinearVelocity = (part.Position - shape.CFrame.Position).Unit * 40 + Vector3.new(0, 40, 0)
-				Debris:AddItem(part, 2)
-			end
+			DestructionService.Damage(part, damage, shape.CFrame.Position)
 		end
 	end
 end
@@ -186,7 +201,7 @@ function Common.NearMiss(shape: Shape, hit: { Model })
 				if player:GetAttribute("Passive_AutonomousReflex") then
 					refund = 30
 				end
-				Remotes.Event("Stamina"):FireClient(player, refund, "NearMiss")
+				MovementService.AddStamina(player, refund, "NearMiss")
 				player:SetAttribute("NearMissAt", workspace:GetServerTimeNow())
 			end
 		end

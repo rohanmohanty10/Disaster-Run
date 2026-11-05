@@ -10,6 +10,7 @@ local UserInputService = game:GetService("UserInputService")
 
 local Kits = require(ReplicatedStorage.Shared.Data.Kits)
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
+local MovementConfig = require(ReplicatedStorage.Shared.Config.MovementConfig)
 
 local MovementController = require(script.Parent.MovementController)
 local GodController = require(script.Parent.GodController)
@@ -132,6 +133,37 @@ function AbilityController.Press(index: number)
 	end
 end
 
+-- Seconds until the shoulder-shove is ready (0 if ready).
+function AbilityController.ShoveCooldownLeft(): number
+	local ready = LocalPlayer:GetAttribute("ShoveReady")
+	if type(ready) ~= "number" then
+		return 0
+	end
+	return math.max(ready - workspace:GetServerTimeNow(), 0)
+end
+
+-- The shoulder-shove (F): every Runner has it. The server picks the target and checks everything.
+function AbilityController.Shove()
+	if role() ~= "Runner" then
+		return
+	end
+	local character = LocalPlayer.Character
+	if not character or AbilityController.ShoveCooldownLeft() > 0 then
+		return
+	end
+	for _, lock in CAST_LOCKS do
+		if character:GetAttribute(lock) then
+			return
+		end
+	end
+	if MovementController.Stamina < MovementConfig.Shove.StaminaCost then
+		UIController.Popup("Not enough stamina!", 1, Color3.fromRGB(255, 120, 120))
+		return
+	end
+	MovementController.PlayAction("Shove", 1.3)
+	Remotes.Event("Ability"):FireServer("Shove", 1, { Direction = workspace.CurrentCamera.CFrame.LookVector })
+end
+
 function AbilityController.Release(index: number)
 	if not held[index] then
 		return
@@ -148,6 +180,10 @@ function AbilityController.Start()
 			return
 		end
 		local r = role()
+		if r == "Runner" and input.KeyCode == MovementConfig.Shove.Key then
+			AbilityController.Shove()
+			return
+		end
 		local index = if r == "God" then GOD_KEYS[input.KeyCode] elseif r == "Runner" then RUNNER_KEYS[input.KeyCode] else nil
 		if index then
 			AbilityController.Press(index)

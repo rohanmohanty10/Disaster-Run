@@ -13,6 +13,8 @@ local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 local StrikeMath = require(ReplicatedStorage.Shared.Util.StrikeMath)
 local MapConfig = require(ReplicatedStorage.Shared.Config.MapConfig)
 
+local FogController = require(script.Parent.FogController)
+
 local LocalPlayer = Players.LocalPlayer
 
 local GodController = {}
@@ -160,6 +162,11 @@ local function updateReticle()
 	dot.Size = Vector3.one * 1.2
 	dot.CFrame = ground
 	dot.Transparency = 0.1
+	-- Fog of War: the reticle turns red over the Spawn Fog, where casts are refused.
+	local blocked = FogController.InSpawnFog(target)
+	for _, p in reticleParts do
+		p.Color = if blocked then Color3.fromRGB(255, 60, 60) else Color3.fromRGB(56, 189, 248)
+	end
 end
 
 -- ------------------------------------------------------------------ camera

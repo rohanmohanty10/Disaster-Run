@@ -19,6 +19,10 @@ local RagdollService = require(script.Parent.RagdollService)
 local KnockbackService = require(script.Parent.KnockbackService)
 local RoundService = require(script.Parent.RoundService)
 local TestAreaService = require(script.Parent.TestAreaService)
+local DataService = require(script.Parent.DataService)
+local ProgressionService = require(script.Parent.ProgressionService)
+local QuestService = require(script.Parent.QuestService)
+local MovementService = require(script.Parent.MovementService)
 
 local DevTestService = {}
 
@@ -96,7 +100,8 @@ local HELP = [[/test smite | stun | slow | shove | barrage | void
 /test me ragdoll | stun | slow | iframes | knockback | heal
 /test role runner | god | none   /test hitboxes   /test dummies
 /test round start | end | god | runner   (god/runner = your role in a solo Studio match)
-/test area runner | god | leave | cooldowns | move | reset   (dev test area, no match needed)]]
+/test area runner | god | leave | cooldowns | move | reset   (dev test area, no match needed)
+/test xp <amount>   /test shards <amount>   /test stamina   /test daily reset   /test quests done]]
 
 local function front(player: Player, distance: number): CFrame?
 	local character = player.Character
@@ -238,6 +243,41 @@ local function run(player: Player, words: { string }): string
 	elseif command == "dummies" then
 		DevTestService.SpawnDummies()
 		return "Dummies respawned."
+	elseif command == "xp" then
+		local amount = math.clamp(math.floor(tonumber(words[2]) or 100), 1, 1e6)
+		ProgressionService.AddXP(player, amount)
+		return `+{amount} XP.`
+	elseif command == "shards" then
+		local data = DataService.Get(player)
+		if not data then
+			return "Data not loaded."
+		end
+		local amount = math.clamp(math.floor(tonumber(words[2]) or 500), 1, 1e6)
+		data.DivineShards += amount
+		DataService.Changed(player)
+		return `+{amount} Divine Shards.`
+	elseif command == "stamina" then
+		MovementService.ResetStamina(player)
+		return "Stamina refilled."
+	elseif command == "daily" then
+		local data = DataService.Get(player)
+		if not data then
+			return "Data not loaded."
+		end
+		data.Daily.LastClaimDay = 0
+		DataService.Changed(player)
+		return "Daily reward can be claimed again (streak resets)."
+	elseif command == "quests" then
+		local data = DataService.Get(player)
+		if not data then
+			return "Data not loaded."
+		end
+		QuestService.Refresh(player)
+		for _, entry in data.Quests.List do
+			entry.Progress = 1e6
+		end
+		DataService.Changed(player)
+		return "Today's quests are complete: claim them in the Quests panel."
 	end
 	return "Unknown command. " .. HELP
 end

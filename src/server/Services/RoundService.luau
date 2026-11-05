@@ -17,6 +17,7 @@ local RunService = game:GetService("RunService")
 local RoundConfig = require(ReplicatedStorage.Shared.Config.RoundConfig)
 local RoundState = require(ReplicatedStorage.Shared.Enums.RoundState)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
+local MoveGrace = require(ReplicatedStorage.Shared.Util.MoveGrace)
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
 local Signal = require(ReplicatedStorage.Shared.Util.Signal)
 
@@ -25,6 +26,14 @@ local CombatService = require(script.Parent.CombatService)
 local StatusEffectService = require(script.Parent.StatusEffectService)
 local AbilityService = require(script.Parent.AbilityService)
 local MapService = require(script.Parent.MapService)
+local MovementService = require(script.Parent.MovementService)
+local ProgressionService = require(script.Parent.ProgressionService)
+local QuestService = require(script.Parent.QuestService)
+local ShoveService = require(script.Parent.ShoveService)
+local ProgressionConfig = require(ReplicatedStorage.Shared.Config.ProgressionConfig)
+local ProgressionMath = require(ReplicatedStorage.Shared.Util.ProgressionMath)
+local MarketplaceService = game:GetService("MarketplaceService")
+local MovementConfig = require(ReplicatedStorage.Shared.Config.MovementConfig)
 
 type MatchStats = {
 	Player: Player,
@@ -36,6 +45,7 @@ type MatchStats = {
 	Assists: number,
 	Damage: number,
 	Dodges: number,
+	Shoves: number,
 	BecameGodRound: number?,
 	Cash: number,
 	Winner: boolean,
@@ -100,17 +110,34 @@ local function waitFor(seconds: number, stop: (() -> boolean)?)
 	end
 end
 
-local function payCash(player: Player, amount: number, reason: string)
+-- Cash (GAME_PLAN.md Section 6A) and XP (ProgressionConfig.XP) for a match event, one toast.
+local function payCash(player: Player, amount: number, reason: string, xp: number?)
 	local stats = matchStats[player.UserId]
 	if stats then
 		stats.Cash += amount
 	end
-	local data = DataService.Get(player)
-	if data then
-		data.Cash += amount
-		DataService.Changed(player)
+	ProgressionService.Reward(player, amount, xp or 0, reason)
+end
+
+-- Daily quest counters for match events (QuestService).
+local function quest(player: Player, stat: string, amount: number?)
+	QuestService.Increment(player, stat, amount)
+end
+
+-- God Pass ownership, cached per player (refreshed when they buy it in-game).
+local godPassOwners: { [Player]: boolean } = {}
+local function ownsGodPass(player: Player): boolean
+	local passId = RoundConfig.GodPassGamePassId
+	if passId == 0 then
+		return false
 	end
-	Remotes.Event("Notify"):FireClient(player, `+${amount} {reason}`, Color3.fromRGB(255, 215, 90))
+	local cached = godPassOwners[player]
+	if cached ~= nil then
+		return cached
+	end
+	local ok, owns = pcall(MarketplaceService.UserOwnsGamePassAsync, MarketplaceService, player.UserId, passId)
+	godPassOwners[player] = ok and owns == true
+	return godPassOwners[player]
 end
 
 local function statsFor(player: Player): MatchStats?
@@ -160,6 +187,17 @@ local function insideSanctuary(position: Vector3): boolean
 	return math.abs(localPoint.X) <= half.X and math.abs(localPoint.Y) <= half.Y + 6 and math.abs(localPoint.Z) <= half.Z
 end
 
+-- A finish only counts if the movement checks trust the player and the run took at least as
+-- long as the fastest legitimate crossing (MovementConfig.AntiCheat.MinCrossingSpeedFactor).
+local function finishIsBelievable(player: Player, runStarted: number): boolean
+	if not MovementService.IsTrusted(player) then
+		return false
+	end
+	local length = (course.Sanctuary.Position - course.Start.Position).Magnitude
+	local fastest = length / (MovementConfig.SprintSpeed * MovementConfig.AntiCheat.MinCrossingSpeedFactor)
+	return os.clock() - runStarted >= fastest
+end
+
 local function progressOf(position: Vector3): number
 	local startPos = course.Start.Position
 	local track = course.Sanctuary.Position - startPos
@@ -185,7 +223,7 @@ local function placeRunner(player: Player, index: number, count: number)
 	end
 	local spread = (index - (count + 1) / 2) * 4
 	local cf = course.Start * CFrame.new(spread, 3, 0)
-	character:PivotTo(cf)
+	MoveGrace.Teleport(character, cf)
 	StatusEffectService.Apply(character, "Rooted", RoundConfig.PreparationTime, { Force = true })
 end
 
@@ -253,14 +291,37 @@ local function startMatch()
 		godCount = math.max(1, math.floor(#players / RoundConfig.PlayersPerStartingGod))
 		godCount = math.min(godCount, #players - 1)
 	end
-	-- Shuffle, then the first godCount players are the starting Gods. (God Pass priority goes here.)
-	local shuffled = table.clone(players)
+	-- Starting Gods by priority (GAME_PLAN.md Section 1): God Pass owners, then the longest wait.
 	local rng = Random.new()
-	for i = #shuffled, 2, -1 do
-		local j = rng:NextInteger(1, i)
-		shuffled[i], shuffled[j] = shuffled[j], shuffled[i]
+	local candidates: { ProgressionMath.GodCandidate } = {}
+	for _, player in players do
+		local data = DataService.Get(player)
+		table.insert(candidates, {
+			Id = player.UserId,
+			HasPass = ownsGodPass(player),
+			Waited = if data then data.MatchesSinceGod else 0,
+			Tiebreak = rng:NextNumber(),
+		})
 	end
-	for i, player in shuffled do
+	local isGod: { [Player]: boolean } = {}
+	if godCount > 0 and forced == "God" and #players == 1 then
+		isGod[players[1]] = true
+	else
+		for _, userId in ProgressionMath.PickGods(candidates, godCount) do
+			local chosen = Players:GetPlayerByUserId(userId)
+			if chosen then
+				isGod[chosen] = true
+			end
+		end
+	end
+	for _, player in players do
+		local data = DataService.Get(player)
+		if data then
+			data.MatchesSinceGod = if isGod[player] then 0 else data.MatchesSinceGod + 1
+			DataService.Changed(player)
+		end
+	end
+	for _, player in players do
 		matchStats[player.UserId] = {
 			Player = player,
 			UserId = player.UserId,
@@ -271,12 +332,13 @@ local function startMatch()
 			Assists = 0,
 			Damage = 0,
 			Dodges = 0,
-			BecameGodRound = if i <= godCount then 0 else nil,
+			Shoves = 0,
+			BecameGodRound = if isGod[player] then 0 else nil,
 			Cash = 0,
 			Winner = false,
 			Left = false,
 		}
-		setRole(player, if i <= godCount then "God" else "Runner")
+		setRole(player, if isGod[player] then "God" else "Runner")
 		player:SetAttribute("InRound", true)
 		player:SetAttribute("Eliminated", nil)
 		player:SetAttribute("Finished", nil)
@@ -389,9 +451,14 @@ local function playRound(): { Player }
 					player:SetAttribute("Progress", progress)
 					if progress >= 0.5 and not info.MidPoint then
 						info.MidPoint = true
-						task.spawn(payCash, player, RoundConfig.Rewards.MidPoint, "Mid-point")
+						task.spawn(payCash, player, RoundConfig.Rewards.MidPoint, "Mid-point", ProgressionConfig.XP.MidPoint)
+						task.spawn(quest, player, "MidPoints")
 					end
-					if insideSanctuary(root.Position) then
+					if insideSanctuary(root.Position) and not finishIsBelievable(player, started) then
+						-- Too fast, or just flagged by the movement checks: back to the start.
+						warn(`[RoundService] Refused a Sanctuary finish from {player.Name}`)
+						MoveGrace.Teleport(character :: Model, course.Start * CFrame.new(0, 3, 0))
+					elseif insideSanctuary(root.Position) then
 						info.Finished = true
 						player:SetAttribute("Finished", true)
 						player:SetAttribute("Progress", 1)
@@ -437,7 +504,8 @@ local function playRound(): { Player }
 		if stats then
 			stats.RoundsSurvived += 1
 		end
-		payCash(player, RoundConfig.Rewards.Survived + RoundConfig.Rewards.SurvivedPerRound * roundNumber, "Survived the round")
+		payCash(player, RoundConfig.Rewards.Survived + RoundConfig.Rewards.SurvivedPerRound * roundNumber, "Survived the round", ProgressionConfig.XP.RoundSurvived)
+		quest(player, "RoundsSurvived")
 	end
 	if #survivors == 0 and hadRunners then
 		local gods = {}
@@ -484,7 +552,8 @@ local function endMatch(winner: Player?)
 		if stats then
 			stats.Winner = true
 		end
-		payCash(winner, RoundConfig.Rewards.MatchWinner, "Match winner")
+		payCash(winner, RoundConfig.Rewards.MatchWinner, "Match winner", ProgressionConfig.XP.MatchWinner)
+		ProgressionService.Grant(winner, { Spins = ProgressionConfig.MatchSpinRewards.MatchWinner })
 	end
 
 	-- Awards (GAME_PLAN.md Section 6C).
@@ -509,7 +578,7 @@ local function endMatch(winner: Player?)
 		if stats then
 			table.insert(awards, { Key = key, Title = title, UserId = stats.UserId, Name = stats.Name, Value = value })
 			if stats.Player.Parent == Players then
-				payCash(stats.Player, RoundConfig.Rewards.MVPAward, title)
+				payCash(stats.Player, RoundConfig.Rewards.MVPAward, title, ProgressionConfig.XP.MVPAward)
 			end
 		end
 	end
@@ -543,13 +612,21 @@ local function endMatch(winner: Player?)
 	for _, stats in list do
 		local player = stats.Player
 		if player.Parent == Players then
-			payCash(player, RoundConfig.Rewards.Participation, "Participation")
+			payCash(player, RoundConfig.Rewards.Participation, "Participation", ProgressionConfig.XP.Participation)
+			local spins = ProgressionConfig.MatchSpinRewards.Participation
+			if spins > 0 then
+				ProgressionService.Grant(player, { Spins = spins })
+				Remotes.Event("Notify"):FireClient(player, `+{spins} Spin{if spins == 1 then "" else "s"} in both vaults`, Color3.fromRGB(120, 220, 255))
+			end
+			quest(player, "MatchesPlayed")
 			local data = DataService.Get(player)
 			if data then
 				data.Stats.MatchesPlayed += 1
 				data.Stats.RoundsSurvived += stats.RoundsSurvived
 				data.Stats.Kills += stats.Kills
 				data.Stats.DamageDealt += math.floor(stats.Damage)
+				data.Stats.Shoves += stats.Shoves
+				data.Stats.Dodges += stats.Dodges
 				if stats.Winner then
 					data.Stats.MatchWins += 1
 				end
@@ -566,6 +643,9 @@ local function endMatch(winner: Player?)
 			TimeSurvived = math.floor(stats.TimeSurvived),
 			Kills = stats.Kills,
 			Damage = math.floor(stats.Damage),
+			Assists = stats.Assists,
+			Dodges = stats.Dodges,
+			Shoves = stats.Shoves,
 			Score = math.floor(mvpScore(stats)),
 			Cash = stats.Cash,
 			Winner = stats.Winner,
@@ -668,6 +748,7 @@ function RoundService.Init()
 			local stats = statsFor(attacker)
 			if stats then
 				stats.Damage += amount
+				quest(attacker, "DamageDealt", math.floor(amount + 0.5))
 			end
 		end
 	end)
@@ -680,7 +761,8 @@ function RoundService.Init()
 			if stats then
 				stats.Kills += 1
 			end
-			payCash(killer, RoundConfig.Rewards.Kill, "Kill")
+			payCash(killer, RoundConfig.Rewards.Kill, "Kill", ProgressionConfig.XP.Kill)
+			quest(killer, "Kills")
 		end
 		for _, helper in assists do
 			if roles[helper] == "God" then
@@ -688,15 +770,31 @@ function RoundService.Init()
 				if stats then
 					stats.Assists += 1
 				end
-				payCash(helper, RoundConfig.Rewards.Assist, "Assist")
+				payCash(helper, RoundConfig.Rewards.Assist, "Assist", ProgressionConfig.XP.Assist)
+				quest(helper, "Assists")
 			end
 		end
 	end)
 	CombatService.Dodged:Connect(function(victim: Model)
 		local player = Players:GetPlayerFromCharacter(victim)
 		local stats = player and statsFor(player)
-		if stats then
+		if player and stats then
 			stats.Dodges += 1
+			ProgressionService.AddXP(player, ProgressionConfig.XP.Dodge)
+			quest(player, "Dodges")
+		end
+	end)
+	ShoveService.Landed:Connect(function(attacker: Player)
+		local stats = statsFor(attacker)
+		if stats and roles[attacker] == "Runner" then
+			stats.Shoves += 1
+			ProgressionService.AddXP(attacker, ProgressionConfig.XP.Shove)
+			quest(attacker, "Shoves")
+		end
+	end)
+	MarketplaceService.PromptGamePassPurchaseFinished:Connect(function(player: Player, passId: number, bought: boolean)
+		if bought and passId == RoundConfig.GodPassGamePassId then
+			godPassOwners[player] = true
 		end
 	end)
 end
@@ -709,6 +807,11 @@ function RoundService.Start()
 			stats.Left = true
 		end
 		roles[player] = nil
+		godPassOwners[player] = nil
+	end)
+	-- Look up God Pass ownership on join so picking Gods doesn't wait on it.
+	Players.PlayerAdded:Connect(function(player)
+		ownsGodPass(player)
 	end)
 	task.spawn(loop)
 end

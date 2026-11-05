@@ -12,6 +12,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local CombatConfig = require(ReplicatedStorage.Shared.Config.CombatConfig)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
+local MoveGrace = require(ReplicatedStorage.Shared.Util.MoveGrace)
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
 
 local StatusEffectService = require(script.Parent.StatusEffectService)
@@ -234,6 +235,8 @@ function RagdollService.Ragdoll(character: Model, duration: number?, ignoreDeath
 	if not rig then
 		return
 	end
+	-- Ragdoll flings and the get-up aren't the player's own movement.
+	MoveGrace.Grant(character, math.min(duration or CombatConfig.MaxRagdollTime, CombatConfig.MaxRagdollTime) + 1.5)
 	if rig.Timer and coroutine.status(rig.Timer) == "suspended" then
 		task.cancel(rig.Timer)
 	end

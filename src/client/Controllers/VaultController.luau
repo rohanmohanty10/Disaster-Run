@@ -14,6 +14,7 @@ local Rarities = require(ReplicatedStorage.Shared.Data.Rarities)
 local GachaConfig = require(ReplicatedStorage.Shared.Config.GachaConfig)
 local UIConfig = require(ReplicatedStorage.Shared.Config.UIConfig)
 local Roller = require(ReplicatedStorage.Shared.Gacha.Roller)
+local Banners = require(ReplicatedStorage.Shared.Gacha.Banners)
 local Format = require(ReplicatedStorage.Shared.Util.Format)
 
 local Net = require(script.Parent.Net)
@@ -155,6 +156,19 @@ function Vault.RefreshCounters(self: any)
 	BG.CurrencyPitty.Pity.Text = `Pity: {rd.Pity.Normal}/{GachaConfig.Pity.Normal} Done`
 	BG.CurrencyPitty.LuckyPity.Text = `Lucky Pity: {rd.Pity.LuckyMythical}/{GachaConfig.Pity.LuckyMythical} Done`
 	BG.CurrencyPitty.BG.Currency.Text = Format.Cash(data.Cash)
+
+	-- Live event banner (GAME_PLAN.md 3B).
+	local banner = Banners.Active(self.Role, workspace:GetServerTimeNow())[1]
+	if self.BannerLabel then
+		self.BannerLabel.Visible = banner ~= nil
+		if banner then
+			local left = math.max(banner.ExpiresAt - workspace:GetServerTimeNow(), 0)
+			local days = math.floor(left / 86400)
+			local hours = math.floor(left % 86400 / 3600)
+			self.BannerLabel.Text = `★ EVENT: {string.upper(banner.Name)} · ends in {days}d {hours}h ★`
+		end
+	end
+	self:RefreshAuto()
 end
 
 function Vault.RefreshSlots(self: any)
@@ -324,7 +338,12 @@ function Vault.RefreshOdds(self: any)
 	if not rd then
 		return
 	end
-	local key = `{rd.BoostedKit}|{rd.AdBoost > 0}|{rd.Pity.Normal}|{rd.Pity.LuckyMythical}|{rd.Pity.LuckySecret}|{self.Expanded.NormalRarities}|{self.Expanded.LuckyRarities}|{self.Expanded.BoostedRarities}`
+	local now = workspace:GetServerTimeNow()
+	local bannerIds = {}
+	for _, banner in Banners.Active(self.Role, now) do
+		table.insert(bannerIds, banner.Id)
+	end
+	local key = `{rd.BoostedKit}|{rd.AdBoost > 0}|{rd.Pity.Normal}|{rd.Pity.LuckyMythical}|{rd.Pity.LuckySecret}|{self.Expanded.NormalRarities}|{self.Expanded.LuckyRarities}|{self.Expanded.BoostedRarities}|{table.concat(bannerIds, ",")}`
 	if key == self.OddsKey then
 		return
 	end
@@ -339,7 +358,7 @@ function Vault.RefreshOdds(self: any)
 			end
 		end
 		local template = folder:FindFirstChild("0 OddsText") :: TextLabel
-		for i, rarityChance in Roller.Chances(self.Role, tableName, boosted) do
+		for i, rarityChance in Roller.Chances(self.Role, tableName, boosted, now) do
 			local row = AssetUI.RarityTitle:Clone()
 			row.Name = rarityChance.Rarity
 			row.LayoutOrder = i * 100
@@ -474,9 +493,11 @@ function Vault.DramaticReveal(self: any, rarity: string)
 	end)
 end
 
-function Vault.DoSpin(self: any, spinType: string)
+-- Spins once and returns the server's result (nil if the spin was refused).
+-- auto = true for auto-spin: the reel is skipped when the player can skip.
+function Vault.DoSpin(self: any, spinType: string, auto: boolean?): { [string]: any }?
 	self.Spinning = true
-	self.SkipRequested = false
+	self.SkipRequested = auto == true and canSkip()
 	local buttonLabel = (if spinType == "Lucky" then self.BG.LuckySpin else self.BG.Spin).TextLabel
 	local restoreText = buttonLabel.Text
 
@@ -492,7 +513,7 @@ function Vault.DoSpin(self: any, spinType: string)
 			UIController.Popup(result.Message, 2, ERROR_COLOR)
 		end
 		self:Refresh()
-		return
+		return nil
 	end
 
 	buttonLabel.Text = "SKIP"
@@ -549,6 +570,146 @@ function Vault.DoSpin(self: any, spinType: string)
 			TweenService:Create(entry, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 3, true), { ImageTransparency = 0 }):Play()
 		end
 	end
+	return result
+end
+
+-- ------------------------------------------------------------------ auto-spin (GAME_PLAN.md 3)
+-- Keeps spinning normal spins until a kit of the chosen rarity (or better) lands, the player
+-- runs out of spins (Cash is only used if "Use Cash" is on), or they turn it off / close the vault.
+function Vault.RefreshAuto(self: any)
+	local auto = self.AutoFrame
+	if not auto then
+		return
+	end
+	auto.Toggle.Text = if self.AutoOn then "AUTO: ON" else "AUTO: OFF"
+	auto.Toggle.BackgroundColor3 = if self.AutoOn then Color3.fromRGB(34, 140, 80) else Color3.fromRGB(30, 41, 59)
+	auto.Stop.Text = `Stop at {self.AutoStop}+`
+	auto.Stop.TextColor3 = Rarities.Colors[self.AutoStop] or Color3.new(1, 1, 1)
+	auto.Cash.Text = if self.AutoUseCash then "Use Cash: ON" else "Use Cash: OFF"
+end
+
+function Vault.RunAuto(self: any)
+	local first = true
+	while self.AutoOn and self.Gui.Enabled do
+		local rd = self:RoleData()
+		local data = DataController.Data
+		if not rd or not data then
+			break
+		end
+		if rd.VaultEquipped ~= "" then
+			UIController.Popup("Equip a slot to auto-spin! Vault kits can't be spun away.", 2.5, ERROR_COLOR)
+			break
+		end
+		if rd.Locked[rd.Selected] then
+			UIController.Popup("This slot is locked!", 1.5, ERROR_COLOR)
+			break
+		end
+		if first then
+			first = false
+			local current = Kits.Get(self.Role, self:EquippedKit())
+			if current and Rarities.AtLeast(current.Rarity, self.AutoStop) then
+				UIController.Popup(`This slot already has a {current.Rarity} kit. Pick another slot to auto-spin.`, 3, ERROR_COLOR)
+				break
+			end
+		end
+		local canPay = rd.Spins > 0 or (self.AutoUseCash and data.Cash >= GachaConfig.CashSpinCost)
+		if not canPay then
+			UIController.Popup("Auto-spin stopped: out of spins.", 2, ERROR_COLOR)
+			break
+		end
+		local result = self:DoSpin("Normal", true)
+		if not result then
+			break
+		end
+		if Rarities.AtLeast(result.Rarity, self.AutoStop) then
+			UIController.Popup(`Auto-spin stopped: you got a {result.Rarity}!`, 3, Rarities.Colors[result.Rarity])
+			break
+		end
+		task.wait(0.2)
+	end
+	self.AutoOn = false
+	self:RefreshAuto()
+end
+
+function Vault.SetupAuto(self: any)
+	local BG = self.BG
+	self.AutoOn = false
+	self.AutoStop = GachaConfig.AutoSpinStops[2] or "Legendary"
+	self.AutoUseCash = false
+
+	local frame = Instance.new("Frame")
+	frame.Name = "AutoSpin"
+	frame.BackgroundTransparency = 1
+	frame.AnchorPoint = Vector2.new(0.5, 0.5)
+	frame.Position = UDim2.fromScale(0.29, 0.88)
+	frame.Size = UDim2.fromScale(0.15, 0.13)
+	frame.Parent = BG
+	local layout = Instance.new("UIListLayout")
+	layout.Padding = UDim.new(0.04, 0)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = frame
+	local function makeButton(name: string, order: number): TextButton
+		local b = Instance.new("TextButton")
+		b.Name = name
+		b.LayoutOrder = order
+		b.Size = UDim2.fromScale(1, 0.3)
+		b.BackgroundColor3 = Color3.fromRGB(30, 41, 59)
+		b.TextColor3 = Color3.new(1, 1, 1)
+		b.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold)
+		b.TextScaled = true
+		local corner = Instance.new("UICorner")
+		corner.CornerRadius = UDim.new(0.25, 0)
+		corner.Parent = b
+		b.Parent = frame
+		UIController.AnimateButton(b)
+		return b
+	end
+	local toggle = makeButton("Toggle", 1)
+	local stop = makeButton("Stop", 2)
+	local cash = makeButton("Cash", 3)
+	self.AutoFrame = { Toggle = toggle, Stop = stop, Cash = cash }
+
+	toggle.Activated:Connect(function()
+		if self.AutoOn then
+			self.AutoOn = false -- stops after the current spin
+			self:RefreshAuto()
+			return
+		end
+		if self.Spinning then
+			return
+		end
+		self.AutoOn = true
+		self:RefreshAuto()
+		task.spawn(self.RunAuto, self)
+	end)
+	stop.Activated:Connect(function()
+		local stops = GachaConfig.AutoSpinStops
+		local index = table.find(stops, self.AutoStop) or 0
+		self.AutoStop = stops[index % #stops + 1]
+		self:RefreshAuto()
+	end)
+	cash.Activated:Connect(function()
+		self.AutoUseCash = not self.AutoUseCash
+		self:RefreshAuto()
+	end)
+
+	-- Event banner line under the kit description.
+	local label = Instance.new("TextLabel")
+	label.Name = "EventBanner"
+	label.BackgroundTransparency = 1
+	label.AnchorPoint = Vector2.new(0.5, 0.5)
+	label.Position = UDim2.fromScale(0.5, 0.225)
+	label.Size = UDim2.fromScale(0.45, 0.035)
+	label.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Heavy)
+	label.TextScaled = true
+	label.TextColor3 = Color3.fromRGB(255, 215, 90)
+	label.Visible = false
+	local stroke = Instance.new("UIStroke")
+	stroke.Thickness = 1.5
+	stroke.Parent = label
+	label.Parent = BG
+	self.BannerLabel = label
+	self:RefreshAuto()
 end
 
 -- ------------------------------------------------------------------ buying
@@ -640,6 +801,7 @@ function Vault.Setup(self: any)
 	local BG = self.BG
 	self:SetupSlots()
 	self:SetupBuyPanels()
+	self:SetupAuto()
 
 	BG.Spin.Activated:Connect(function()
 		self:TrySpin("Normal")
@@ -719,6 +881,7 @@ function Vault.Open(self: any)
 end
 
 function Vault.Close(self: any)
+	self.AutoOn = false
 	self.SkipRequested = true
 	self.PendingSpin = nil
 	self.Gui.Enabled = false

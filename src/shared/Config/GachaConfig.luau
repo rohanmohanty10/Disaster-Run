@@ -92,6 +92,40 @@ GachaConfig.ReelTicks = { Min = 25, Max = 35 }
 -- Server-side spin rate limit (seconds between spins).
 GachaConfig.SpinCooldown = 0.35
 
+-- Rotational event banners (GAME_PLAN.md Section 3B). A kit with an Event field in Kits.luau is
+-- only in the spin pool while a banner listing it is live (StartsAt <= now < ExpiresAt, Unix
+-- seconds). FeaturedSecret is the kit the Lucky Secret pity (250) guarantees while it runs.
+-- Players keep event kits they already own after the banner ends.
+export type Banner = {
+	Id: string,
+	Name: string,
+	Role: string, -- "God" or "Runner"
+	Kits: { string }, -- kit ids this banner puts in the pool
+	FeaturedSecret: string?,
+	StartsAt: number,
+	ExpiresAt: number,
+}
+GachaConfig.Banners = {
+	-- Example (7-14 day cycles):
+	-- { Id = "Storm2026", Name = "Storm Festival", Role = "God", Kits = { "SomeEventKit" },
+	--   FeaturedSecret = "SomeEventKit", StartsAt = 1767225600, ExpiresAt = 1768435200 },
+} :: { Banner }
+
+-- Rotating Divine Shard shop (GAME_PLAN.md Section 3D): spend shards on a specific kit.
+GachaConfig.ShardShop = {
+	OffersPerRole = 4,
+	RotationHours = 24, -- every server shows the same offers in the same rotation
+	Prices = { -- by rarity; rarities not listed are never offered
+		Rare = 250,
+		Epic = 300,
+		Legendary = 400,
+		Mythical = 500,
+	} :: { [string]: number },
+}
+
+-- Auto-spin: the rarities a player can choose to stop on.
+GachaConfig.AutoSpinStops = { "Epic", "Legendary", "Mythical", "Secret" }
+
 -- Game pass that lets players skip the reel. 0 = everyone can skip.
 GachaConfig.SkipSpinGamePassId = 0
 

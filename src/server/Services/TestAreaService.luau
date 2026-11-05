@@ -14,6 +14,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local TestAreaConfig = require(ReplicatedStorage.Shared.Config.TestAreaConfig)
+local MoveGrace = require(ReplicatedStorage.Shared.Util.MoveGrace)
 local CombatConfig = require(ReplicatedStorage.Shared.Config.CombatConfig)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 
@@ -159,7 +160,7 @@ local function place(player: Player)
 	else
 		root.Anchored = false
 		local spawn = cfg.Center + cfg.RunnerSpawn
-		character:PivotTo(CFrame.lookAt(spawn, spawn + Vector3.new(0, 0, -1)))
+		MoveGrace.Teleport(character, CFrame.lookAt(spawn, spawn + Vector3.new(0, 0, -1)))
 	end
 end
 

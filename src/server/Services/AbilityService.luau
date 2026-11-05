@@ -21,10 +21,14 @@ local MovementConfig = require(ReplicatedStorage.Shared.Config.MovementConfig)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
 local StrikeMath = require(ReplicatedStorage.Shared.Util.StrikeMath)
+local MoveGrace = require(ReplicatedStorage.Shared.Util.MoveGrace)
 
 local StatusEffectService = require(script.Parent.StatusEffectService)
 local InventoryService = require(script.Parent.InventoryService)
 local CombatService = require(script.Parent.CombatService)
+local MovementService = require(script.Parent.MovementService)
+local ShoveService = require(script.Parent.ShoveService)
+local FogService = require(script.Parent.FogService)
 
 local Abilities = script.Parent.Parent.Abilities
 local Common = require(Abilities.Common)
@@ -137,6 +141,11 @@ local function canUse(player: Player, character: Model, index: number): (boolean
 			return false, kit, skill, "Not enough energy!"
 		end
 	end
+	if role == "Runner" and skill.Cost > 0 and not TestAreaService.FreeCasts(player) then
+		if MovementService.GetStamina(player) + 0.5 < skill.Cost then
+			return false, kit, skill, "Not enough stamina!"
+		end
+	end
 	return true, kit, skill, nil
 end
 
@@ -155,8 +164,8 @@ local function spend(player: Player, kit: Kits.Kit, skill: Kits.Skill, index: nu
 		state.Discount = if kit.Passive and kit.Passive.Name == "Four Arms" then 0.85 else 1
 		player:SetAttribute("CostMultiplier", if state.Discount ~= 1 then state.Discount else nil)
 	elseif skill.Cost > 0 then
-		-- Runner stamina lives on the client; tell it to pay.
-		Remotes.Event("Stamina"):FireClient(player, -skill.Cost, "Skill")
+		-- Runner stamina is the server's (MovementService); the client hears about the change.
+		MovementService.SpendStamina(player, skill.Cost, true)
 	end
 end
 
@@ -233,12 +242,22 @@ local function onAbility(player: Player, action: any, index: any, data: any)
 	local state = getState(player)
 	local t = os.clock()
 
-	-- The slide is a movement action, not a kit skill: the client moves, the server grants iframes.
+	-- The slide is a movement action, not a kit skill: the client moves, the server pays the
+	-- stamina (the client already showed the cost) and grants the iframes.
 	if action == "Slide" then
 		if player:GetAttribute("Role") ~= "God" and t >= state.SlideReady and StatusEffectService.CanMove(character) then
 			state.SlideReady = t + MovementConfig.Slide.Cooldown - 0.1
-			CombatService.GiveIFrames(character, MovementConfig.Slide.IFrames)
+			MoveGrace.Grant(character, MovementConfig.Slide.Duration + 0.5)
+			if MovementService.SpendStamina(player, MovementConfig.Slide.StaminaCost, false) then
+				CombatService.GiveIFrames(character, MovementConfig.Slide.IFrames)
+			end
 		end
+		return
+	end
+
+	-- The shoulder-shove: every Runner has it on F, whatever their kit.
+	if action == "Shove" then
+		ShoveService.TryShove(player, character, data)
 		return
 	end
 
@@ -272,6 +291,11 @@ local function onAbility(player: Player, action: any, index: any, data: any)
 
 	local role = player:GetAttribute("Role")
 	local behavior = skill.Behavior
+	-- Fog of War: Gods can't aim into the Spawn Fog (GAME_PLAN.md Section 4B).
+	if role == "God" and validVector(data.Target) and FogService.BlocksCast(data.Target :: Vector3) then
+		Common.FxTo(player, { Kind = "Toast", Text = "You can't strike into the Spawn Fog!" })
+		return
+	end
 	spend(player, kit, skill, index)
 
 	if role == "Runner" then

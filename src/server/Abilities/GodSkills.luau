@@ -7,7 +7,8 @@
 --   Bolts (many small strikes inside the circle), Chain (lightning jumps), Linger (damage zone),
 --   Shots (repeat the line), DmgEdge (falloff), HealthPercent (Cleave), RootAtFull,
 --   Across (Line: cut wall to wall across the canyon), CoverDamage (damage dealt to cover;
---   defaults to 2x Dmg — use a large number to cut straight through every cover piece).
+--   defaults to 2x Dmg — use a large number to cut straight through every cover piece),
+--   IgnoreCover (hits Runners even under a roof; normally cover above a Runner shelters them).
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -41,6 +42,20 @@ local function coverDamage(b: { [string]: any }): number
 	return b.CoverDamage or (b.Dmg or 30) * 2
 end
 
+-- Drops Runners sheltered under cover (unless the skill has IgnoreCover).
+local function shelteredFilter(b: { [string]: any }, hits: { Model }): { Model }
+	if b.IgnoreCover then
+		return hits
+	end
+	local kept = {}
+	for _, victim in hits do
+		if not Common.Sheltered(victim) then
+			table.insert(kept, victim)
+		end
+	end
+	return kept
+end
+
 -- Telegraph, wait, then hit everything in the shape. Returns the characters hit.
 -- A telegraph of 0 skips the warning (the caller already showed one, e.g. Arrow).
 local function strike(ctx: Context, shape: Common.Shape, telegraph: number, damageFn: ((Model) -> number?)?, cast: any?): { Model }
@@ -72,7 +87,16 @@ local function strike(ctx: Context, shape: Common.Shape, telegraph: number, dama
 		Element = b.Vfx,
 		Skill = if ctx.Skill then ctx.Skill.Name else nil,
 	})
-	local hits = Common.Targets(ctx.Player, shape, "HostileToRunners", b.MaxTargets)
+	-- Heavy area strikes leave a crater in the valley floor (GAME_PLAN.md Section 4).
+	-- Meteors draw their own crater (SkillFx), so they're skipped here.
+	if shape.Kind == "Circle" and b.DestroyCover and (shape.Radius or 0) >= 10 and (b.Dmg or 0) >= 35 and b.Vfx ~= "Meteor" then
+		Common.Fx({ Kind = "Crater", CFrame = shape.CFrame, Radius = shape.Radius })
+	end
+	-- Heavy strikes smash the cover first, so whoever hid under it is exposed to the same hit.
+	if b.DestroyCover then
+		Common.DamageCover(shape, coverDamage(b))
+	end
+	local hits = shelteredFilter(b, Common.Targets(ctx.Player, shape, "HostileToRunners", b.MaxTargets))
 	local center = shape.CFrame.Position
 	for _, victim in hits do
 		local damage = if damageFn then damageFn(victim) else nil
@@ -81,9 +105,6 @@ local function strike(ctx: Context, shape: Common.Shape, telegraph: number, dama
 		if landed then
 			Common.OnHitExtras(ctx.Player, victim, b, cast)
 		end
-	end
-	if b.DestroyCover then
-		Common.DamageCover(shape, coverDamage(b))
 	end
 	Common.NearMiss(shape, hits)
 	return hits
@@ -107,7 +128,7 @@ local function linger(ctx: Context, shape: Common.Shape, cast: any)
 	local center = shape.CFrame.Position
 	local elapsed = 0
 	while elapsed < l.Duration do
-		for _, victim in Common.Targets(ctx.Player, shape, "HostileToRunners") do
+		for _, victim in shelteredFilter(b, Common.Targets(ctx.Player, shape, "HostileToRunners")) do
 			local args = Common.AfflictArgs(b, cast, center, nil, if (l.Dmg or 0) > 0 then l.Dmg else nil)
 			args.Knockback = nil
 			args.Ragdoll = nil

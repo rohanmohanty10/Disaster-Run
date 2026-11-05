@@ -35,6 +35,7 @@ local skillButtons: { { Frame: Frame, Cooldown: Frame, Index: number, CostLabel:
 local skillKey = ""
 local spectateIndex = 1
 local spectating: Player? = nil
+local updateProgressDots: () -> ()
 
 local STATE_TEXT = {
 	Waiting = "Waiting for players",
@@ -103,14 +104,37 @@ local function buildRunnerHud()
 	ui.StaminaFill = staminaFill
 	ui.HealthText = Make.Label({ Size = UDim2.new(1, 0, 1, 0), Text = "", TextColor3 = Theme.Text, Parent = health })
 	local _ = stamina
+	-- Shown while iframes are active (GAME_PLAN.md 5C: "active iframes").
+	ui.IFrames = Make.Label({ AnchorPoint = Vector2.new(0.5, 1), Position = UDim2.new(0.5, 0, 1, -72), Size = UDim2.fromOffset(160, 20), Text = "✦ IFRAMES ✦", TextColor3 = Theme.Cyan, Visible = false, Parent = holder })
 	ui.RunnerSkills = Make.new("Frame", {
 		Name = "Skills",
 		BackgroundTransparency = 1,
 		AnchorPoint = Vector2.new(1, 1),
 		Position = UDim2.new(1, -16, 1, -20),
-		Size = UDim2.fromOffset(260, 80),
+		Size = UDim2.fromOffset(380, 80),
 		Parent = holder,
-	}, { Make.new("UIListLayout", { FillDirection = Enum.FillDirection.Horizontal, HorizontalAlignment = Enum.HorizontalAlignment.Right, Padding = UDim.new(0, 8) }) })
+	}, { Make.new("UIListLayout", { FillDirection = Enum.FillDirection.Horizontal, HorizontalAlignment = Enum.HorizontalAlignment.Right, SortOrder = Enum.SortOrder.LayoutOrder, Padding = UDim.new(0, 8) }) })
+
+	-- The shoulder-shove slot (F): every Runner has it, so it isn't part of the kit's buttons.
+	local shove = Make.Panel({ Name = "Shove", Size = UDim2.fromOffset(84, 84), LayoutOrder = 100, Parent = ui.RunnerSkills }, Theme.Purple)
+	Make.Label({ Size = UDim2.new(1, -8, 0, 20), Position = UDim2.fromOffset(4, 2), Text = "F", TextColor3 = Theme.Gold, Parent = shove })
+	Make.Label({ Size = UDim2.new(1, -8, 0, 34), Position = UDim2.fromOffset(4, 24), Text = "Shove", Parent = shove })
+	Make.Label({ Size = UDim2.new(1, -8, 0, 16), Position = UDim2.new(0, 4, 1, -20), Text = tostring(MovementConfig.Shove.StaminaCost), TextColor3 = Theme.SubText, Parent = shove })
+	ui.ShoveCooldown = Make.new("Frame", {
+		BackgroundColor3 = Color3.new(0, 0, 0),
+		BackgroundTransparency = 0.45,
+		BorderSizePixel = 0,
+		AnchorPoint = Vector2.new(0, 1),
+		Position = UDim2.fromScale(0, 1),
+		Size = UDim2.fromScale(1, 0),
+		ZIndex = 5,
+		Parent = shove,
+	}, { Make.new("UICorner", { CornerRadius = UDim.new(0, 10) }) })
+	local shoveButton = Make.new("TextButton", { BackgroundTransparency = 1, Size = UDim2.fromScale(1, 1), Text = "", ZIndex = 6, Parent = shove })
+	shoveButton.Activated:Connect(AbilityController.Shove)
+
+	-- Runner markers on the course progress bar (GAME_PLAN.md 5C: silhouettes racing to the flag).
+	ui.ProgressDots = {} :: { [Player]: Frame }
 
 	if UserInputService.TouchEnabled then
 		local sprint = Make.new("TextButton", { Text = "SPRINT", AnchorPoint = Vector2.new(1, 1), Position = UDim2.new(1, -16, 1, -110), Size = UDim2.fromOffset(80, 50), BackgroundColor3 = Theme.Slate, TextColor3 = Theme.Text, FontFace = Theme.Font, TextScaled = true, Parent = holder }, { Make.new("UICorner", {}) })
@@ -120,6 +144,8 @@ local function buildRunnerHud()
 		sprint.MouseButton1Up:Connect(function()
 			MovementController.SetSprint(false)
 		end)
+		local shoveTouch = Make.new("TextButton", { Text = "SHOVE", AnchorPoint = Vector2.new(1, 1), Position = UDim2.new(1, -192, 1, -110), Size = UDim2.fromOffset(80, 50), BackgroundColor3 = Theme.Slate, TextColor3 = Theme.Text, FontFace = Theme.Font, TextScaled = true, Parent = holder }, { Make.new("UICorner", {}) })
+		shoveTouch.Activated:Connect(AbilityController.Shove)
 		local slideButton = Make.new("TextButton", { Text = "SLIDE", AnchorPoint = Vector2.new(1, 1), Position = UDim2.new(1, -104, 1, -110), Size = UDim2.fromOffset(80, 50), BackgroundColor3 = Theme.Slate, TextColor3 = Theme.Text, FontFace = Theme.Font, TextScaled = true, Parent = holder }, { Make.new("UICorner", {}) })
 		slideButton.Activated:Connect(MovementController.Slide)
 	end
@@ -376,7 +402,9 @@ local function updateTracker()
 		end
 	end
 	for _, player in Players:GetPlayers() do
-		if player:GetAttribute("Role") == "Runner" then
+		-- Fog of War: Runners hidden in fog are left off the God's tracker (GAME_PLAN.md 4B).
+		local hidden = player.Character ~= nil and player.Character:GetAttribute("Concealed") == true
+		if player:GetAttribute("Role") == "Runner" and not hidden then
 			local eliminated = player:GetAttribute("Eliminated") == true
 			local finished = player:GetAttribute("Finished") == true
 			local character = player.Character
@@ -389,6 +417,40 @@ local function updateTracker()
 			local _ = bar
 			local progress = (player:GetAttribute("Progress") :: number?) or 0
 			Make.Label({ Position = UDim2.new(0.86, 0, 0, 0), Size = UDim2.new(0.14, 0, 1, 0), Text = `{math.floor(progress * 100)}%`, TextColor3 = Theme.SubText, Parent = entry })
+		end
+	end
+end
+
+-- One dot per Runner on the progress bar; yours is bigger and gold.
+updateProgressDots = function()
+	local dots: { [Player]: Frame } = ui.ProgressDots
+	local seen: { [Player]: boolean } = {}
+	if ui.ProgressBar.Visible then
+		for _, player in Players:GetPlayers() do
+			if player:GetAttribute("Role") == "Runner" and not player:GetAttribute("Eliminated") then
+				seen[player] = true
+				local dot = dots[player]
+				if not dot then
+					local mine = player == LocalPlayer
+					dot = Make.new("Frame", {
+						AnchorPoint = Vector2.new(0.5, 0.5),
+						Size = UDim2.fromOffset(if mine then 16 else 11, if mine then 16 else 11),
+						BackgroundColor3 = if mine then Theme.Gold else Theme.Text,
+						BorderSizePixel = 0,
+						ZIndex = 3,
+						Parent = ui.ProgressBar,
+					}, { Make.new("UICorner", { CornerRadius = UDim.new(1, 0) }), Make.new("UIStroke", { Thickness = 1.5, Color = Theme.Slate }) })
+					dots[player] = dot
+				end
+				local progress = math.clamp((player:GetAttribute("Progress") :: number?) or 0, 0, 1)
+				dot.Position = UDim2.fromScale(progress, 0.5)
+			end
+		end
+	end
+	for player, dot in dots do
+		if not seen[player] then
+			dot:Destroy()
+			dots[player] = nil
 		end
 	end
 end
@@ -408,6 +470,7 @@ local function update(dt: number)
 	ui.RunnerHUD.Visible = not isGod
 	ui.ProgressBar.Visible = matchActive() and r == "Runner"
 	ui.ProgressFill.Size = UDim2.fromScale(math.clamp((LocalPlayer:GetAttribute("Progress") :: number?) or 0, 0, 1), 1)
+	updateProgressDots()
 
 	-- The lobby HUD (vault buttons) only shows outside matches.
 	local hud = PlayerGui:FindFirstChild("HUD") :: ScreenGui?
@@ -435,6 +498,9 @@ local function update(dt: number)
 	if not isGod then
 		local character = LocalPlayer.Character
 		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+		ui.IFrames.Visible = character ~= nil and character:GetAttribute("Invulnerable") == true
+		local shoveLeft = AbilityController.ShoveCooldownLeft()
+		ui.ShoveCooldown.Size = UDim2.fromScale(1, math.clamp(shoveLeft / MovementConfig.Shove.Cooldown, 0, 1))
 		if humanoid then
 			ui.HealthFill.Size = UDim2.fromScale(math.clamp(humanoid.Health / math.max(humanoid.MaxHealth, 1), 0, 1), 1)
 			ui.HealthText.Text = `{math.ceil(humanoid.Health)}`
