@@ -372,7 +372,7 @@ function MenuController.Start()
 	local hud = UIController.GetHUD()
 	local timer = 0
 	RunService.Heartbeat:Connect(function(dt)
-		local show = hud.Enabled and ReplicatedStorage:GetAttribute("MatchActive") ~= true
+		local show = hud.Enabled and LocalPlayer:GetAttribute("InRound") ~= true
 		if gui.Enabled ~= show then
 			gui.Enabled = show
 			if not show then

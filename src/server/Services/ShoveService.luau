@@ -84,7 +84,8 @@ end
 -- Handles the "Shove" ability action. data.Direction is the client's camera look (validated).
 function ShoveService.TryShove(player: Player, character: Model, data: { [string]: any })
 	-- Gods can't shove; neither can Runners already safe in the Sanctuary (they're invulnerable).
-	if player:GetAttribute("Role") == "God" or player:GetAttribute("Finished") or not Characters.IsAlive(character) then
+	-- Eliminated Runners (who may have auto-respawned in the lobby) can't shove either.
+	if player:GetAttribute("Role") == "God" or player:GetAttribute("Finished") or player:GetAttribute("Eliminated") or not Characters.IsAlive(character) then
 		return
 	end
 	if not StatusEffectService.CanCast(character) or not StatusEffectService.CanMove(character) then

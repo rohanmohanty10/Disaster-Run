@@ -136,6 +136,10 @@ local function canUse(player: Player, character: Model, index: number): (boolean
 	if role == "Runner" and player:GetAttribute("Finished") then
 		return false, kit, skill, "You're safe in the Sanctuary!"
 	end
+	-- Eliminated Runners wait to become Gods; an auto-respawned body can't cast meanwhile.
+	if role == "Runner" and player:GetAttribute("Eliminated") then
+		return false, kit, skill, nil
+	end
 	local ready = player:GetAttribute(`Cooldown{index}`)
 	if type(ready) == "number" and ready > now() then
 		return false, kit, skill, nil

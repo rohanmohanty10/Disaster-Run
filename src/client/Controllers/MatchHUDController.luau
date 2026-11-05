@@ -473,9 +473,10 @@ local function update(dt: number)
 	ui.ProgressFill.Size = UDim2.fromScale(math.clamp((LocalPlayer:GetAttribute("Progress") :: number?) or 0, 0, 1), 1)
 	updateProgressDots()
 
-	-- The lobby HUD (vault buttons) only shows outside matches.
+	-- The lobby HUD (vault buttons) is hidden for players taking part in the match. Players who
+	-- joined mid-match (not InRound) keep it, so they can use the vaults while they wait.
 	local hud = PlayerGui:FindFirstChild("HUD") :: ScreenGui?
-	if hud and matchActive() and hud.Enabled then
+	if hud and matchActive() and LocalPlayer:GetAttribute("InRound") == true and hud.Enabled then
 		UIController.CloseAll()
 		hud.Enabled = false
 	end
@@ -534,6 +535,11 @@ end
 function MatchHUDController.Start()
 	ReplicatedStorage:GetAttributeChangedSignal("MatchActive"):Connect(function()
 		if not matchActive() then
+			UIController.SetHUDVisible(true)
+		end
+	end)
+	LocalPlayer:GetAttributeChangedSignal("InRound"):Connect(function()
+		if LocalPlayer:GetAttribute("InRound") ~= true then
 			UIController.SetHUDVisible(true)
 		end
 	end)
