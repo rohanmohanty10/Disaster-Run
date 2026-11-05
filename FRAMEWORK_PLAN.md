@@ -17,7 +17,7 @@ src/
 │   └── init.client.luau
 ├── server/
 │   ├── Services/
-│   │   ├── DataService.luau          -- ProfileStore persistence (Gold, Spins, Pity counters, Loadouts, lifetime stats)
+│   │   ├── DataService.luau          -- ProfileStore persistence (Cash, Spins, Slots, Vault, Pity counters, lifetime stats)
 │   │   ├── RoundService.luau         -- Multi-round match lifecycle (rounds loop until 1 survivor; dead Runners become Gods)
 │   │   ├── StatusEffectService.luau  -- Authoritative CC manager (Stun, Silence, Root, IFrame, Ragdoll)
 │   │   ├── HitboxService.luau        -- Spatial queries with target filtering (God vs Runner, Runner PvP)
@@ -29,7 +29,7 @@ src/
     │   ├── StatusEffectType.luau     -- Stunned, Silenced, Rooted, Slowed, Invulnerable, Ragdoll, InfiniteVoid
     │   └── TargetFilterMode.luau     -- HostileToRunners, SelfOnly, RunnersPvP, All
     ├── Config/
-    │   ├── RoundConfig.luau          -- Timers, player counts, gold rewards
+    │   ├── RoundConfig.luau          -- Timers, player counts, cash rewards
     │   └── MovementConfig.luau       -- Walk speed, sprint speed, stamina max/drain/regen rates
     └── Network/
         └── RemoteNames.luau          -- Centralized remote definitions
@@ -80,7 +80,7 @@ end
 ---
 
 ## 3. Match Lifecycle (`RoundService`)
-A **match** is a loop of **rounds** (see `GAME_PLAN.md` Section 1). Each round runs states 2–7 below. At `RoundEnd`, Runners who died this round are moved to the God team for the rest of the match. The loop repeats while 2+ Runners remain and ends with `MatchEnd` (MVP leaderboard, see `GAME_PLAN.md` Section 6) when 1 or 0 Runners are left. A `StatsService` tracks per-player match stats (rounds survived, time survived, kills, assists, damage, dodges) that feed gold payouts and the leaderboard.
+A **match** is a loop of **rounds** (see `GAME_PLAN.md` Section 1). Each round runs states 2–7 below. At `RoundEnd`, Runners who died this round are moved to the God team for the rest of the match. The loop repeats while 2+ Runners remain and ends with `MatchEnd` (MVP leaderboard, see `GAME_PLAN.md` Section 6) when 1 or 0 Runners are left. A `StatsService` tracks per-player match stats (rounds survived, time survived, kills, assists, damage, dodges) that feed cash payouts and the leaderboard.
 
 Round state sequence:
 1. `Intermission` (Lobby countdown, players can access Gacha and Inventory).
@@ -89,7 +89,7 @@ Round state sequence:
 4. `Preparation` (Runners teleport to Start Bunker behind forcefield; God camera activates; 3s countdown).
 5. `ActiveRun` (Forcefield drops; 90–120s timer; God calamity energy regenerates; Runners sprint toward Sanctuary Gateway).
 6. `RoundEnd` (Triggers if all Runners are eliminated, time expires, or a Runner enters the Sanctuary Gateway trigger).
-7. `Cleanup` (Debris and map cleared; round gold paid out; newly eliminated Runners join the Gods; loop back to `MapGeneration`, or go to `MatchEnd` → Lobby).
+7. `Cleanup` (Debris and map cleared; round cash paid out; newly eliminated Runners join the Gods; loop back to `MapGeneration`, or go to `MatchEnd` → Lobby).
 
 ---
 
@@ -112,13 +112,21 @@ Round state sequence:
 ---
 
 ## 6. Player Data Persistence (`DataService`)
-Uses `ProfileStore`:
-- Balances: `Gold`, `Gems`, `SpinTokens`.
-- Lifetime Stats: `MatchesPlayed`, `MatchWins`, `RoundsSurvived`, `Kills`, `DamageDealt`, `MVPs`.
-- Pity Counters: `GodPityEpic`, `GodPityLegendary`, `GodPityMythical`, `RunnerPityEpic`, `RunnerPityLegendary`, `RunnerPityMythical`.
-- Inventories: Array of unlocked ability kit IDs.
-- Equipped: `EquippedGodKit`, `EquippedRunnerKit`.
-
+Built on `ProfileStore` (session-locked, anti-dupe, atomic):
+- **Currencies:** `Cash`, `Gems`, `GodSpins`, `GodLuckySpins`, `RunnerSpins`, `RunnerLuckySpins`.
+- **Slot Management (4 base, expandable to 8):**
+  - `GodSlots` (1..8) & `RunnerSlots` (1..8).
+  - `LockedGodSlots` & `LockedRunnerSlots` (Boolean locks preventing spin overwrites).
+  - `SelectedGodSlot` & `SelectedRunnerSlot`.
+- **The Permanent Vault:**
+  - `PermanentVault.GodKits` & `PermanentVault.RunnerKits` (Permanently holds Mythical and Secret pulls; never overwritten).
+- **Dual Independent Pity:**
+  - `Pity.GodNormal` (50 cap), `Pity.GodLucky` (75 Mythic / 250 Secret).
+  - `Pity.RunnerNormal` (50 cap), `Pity.RunnerLucky` (75 Mythic / 250 Secret).
+- **Duplicate & Fallback Logic:**
+  - Duplicates of Vault items refund +10 Lucky Spins or in-game Cash, plus award `DivineShards`.
+  - When tokens reach 0, spins dynamically fallback to `$2,000 Cash` per roll.
+- **Lifetime Stats:** `MatchesPlayed`, `MatchWins`, `RoundsSurvived`, `Kills`, `DamageDealt`, `MVPs`.
 
 ---
 
@@ -128,7 +136,7 @@ The newly added reference archive `references/BattleGame/` contains full, battle
 | System | BattleGame Reference File | Description |
 | :--- | :--- | :--- |
 | **Hitboxes & Targeting** | `references/BattleGame/ServerStorage/SBGModules/HitboxHandler.luau` | Spatial query hitboxes (`GetPartBoundsInBox`), target filtering, visual replication |
-| **Map & Cover Destruction** | `references/BattleGame/ServerStorage/SBGModules/DebreeService.luau` | 2,268-line JJS-style part/voxel destruction engine (Splitting, physics bodies, wall & floor debris) |
+| **Map & Cover Destruction** | `references/BattleGame/ServerStorage/SBGModules/DebreeService.luau` | 2,268-line procedural part/voxel destruction engine (Splitting, physics bodies, wall & floor debris) |
 | **Model Destruction** | `references/BattleGame/ServerStorage/SBGModules/SpecialDestruction.luau` | 1,892-line whole-structure and environment collapse system |
 | **Crowd Control & Stuns** | `references/BattleGame/ServerStorage/SBGModules/StunHandler.luau` | Tag-based state locks (`CantPunch`, `CantDash`, `Stunned`), speed dampening |
 | **Invulnerability (IFrames)** | `references/BattleGame/ServerStorage/SBGModules/iFramesService.luau` | Authoritative `iFrames` attribute checks and duration buffers |
