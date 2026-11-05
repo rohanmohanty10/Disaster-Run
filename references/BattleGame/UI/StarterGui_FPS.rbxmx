@@ -1,0 +1,505 @@
+<roblox version="4">
+  <Item class="ScreenGui" referent="0">
+    <Properties>
+      <string name="Name">FPS</string>
+      <BinaryString name="AttributesSerialize"></BinaryString>
+      <bool name="AutoLocalize">true</bool>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+      <bool name="ClipToDeviceSafeArea">true</bool>
+      <int name="DisplayOrder">0</int>
+      <bool name="Enabled">true</bool>
+      <token name="InputSinkEnabled">0</token>
+      <bool name="ResetOnSpawn">false</bool>
+      <Ref name="RootLocalizationTable">null</Ref>
+      <token name="SafeAreaCompatibility">1</token>
+      <bool name="DefinesCapabilities">false</bool>
+      <token name="ScreenInsets">2</token>
+      <token name="SelectionBehaviorDown">0</token>
+      <token name="SelectionBehaviorLeft">0</token>
+      <token name="SelectionBehaviorRight">0</token>
+      <token name="SelectionBehaviorUp">0</token>
+      <bool name="SelectionGroup">false</bool>
+      <BinaryString name="SerializedOverrides">
+      </BinaryString>
+      <int64 name="SourceAssetId">-1</int64>
+      <BinaryString name="Tags"></BinaryString>
+      <token name="ZIndexBehavior">1</token>
+    </Properties>
+    <Item class="LocalScript" referent="1">
+      <Properties>
+        <string name="Name">Handler</string>
+        <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+        <bool name="Disabled">false</bool>
+        <ContentId name="LinkedSource">
+          <null>
+          </null>
+        </ContentId>
+        <token name="RunContext">0</token>
+        <bool name="DefinesCapabilities">false</bool>
+        <BinaryString name="SerializedOverrides">
+        </BinaryString>
+        <string name="Source"><![CDATA[local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- PLAYER --
+
+local player = Players.LocalPlayer
+repeat task.wait() until game:IsLoaded() and player:GetAttribute("Loaded") == true --and Player:FindFirstChild('LoadedData') and Player:HasTag("DataLoaded")
+local Character = player.Character or player.CharacterAdded:Wait()
+
+local ConfigFolder = player:WaitForChild("Configuration")
+local hideFPS = ConfigFolder:WaitForChild("Hide FPS")
+
+local fpsLabel = script.Parent:WaitForChild("FPStext")
+local gradient = fpsLabel:FindFirstChildWhichIsA("UIGradient")
+
+-- The Gold display: the amount, then the coin, small in the bottom-right corner (like JJS and
+-- Fisch). On phones the bottom right is the Punch / Dash / Block buttons, so there it sits in the
+-- top-right corner instead. The old "GOLD: 1110" text (Goldtext) stays hidden.
+local UserInputService = game:GetService("UserInputService")
+local UI = require(ReplicatedStorage.Modules:WaitForChild("ExpeditionUI"))
+local COIN = "rbxassetid://80297771892932" -- TEMP (Anime Origins' coin)
+
+local onPhone = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
+
+local oldGold = script.Parent:WaitForChild("Goldtext")
+oldGold.Visible = false
+local goldChip = UI.New("Frame", {
+	Name = "GoldChip",
+	Size = UDim2.fromScale(0.3, 0.05), -- 5% of the screen tall; the aspect ratio sets the width
+	AnchorPoint = if onPhone then Vector2.new(1, 0) else Vector2.new(1, 1),
+	Position = if onPhone then UDim2.new(1, -16, 0, 8) else UDim2.new(1, -18, 1, -14),
+	BackgroundTransparency = 1,
+	Parent = script.Parent,
+}, { UI.New("UIAspectRatioConstraint", { AspectRatio = 3.4 }) })
+UI.Image({ Image = COIN, ScaleType = Enum.ScaleType.Fit, Size = UDim2.fromScale(0.3, 1.1), Position = UDim2.new(1, 2, 0.5, 0), AnchorPoint = Vector2.new(1, 0.5), ZIndex = 2, Parent = goldChip })
+local goldTextLabel = UI.Text({
+	Text = "0",
+	TextScaled = true,
+	Weight = "ExtraBold",
+	Gradient = UI.Gradients.Gold,
+	Size = UDim2.new(0.7, -4, 0.78, 0),
+	Position = UDim2.new(0, 0, 0.5, 0),
+	AnchorPoint = Vector2.new(0, 0.5),
+	ZIndex = 2,
+	Parent = goldChip,
+})
+goldTextLabel.TextXAlignment = Enum.TextXAlignment.Right -- the number grows leftward, away from the coin
+
+-- the "Hide Gold" setting
+local hideGold = ConfigFolder:FindFirstChild("Hide Gold")
+if hideGold then
+	goldChip.Visible = not hideGold.Value
+	hideGold.Changed:Connect(function()
+		goldChip.Visible = not hideGold.Value
+	end)
+end
+
+local TARGET_FPS = 60
+local frameTimes = {}
+local conn = nil
+
+local function stepFPS()
+	local now = os.clock()
+	table.insert(frameTimes, now)
+	while frameTimes[1] and now - frameTimes[1] > 1 do
+		table.remove(frameTimes, 1)
+	end
+
+	local fps = #frameTimes
+	fpsLabel.Text = fps
+	if gradient then
+		local t = math.clamp(fps / TARGET_FPS, 0, 1)
+		gradient.Color = ColorSequence.new(
+			Color3.fromRGB(255, 255, 255),
+			Color3.fromRGB(255, 0, 0):Lerp(Color3.fromRGB(0, 255, 0), t)
+		)
+	end
+end
+
+local function apply()
+	local hidden = hideFPS.Value
+
+	fpsLabel.Visible = not hidden
+
+	if hidden then
+		if conn then
+			conn:Disconnect()
+			conn = nil
+		end
+	elseif not conn then
+		table.clear(frameTimes)   -- stale samples would read as a bogus spike
+		conn = RunService.RenderStepped:Connect(stepFPS)
+	end
+end
+
+hideFPS:GetPropertyChangedSignal("Value"):Connect(apply)
+apply()   -- initial state on join
+
+local GOLD_TWEEN_TIME = 1   -- seconds for the number to travel to its new value
+
+local displayedGold   = player:GetAttribute("Gold") or 0
+local targetGold      = displayedGold
+local startGold       = displayedGold
+local startTime       = 0
+local goldConn        = nil
+local goldInitialized = false
+
+local function renderGold(n)
+	goldTextLabel.Text = UI.Comma(math.floor(n))
+end
+
+local function stepGold()
+	local alpha = math.clamp((os.clock() - startTime) / GOLD_TWEEN_TIME, 0, 1)
+	local eased = 1 - (1 - alpha) ^ 3          -- ease-out cubic
+	displayedGold = startGold + (targetGold - startGold) * eased
+	renderGold(displayedGold)
+
+	if alpha >= 1 then
+		displayedGold = targetGold
+		renderGold(displayedGold)              -- snap to the exact value
+		if goldConn then goldConn:Disconnect(); goldConn = nil end
+	end
+end
+
+local function updateGold()
+	local newValue = player:GetAttribute("Gold") or 0
+
+	-- First value on join: show it immediately, don't count up from 0 every spawn.
+	if not goldInitialized then
+		goldInitialized = true
+		displayedGold, targetGold = newValue, newValue
+		renderGold(newValue)
+		return
+	end
+
+	if newValue == targetGold then return end
+
+	-- Re-anchor from wherever the number currently sits, so rapid changes
+	-- (spend then refund) chain smoothly instead of snapping.
+	startGold  = displayedGold
+	targetGold = newValue
+	startTime  = os.clock()
+
+	if not goldConn then
+		goldConn = RunService.Heartbeat:Connect(stepGold)
+	end
+end
+
+player:GetAttributeChangedSignal("Gold"):Connect(updateGold)
+updateGold()
+]]></string>
+        <int64 name="SourceAssetId">-1</int64>
+        <BinaryString name="Tags"></BinaryString>
+      </Properties>
+    </Item>
+    <Item class="TextLabel" referent="2">
+      <Properties>
+        <string name="Name">FPStext</string>
+        <bool name="Active">false</bool>
+        <Vector2 name="AnchorPoint">
+          <X>0</X>
+          <Y>0</Y>
+        </Vector2>
+        <BinaryString name="AttributesSerialize"></BinaryString>
+        <bool name="AutoLocalize">true</bool>
+        <token name="AutomaticSize">0</token>
+        <Color3 name="BackgroundColor3">
+          <R>1</R>
+          <G>1</G>
+          <B>1</B>
+        </Color3>
+        <float name="BackgroundTransparency">1</float>
+        <Color3 name="BorderColor3">
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </Color3>
+        <token name="BorderMode">0</token>
+        <int name="BorderSizePixel">0</int>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+        <bool name="ClipsDescendants">false</bool>
+        <bool name="Draggable">false</bool>
+        <Font name="FontFace">
+          <Family>
+            <url>rbxasset://fonts/families/SourceSansPro.json</url>
+          </Family>
+          <Weight>400</Weight>
+          <Style>Normal</Style>
+          <CachedFaceId>
+            <url>rbxasset://fonts/SourceSansPro-Regular.ttf</url>
+          </CachedFaceId>
+        </Font>
+        <bool name="Interactable">true</bool>
+        <int name="LayoutOrder">0</int>
+        <float name="LineHeight">1</float>
+        <string name="LocalizationMatchIdentifier"></string>
+        <string name="LocalizationMatchedSourceText"></string>
+        <int name="MaxVisibleGraphemes">-1</int>
+        <Ref name="NextSelectionDown">null</Ref>
+        <Ref name="NextSelectionLeft">null</Ref>
+        <Ref name="NextSelectionRight">null</Ref>
+        <Ref name="NextSelectionUp">null</Ref>
+        <string name="OpenTypeFeatures"></string>
+        <UDim2 name="Position">
+          <XS>0.018151952</XS>
+          <XO>0</XO>
+          <YS>0.91872984</YS>
+          <YO>0</YO>
+        </UDim2>
+        <bool name="RichText">false</bool>
+        <Ref name="RootLocalizationTable">null</Ref>
+        <float name="Rotation">0</float>
+        <bool name="DefinesCapabilities">false</bool>
+        <bool name="Selectable">false</bool>
+        <token name="SelectionBehaviorDown">0</token>
+        <token name="SelectionBehaviorLeft">0</token>
+        <token name="SelectionBehaviorRight">0</token>
+        <token name="SelectionBehaviorUp">0</token>
+        <bool name="SelectionGroup">false</bool>
+        <Ref name="SelectionImageObject">null</Ref>
+        <int name="SelectionOrder">0</int>
+        <BinaryString name="SerializedOverrides">
+        </BinaryString>
+        <token name="Sink">0</token>
+        <UDim2 name="Size">
+          <XS>0</XS>
+          <XO>50</XO>
+          <YS>0</YS>
+          <YO>50</YO>
+        </UDim2>
+        <token name="SizeConstraint">0</token>
+        <int64 name="SourceAssetId">-1</int64>
+        <BinaryString name="Tags"></BinaryString>
+        <string name="Text">FPS</string>
+        <Color3 name="TextColor3">
+          <R>1</R>
+          <G>1</G>
+          <B>1</B>
+        </Color3>
+        <token name="TextDirection">0</token>
+        <bool name="TextScaled">false</bool>
+        <float name="TextSize">14</float>
+        <Color3 name="TextStrokeColor3">
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </Color3>
+        <float name="TextStrokeTransparency">1</float>
+        <float name="TextTransparency">0</float>
+        <token name="TextTruncate">0</token>
+        <bool name="TextWrapped">false</bool>
+        <token name="TextXAlignment">2</token>
+        <token name="TextYAlignment">1</token>
+        <bool name="Visible">true</bool>
+        <int name="ZIndex">1</int>
+      </Properties>
+      <Item class="UIGradient" referent="3">
+        <Properties>
+          <string name="Name">UIGradient</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <ColorSequence name="Color">0 1 1 1 0 1 1 1 1 0 </ColorSequence>
+          <bool name="Enabled">true</bool>
+          <Vector2 name="Offset">
+            <X>0</X>
+            <Y>0</Y>
+          </Vector2>
+          <float name="Rotation">0</float>
+          <bool name="DefinesCapabilities">false</bool>
+          <float name="Scale">1</float>
+          <BinaryString name="SerializedOverrides">
+          </BinaryString>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <token name="TileMode">0</token>
+          <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+          <token name="Type">0</token>
+        </Properties>
+      </Item>
+      <Item class="UIAspectRatioConstraint" referent="4">
+        <Properties>
+          <string name="Name">UIAspectRatioConstraint</string>
+          <float name="AspectRatio">1.6</float>
+          <token name="AspectType">0</token>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <token name="DominantAxis">0</token>
+          <bool name="DefinesCapabilities">false</bool>
+          <BinaryString name="SerializedOverrides">
+          </BinaryString>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+        </Properties>
+      </Item>
+    </Item>
+    <Item class="TextLabel" referent="5">
+      <Properties>
+        <string name="Name">Goldtext</string>
+        <bool name="Active">false</bool>
+        <Vector2 name="AnchorPoint">
+          <X>0</X>
+          <Y>0</Y>
+        </Vector2>
+        <BinaryString name="AttributesSerialize"></BinaryString>
+        <bool name="AutoLocalize">true</bool>
+        <token name="AutomaticSize">0</token>
+        <Color3 name="BackgroundColor3">
+          <R>1</R>
+          <G>0.88226527</G>
+          <B>0.6500809</B>
+        </Color3>
+        <float name="BackgroundTransparency">1</float>
+        <Color3 name="BorderColor3">
+          <R>0.06422018</R>
+          <G>0.06422018</G>
+          <B>0.06422018</B>
+        </Color3>
+        <token name="BorderMode">0</token>
+        <int name="BorderSizePixel">0</int>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+        <bool name="ClipsDescendants">false</bool>
+        <bool name="Draggable">false</bool>
+        <Font name="FontFace">
+          <Family>
+            <url>rbxassetid://12187374765</url>
+          </Family>
+          <Weight>400</Weight>
+          <Style>Normal</Style>
+        </Font>
+        <bool name="Interactable">true</bool>
+        <int name="LayoutOrder">1</int>
+        <float name="LineHeight">1</float>
+        <string name="LocalizationMatchIdentifier"></string>
+        <string name="LocalizationMatchedSourceText"></string>
+        <int name="MaxVisibleGraphemes">-1</int>
+        <Ref name="NextSelectionDown">null</Ref>
+        <Ref name="NextSelectionLeft">null</Ref>
+        <Ref name="NextSelectionRight">null</Ref>
+        <Ref name="NextSelectionUp">null</Ref>
+        <string name="OpenTypeFeatures"></string>
+        <UDim2 name="Position">
+          <XS>0.017719569</XS>
+          <XO>0</XO>
+          <YS>0.7099447</YS>
+          <YO>0</YO>
+        </UDim2>
+        <bool name="RichText">true</bool>
+        <Ref name="RootLocalizationTable">null</Ref>
+        <float name="Rotation">0</float>
+        <bool name="DefinesCapabilities">false</bool>
+        <bool name="Selectable">false</bool>
+        <token name="SelectionBehaviorDown">0</token>
+        <token name="SelectionBehaviorLeft">0</token>
+        <token name="SelectionBehaviorRight">0</token>
+        <token name="SelectionBehaviorUp">0</token>
+        <bool name="SelectionGroup">false</bool>
+        <Ref name="SelectionImageObject">null</Ref>
+        <int name="SelectionOrder">0</int>
+        <BinaryString name="SerializedOverrides">
+        </BinaryString>
+        <token name="Sink">0</token>
+        <UDim2 name="Size">
+          <XS>0.13469954</XS>
+          <XO>0</XO>
+          <YS>0.07513813</YS>
+          <YO>0</YO>
+        </UDim2>
+        <token name="SizeConstraint">0</token>
+        <int64 name="SourceAssetId">-1</int64>
+        <BinaryString name="Tags"></BinaryString>
+        <string name="Text">Gold</string>
+        <Color3 name="TextColor3">
+          <R>1</R>
+          <G>0.88226527</G>
+          <B>0.6500809</B>
+        </Color3>
+        <token name="TextDirection">0</token>
+        <bool name="TextScaled">true</bool>
+        <float name="TextSize">12</float>
+        <Color3 name="TextStrokeColor3">
+          <R>0.06422018</R>
+          <G>0.06422018</G>
+          <B>0.06422018</B>
+        </Color3>
+        <float name="TextStrokeTransparency">1</float>
+        <float name="TextTransparency">0</float>
+        <token name="TextTruncate">0</token>
+        <bool name="TextWrapped">true</bool>
+        <token name="TextXAlignment">0</token>
+        <token name="TextYAlignment">1</token>
+        <bool name="Visible">true</bool>
+        <int name="ZIndex">1</int>
+      </Properties>
+      <Item class="UIStroke" referent="6">
+        <Properties>
+          <string name="Name">UIStroke</string>
+          <token name="ApplyStrokeMode">0</token>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <UDim name="BorderOffset">
+            <S>0</S>
+            <O>0</O>
+          </UDim>
+          <token name="BorderStrokePosition">0</token>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <Color3 name="Color">
+            <R>0.15902142</R>
+            <G>0.15649176</G>
+            <B>0.1196308</B>
+          </Color3>
+          <bool name="Enabled">true</bool>
+          <token name="LineJoinMode">0</token>
+          <bool name="DefinesCapabilities">false</bool>
+          <BinaryString name="SerializedOverrides">
+          </BinaryString>
+          <int64 name="SourceAssetId">-1</int64>
+          <token name="StrokeSizingMode">0</token>
+          <BinaryString name="Tags"></BinaryString>
+          <float name="Thickness">1</float>
+          <float name="Transparency">0</float>
+          <int name="ZIndex">1</int>
+        </Properties>
+      </Item>
+      <Item class="UIAspectRatioConstraint" referent="7">
+        <Properties>
+          <string name="Name">UIAspectRatioConstraint</string>
+          <float name="AspectRatio">5</float>
+          <token name="AspectType">0</token>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <token name="DominantAxis">0</token>
+          <bool name="DefinesCapabilities">false</bool>
+          <BinaryString name="SerializedOverrides">
+          </BinaryString>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+        </Properties>
+      </Item>
+      <Item class="UIGradient" referent="8">
+        <Properties>
+          <string name="Name">UIGradient</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <ColorSequence name="Color">0 1 0.894118 0.843137 0 0.385813 0.980928 0.868047 0.796458 0 0.634948 0.819608 0.647534 0.401628 0 1 0.819608 0.482353 0.415686 0 </ColorSequence>
+          <bool name="Enabled">true</bool>
+          <Vector2 name="Offset">
+            <X>0</X>
+            <Y>0</Y>
+          </Vector2>
+          <float name="Rotation">90</float>
+          <bool name="DefinesCapabilities">false</bool>
+          <float name="Scale">1</float>
+          <BinaryString name="SerializedOverrides">
+          </BinaryString>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <token name="TileMode">0</token>
+          <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+          <token name="Type">0</token>
+        </Properties>
+      </Item>
+    </Item>
+  </Item>
+</roblox>

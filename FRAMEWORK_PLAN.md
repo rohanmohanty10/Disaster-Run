@@ -115,3 +115,21 @@ Uses `ProfileStore`:
 - Pity Counters: `GodPityEpic`, `GodPityLegendary`, `GodPityMythical`, `RunnerPityEpic`, `RunnerPityLegendary`, `RunnerPityMythical`.
 - Inventories: Array of unlocked ability kit IDs.
 - Equipped: `EquippedGodKit`, `EquippedRunnerKit`.
+
+
+---
+
+## 7. BattleGame Reference Modules (`references/BattleGame/`)
+The newly added reference archive `references/BattleGame/` contains full, battle-tested implementations of these systems ready to adapt into `src/`:
+
+| System | BattleGame Reference File | Description |
+| :--- | :--- | :--- |
+| **Hitboxes & Targeting** | `references/BattleGame/ServerStorage/SBGModules/HitboxHandler.luau` | Spatial query hitboxes (`GetPartBoundsInBox`), target filtering, visual replication |
+| **Map & Cover Destruction** | `references/BattleGame/ServerStorage/SBGModules/DebreeService.luau` | 2,268-line JJS-style part/voxel destruction engine (Splitting, physics bodies, wall & floor debris) |
+| **Model Destruction** | `references/BattleGame/ServerStorage/SBGModules/SpecialDestruction.luau` | 1,892-line whole-structure and environment collapse system |
+| **Crowd Control & Stuns** | `references/BattleGame/ServerStorage/SBGModules/StunHandler.luau` | Tag-based state locks (`CantPunch`, `CantDash`, `Stunned`), speed dampening |
+| **Invulnerability (IFrames)** | `references/BattleGame/ServerStorage/SBGModules/iFramesService.luau` | Authoritative `iFrames` attribute checks and duration buffers |
+| **Physics Ragdoll** | `references/BattleGame/ServerStorage/SBGModules/RagdollHandler.luau` | Motor6D socket release, impulse forces, and timed recovery |
+| **Ground & Rock VFX** | `references/BattleGame/ReplicatedStorage/Modules/ClientEffects/RockHandler.luau` | 1,257-line dynamic ground cratering, rock lifting, and terrain fracture |
+| **God Ground Reticle** | `references/BattleGame/ReplicatedStorage/Modules/ReticleController.luau` | Raycast ground targeting indicator for casting calamities |
+| **Camera Impact Shake** | `references/BattleGame/ReplicatedStorage/Modules/CameraShaker.luau` | Spring-based 6DOF camera shake presets for explosions and smites |
