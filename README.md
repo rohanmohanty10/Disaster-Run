@@ -17,6 +17,7 @@ This repository serves as the central design blueprint and technical reference a
 
 - `GAME_PLAN.md` — **Dedicated Master Game Plan & System Design Document** (Roles, Abilities, Rarity Curve, Gacha, Procedural Map & UI Wireframes).
 - `README.md` — Repository overview, systems summary, and reference index.
+- `ROADMAP.md` — **What's done, what's being worked on, and what's free to pick up.** Start here.
 - `ABILITIES.md` — **Every God and Runner kit** by rarity: descriptions, skills, cooldowns, costs and damage.
 - `FRAMEWORK_PLAN.md` — Code architecture, save-data layout and the client/server request list.
 - `src/` — The game code (Rojo project, see **Development Setup** below).
