@@ -10,6 +10,7 @@ local UserInputService = game:GetService("UserInputService")
 
 local AdminConfig = require(ReplicatedStorage.Shared.Config.AdminConfig)
 local Kits = require(ReplicatedStorage.Shared.Data.Kits)
+local RoundConfig = require(ReplicatedStorage.Shared.Config.RoundConfig)
 local Rarities = require(ReplicatedStorage.Shared.Data.Rarities)
 
 local Make = require(script.Parent.Make)
@@ -147,8 +148,11 @@ local function showTools()
 	button(content, "Test as Runner", Color3.fromRGB(30, 90, 60), function()
 		command("area runner")
 	end)
-	button(content, "Test as God", Color3.fromRGB(90, 40, 90), function()
+	button(content, "Test as God (test area)", Color3.fromRGB(90, 40, 90), function()
 		command("area god")
+	end)
+	button(content, "Test as God over the course", Color3.fromRGB(90, 40, 90), function()
+		command("area god course")
 	end)
 	if inside then
 		button(content, `No cooldowns: {if LocalPlayer:GetAttribute("TestNoCooldowns") then "ON" else "OFF"}`, nil, function()
@@ -184,6 +188,17 @@ local function showTools()
 		report(Net.Request("AdminGiveCash", 10000))
 	end)
 	header("MATCH")
+	if game:GetService("RunService"):IsStudio() then
+		local override = ReplicatedStorage:GetAttribute("AutoStartMatches")
+		local autoOn = if override ~= nil then override == true else RoundConfig.StudioAutoStart
+		button(content, `Auto-start matches in Studio: {if autoOn then "ON" else "OFF (press Start match)"}`, nil, function()
+			command("round auto")
+			task.wait(0.2)
+			if currentTab == "Tools" then
+				showTools()
+			end
+		end)
+	end
 	button(content, "Start match as Runner", Color3.fromRGB(30, 90, 60), function()
 		command("round runner")
 		command("round start")
@@ -323,7 +338,7 @@ function AdminController.Start()
 			showTools()
 		end
 	end
-	for _, name in { "InTestArea", "Role", "TestNoCooldowns" } do
+	for _, name in { "InTestArea", "Role", "TestNoCooldowns", "TestAreaSpot" } do
 		LocalPlayer:GetAttributeChangedSignal(name):Connect(refreshTools)
 	end
 	workspace:GetAttributeChangedSignal("TestDummiesMove"):Connect(refreshTools)

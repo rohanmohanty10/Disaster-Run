@@ -95,6 +95,19 @@ local function matchPlayers(): { Player }
 	return list
 end
 
+-- Live servers always run the intermission countdown. In Studio it's off unless
+-- RoundConfig.StudioAutoStart is true or someone turns it on (/test round auto).
+local function autoStart(): boolean
+	if not RunService:IsStudio() then
+		return true
+	end
+	local override = ReplicatedStorage:GetAttribute("AutoStartMatches")
+	if override ~= nil then
+		return override == true
+	end
+	return RoundConfig.StudioAutoStart
+end
+
 local function minPlayers(): number
 	return if RunService:IsStudio() then 1 else RoundConfig.MinPlayers
 end
@@ -707,10 +720,21 @@ local function loop()
 				task.wait(1)
 			until #matchPlayers() >= minPlayers()
 		end
-		setState(RoundState.Intermission, RoundConfig.IntermissionTime)
+		-- Studio: hold until a match is started by hand (or auto-start is switched back on).
+		local skipIntermission = false
+		if not autoStart() then
+			setState(RoundState.Waiting)
+			ReplicatedStorage:SetAttribute("WaitingForStart", true)
+			repeat
+				task.wait(0.25)
+			until forceStart or autoStart()
+			ReplicatedStorage:SetAttribute("WaitingForStart", nil)
+			skipIntermission = forceStart
+		end
+		setState(RoundState.Intermission, if skipIntermission then 0 else RoundConfig.IntermissionTime)
 		forceStart = false
 		local started = os.clock()
-		while os.clock() - started < RoundConfig.IntermissionTime and not forceStart do
+		while not skipIntermission and os.clock() - started < RoundConfig.IntermissionTime and not forceStart do
 			task.wait(0.25)
 			if #matchPlayers() < minPlayers() then
 				break

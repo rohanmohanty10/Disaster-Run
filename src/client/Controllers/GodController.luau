@@ -35,6 +35,16 @@ local function inTestArea(): boolean
 	return LocalPlayer:GetAttribute("InTestArea") == true
 end
 
+-- Where the God view starts: the course in a match (or when testing "over the course"),
+-- otherwise the dev test area.
+local function viewSpot(): string
+	if not inTestArea() or LocalPlayer:GetAttribute("TestAreaSpot") == "Course" then
+		return "Course"
+	end
+	return "TestArea"
+end
+local focusedSpot: string? = nil
+
 -- A God in a live match, or an admin practising as God in the dev test area.
 local function isGodActive(): boolean
 	return LocalPlayer:GetAttribute("Role") == "God" and (ReplicatedStorage:GetAttribute("MatchActive") == true or inTestArea())
@@ -225,13 +235,16 @@ end
 
 local function step(dt: number)
 	local shouldBeActive = isGodActive()
-	if shouldBeActive ~= active then
+	-- Re-centre when switching between the test area and the course while already a God.
+	local refocus = shouldBeActive and active and focusedSpot ~= viewSpot()
+	if shouldBeActive ~= active or refocus then
 		active = shouldBeActive
 		local camera = workspace.CurrentCamera
 		if active then
 			camera.CameraType = Enum.CameraType.Scriptable
 			panOffset = Vector3.zero
-			local course = if inTestArea() then workspace:FindFirstChild("TestArea") else (workspace:FindFirstChild("Course") or workspace:FindFirstChild("CourseMarkers"))
+			focusedSpot = viewSpot()
+			local course = if focusedSpot == "TestArea" then workspace:FindFirstChild("TestArea") else (workspace:FindFirstChild("Course") or workspace:FindFirstChild("CourseMarkers"))
 			local start = course and (course:FindFirstChild("Center") or course:FindFirstChild("StartSpawn"))
 			focus = if start and start:IsA("BasePart") then start.Position else Vector3.zero
 		else

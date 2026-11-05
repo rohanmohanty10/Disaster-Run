@@ -4,6 +4,9 @@
 local RoundConfig = {}
 
 RoundConfig.MinPlayers = 2 -- players needed to start a match (1 in Studio for solo testing)
+-- In Studio, matches only start when you press Start match (admin panel) or type /test round start.
+-- Set true to go back to the normal intermission countdown in Studio. Live servers always auto-start.
+RoundConfig.StudioAutoStart = false
 RoundConfig.IntermissionTime = 20
 RoundConfig.PreparationTime = 5 -- countdown in the start bunker
 RoundConfig.RoundTime = 105 -- the crossing

@@ -2,8 +2,9 @@
 -- Dev test area: admins try any Runner or God kit without starting a match.
 --   * workspace.TestArea is built here: a floor with a border, a ramp and ledge for movement
 --     skills, destructible cover for God strikes, and the test dummies (CombatConfig.TestDummies).
---   * Enter(player, "Runner" | "God") puts an admin in it with that role; Leave() sends them back
---     to the lobby. Runners stand on the floor; Gods get the overhead view like in a match.
+--   * Enter(player, "Runner" | "God", spot?) puts an admin in it with that role; Leave() sends them
+--     back to the lobby. Runners stand on the floor; Gods get the overhead view like in a match.
+--     spot "Course" puts a God above the real course instead (TestAreaSpot attribute).
 --   * Options: no cooldowns (per player), moving dummies (for practising God aim), reset cover.
 --   * Matches skip players with InTestArea (RoundService), and entering is blocked mid-match.
 -- Used from the admin panel (TOOLS tab) and "/test area ..." (DevTestService).
@@ -148,8 +149,16 @@ local function place(player: Player)
 	end
 	local cfg = TestAreaConfig
 	if player:GetAttribute("Role") == "God" then
-		-- Like a match: the God's body waits above the area and takes no part.
-		character:PivotTo(CFrame.new(cfg.Center + Vector3.new(0, cfg.GodHeight, 0)))
+		-- Like a match: the God's body waits in the sky and takes no part.
+		local below = cfg.Center
+		if player:GetAttribute("TestAreaSpot") == "Course" then
+			local course = workspace:FindFirstChild("Course") or workspace:FindFirstChild("CourseMarkers")
+			local start = course and course:FindFirstChild("StartSpawn")
+			if start and start:IsA("BasePart") then
+				below = start.Position
+			end
+		end
+		character:PivotTo(CFrame.new(below + Vector3.new(0, cfg.GodHeight, 0)))
 		root.Anchored = true
 		for _, d in character:GetDescendants() do
 			if d:IsA("BasePart") then
@@ -180,9 +189,12 @@ function TestAreaService.IsInside(player: Player): boolean
 end
 
 -- Puts a player in the test area as a Runner or a God. Returns (ok, message).
-function TestAreaService.Enter(player: Player, role: string): (boolean, string)
+function TestAreaService.Enter(player: Player, role: string, spot: string?): (boolean, string)
 	if role ~= "Runner" and role ~= "God" then
 		return false, "Role must be Runner or God."
+	end
+	if spot == "Course" and role ~= "God" then
+		return false, "Only the God can test over the course (Runners would be stuck behind the start barrier)."
 	end
 	if player:GetAttribute("InRound") then
 		return false, "You're in a match. End it first (TOOLS → End round / match)."
@@ -193,6 +205,7 @@ function TestAreaService.Enter(player: Player, role: string): (boolean, string)
 	end
 	local wasRunnerHere = TestAreaService.IsInside(player) and player:GetAttribute("Role") == "Runner"
 	player:SetAttribute("InTestArea", true)
+	player:SetAttribute("TestAreaSpot", if spot == "Course" then "Course" else nil)
 	player:SetAttribute("Role", role) -- AbilityService refreshes cooldowns and God energy on this
 	if wasRunnerHere and role == "Runner" and player.Character then
 		-- Already a Runner here: just go back to the spawn.
@@ -200,6 +213,9 @@ function TestAreaService.Enter(player: Player, role: string): (boolean, string)
 	else
 		-- A fresh body clears God anchoring / no-collide; CharacterAdded places it.
 		freshCharacter(player)
+	end
+	if spot == "Course" then
+		return true, "God over the course (no match). Equip kits in the admin panel."
 	end
 	return true, `Test area: you're a {role}. Equip kits in the admin panel.`
 end
@@ -209,6 +225,7 @@ function TestAreaService.Leave(player: Player): (boolean, string)
 		return false, "You're not in the test area."
 	end
 	player:SetAttribute("InTestArea", nil)
+	player:SetAttribute("TestAreaSpot", nil)
 	player:SetAttribute("TestNoCooldowns", nil)
 	player:SetAttribute("Role", nil)
 	freshCharacter(player)

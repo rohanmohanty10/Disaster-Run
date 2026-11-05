@@ -99,8 +99,8 @@ end
 local HELP = [[/test smite | stun | slow | shove | barrage | void
 /test me ragdoll | stun | slow | iframes | knockback | heal
 /test role runner | god | none   /test hitboxes   /test dummies
-/test round start | end | god | runner   (god/runner = your role in a solo Studio match)
-/test area runner | god | leave | cooldowns | move | reset   (dev test area, no match needed)
+/test round start | end | god | runner | auto   (god/runner = your role in a solo Studio match; auto = Studio auto-start on/off)
+/test area runner | god | god course | leave | cooldowns | move | reset   (no match needed)
 /test xp <amount>   /test shards <amount>   /test stamina   /test daily reset   /test quests done]]
 
 local function front(player: Player, distance: number): CFrame?
@@ -218,6 +218,13 @@ local function run(player: Player, words: { string }): string
 		elseif option == "end" then
 			RoundService.ForceEnd()
 			return "Ending the round / match."
+		elseif option == "auto" then
+			local current = ReplicatedStorage:GetAttribute("AutoStartMatches")
+			if current == nil then
+				current = (require(ReplicatedStorage.Shared.Config.RoundConfig) :: any).StudioAutoStart
+			end
+			ReplicatedStorage:SetAttribute("AutoStartMatches", not current)
+			return `Auto-start matches in Studio: {if not current then "ON" else "OFF (use Start match)"}`
 		elseif option == "god" or option == "runner" then
 			game:GetService("ReplicatedStorage"):SetAttribute("ForceSoloRole", if option == "god" then "God" else "Runner")
 			return `Solo matches will make you a {option}. Use /test round start.`
@@ -227,7 +234,7 @@ local function run(player: Player, words: { string }): string
 		local option = words[2]
 		local message: string
 		if option == "runner" or option == "god" then
-			_, message = TestAreaService.Enter(player, if option == "god" then "God" else "Runner")
+			_, message = TestAreaService.Enter(player, if option == "god" then "God" else "Runner", if words[3] == "course" then "Course" else nil)
 		elseif option == "leave" then
 			_, message = TestAreaService.Leave(player)
 		elseif option == "cooldowns" then
