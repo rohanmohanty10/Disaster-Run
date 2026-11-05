@@ -7,6 +7,16 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 
 
 ---
 
+## Status in the game
+
+| | |
+| :--- | :--- |
+| **Playable** | **All 31 kits / 69 skills** work through the ability framework (`AbilityService`). Each skill's `Behavior` in `Kits.luau` picks how it plays (circle strike, line, dash, blink and so on). |
+| **Signature effects** | **Thunder God** and **Gravity Lord** have their own original effects (`SkillFx.luau`). Every other kit uses simple element-coloured placeholder effects. |
+| **Animations / sounds** | Not added yet. Kits need their own animations and sounds (see `ROADMAP.md`). |
+| **Simplifications** | A few skills are simpler than their description. Each kit below lists its *Current in-game differences*. |
+| **Needs testing** | Everything here still needs a Studio test (`/test round start`, `/test round god`). |
+
 ## How kits work
 
 - **One kit equipped per role.** You equip one God kit (used whenever you're a God) and one Runner kit (used whenever you're a Runner). The equipped kit is the one in your **selected slot**, or a kit you equipped from the **Permanent Vault**.
@@ -40,6 +50,8 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 
 _Normal: 55% total, 18.33% each_
 
 #### Rockfall  `Rockfall`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"A humble pebble from the heavens. Small, sure, and still bigger than you."*
 
 **Element:** Earth · **Inspired by:** Classic earth-bender rock throws
@@ -49,6 +61,8 @@ _Normal: 55% total, 18.33% each_
 | `1` | **Boulder Drop** | Circle (r8) | 20 | 6s | 20 | A boulder's shadow grows at the reticle for 1.0s, then the boulder crashes down and knocks Runners back. |
 
 #### Gale Palm  `GalePalm`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"One clap of the divine palm and the valley remembers what wind is."*
 
 **Element:** Wind · **Inspired by:** Martial-arts air palm strikes
@@ -58,6 +72,8 @@ _Normal: 55% total, 18.33% each_
 | `1` | **Air Palm** | Line (40 x 10) | 10 | 7s | 20 | A gust wave sweeps along the line, shoving Runners 25 studs and knocking them down for 0.5s. |
 
 #### Ember Spark  `EmberSpark`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Every inferno starts with a spark. This one has a bad attitude."*
 
 **Element:** Fire · **Inspired by:** Starter fire-bullet techniques
@@ -70,6 +86,8 @@ _Normal: 55% total, 18.33% each_
 _Normal: 30% total, 10% each_
 
 #### Frost Warden  `FrostWarden`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Cold, calm, and patient. The valley freezes long before he loses his temper."*
 
 **Element:** Ice · **Inspired by:** Calm ice admirals and half-cold heroes
@@ -80,6 +98,8 @@ _Normal: 30% total, 10% each_
 | `2` | **Glacier Floor** | Circle (r14) | 5/s (max 20) | 12s | 35 | Freezes the ground for 4s. Runners on it lose traction, slide around and are slowed 30%. |
 
 #### Tidecaller  `Tidecaller`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"The sea answers when she calls. Runners don't get a vote."*
 
 **Element:** Water · **Inspired by:** Sea-witch water bullets and whirlpools
@@ -90,6 +110,8 @@ _Normal: 30% total, 10% each_
 | `2` | **Riptide** | Circle (r12) | 10 | 11s | 35 | Opens a whirlpool for 2s that drags Runners toward its centre. |
 
 #### Fire Fist  `FireFist`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"A walking wildfire with a grin to match. Hot-headed, loud, and impossible to put out."*
 
 **Element:** Fire · **Inspired by:** The fire-fist pirate's signature punch
@@ -103,6 +125,8 @@ _Normal: 30% total, 10% each_
 _Normal: 11.5% total, 3.83% each_
 
 #### Sand Calamity  `SandCalamity`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"The desert never forgives, and neither does he. Every grain of sand is a blade waiting to be swung."*
 
 **Element:** Sand · **Inspired by:** The desert king and his sand blades
@@ -113,7 +137,12 @@ _Normal: 11.5% total, 3.83% each_
 | `2` | **Sables** | Circle (r18) | 6/s (max 24) | 14s | 45 | A sandstorm rages for 5s. Runners inside lose most of their vision. |
 | `3` | **Ground Death** | Circle (r12) | 8/s (max 24) | 16s | 50 | Turns the floor to quicksand for 3s. Runners are slowed 50% and pulled toward the centre. |
 
+**Current in-game differences:**
+- *Sables:* The blinding sandstorm is a white-out flash on Runners it hits.
+
 #### Shadow Weaver  `ShadowWeaver`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Lazy, brilliant, and always three moves ahead. Your own shadow is working for him."*
 
 **Element:** Shadow · **Inspired by:** The lazy genius who binds enemies with shadows
@@ -125,6 +154,8 @@ _Normal: 11.5% total, 3.83% each_
 | `3` | **Shadow Field** | Circle (r16) | — | 15s | 40 | Darkens an area for 6s. Runners inside are slowed 25%. |
 
 #### Magma Admiral  `MagmaAdmiral`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Absolute justice, absolute heat. Magma doesn't negotiate."*
 
 **Element:** Magma · **Inspired by:** The magma admiral of absolute justice
@@ -135,10 +166,15 @@ _Normal: 11.5% total, 3.83% each_
 | `2` | **Magma Pool** | Circle (r10) | 8/s (max 32) | 14s | 45 | Leaves a pool of magma for 6s that burns Runners and melts cover. |
 | `3` | **Hound Blaze** | Homing x3 | 15 each (max 30) | 18s | 50 | Releases three magma hounds that chase the nearest Runners for 4s. |
 
+**Current in-game differences:**
+- *Hound Blaze:* No visible hounds yet: strikes land where the nearest Runners are heading.
+
 ### 🟠 Legendary — 3–4 skills
 _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 
 #### Thunder God  `ThunderGod`
+**In game:** ✅ Playable · ✨ signature effects
+
 > *"Self-proclaimed god of the sky. Lightning answers to him, and so will you."*
 
 **Element:** Lightning · **Inspired by:** The self-proclaimed god of the sky
@@ -149,7 +185,13 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 | `2` | **Lightning Wrath** | Circle (r22) | 12 per bolt (max 45) | 18s | 75 | Hold up to 10s, then torrents of lightning bolts smite a wide area. Each bolt has its own small warning circle. |
 | `3` | **Raigo** | Growing sphere | 35-60 (by charge) | 65s | 95 | Hold up to 15s while a thunder sphere grows over the reticle, then release it. Bigger charge means a bigger blast. Ragdolls everyone hit and destroys cover. |
 
+**Current in-game differences:**
+- *Lightning Dragon:* Hold to charge; release fires (charge doesn't scale damage).
+- *Lightning Wrath:* Hold to charge; release starts the bolts (charge doesn't scale damage).
+
 #### Gravity Lord  `GravityLord`
+**In game:** ✅ Playable · ✨ signature effects
+
 > *"A blind swordsman who sees everything that matters. He asks the sky for a meteor, and the sky always says yes."*
 
 **Element:** Gravity · **Inspired by:** The blind swordsman who pulls meteors from the sky
@@ -160,7 +202,12 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 | `2` | **Gravity Dominance** | Growing circle | 8/s (max 24) | 12s | 50 | Hold up to 3s to press a gravity field down on the reticle. It grows while held. Runners are slowed 50% and rooted at full size. |
 | `3` | **Meteor Fury** | Aimed rain | 15 each (max 50) | 45s | 130 | Hold up to 5.6s. Meteors rain down wherever the reticle points, so you can sweep across the pack. |
 
+**Current in-game differences:**
+- *Meteor Strike:* Hold to charge; release drops the meteor (charge doesn't scale damage).
+
 #### Light Admiral  `LightAdmiral`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Lazy, slow-talking, and faster than light. You'll be hit before he finishes his sentence."*
 
 **Element:** Light · **Inspired by:** The slow-talking admiral who moves at the speed of light
@@ -172,10 +219,15 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 | `3` | **Light Blade** | Cone (40, 70°) | 30 | 11s | 45 | A sword of light sweeps a wide arc in front of the reticle. |
 | `4` | **Flash Mirror** | Circle (r20) | — | 16s | 35 | A blinding flash. Runners inside see a white-out for 1.5s and are slowed 20%. |
 
+**Current in-game differences:**
+- *Flash Mirror:* Runners hit get a white-out flash.
+
 ### 🔴 Mythical — 4 skills + passive
 _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_
 
 #### World Shaker  `WorldShaker`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"The strongest man in the world. One punch cracks the air. Two splits the earth."*
 
 **Element:** Quake · **Inspired by:** The strongest man in the world and his quake punches
@@ -189,7 +241,13 @@ _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_
 
 **Passive — Aftershock:** Every 3rd skill sends a smaller aftershock (10 damage, r8) to the same spot 1s later.
 
+**Current in-game differences:**
+- *Seaquake:* The shake is a short ragdoll on everyone inside.
+- *Fault Line:* The chasm is a damage + ragdoll zone; the floor doesn't actually open yet.
+
 #### Black Flame Avenger  `BlackFlame`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"His eyes burn with a flame that never goes out. Look up at the sky, and it looks back."*
 
 **Element:** Black Flame · **Inspired by:** The avenger whose eyes burn with black flames
@@ -203,10 +261,16 @@ _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_
 
 **Passive — Eye of the Storm:** Runners hit by Amaterasu are outlined through cover for 4s.
 
+**Current in-game differences:**
+- *Blaze Shape:* The wall is a burning damage zone; it doesn't physically block movement yet.
+- *Tsukuyomi:* The "inverted screen" is a red, desaturated screen effect (controls aren't inverted).
+
 ### 🌈 Secret — 4 skills + ultimate + passive
 _Normal: 0.01% total, 0.01% each · Lucky: 1% total, 1% each_
 
 #### King of Curses  `KingOfCurses`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"The undisputed King of Curses. He doesn't hunt the weak; they just happen to be in his way."*
 
 **Element:** Curse · **Inspired by:** The four-armed King of Curses
@@ -229,6 +293,8 @@ _Normal: 0.01% total, 0.01% each · Lucky: 1% total, 1% each_
 _Normal: 55% total, 18.33% each_
 
 #### Quick Feet  `QuickFeet`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Fast legs, empty head. Run first, think never."*
 
 **Element:** Speed · **Inspired by:** Every shonen hero's first sprint
@@ -238,6 +304,8 @@ _Normal: 55% total, 18.33% each_
 | `Q` | **Burst Step** | Self | — | 10s | 15 | +35% movement speed for 2s. |
 
 #### Second Wind  `SecondWind`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Tired? Not anymore. Catch your breath and keep running."*
 
 **Element:** Stamina · **Inspired by:** The never-give-up comeback breath
@@ -247,6 +315,8 @@ _Normal: 55% total, 18.33% each_
 | `Q` | **Deep Breath** | Self | — | 14s | 0 | Instantly restores 50 stamina and gives +15% speed for 1.5s. |
 
 #### Bounce  `Bounce`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Spring-loaded sneakers and a whole lot of confidence."*
 
 **Element:** Jump · **Inspired by:** Spring-heeled street runners
@@ -259,6 +329,8 @@ _Normal: 55% total, 18.33% each_
 _Normal: 30% total, 10% each_
 
 #### Flash Step  `FlashStep`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Blink and you'll miss it. Literally."*
 
 **Element:** Speed · **Inspired by:** The reapers' instant flash-step
@@ -268,6 +340,8 @@ _Normal: 30% total, 10% each_
 | `Q` | **Flash Step** | Dash (16) | — | 9s | 20 | Dash 16 studs in your move direction with 0.35s of iframes. |
 
 #### Moonwalk  `Moonwalk`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Kick the air hard enough and it kicks back."*
 
 **Element:** Air · **Inspired by:** The air-kicking moonwalk technique
@@ -277,6 +351,8 @@ _Normal: 30% total, 10% each_
 | `Q` | **Sky Step** | Air jump | — | 9s | 20 | Kick off the air mid-jump, launching up and forward 14 studs with 0.35s of iframes. Once per jump. |
 
 #### Dive Roll  `DiveRoll`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Duck, roll, survive. Repeat until home."*
 
 **Element:** Agility · **Inspired by:** Combat-roll escapes
@@ -289,6 +365,8 @@ _Normal: 30% total, 10% each_
 _Normal: 11.5% total, 3.83% each_
 
 #### Shinobi  `Shinobi`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Believe it: the log took the hit, not him."*
 
 **Element:** Ninjutsu · **Inspired by:** The loud ninja and his clone and substitution tricks
@@ -298,7 +376,12 @@ _Normal: 11.5% total, 3.83% each_
 | `Q` | **Substitution** | Self | — | 16s | 20 | Arms for 1s. If you're hit in that window, you take no damage, leave a log behind and teleport 10 studs forward. |
 | `E` | **Shadow Clone** | Decoy | — | 18s | 25 | Summons a clone that sprints forward for 4s. To the Gods it looks exactly like a real Runner. |
 
+**Current in-game differences:**
+- *Shadow Clone:* The clone walks straight ahead and can be hit by Gods; it doesn't copy your inputs.
+
 #### Brawler  `Brawler`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Shoulders made of iron and zero respect for personal space."*
 
 **Element:** Strength · **Inspired by:** Iron-body martial artists
@@ -309,6 +392,8 @@ _Normal: 11.5% total, 3.83% each_
 | `E` | **Iron Body** | Self | — | 15s | 15 | Plant your feet for 1.2s. You take 50% less damage and can't be knocked back, but you can't move. |
 
 #### Clap Swapper  `ClapSwapper`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Clap once and you're mine. Clap twice and you're bait."*
 
 **Element:** Swap · **Inspired by:** The clap-to-swap brother
@@ -322,6 +407,8 @@ _Normal: 11.5% total, 3.83% each_
 _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 
 #### Instant Transmission  `InstantTransmission`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Two fingers to the forehead and he's already gone."*
 
 **Element:** Teleport · **Inspired by:** The two-finger teleport of the strongest martial artist
@@ -332,6 +419,8 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 | `E` | **Afterimage** | Self | — | 16s | 20 | Leave an afterimage behind. Gain 0.6s of iframes and +20% speed for 2s. |
 
 #### Godspeed  `Godspeed`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Lightning in his veins and a short fuse to match."*
 
 **Element:** Lightning · **Inspired by:** The lightning-fast assassin
@@ -342,6 +431,8 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 | `E` | **Lightning Slide** | Slide (22) | — | 12s | 25 | Hyper-slide 22 studs with 0.4s of iframes. Runners you slide through are stunned for 0.5s. |
 
 #### Wind Walker  `WindWalker`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Rides the wind like it owes him money."*
 
 **Element:** Wind · **Inspired by:** Wind-riding air nomads
@@ -355,6 +446,8 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_
 
 #### Ultra Instinct  `UltraInstinct`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"His body moves before his mind does. Silver eyes, silent feet."*
 
 **Element:** Instinct · **Inspired by:** The silver-eyed instinct that moves on its own
@@ -367,6 +460,8 @@ _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_
 **Passive — Autonomous Reflex:** Near-miss dodges refund 30 stamina and take 3s off Silver Reflex's cooldown.
 
 #### Metavision  `Metavision`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"He sees the whole field before anyone else does. Predict, devour, escape."*
 
 **Element:** Vision · **Inspired by:** The egoist striker who sees the whole field
@@ -378,10 +473,15 @@ _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_
 
 **Passive — Flow State:** See God telegraphs 0.8s earlier than everyone else, with red trajectory lines.
 
+**Current in-game differences:**
+- *Direct Line:* Draws a guide line to the Sanctuary (not a computed safest path yet).
+
 ### 🌈 Secret — 2 skills + ultimate
 _Normal: 0.01% total, 0.005% each · Lucky: 1% total, 0.5% each_
 
 #### The Honored One  `HonoredOne`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Throughout heaven and earth, he alone is the honored one."*
 
 **Element:** Infinity · **Inspired by:** The blindfolded strongest sorcerer
@@ -392,7 +492,12 @@ _Normal: 0.01% total, 0.005% each · Lucky: 1% total, 0.5% each_
 | `E` | **Lapse Blue** | Circle (r14) | — | 16s | 25 | Creates a point that pulls nearby Runners toward it for 1.5s. Drag rivals straight into a reticle. |
 | `R` | **Infinite Void** ⭐ | Domain (r25) | — | 70s | 50 | ULTIMATE. Expands a domain. Every other Runner inside is true-stunned for 2s, with their camera warped and audio muted. |
 
+**Current in-game differences:**
+- *Infinite Void:* Camera warp and grey screen work; muting audio still needs a master SoundGroup.
+
 #### Time Lord  `TimeLord`
+**In game:** ✅ Playable · placeholder element effects
+
 > *"Time bows to him. Five seconds is all he needs, and he only ever uses two."*
 
 **Element:** Time · **Inspired by:** The vampire who stops time
@@ -403,11 +508,14 @@ _Normal: 0.01% total, 0.005% each · Lucky: 1% total, 0.5% each_
 | `E` | **Rewind** | Self | — | 25s | 30 | Return to where you were 3s ago and get back the health you lost in that time (up to 40). |
 | `R` | **Time Stop** ⭐ | Global | — | 80s | 50 | ULTIMATE. Stop time for 2.5s. You're completely invulnerable, other Runners are frozen for 1.5s, and God telegraphs pause. |
 
+**Current in-game differences:**
+- *Time Stop:* Freezes other Runners; pausing God telegraphs isn't in yet.
+
 ---
 
 ## Defaults & balance notes
 
 - **Starter kits:** new players start with **Rockfall** (God) and **Quick Feet** (Runner) in slot 1.
 - **All numbers are first-pass values for playtesting.** Damage, cooldowns and costs live in `Kits.luau`, so they can be tuned without touching ability code.
-- **Ability code isn't built yet.** This doc and `Kits.luau` define what each kit does. The skills themselves get implemented on the combat core (`FRAMEWORK_PLAN.md`).
+- **How a skill plays** is set by its `Behavior` table in `Kits.luau` (templates in `src/server/Abilities/`). To change a number, edit `Kits.luau` and this doc. To add a kit, give each skill a `Behavior`; it works without new code unless it needs a new mechanic.
 - **Naming:** several names (Amaterasu, Raigo, Infinite Void, Instant Transmission and so on) come straight from anime. They're great for players recognising a move, but worth a final naming pass before release in case any need changing.
