@@ -28,7 +28,7 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **17 
 | ⚪ **Common** | 55% | — | Rockfall, Gale Palm, Ember Spark | Quick Feet, Second Wind, Bounce |
 | 🔵 **Rare** | 30% | — | Frost Warden, Tidecaller, Fire Fist | Flash Step, Moonwalk, Dive Roll |
 | 🟣 **Epic** | 11.5% | — | Sand Calamity, Shadow Weaver, Magma Admiral | Shinobi, Brawler, Clap Swapper |
-| 🟠 **Legendary** | 3% | 92% | Thunder God, Gravity Lord, Light Admiral | Instant Transmission, Godspeed, Wind Walker, Crimson Epitaph |
+| 🟠 **Legendary** | 3% | 92% | Thunder God, Gravity Lord, Light Admiral | Instant Transmission, Godspeed, Wind Walker, King Crimson |
 | 🔴 **Mythical** | 0.49% | 7% | World Shaker, Black Flame Avenger | Ultra Instinct, Metavision |
 | 🌈 **Secret** | 0.01% | 1% | King of Curses | The Honored One, Time Lord |
 
@@ -353,15 +353,15 @@ _Normal: 3% total, 0.75% each · Lucky: 92% total, 23% each_
 | `Q` | **Gale Step** | Self | — | 18s | 20 | For 4s you can jump up to 3 times in the air. |
 | `E` | **Tailwind Slide** | Slide (20) | — | 12s | 25 | Hyper-slide 20 studs with 0.4s of iframes. You leave a wind trail that gives other Runners +15% speed. |
 
-#### Crimson Epitaph  `CrimsonEpitaph`
+#### King Crimson  `KingCrimson`
 > *"Only the result remains. The moment the strike landed simply never happened."*
 
-**Element:** Time · **Inspired by:** The stand that erases time and reads the future (Stand Game / Universe Game King Crimson)
+**Element:** Time · **Inspired by:** King Crimson (Stand Game / Universe Game)
  · **Reference:** `references/UniverseGame/ReplicatedStorage/ReplicatedStorage/ReplicatedModules/StatsFolder/King Crimson/` (moves, and the `KCR` Requiem skin for sounds and VFX)
 
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
-| `Q` | **Time Erasure** | Self | — | 24s | 30 | Erase time for 4s. Nobody else can see or hear you, not even the Gods, and you move 25% faster. Strikes still hurt if they land on you. |
+| `Q` | **Time Erase** | Self | — | 24s | 30 | Erase time for 4s. Nobody else can see or hear you, not even the Gods, and you move 25% faster. Strikes still hurt if they land on you. |
 | `E` | **Epitaph** | Self | — | 16s | 25 | See 2.5s into the future. The first hit you'd take never happens: you appear 12 studs ahead with 0.5s of iframes. If a Runner hit you, you appear behind them instead and they're stunned for 0.5s. |
 
 ### 🔴 Mythical — 2 skills + passive
@@ -423,4 +423,4 @@ _Normal: 0.01% total, 0.005% each · Lucky: 1% total, 0.5% each_
 - **Starter kits:** new players start with **Rockfall** (God) and **Quick Feet** (Runner) in slot 1.
 - **All numbers are first-pass values for playtesting.** Damage, cooldowns and costs live in `Kits.luau`, so they can be tuned without touching ability code.
 - **Ability code isn't built yet.** This doc and `Kits.luau` define what each kit does. The skills themselves get implemented on the combat core (`FRAMEWORK_PLAN.md`).
-- **Naming:** several names (Amaterasu, Raigo, Infinite Void, Instant Transmission and so on) come straight from anime. They're great for players recognising a move, but worth a final naming pass before release in case any need changing.
+- **Naming:** kits and skills use the exact anime names for now.

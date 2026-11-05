@@ -4,7 +4,7 @@
 --   telegraphs (fill up until impact), impacts (flash + particles + shake), lingering zones,
 --   bolts, blinks, buffs, domains, screen effects (blind, invert, time stop) and the Runner
 --   danger warning (GAME_PLAN.md 5C) — Flow State sees it as soon as a strike is aimed.
---   Crimson Epitaph uses King Crimson Requiem's sounds and screen flipbook from the Universe Game
+--   The King Crimson kit uses King Crimson Requiem's sounds and screen flipbook from the Universe Game
 --   reference (references/UniverseGame/.../StatsFolder/King Crimson/KCR.luau, EffectsFolder/Devs).
 
 local Lighting = game:GetService("Lighting")
@@ -279,7 +279,7 @@ local function goldEmitter(parent: Instance, props: { [string]: any }): Particle
 	return emitter
 end
 
--- Characters hidden from this client during someone's Time Erasure.
+-- Characters hidden from this client during someone's Time Erase.
 local erased: { [Model]: boolean } = {}
 local erasedLoop: RBXScriptConnection? = nil
 

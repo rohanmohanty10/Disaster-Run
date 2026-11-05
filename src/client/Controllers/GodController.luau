@@ -141,7 +141,7 @@ local function packCenter(): Vector3?
 	for _, player in Players:GetPlayers() do
 		local character = player.Character
 		if player:GetAttribute("Role") == "Runner" and not player:GetAttribute("Eliminated") and character and Characters.IsAlive(character) and character:GetAttribute("TimeErased") ~= true then
-			-- (Time Erasure: the camera mustn't give away an erased Runner.)
+			-- (Time Erase: the camera mustn't give away an erased Runner.)
 			local root = Characters.GetRoot(character)
 			if root then
 				sum += root.Position

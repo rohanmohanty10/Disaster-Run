@@ -932,15 +932,15 @@ Kits.Runner = {
 			},
 		},
 	},
-	CrimsonEpitaph = {
-		Id = "CrimsonEpitaph",
-		Name = "Crimson Epitaph",
+	KingCrimson = {
+		Id = "KingCrimson",
+		Name = "King Crimson",
 		Rarity = "Legendary",
 		Element = "Time",
 		Desc = "Only the result remains. The moment the strike landed simply never happened.",
 		Skills = {
 			{
-				Name = "Time Erasure",
+				Name = "Time Erase",
 				Key = "Q",
 				Shape = "Self",
 				Desc = "Erase time for 4s. Nobody else can see or hear you, not even the Gods, and you move 25% faster. Strikes still hurt if they land on you.",
@@ -1116,7 +1116,7 @@ Kits.Runner = {
 -- Display order inside each rarity (dictionary order isn't stable).
 Kits.Order = {
 	God = { "Rockfall", "GalePalm", "EmberSpark", "FrostWarden", "Tidecaller", "FireFist", "SandCalamity", "ShadowWeaver", "MagmaAdmiral", "ThunderGod", "GravityLord", "LightAdmiral", "WorldShaker", "BlackFlame", "KingOfCurses" },
-	Runner = { "QuickFeet", "SecondWind", "Bounce", "FlashStep", "Moonwalk", "DiveRoll", "Shinobi", "Brawler", "ClapSwapper", "InstantTransmission", "Godspeed", "WindWalker", "CrimsonEpitaph", "UltraInstinct", "Metavision", "HonoredOne", "TimeLord" },
+	Runner = { "QuickFeet", "SecondWind", "Bounce", "FlashStep", "Moonwalk", "DiveRoll", "Shinobi", "Brawler", "ClapSwapper", "InstantTransmission", "Godspeed", "WindWalker", "KingCrimson", "UltraInstinct", "Metavision", "HonoredOne", "TimeLord" },
 }
 
 function Kits.IsRole(role: any): boolean

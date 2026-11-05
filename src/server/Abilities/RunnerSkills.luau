@@ -215,7 +215,7 @@ function RunnerSkills.Arm(ctx: Context)
 	Common.Fx({ Kind = "Buff", Character = ctx.Character, Duration = b.Window, Style = b.Kind })
 end
 
--- Time Erasure (King Crimson Requiem): the Gods lose sight of you while time is erased.
+-- Time Erase (King Crimson Requiem): the Gods lose sight of you while time is erased.
 function RunnerSkills.TimeErase(ctx: Context)
 	local b = ctx.Behavior
 	local character = ctx.Character

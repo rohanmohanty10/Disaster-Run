@@ -38,10 +38,10 @@ Status key: ✅ done · 🔨 in progress · ⬜ to do · ⏸️ on hold
 | Robux | Spin packs and extra slots with PurchaseId-safe receipts | `MonetizationService.luau` (product ids are still 0) |
 | Vault UI | God and Runner vault screens: slots, reel, odds list, vault panel, confirm, buy panels, blackout reveal, avatar showcase | `src/gui/*.rbxmx`, `VaultController.luau`, `ShowcaseStage.luau` |
 | HUD | Vault buttons, Cash counter, toasts, button animations, stroke scaling | `src/gui/HUD.rbxmx`, `UIController.luau` |
-| Kit data | 15 God and 16 Runner kits with descriptions and numbers | `src/shared/Data/Kits.luau` |
+| Kit data | 15 God and 17 Runner kits with descriptions and numbers | `src/shared/Data/Kits.luau` |
 | Combat core *(needs a Studio test)* | Stacking status effects (stun, slow, root, silence, iframes, ragdoll, void), box/sphere hitboxes with the 4 target filters, build-once ragdolls, knockback, the `Afflict` hit pipeline with 60-per-cast and per-second damage caps, kill/assist credit, DODGED and damage pop-ups | `StatusEffectService`, `HitboxService`, `RagdollService`, `KnockbackService`, `CombatService`, `CombatController` (usage in `FRAMEWORK_PLAN.md` Sections 1–2) |
 | Test tools | 3 respawning test dummies and `/test` chat commands (Studio / creator only) | `DevTestService.luau` |
-| Ability framework *(needs a Studio test)* | One pipeline for all 69 skills: role + kit lookup, cooldowns, God energy, charge/hold skills, aim updates, passives; data-driven behaviours (Circle, Line, Cone, Homing, Rain, Buff, Dash, Blink, Arm, Decoy, Swap, Pull, Domain, Time Stop, Rewind…) | `AbilityService.luau`, `src/server/Abilities/`, `Behavior` tables in `Kits.luau` |
+| Ability framework *(needs a Studio test)* | One pipeline for all 71 skills: role + kit lookup, cooldowns, God energy, charge/hold skills, aim updates, passives; data-driven behaviours (Circle, Line, Cone, Homing, Rain, Buff, Dash, Blink, Arm, Decoy, Swap, Pull, Domain, Time Stop, Rewind…) | `AbilityService.luau`, `src/server/Abilities/`, `Behavior` tables in `Kits.luau` |
 | Runner gameplay *(needs a Studio test)* | Sprint + stamina, slide with 0.35s iframes, near-miss stamina refunds, Valley Run locomotion animations, Left Alt shift lock, Q/E/R skills | `MovementController.luau`, `AbilityController.luau`, `AnimationConfig.luau` |
 | God gameplay *(needs a Studio test)* | Overhead camera (WASD pan, 60–220 zoom), ground reticle per skill shape, 1–5 hotbar, energy regen, telegraphs and danger warnings | `GodController.luau`, `FxController.luau` |
 | Round loop *(needs a Studio test)* | Intermission → Gods picked → rounds → dead Runners become Gods → last survivor wins; Sanctuary finish, mid-point, Cash payouts, kills/assists, MVP stats | `RoundService.luau`, `RoundConfig.luau` |
@@ -66,7 +66,7 @@ Follow-ups once tested:
 ### 7. ⏸️ Map and destruction — on hold
 - ⏸️ `MapService`: canyon from 100-stud chunks
 - ⏸️ Destructible cover (port of BattleGame `DebreeService`)
-- If a test map is needed before then, keep it very basic or reuse a map from the reference games, and check with Rohan first.
+- If a test map is needed before then, reuse a map from the reference games or build a basic one.
 
 ### 8. Economy extras
 - ⬜ Divine Shard shop
@@ -80,10 +80,10 @@ Follow-ups once tested:
 - ⬜ Mobile controls
 - ⬜ Performance test with 25 players
 - ⬜ Security review of every request handler
-- ⬜ Final naming pass on anime-named abilities
 
 ---
 
 ## Known gaps in the references
+The reference games are Rohan's own, so their code, maps, animations, VFX and sounds can be used 1:1.
 - **FruitGame and ValleyRun have no server scripts**, so their damage, hitbox and round logic is rebuilt from the design docs.
 - **Animations and meshes stored inside FruitGame scripts** (Goro and Zushi moves, meteor model) need exporting from the original place file.

@@ -99,10 +99,11 @@ The full list of God and Runner kits, with every skill, cooldown, cost, damage v
 - **Runner health:** 100 HP.
 - **No one-shots:** a single God cast deals at most **60 damage** to one Runner, no matter how many bolts or meteors land. This is enforced per cast in the combat pipeline (`CombatService.Afflict`).
 - **Shared damage ceiling:** a Runner can't take more than a set amount of God damage per second from all Gods combined, so a big God team can't delete someone instantly. *(Value tuned in playtests.)*
+- **Reference games:** every game in `references/` is Rohan's own, so kits, moves, names, VFX and sounds can be taken from them 1:1.
 - **The first two Legendary God kits** are rebuilt from the fruit-powers reference (`references/FruitGame/ReplicatedStorage/SkillCallbacks/DevilFruit/`). They keep the same moves, charge timings and VFX modules:
   - **Thunder God:** Lightning Dragon, Lightning Wrath, Raigo.
   - **Gravity Lord:** Meteor Strike, Gravity Dominance (aimed at the reticle instead of centred on the God), Meteor Fury.
-- **Reference limits:** the fruit-powers and round-loop references have **no server scripts** in the repo (their save tool can't capture them). Server hitboxes, damage values and meteor physics are rebuilt on our own combat core. Animations and meshes stored inside those scripts need their asset IDs from the original place files.
+- **Reference limits:** the fruit-powers and round-loop references have **no server scripts** in the repo (their save tool can't capture them), so server hitboxes, damage values and meteor physics are rebuilt on the combat core. Animations and meshes stored inside those scripts need their asset IDs from the original place files.
 
 ---
 
