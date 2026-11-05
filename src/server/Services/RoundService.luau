@@ -4,8 +4,8 @@
 -- Runners who die (or don't reach the Sanctuary in time) become Gods from the next round on,
 -- until one Runner is left (the winner) or none are (Gods win).
 --
--- Course: uses workspace.Course (parts "StartSpawn" and "Sanctuary") if it exists. Otherwise it
--- only places two markers on the baseplate — a start point and a see-through finish zone.
+-- Course: workspace.Course (parts "StartSpawn" and "Sanctuary") — built by MapService, or your own.
+-- Without one, it falls back to two markers on the baseplate.
 --
 -- Replicated on ReplicatedStorage: RoundState, RoundEndsAt (server time), RoundNumber, MatchActive.
 -- Replicated on players: Role ("Runner"/"God"), InRound, Progress (0-1), Finished, Eliminated.
@@ -24,6 +24,7 @@ local DataService = require(script.Parent.DataService)
 local CombatService = require(script.Parent.CombatService)
 local StatusEffectService = require(script.Parent.StatusEffectService)
 local AbilityService = require(script.Parent.AbilityService)
+local MapService = require(script.Parent.MapService)
 
 type MatchStats = {
 	Player: Player,
@@ -288,6 +289,8 @@ local function playRound(): { Player }
 	table.clear(roundRunners)
 
 	setState(RoundState.MapGeneration, 1)
+	MapService.Generate(roundNumber * 7919 + os.time())
+	MapService.SetBarrier(false)
 	task.wait(1)
 
 	-- Preparation: everyone respawns into position.
@@ -346,6 +349,7 @@ local function playRound(): { Player }
 
 	-- The crossing.
 	setState(RoundState.ActiveRun, RoundConfig.RoundTime)
+	MapService.SetBarrier(true)
 	banner("RUN!", "Reach the Sanctuary", Color3.fromRGB(120, 255, 160))
 	local started = os.clock()
 	local hadRunners = next(roundRunners) ~= nil
