@@ -24,6 +24,7 @@ local SERVICES = {
 	"MapService",
 	"RoundService",
 	"DevTestService", -- test dummies + /test commands (Studio / creator only)
+	"AdminService", -- admin panel: equip any kit, give spins, test tools
 }
 
 Remotes.CreateAll()

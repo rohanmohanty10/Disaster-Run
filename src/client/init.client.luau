@@ -14,6 +14,7 @@ local CONTROLLERS = {
 	"AbilityController",
 	"FxController",
 	"MatchHUDController",
+	"AdminController",
 }
 
 local loaded = {}

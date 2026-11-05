@@ -41,6 +41,7 @@ Status key: ✅ done · 🔨 in progress · ⬜ to do · ⏸️ on hold
 | Kit data | 15 God and 16 Runner kits with descriptions and numbers | `src/shared/Data/Kits.luau` |
 | Combat core *(needs a Studio test)* | Stacking status effects (stun, slow, root, silence, iframes, ragdoll, void), box/sphere hitboxes with the 4 target filters, build-once ragdolls, knockback, the `Afflict` hit pipeline with 60-per-cast and per-second damage caps, kill/assist credit, DODGED and damage pop-ups | `StatusEffectService`, `HitboxService`, `RagdollService`, `KnockbackService`, `CombatService`, `CombatController` (usage in `FRAMEWORK_PLAN.md` Sections 1–2) |
 | Test tools | 3 respawning test dummies and `/test` chat commands (Studio / creator only) | `DevTestService.luau` |
+| Admin panel *(needs a Studio test)* | F2 / ADMIN button: equip any kit instantly (completed kits marked ✨), give spins and Cash, start test matches as Runner or God, end rounds, dummies, hitboxes. The server checks every request; admins are Studio, the creator (or group owner) and `AdminConfig.Admins`. | `AdminService.luau`, `AdminController.luau`, `AdminConfig.luau` |
 | Ability framework *(needs a Studio test)* | One pipeline for all 69 skills: role + kit lookup, cooldowns, God energy, charge/hold skills, aim updates, passives; data-driven behaviours (Circle, Line, Cone, Homing, Rain, Buff, Dash, Blink, Arm, Decoy, Swap, Pull, Domain, Time Stop, Rewind…) | `AbilityService.luau`, `src/server/Abilities/`, `Behavior` tables in `Kits.luau` |
 | Runner gameplay *(needs a Studio test)* | Sprint + stamina, slide with 0.35s iframes, near-miss stamina refunds, Valley Run locomotion animations, Left Alt shift lock, Q/E/R skills | `MovementController.luau`, `AbilityController.luau`, `AnimationConfig.luau` |
 | God gameplay *(needs a Studio test)* | Overhead camera (WASD pan, 60–220 zoom), ground reticle per skill shape, 1–5 hotbar, energy regen, telegraphs and danger warnings | `GodController.luau`, `FxController.luau` |
@@ -58,6 +59,8 @@ Tasks higher up unblock the ones below them. Pick from the top when you can.
 ### 2–6. Abilities, Runner, God, round loop, match UI — ✅ written, waiting on a Studio test (see Done)
 Follow-ups once tested:
 - ✅ Signature VFX for Thunder God and Gravity Lord (original, `SkillFx.luau`)
+- ⬜ Thunder God / Gravity Lord: casting animations and sounds (needs our own uploads), and charge scaling for Lightning Dragon, Lightning Wrath and Meteor Strike (holding only delays them for now)
+- ⬜ When a kit is fully finished, add it to `AdminConfig.CompletedKits` so the admin panel marks it
 - ⬜ Signature VFX for the other kits (same approach: original effects in `SkillFx.luau`; the generic element VFX are placeholders)
 - ⬜ Kit animations and sounds (asset ids needed — see `AnimationConfig.luau`)
 - ⬜ God Pass priority for picking the starting Gods

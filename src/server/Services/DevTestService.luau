@@ -267,6 +267,18 @@ local function setupCommands()
 	end
 end
 
+-- Runs a /test command for the admin panel (AdminService checks admin rights first).
+function DevTestService.RunCommand(player: Player, text: string): string
+	local words = {}
+	for _, word in string.split(string.lower(text), " ") do
+		if word ~= "" then
+			table.insert(words, word)
+		end
+	end
+	local ok, result = pcall(run, player, words)
+	return if ok then result else `Error: {result}`
+end
+
 function DevTestService.Init() end
 
 function DevTestService.Start()

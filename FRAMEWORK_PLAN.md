@@ -291,6 +291,7 @@ The `references/SorceryGame/` archive provides the exact implementation of Gojo'
 - **Studio:** 1 player is enough to start a match.
 
 ### Testing
+- **Admin panel:** press **F2** (or the ADMIN button, top-left). It equips any kit instantly and has buttons for spins, Cash, starting a match as Runner or God, ending rounds, dummies and hitboxes. Admins are anyone in Studio, the creator / group owner, and the user ids in `AdminConfig.Admins`. The server checks every request.
 - `/test round start` skips the intermission.
 - `/test round god` or `/test round runner` sets your role for solo matches.
 - `/test round end` ends the round or match.
