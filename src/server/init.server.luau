@@ -20,6 +20,8 @@ local SERVICES = {
 	"KnockbackService",
 	"HitboxService",
 	"CombatService",
+	"AbilityService",
+	"RoundService",
 	"DevTestService", -- test dummies + /test commands (Studio / creator only)
 }
 

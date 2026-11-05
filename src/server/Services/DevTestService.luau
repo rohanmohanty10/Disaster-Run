@@ -17,6 +17,7 @@ local HitboxService = require(script.Parent.HitboxService)
 local StatusEffectService = require(script.Parent.StatusEffectService)
 local RagdollService = require(script.Parent.RagdollService)
 local KnockbackService = require(script.Parent.KnockbackService)
+local RoundService = require(script.Parent.RoundService)
 
 local DevTestService = {}
 
@@ -92,7 +93,8 @@ end
 -- ------------------------------------------------------------------ commands
 local HELP = [[/test smite | stun | slow | shove | barrage | void
 /test me ragdoll | stun | slow | iframes | knockback | heal
-/test role runner | god | none   /test hitboxes   /test dummies]]
+/test role runner | god | none   /test hitboxes   /test dummies
+/test round start | end | god | runner   (god/runner = your role in a solo Studio match)]]
 
 local function front(player: Player, distance: number): CFrame?
 	local character = player.Character
@@ -201,6 +203,19 @@ local function run(player: Player, words: { string }): string
 		local attribute = CombatConfig.ShowHitboxesAttribute
 		workspace:SetAttribute(attribute, not workspace:GetAttribute(attribute))
 		return `Hitboxes {if workspace:GetAttribute(attribute) then "shown" else "hidden"}.`
+	elseif command == "round" then
+		local option = words[2]
+		if option == "start" then
+			RoundService.ForceStart()
+			return "Starting the match now."
+		elseif option == "end" then
+			RoundService.ForceEnd()
+			return "Ending the round / match."
+		elseif option == "god" or option == "runner" then
+			game:GetService("ReplicatedStorage"):SetAttribute("ForceSoloRole", if option == "god" then "God" else "Runner")
+			return `Solo matches will make you a {option}. Use /test round start.`
+		end
+		return HELP
 	elseif command == "dummies" then
 		DevTestService.SpawnDummies()
 		return "Dummies respawned."

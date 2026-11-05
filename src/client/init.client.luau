@@ -9,6 +9,11 @@ local CONTROLLERS = {
 	"UIController",
 	"VaultController",
 	"CombatController",
+	"MovementController",
+	"GodController",
+	"AbilityController",
+	"FxController",
+	"MatchHUDController",
 }
 
 local loaded = {}
