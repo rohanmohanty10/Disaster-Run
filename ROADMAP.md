@@ -77,7 +77,8 @@ Follow-ups once tested:
 - ⬜ Fog patch placement on the map
 
 ### 7. Map and destruction
-- ✅ Simple canyon: `Workspace.Course` lives in the place (`src/map/Course.rbxmx`, synced by Rojo, visible in Edit mode): floor, walls, start bunker + barrier, Sanctuary gate. `MapService` reshuffles the cover (`Course.Cover`) every round: ruins, pillars and low walls are destructible, boulders are permanent. Plain on purpose. To edit the course, change it in Studio, then right-click it, choose *Save to File* and overwrite `src/map/Course.rbxmx` (Rojo only syncs files → Studio).
+- ✅ Green valley course: `Workspace.Course` (`src/map/Course.rbxmx`) has a grass floor with a dirt path, grassy slopes up to mossy cliffs, the start bunker + barrier and the Sanctuary gate. `MapService` reshuffles cover on the flat floor every round: stone ruins, pillars and low walls are destructible; boulders and trees are permanent. Regenerate with `tools/build_world.py`, or edit in Studio and *Save to File* over the `.rbxmx`.
+- ✅ Temporary lobby: `Workspace.Lobby` (`src/map/Lobby.rbxmx`) is a grass plaza with a spawn, hedges, trees, lamps, an arch toward the valley, and **God Vault / Runner Vault kiosks** (walk up and press E). Placeholder until a real lobby is designed.
 - ⏸️ Proper chunk art, chokepoint hazards (bridges over pits), real voxel destruction — on hold
 - ⏸️ `MapService`: canyon from 100-stud chunks
 - ⏸️ Destructible cover (port of BattleGame `DebreeService`)
