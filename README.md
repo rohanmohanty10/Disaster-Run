@@ -51,9 +51,9 @@ This repository serves as the central design blueprint and technical reference a
   ├── Cover crumbles and disintegrates under heavy God strikes
   └── Runners can use mobility, iframes, or sabotage rivals (pushing them into strikes)
        │
-       ├── Runner Eliminated ──► Shifts to Spectator Drone / "Ghost Cursers"
-       ├── Runner Reaches End ──► Secures massive Cash, Spin Tokens, and XP
-       └── God Wipes All Runners ──► Secures God Bounty & Divine Titles
+       ├── Runner Eliminated ──► Spectates, then becomes a God next round
+       ├── Runner Reaches End ──► Survives the round (stays a Runner, earns Gold)
+       └── Rounds repeat until 1 survivor ──► MVP Leaderboard (see GAME_PLAN.md)
        │
        ▼
 [VICTORY SCREEN & GACHA ROLLS]
@@ -107,7 +107,7 @@ Modeled after *Basketball Game*, *Soccer Game*, and *Striker Game*:
   - Guaranteed **Legendary+** every 50 spins.
   - Guaranteed **Mythical** every 250 spins.
 - **Roll Types:**
-  - `[1x Spin]` (In-game cash earned from runs).
+  - `[1x Spin]` (Gold earned from matches).
   - `[10x Spin]` (Discounted batch roll).
   - `[Lucky Spin]` (Robux / Gem purchase doubling Legendary and Mythical odds).
   - `[Auto-Spin]` with customizable filters (e.g., stop on Legendary+).
@@ -136,7 +136,7 @@ Modeled after *Basketball Game*, *Soccer Game*, and *Striker Game*:
 - **Center Showcase:** 3D glowing pedestal presenting the player's character with swirling elemental auras.
 - **Reel Animation:** Horizontal or card-flip slot animation with mechanical tick SFX that decelerates onto the winning card.
 - **Mythic/Secret Pull Sequence:** Screen cuts to complete blackout, accompanied by a heavy heartbeat SFX, shattered screen FX, and blinding red/prismatic lightning before card reveal.
-- **HUD Elements:** Cash & Gem counters, Pity Progress Meter (`XX / 50 for Legendary`), and Auto-Roll checkboxes.
+- **HUD Elements:** Gold & Gem counters, Pity Progress Meter (`XX / 50 for Legendary`), and Auto-Roll checkboxes.
 
 ### B. In-Game HUD: The God (Sky Commander)
 - **Camera Perspective:** High overhead isometric camera tracking the player pack with scroll-wheel altitude zoom (60 to 220 studs).

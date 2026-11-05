@@ -17,8 +17,8 @@ src/
 │   └── init.client.luau
 ├── server/
 │   ├── Services/
-│   │   ├── DataService.luau          -- ProfileStore persistence (Cash, Spins, Pity counters, Loadouts)
-│   │   ├── RoundService.luau         -- 7-state match lifecycle (Intermission -> Cross -> Cleanup)
+│   │   ├── DataService.luau          -- ProfileStore persistence (Gold, Spins, Pity counters, Loadouts, lifetime stats)
+│   │   ├── RoundService.luau         -- Multi-round match lifecycle (rounds loop until 1 survivor; dead Runners become Gods)
 │   │   ├── StatusEffectService.luau  -- Authoritative CC manager (Stun, Silence, Root, IFrame, Ragdoll)
 │   │   ├── HitboxService.luau        -- Spatial queries with target filtering (God vs Runner, Runner PvP)
 │   │   └── MapService.luau           -- Procedural 100-stud canyon chunk generator & destructible cover
@@ -29,7 +29,7 @@ src/
     │   ├── StatusEffectType.luau     -- Stunned, Silenced, Rooted, Slowed, Invulnerable, Ragdoll, InfiniteVoid
     │   └── TargetFilterMode.luau     -- HostileToRunners, SelfOnly, RunnersPvP, All
     ├── Config/
-    │   ├── RoundConfig.luau          -- Timers, player counts, cash rewards
+    │   ├── RoundConfig.luau          -- Timers, player counts, gold rewards
     │   └── MovementConfig.luau       -- Walk speed, sprint speed, stamina max/drain/regen rates
     └── Network/
         └── RemoteNames.luau          -- Centralized remote definitions
@@ -80,14 +80,16 @@ end
 ---
 
 ## 3. Match Lifecycle (`RoundService`)
-State machine sequence:
+A **match** is a loop of **rounds** (see `GAME_PLAN.md` Section 1). Each round runs states 2–7 below. At `RoundEnd`, Runners who died this round are moved to the God team for the rest of the match. The loop repeats while 2+ Runners remain and ends with `MatchEnd` (MVP leaderboard, see `GAME_PLAN.md` Section 6) when 1 or 0 Runners are left. A `StatsService` tracks per-player match stats (rounds survived, time survived, kills, assists, damage, dodges) that feed gold payouts and the leaderboard.
+
+Round state sequence:
 1. `Intermission` (Lobby countdown, players can access Gacha and Inventory).
-2. `RoleSelection` (Designates 1 God and $N$ Runners).
+2. `RoleSelection` (Round 1: picks the starting God(s), about 1 per 10 players. Later rounds: everyone eliminated so far is a God).
 3. `MapGeneration` (`MapService` stitches modular canyon chunks and spawns cover).
 4. `Preparation` (Runners teleport to Start Bunker behind forcefield; God camera activates; 3s countdown).
 5. `ActiveRun` (Forcefield drops; 90–120s timer; God calamity energy regenerates; Runners sprint toward Sanctuary Gateway).
 6. `RoundEnd` (Triggers if all Runners are eliminated, time expires, or a Runner enters the Sanctuary Gateway trigger).
-7. `Cleanup` (Debris and procedural map cleared; survivors and God rewarded; players respawned in Lobby).
+7. `Cleanup` (Debris and map cleared; round gold paid out; newly eliminated Runners join the Gods; loop back to `MapGeneration`, or go to `MatchEnd` → Lobby).
 
 ---
 
@@ -111,7 +113,8 @@ State machine sequence:
 
 ## 6. Player Data Persistence (`DataService`)
 Uses `ProfileStore`:
-- Balances: `Cash`, `Gems`, `SpinTokens`.
+- Balances: `Gold`, `Gems`, `SpinTokens`.
+- Lifetime Stats: `MatchesPlayed`, `MatchWins`, `RoundsSurvived`, `Kills`, `DamageDealt`, `MVPs`.
 - Pity Counters: `GodPityEpic`, `GodPityLegendary`, `GodPityMythical`, `RunnerPityEpic`, `RunnerPityLegendary`, `RunnerPityMythical`.
 - Inventories: Array of unlocked ability kit IDs.
 - Equipped: `EquippedGodKit`, `EquippedRunnerKit`.
