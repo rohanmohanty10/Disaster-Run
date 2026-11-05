@@ -17,6 +17,10 @@ This repository serves as the central design blueprint and technical reference a
 
 - `GAME_PLAN.md` — **Dedicated Master Game Plan & System Design Document** (Roles, Abilities, Rarity Curve, Gacha, Procedural Map & UI Wireframes).
 - `README.md` — Repository overview, systems summary, and reference index.
+- `ABILITIES.md` — **Every God and Runner kit** by rarity: descriptions, skills, cooldowns, costs and damage.
+- `FRAMEWORK_PLAN.md` — Code architecture, save-data layout and the client/server request list.
+- `src/` — The game code (Rojo project, see **Development Setup** below).
+- `tools/build_vault_ui.py` — Rebuilds the vault and HUD GUIs in `src/gui/` from the reference UI exports.
 - `references/SoccerGame/` — **3,710 extracted Luau scripts** from *Soccer Game* (StylesLotteryController, FlowLotteryController, PackOddsCalculator, Rarities, PlrStyles, AbilityBalancing, CameraShaker, VFXManager).
 - `references/StrikerGame/` — **3,764 extracted Luau scripts** from *Striker Game* (flow state mechanics, character movement, animations, sprint stamina, and gacha UI).
 - `references/FruitGame/` — **3,083 extracted Luau scripts** from *Fruit Game* (elemental fruit powers: Goro, Gura, Suna, Zushi, combat hitboxes, VFX replication, inventory, and camera systems).
@@ -25,6 +29,39 @@ This repository serves as the central design blueprint and technical reference a
 - `references/BattleGame/` — **673 extracted Luau scripts** from *Battle Game* (server-authoritative combat, HitboxHandler, DebreeService voxel/part destruction, SpecialDestruction, StunHandler, iFramesService, RagdollHandler, RockHandler terrain fracture, and ReticleController).
 - `references/SorceryGame/` — **1,329 extracted Luau scripts** from *Sorcery Game* (Gojo 0.2 Expansion / Infinite Void stun, Limitless Strikes, Infinity Push, Maximum Output Purple, DomainHandler, Hitbox, HavocHandler destruction, Projectiles, and Character Combat).
 - **UI Models (`references/*/UI/`)** — **1,030 extracted ScreenGui XML models (`.rbxmx`)** across all 7 games containing complete Frame sizes (UDim2), positions, fonts, colors, gradients, image asset IDs, and element hierarchies for building the Gacha & Game HUDs.
+
+---
+
+## Development Setup (for every developer)
+
+The code lives in this GitHub repo. **Rojo doesn't store anything itself**: it syncs the files on your computer into Roblox Studio. Everyone gets the same code by cloning this repo, and shares changes through Git (branches + pull requests).
+
+### One-time setup
+1. Install [Rokit](https://github.com/rojo-rbx/rokit), the [Rojo Studio plugin](https://rojo.space/docs/v7/getting-started/installation/), and Git.
+2. Clone the repo (don't use `rojo init`; that creates a separate, empty project):
+   ```bash
+   git clone https://github.com/rohanmohanty10/Disaster-Run.git
+   ```
+3. Inside the folder, install the tools pinned in `rokit.toml` (Rojo 7.7.1, Wally, Lune):
+   ```bash
+   rokit install
+   ```
+4. Install the Wally packages (`Packages/` and `ServerPackages/` are committed, so this is only needed after `wally.toml` changes):
+   ```bash
+   wally install
+   ```
+
+### Every session
+1. Pull the latest code: `git pull`
+2. Start Rojo: `rojo serve`
+3. In Studio, open the place and click **Connect** in the Rojo plugin. Your files now sync into Studio live.
+4. Edit code in VS Code (not in Studio; Studio edits to synced scripts get overwritten).
+5. Commit and push your branch, then open a pull request.
+
+### Working as a team
+- **Each dev syncs into their own Studio session.** The usual setup is one shared place for the map and builds (via Team Create), and code that only comes from Git through Rojo. Avoid several people running `rojo serve` into the same Team Create session at once, because each sync overwrites the scripts for everyone.
+- **To test saving in Studio**, turn on *Game Settings → Security → Enable Studio Access to API Services*. Without it, ProfileStore runs with temporary mock data.
+- **GUIs** in `src/gui/` are `.rbxmx` files. Edit them in Studio, then right-click the ScreenGui, choose *Save to File*, and overwrite the file in `src/gui/` before committing. If you rerun `tools/build_vault_ui.py`, it regenerates them from the reference exports.
 
 ---
 

@@ -10,30 +10,50 @@ This document defines the core architecture that must be implemented **prior to 
 src/
 ├── client/
 │   ├── Controllers/
-│   │   ├── CameraController.luau     -- Handles God RTS orthographic camera & Runner 3rd-person spring camera
-│   │   ├── MovementController.luau   -- Handles Runner sprint, stamina drain, slide/dodge iframes
-│   │   ├── StatusEffectController.luau -- Listens to Stun/Silence/Void screen distortion effects
-│   │   └── UIController.luau         -- Coordinates Lobby HUD, Runner HUD, God HUD, and Match Banners
-│   └── init.client.luau
+│   │   ├── DataController.luau       -- ✅ Local mirror of the player's save data (server snapshots)
+│   │   ├── UIController.luau         -- ✅ HUD buttons, screen open/close, toasts, button animations, stroke scaling
+│   │   ├── VaultController.luau      -- ✅ Both gacha vault screens (slots, spins, reel, odds, vault, buy panels)
+│   │   ├── ShowcaseStage.luau        -- ✅ Avatar showcase stage + camera behind the vault screens
+│   │   ├── Net.luau                  -- ✅ Safe request wrapper
+│   │   ├── CameraController.luau     -- God RTS orthographic camera & Runner 3rd-person spring camera
+│   │   ├── MovementController.luau   -- Runner sprint, stamina drain, slide/dodge iframes
+│   │   └── StatusEffectController.luau -- Stun/Silence/Void screen distortion effects
+│   └── init.client.luau              -- ✅ Controller loader (Init, then Start)
 ├── server/
 │   ├── Services/
-│   │   ├── DataService.luau          -- ProfileStore persistence (Cash, Spins, Slots, Vault, Pity counters, lifetime stats)
+│   │   ├── Requests.luau             -- ✅ Routes client requests to handlers
+│   │   ├── DataService.luau          -- ✅ ProfileStore persistence (Section 6)
+│   │   ├── InventoryService.luau     -- ✅ Slots, locks, vault equips, equipped kit per role
+│   │   ├── GachaService.luau         -- ✅ Server-authoritative spins, pity, vault, duplicates
+│   │   ├── MonetizationService.luau  -- ✅ Robux spin packs & slot products (PurchaseId-safe receipts)
 │   │   ├── RoundService.luau         -- Multi-round match lifecycle (rounds loop until 1 survivor; dead Runners become Gods)
 │   │   ├── StatusEffectService.luau  -- Authoritative CC manager (Stun, Silence, Root, IFrame, Ragdoll)
 │   │   ├── HitboxService.luau        -- Spatial queries with target filtering (God vs Runner, Runner PvP)
 │   │   └── MapService.luau           -- Procedural 100-stud canyon chunk generator & destructible cover
-│   └── init.server.luau
-└── shared/
-    ├── Enums/
-    │   ├── RoundState.luau           -- Intermission, RoleSelection, MapGen, Preparation, ActiveRun, RoundEnd, Cleanup
-    │   ├── StatusEffectType.luau     -- Stunned, Silenced, Rooted, Slowed, Invulnerable, Ragdoll, InfiniteVoid
-    │   └── TargetFilterMode.luau     -- HostileToRunners, SelfOnly, RunnersPvP, All
-    ├── Config/
-    │   ├── RoundConfig.luau          -- Timers, player counts, cash rewards
-    │   └── MovementConfig.luau       -- Walk speed, sprint speed, stamina max/drain/regen rates
-    └── Network/
-        └── RemoteNames.luau          -- Centralized remote definitions
+│   └── init.server.luau              -- ✅ Service loader (Init, then Start)
+├── shared/
+│   ├── Data/
+│   │   ├── Kits.luau                 -- ✅ Every God & Runner kit (mirrors ABILITIES.md)
+│   │   └── Rarities.luau             -- ✅ Rarity order, colours, vault rarities
+│   ├── Gacha/
+│   │   └── Roller.luau               -- ✅ Pure odds / roll / pity maths shared by server and client
+│   ├── Config/
+│   │   ├── GachaConfig.luau          -- ✅ Odds, pity caps, costs, refunds, product ids
+│   │   ├── UIConfig.luau             -- ✅ UI sounds, lock icons, stage position
+│   │   ├── RoundConfig.luau          -- Timers, player counts, cash rewards
+│   │   └── MovementConfig.luau       -- Walk speed, sprint speed, stamina max/drain/regen rates
+│   ├── Enums/
+│   │   ├── RoundState.luau           -- Intermission, RoleSelection, MapGen, Preparation, ActiveRun, RoundEnd, Cleanup
+│   │   ├── StatusEffectType.luau     -- Stunned, Silenced, Rooted, Slowed, Invulnerable, Ragdoll, InfiniteVoid
+│   │   └── TargetFilterMode.luau     -- HostileToRunners, SelfOnly, RunnersPvP, All
+│   ├── Network/
+│   │   └── Remotes.luau              -- ✅ Centralized remote definitions
+│   └── Util/                         -- ✅ Signal, Format
+├── gui/                              -- ✅ HUD, GodVault, RunnerVault ScreenGuis (.rbxmx, built by tools/build_vault_ui.py)
+└── assets/UI/                        -- ✅ RarityTitle row template, RarityGradients
 ```
+
+✅ = built. Everything else is still to do.
 
 ---
 
@@ -111,22 +131,48 @@ Round state sequence:
 
 ---
 
-## 6. Player Data Persistence (`DataService`)
-Built on `ProfileStore` (session-locked, anti-dupe, atomic):
-- **Currencies:** `Cash`, `Gems`, `GodSpins`, `GodLuckySpins`, `RunnerSpins`, `RunnerLuckySpins`.
-- **Slot Management (4 base, expandable to 8):**
-  - `GodSlots` (1..8) & `RunnerSlots` (1..8).
-  - `LockedGodSlots` & `LockedRunnerSlots` (Boolean locks preventing spin overwrites).
-  - `SelectedGodSlot` & `SelectedRunnerSlot`.
-- **The Permanent Vault:**
-  - `PermanentVault.GodKits` & `PermanentVault.RunnerKits` (Permanently holds Mythical and Secret pulls; never overwritten).
-- **Dual Independent Pity:**
-  - `Pity.GodNormal` (50 cap), `Pity.GodLucky` (75 Mythic / 250 Secret).
-  - `Pity.RunnerNormal` (50 cap), `Pity.RunnerLucky` (75 Mythic / 250 Secret).
-- **Duplicate & Fallback Logic:**
-  - Duplicates of Vault items refund +10 Lucky Spins or in-game Cash, plus award `DivineShards`.
-  - When tokens reach 0, spins dynamically fallback to `$2,000 Cash` per roll.
-- **Lifetime Stats:** `MatchesPlayed`, `MatchWins`, `RoundsSurvived`, `Kills`, `DamageDealt`, `MVPs`.
+## 6. Player Data Persistence (`DataService`) — ✅ built
+Built on `ProfileStore` (session-locked, anti-dupe, auto-saved). Store `PlayerData_v1`, key `Player_<UserId>`.
+
+```luau
+PlayerData = {
+    Cash, Gems, DivineShards,
+    God    = RoleData,  -- God Cataclysm vault
+    Runner = RoleData,  -- Runner Reflex vault
+    Stats  = { MatchesPlayed, MatchWins, RoundsSurvived, Kills, DamageDealt, MVPs },
+    PurchaseIdCache = { string },  -- server only, never sent to the client
+}
+
+RoleData = {
+    Spins, LuckySpins,       -- per-role spin currencies
+    Slots    = { kitId x8 }, -- "" = empty; always 8 long
+    Locked   = { bool x8 },  -- slot locks (spins can't overwrite a locked slot)
+    MaxSlots,                -- 4 base, up to 8 via Robux
+    Selected,                -- selected (= equipped) slot
+    VaultEquipped,           -- kit id equipped from the vault, "" = use selected slot
+    Vault    = { kitId },    -- Permanent Vault: every Mythical / Secret pull, kept forever
+    Pity     = { Normal, LuckyMythical, LuckySecret },  -- 50 / 75 / 250 caps
+    BoostedKit,              -- kit clicked in the odds list (2x weight inside its rarity)
+    AdBoost,                 -- boosted normal spins left (don't count toward pity)
+    TotalSpins,
+}
+```
+
+- **Equipped kit:** `VaultEquipped` if set, otherwise `Slots[Selected]` (falls back to the role's default kit if that slot is empty). Mirrored to the player attributes `EquippedGodKit` / `EquippedRunnerKit` so gameplay code can read it directly.
+- **Sanitising on load:** kits that no longer exist in `Kits.luau` are cleared, bad slot indexes reset, and a player is never left with zero kits.
+- **Replication:** every change calls `DataService.Changed(player)`, which sends one snapshot per frame to that player (`DataUpdated` remote).
+- **Mid-round lock:** while a player has the `InRound` attribute (set by `RoundService`), spins and kit swaps are refused.
+- **Purchases** use ProfileStore's PurchaseId cache, so a receipt is only granted once it's confirmed saved.
+
+### Client → server requests (`Remotes.Request:InvokeServer(action, ...)`)
+| Action | Arguments | Notes |
+| :--- | :--- | :--- |
+| `GetData` | — | Returns the current snapshot. |
+| `Spin` | role, `"Normal"`/`"Lucky"` | Charges (spin, then $2,000 Cash fallback), rolls, applies pity, places the kit, returns the result. |
+| `EquipSlot` | role, slot index | Selects a slot (also un-equips a vault kit). |
+| `EquipVault` | role, kitId | Equips a kit from the Permanent Vault. |
+| `SetLocked` | role, slot index, bool | Locks or unlocks a slot. |
+| `SetBoostedKit` | role, kitId or `""` | Picks the boosted kit in the odds list. |
 
 ---
 
