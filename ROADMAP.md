@@ -22,7 +22,7 @@ Status key: ✅ done · 🔨 in progress · ⬜ to do · ⏸️ on hold
 
 | Task | Owner | Branch | Notes |
 | :--- | :--- | :--- | :--- |
-| **Combat core:** status effects, hitboxes, knockback, ragdoll, `CombatService.Afflict` hit pipeline, test dummies | Claude | `claude/festive-fermat-xqcs68` | Built on the BattleGame and SorceryGame reference logic (`FRAMEWORK_PLAN.md` sections 1–2). |
+| **Combat core: Studio test** | Rohan | `claude/festive-fermat-xqcs68` | Code is written. Test with the dummies and `/test` chat commands, then merge. |
 
 ---
 
@@ -39,6 +39,8 @@ Status key: ✅ done · 🔨 in progress · ⬜ to do · ⏸️ on hold
 | Vault UI | God and Runner vault screens: slots, reel, odds list, vault panel, confirm, buy panels, blackout reveal, avatar showcase | `src/gui/*.rbxmx`, `VaultController.luau`, `ShowcaseStage.luau` |
 | HUD | Vault buttons, Cash counter, toasts, button animations, stroke scaling | `src/gui/HUD.rbxmx`, `UIController.luau` |
 | Kit data | 15 God and 16 Runner kits with descriptions and numbers | `src/shared/Data/Kits.luau` |
+| Combat core *(needs a Studio test)* | Stacking status effects (stun, slow, root, silence, iframes, ragdoll, void), box/sphere hitboxes with the 4 target filters, build-once ragdolls, knockback, the `Afflict` hit pipeline with 60-per-cast and per-second damage caps, kill/assist credit, DODGED and damage pop-ups | `StatusEffectService`, `HitboxService`, `RagdollService`, `KnockbackService`, `CombatService`, `CombatController` (usage in `FRAMEWORK_PLAN.md` Sections 1–2) |
+| Test tools | 3 respawning test dummies and `/test` chat commands (Studio / creator only) | `DevTestService.luau` |
 
 ---
 
@@ -46,12 +48,7 @@ Status key: ✅ done · 🔨 in progress · ⬜ to do · ⏸️ on hold
 
 Tasks higher up unblock the ones below them. Pick from the top when you can.
 
-### 1. Combat core — 🔨 in progress (see above)
-- ⬜ `StatusEffectService`: stacking stun / slow / root / silence / iframes / ragdoll states
-- ⬜ `HitboxService`: box and sphere hitboxes plus the four target filters (`HostileToRunners`, `SelfOnly`, `RunnersPvP`, `All`)
-- ⬜ `KnockbackService` and `RagdollService` (with the client-side handler)
-- ⬜ `CombatService.Afflict()`: one hit pipeline (iframes → damage → stun → knockback → ragdoll), 60-damage-per-cast cap
-- ⬜ Test dummies and a debug command to hit them
+### 1. Combat core — ✅ written, waiting on a Studio test (see Done)
 
 ### 2. Ability framework
 - ⬜ Base ability class: cooldowns, energy (God) and stamina (Runner) costs, can't cast while stunned or silenced

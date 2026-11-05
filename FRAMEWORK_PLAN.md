@@ -15,6 +15,7 @@ src/
 │   │   ├── VaultController.luau      -- ✅ Both gacha vault screens (slots, spins, reel, odds, vault, buy panels)
 │   │   ├── ShowcaseStage.luau        -- ✅ Avatar showcase stage + camera behind the vault screens
 │   │   ├── Net.luau                  -- ✅ Safe request wrapper
+│   │   ├── CombatController.luau     -- ✅ Applies own knockback / ragdoll, DODGED + damage pop-ups, void screen
 │   │   ├── CameraController.luau     -- God RTS orthographic camera & Runner 3rd-person spring camera
 │   │   ├── MovementController.luau   -- Runner sprint, stamina drain, slide/dodge iframes
 │   │   └── StatusEffectController.luau -- Stun/Silence/Void screen distortion effects
@@ -26,9 +27,13 @@ src/
 │   │   ├── InventoryService.luau     -- ✅ Slots, locks, vault equips, equipped kit per role
 │   │   ├── GachaService.luau         -- ✅ Server-authoritative spins, pity, vault, duplicates
 │   │   ├── MonetizationService.luau  -- ✅ Robux spin packs & slot products (PurchaseId-safe receipts)
+│   │   ├── RagdollService.luau       -- ✅ Build-once ball-socket ragdolls (R6 + R15)
+│   │   ├── KnockbackService.luau     -- ✅ Knockback (client-applied for players, server for NPCs)
+│   │   ├── CombatService.luau        -- ✅ Afflict() hit pipeline, damage caps, kill credit
+│   │   ├── DevTestService.luau       -- ✅ Test dummies + /test chat commands (Studio only)
 │   │   ├── RoundService.luau         -- Multi-round match lifecycle (rounds loop until 1 survivor; dead Runners become Gods)
-│   │   ├── StatusEffectService.luau  -- Authoritative CC manager (Stun, Silence, Root, IFrame, Ragdoll)
-│   │   ├── HitboxService.luau        -- Spatial queries with target filtering (God vs Runner, Runner PvP)
+│   │   ├── StatusEffectService.luau  -- ✅ Stacking CC / iframe states (Section 1)
+│   │   ├── HitboxService.luau        -- ✅ Box / sphere hitboxes + target filters (Section 2)
 │   │   └── MapService.luau           -- Procedural 100-stud canyon chunk generator & destructible cover
 │   └── init.server.luau              -- ✅ Service loader (Init, then Start)
 ├── shared/
@@ -40,15 +45,16 @@ src/
 │   ├── Config/
 │   │   ├── GachaConfig.luau          -- ✅ Odds, pity caps, costs, refunds, product ids
 │   │   ├── UIConfig.luau             -- ✅ UI sounds, lock icons, stage position
+│   │   ├── CombatConfig.luau         -- ✅ Health, damage caps, ragdoll / knockback limits, test dummies
 │   │   ├── RoundConfig.luau          -- Timers, player counts, cash rewards
 │   │   └── MovementConfig.luau       -- Walk speed, sprint speed, stamina max/drain/regen rates
-│   ├── Enums/
+│   ├── Enums/                        -- ✅ StatusEffectType, TargetFilterMode (RoundState still to do)
 │   │   ├── RoundState.luau           -- Intermission, RoleSelection, MapGen, Preparation, ActiveRun, RoundEnd, Cleanup
 │   │   ├── StatusEffectType.luau     -- Stunned, Silenced, Rooted, Slowed, Invulnerable, Ragdoll, InfiniteVoid
 │   │   └── TargetFilterMode.luau     -- HostileToRunners, SelfOnly, RunnersPvP, All
 │   ├── Network/
 │   │   └── Remotes.luau              -- ✅ Centralized remote definitions
-│   └── Util/                         -- ✅ Signal, Format
+│   └── Util/                         -- ✅ Signal, Format, NumberStack, Characters, Knockback
 ├── gui/                              -- ✅ HUD, GodVault, RunnerVault ScreenGuis (.rbxmx, built by tools/build_vault_ui.py)
 └── assets/UI/                        -- ✅ RarityTitle row template, RarityGradients
 ```
@@ -73,6 +79,21 @@ All abilities (God cataclysms, Runner dashes, Runner-to-Runner sabotage) must in
 - Duration stacking must use `Janitor` or tick-based timestamps. Multiple stuns do not stack additively; the longest remaining duration takes precedence.
 - On expiry of all slow/stun effects, character `WalkSpeed` is cleanly restored to the base walking speed (or current sprint state).
 
+### ✅ As built
+- Each effect is a `NumberStack` (`src/shared/Util/NumberStack.luau`): every application adds a timed level, and the effect stays on until all levels end, so the longest one wins.
+- Every effect is mirrored to a character attribute with its name (`Stunned`, `Invulnerable`, ...), plus `SpeedMultiplier` and `MovementLocked`.
+- **Slows:** the strongest active slow wins (they don't multiply together).
+- **Movement:** WalkSpeed = `BaseWalkSpeed` attribute (or `CombatConfig.BaseWalkSpeed`) × slow, or 0 while stunned, rooted, ragdolled or voided. **The sprint system should change the `BaseWalkSpeed` attribute, not WalkSpeed directly.**
+- **Hostile effects** are refused while `Invulnerable`. New stuns are refused while `StunImmunity` is on (0.5s after getting up from a ragdoll).
+- **API:**
+  ```luau
+  StatusEffectService.Apply(character, "Stunned", 1.5)                       -- timed
+  local handle = StatusEffectService.Apply(character, "Rooted")              -- until handle:Remove()
+  StatusEffectService.Apply(character, "Slowed", 3, { Factor = 0.6 })
+  StatusEffectService.CanCast(character) / .CanMove(character) / .Has(character, "Stunned")
+  StatusEffectService.Cleanse(character, "Slowed")   -- or nil for everything
+  ```
+
 ---
 
 ## 2. Hitbox & Targeting Pipeline (`HitboxService`)
@@ -96,6 +117,32 @@ if character:GetAttribute("Invulnerable") == true then
     return false
 end
 ```
+(Done for you inside `CombatService.Afflict`.)
+
+### ✅ As built: hitboxes, the hit pipeline, ragdoll and knockback
+```luau
+local cast = CombatService.NewCast()                 -- one per ability use (per-cast damage cap)
+local hitbox = HitboxService.new({
+    Shape = "Sphere", Size = 12,                     -- Box: Size = Vector3; Sphere: radius
+    CFrame = target,                                  -- or Adornee = root, Offset = CFrame.new(0, 0, -4)
+    Caster = player, Filter = "HostileToRunners",
+})
+hitbox.Hit:Connect(function(victim)
+    CombatService.Afflict(player, victim, {
+        Cast = cast, Damage = 30, Stun = 0.6, Ragdoll = 1.5,
+        Knockback = { From = target.Position, Power = 50, Lift = 30 },
+    })
+end)
+hitbox:Start(0.2)                                    -- check every frame for 0.2s (nil = one check)
+local victims = HitboxService.Query({...})           -- one-shot list, nearest first
+```
+- **`Afflict` order:** valid and alive → iframes (shows "DODGED", stops) → damage → stun / void / slow / root / silence → ragdoll → knockback. It returns `(hit, reason)`.
+- **Damage caps:** at most `MaxDamagePerCast` (60) per target per cast, and `MaxDamagePerSecond` (70) per target from all sources. `Uncapped = true` skips both (hazards only).
+- **Kill credit:** `CombatService.Killed` fires `(victim, killer, assists)`. The killer is the last attacker; an assist is anyone else who dealt ≥ 20 damage in the 10s before the kill. `CombatService.Damaged` fires for every hit. These are what `RoundService` / stats will use.
+- **Roles:** filters read the `Role` attribute (`"Runner"` / `"God"`) on the Player, or on the model for NPCs. **`RoundService` must set it.**
+- **Ragdoll:** ball sockets and colliders are built once per character from its `Motor6D`s (R6 and R15). Players' clients switch themselves into the Physics state. Bodies ragdoll on death.
+- **Knockback:** players are pushed by their own client (`Knockback` remote), NPCs on the server. Existing movers are cleared first so pushes never stack into a fling.
+- **Testing in Studio:** 3 dummies spawn at `CombatConfig.TestDummies.Origin`. Type `/test` in chat for commands (smite, stun, slow, shove, barrage, void, `me ...`, `role ...`, `hitboxes`).
 
 ---
 
