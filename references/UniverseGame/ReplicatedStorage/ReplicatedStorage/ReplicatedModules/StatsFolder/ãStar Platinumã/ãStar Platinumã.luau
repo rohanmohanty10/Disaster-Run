@@ -218,7 +218,7 @@ return {
                 Description = "Star Platinum unleashes a swift flurry of kicks.",
                 Unlocked = true
             },
-            ["YBA Essence"] = {
+            ["Stand Essence"] = {
                 DefaultKeybind = "H+",
                 State = "StandOn",
                 Description = "Star Platinum awakens its true potential.",
@@ -1542,7 +1542,7 @@ return {
                 }
             }
         },
-        ["YBA Essence"] = {
+        ["Stand Essence"] = {
             Active = true,
             Actionable = {
                 Active = true,

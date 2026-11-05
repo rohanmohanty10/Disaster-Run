@@ -10,6 +10,6 @@ return {
     Args = { {
             Type = "players",
             Name = "player(s)",
-            Description = "The player(s) to teleport to yba"
+            Description = "The player(s) to teleport to the game"
         } }
 };
