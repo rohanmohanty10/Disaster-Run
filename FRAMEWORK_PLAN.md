@@ -110,12 +110,20 @@ State machine sequence:
 ---
 
 ## 6. Player Data Persistence (`DataService`)
-Uses `ProfileStore`:
-- Balances: `Cash`, `Gems`, `SpinTokens`.
-- Pity Counters: `GodPityEpic`, `GodPityLegendary`, `GodPityMythical`, `RunnerPityEpic`, `RunnerPityLegendary`, `RunnerPityMythical`.
-- Inventories: Array of unlocked ability kit IDs.
-- Equipped: `EquippedGodKit`, `EquippedRunnerKit`.
-
+Built on `ProfileStore` (session-locked, anti-dupe, atomic):
+- **Currencies:** `Cash`, `Gems`, `GodSpins`, `GodLuckySpins`, `RunnerSpins`, `RunnerLuckySpins`.
+- **Slot Management (4 base, expandable to 8):**
+  - `GodSlots` (1..8) & `RunnerSlots` (1..8).
+  - `LockedGodSlots` & `LockedRunnerSlots` (Boolean locks preventing spin overwrites).
+  - `SelectedGodSlot` & `SelectedRunnerSlot`.
+- **The Permanent Vault:**
+  - `PermanentVault.GodKits` & `PermanentVault.RunnerKits` (Permanently holds Mythical and Secret pulls; never overwritten).
+- **Dual Independent Pity:**
+  - `Pity.GodNormal` (50 cap), `Pity.GodLucky` (75 Mythic / 250 Secret).
+  - `Pity.RunnerNormal` (50 cap), `Pity.RunnerLucky` (75 Mythic / 250 Secret).
+- **Duplicate & Fallback Logic:**
+  - Duplicates of Vault items refund +10 Lucky Spins or in-game Cash, plus award `DivineShards`.
+  - When tokens reach 0, spins dynamically fallback to `$2,000 Cash` per roll.
 
 ---
 
@@ -125,7 +133,7 @@ The newly added reference archive `references/BattleGame/` contains full, battle
 | System | BattleGame Reference File | Description |
 | :--- | :--- | :--- |
 | **Hitboxes & Targeting** | `references/BattleGame/ServerStorage/SBGModules/HitboxHandler.luau` | Spatial query hitboxes (`GetPartBoundsInBox`), target filtering, visual replication |
-| **Map & Cover Destruction** | `references/BattleGame/ServerStorage/SBGModules/DebreeService.luau` | 2,268-line JJS-style part/voxel destruction engine (Splitting, physics bodies, wall & floor debris) |
+| **Map & Cover Destruction** | `references/BattleGame/ServerStorage/SBGModules/DebreeService.luau` | 2,268-line procedural part/voxel destruction engine (Splitting, physics bodies, wall & floor debris) |
 | **Model Destruction** | `references/BattleGame/ServerStorage/SBGModules/SpecialDestruction.luau` | 1,892-line whole-structure and environment collapse system |
 | **Crowd Control & Stuns** | `references/BattleGame/ServerStorage/SBGModules/StunHandler.luau` | Tag-based state locks (`CantPunch`, `CantDash`, `Stunned`), speed dampening |
 | **Invulnerability (IFrames)** | `references/BattleGame/ServerStorage/SBGModules/iFramesService.luau` | Authoritative `iFrames` attribute checks and duration buffers |
