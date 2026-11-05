@@ -63,6 +63,11 @@ Follow-ups once tested:
 - ⬜ Runner stamina is tracked on the client: move it server-side before launch
 - ⬜ "Muting" for Infinite Void needs all sounds routed through one SoundGroup
 
+### 6b. Fog of War (`GAME_PLAN.md` Section 4B)
+- ⬜ `FogService`: `FogZone` volumes, `Concealed` / `Exposed` attributes, exposure timers, spawn-fog cast blocking
+- ⬜ Client: thick fog and hidden Runners for Gods, light haze for Runners, white exposure highlight, tracker/reticle support
+- ⬜ Fog patch placement on the map (waits for the map, which is on hold)
+
 ### 7. ⏸️ Map and destruction — on hold
 - ⏸️ `MapService`: canyon from 100-stud chunks
 - ⏸️ Destructible cover (port of BattleGame `DebreeService`)

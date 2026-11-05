@@ -178,6 +178,30 @@ Player Gacha & Inventory Architecture
   - Heavy cataclysms create crater indentations and rock fractures on the valley floor.
 - **Path Validation:** Every procedural chunk guarantees that at least two navigable lanes remain open with adequate defensive shelter spacing.
 
+### 4B. Fog of War (God visibility)
+Fog only blocks the **Gods'** view. Runners see a light haze at most, so they can still find their way.
+
+* **Spawn Fog (anti spawn-camping):**
+  * Thick fog covers the whole start area and extends **~120 studs past the starting barrier**.
+  * Runners inside it are invisible to Gods: hidden on God clients and left off the Runner tracker.
+  * Gods **can't aim strikes into the Spawn Fog.** The reticle turns red and the cast is refused (checked on the server).
+  * Staying in the Spawn Fog too long during the crossing triggers **Exposure** (below), so Runners can't wait it out at the start.
+* **Fog Patches across the canyon:**
+  * Several fog volumes of **varying size** (radius ~15–45 studs) are placed along the course, more in some chunks than others.
+  * Runners inside a patch are hidden from Gods, the same as in the Spawn Fog.
+  * Gods **can** still cast into Fog Patches, blind. Telegraphs still show to Runners as normal, so the counterplay stays fair.
+* **Exposure (anti-hiding):**
+  * Each Runner has a hidden concealment timer that fills while they're inside any fog.
+  * After **8s in fog** (Spawn Fog: **10s** once the run starts), or **15s without moving forward**, the Runner is **Exposed**.
+  * **Exposed** means a white highlight visible to Gods through fog and walls. It lasts until the Runner has been out of fog for 3s, and at least 5s.
+  * Leaving and re-entering fog within 10s doesn't reset the timer, so Runners can't dodge it by stepping in and out.
+* **Implementation notes:**
+  * Fog volumes are parts tagged `FogZone`, with a `Kind` attribute of `Spawn` or `Patch`.
+  * The server tracks who is concealed or exposed with character attributes (`Concealed`, `Exposed`).
+  * God clients hide concealed Runners locally (`LocalTransparencyModifier`) and draw the fog thick. Runner clients draw it as light haze.
+  * The Runner tracker and God reticle respect concealment.
+  * Fog placement is part of the map work, which is on hold. The Spawn Fog can sit on the start markers until then.
+
 ---
 
 ## 5. Complete UI / UX Specifications
