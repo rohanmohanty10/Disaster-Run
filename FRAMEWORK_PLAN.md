@@ -133,3 +133,19 @@ The newly added reference archive `references/BattleGame/` contains full, battle
 | **Ground & Rock VFX** | `references/BattleGame/ReplicatedStorage/Modules/ClientEffects/RockHandler.luau` | 1,257-line dynamic ground cratering, rock lifting, and terrain fracture |
 | **God Ground Reticle** | `references/BattleGame/ReplicatedStorage/Modules/ReticleController.luau` | Raycast ground targeting indicator for casting calamities |
 | **Camera Impact Shake** | `references/BattleGame/ReplicatedStorage/Modules/CameraShaker.luau` | Spring-based 6DOF camera shake presets for explosions and smites |
+
+
+---
+
+## 8. SorceryGame Reference Modules (`references/SorceryGame/`)
+The `references/SorceryGame/` archive provides the exact implementation of Gojo's *0.2s Expansion* (Infinite Void stun) and sorcery-style combat mechanics:
+
+| System | SorceryGame Reference File | Description |
+| :--- | :--- | :--- |
+| **Gojo Infinite Void (0.2s Expansion)** | `references/SorceryGame/ServerScriptService/Scripts/Game/Modules/Player/Character/Combat/Attacks/List/Gojo/0.2 Expansion.luau` | True stun AoE (size 48), blocks dashing, applies visual distortion VFX and TrueStun state |
+| **Infinity Push** | `references/SorceryGame/ServerScriptService/Scripts/Game/Modules/Player/Character/Combat/Attacks/List/Gojo/Infinity Push.luau` | Repulsion impulse that shoves nearby players away |
+| **Domain Expansion Pipeline** | `references/SorceryGame/ServerScriptService/Scripts/Game/Modules/DomainHandler.luau` | Barrier generation, domain clash checks, environmental visual swap |
+| **Combat Hitbox Engine** | `references/SorceryGame/ServerScriptService/Scripts/Game/Modules/Player/Character/Combat/Hitbox.luau` | Hitbox creation, active counter validation, and iframe checking |
+| **Combat Ragdoll** | `references/SorceryGame/ServerScriptService/Scripts/Game/Modules/Player/Character/Combat/Ragdoll.luau` | Character physics unbinding on knockback impacts |
+| **Projectile Pipeline** | `references/SorceryGame/ServerScriptService/Scripts/Game/Modules/Player/Character/Combat/Projectiles/Projectile.luau` | High-speed linear projectiles with collision sweeps and pierce options |
+| **Havoc Environmental Destruction** | `references/SorceryGame/ServerScriptService/Scripts/HavocHandler/Havoc/Havoc.luau` | 1,361-line mesh and spatial havoc physics engine |

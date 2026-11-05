@@ -23,7 +23,8 @@ This repository serves as the central design blueprint and technical reference a
 - `references/BasketballGame/` — **2,239 extracted Luau scripts** from *Basketball Game* (Knit framework, Rarities, Styles, Cooldowns, WheelItems, CratesItems, ServerAbilities, Customization).
 - `references/ValleyRun/` — **664 extracted Luau scripts** from *Valley Run* (asymmetric match loop, deathrun mechanics, safezone barriers, spectator transitions, and obstacle replication).
 - `references/BattleGame/` — **673 extracted Luau scripts** from *Battle Game* (server-authoritative combat, HitboxHandler, DebreeService voxel/part destruction, SpecialDestruction, StunHandler, iFramesService, RagdollHandler, RockHandler terrain fracture, and ReticleController).
-- **UI Models (`references/*/UI/`)** — **932 extracted ScreenGui XML models (`.rbxmx`)** across all 6 games containing complete Frame sizes (UDim2), positions, fonts, colors, gradients, image asset IDs, and element hierarchies for building the Gacha & Game HUDs.
+- `references/SorceryGame/` — **1,329 extracted Luau scripts** from *Sorcery Game* (Gojo 0.2 Expansion / Infinite Void stun, Limitless Strikes, Infinity Push, Maximum Output Purple, DomainHandler, Hitbox, HavocHandler destruction, Projectiles, and Character Combat).
+- **UI Models (`references/*/UI/`)** — **1,030 extracted ScreenGui XML models (`.rbxmx`)** across all 7 games containing complete Frame sizes (UDim2), positions, fonts, colors, gradients, image asset IDs, and element hierarchies for building the Gacha & Game HUDs.
 
 ---
 
@@ -155,7 +156,7 @@ Modeled after *Basketball Game*, *Soccer Game*, and *Striker Game*:
 
 ## 3. Game Reference Archives Guide
 
-All **14,133 scripts** extracted from the reference place files are indexed in the `references/` directory:
+All **15,462 scripts** extracted from the reference place files are indexed in the `references/` directory:
 
 | Folder | Source Place | Script Count | Primary References |
 | :--- | :--- | :--- | :--- |
@@ -165,3 +166,4 @@ All **14,133 scripts** extracted from the reference place files are indexed in t
 | `references/BasketballGame/` | *Basketball Game* | 2,239 scripts | Knit framework, gacha item tables (`WheelItems`, `CratesItems`), `Styles.luau`, `Cooldowns.luau`, `Rarities.luau`, `ServerAbilities` |
 | `references/ValleyRun/` | *Valley Run* | 664 scripts | Deathrun corridor loops, safezone borders, spectator cameras, sniper/hazard replication |
 | `references/BattleGame/` | *Battle Game* | 673 scripts | Combat & CC (`HitboxHandler`, `DamageHandler`, `StunHandler`, `iFramesService`, `RagdollHandler`), JJS-style map destruction (`DebreeService`, `SpecialDestruction`), ground FX (`RockHandler`), and `ReticleController` |
+| `references/SorceryGame/` | *Sorcery Game* | 1,329 scripts | Sorcery abilities (`Gojo 0.2 Expansion / Infinite Void`, `Infinity Push`, `Maximum Output Purple`), `DomainHandler`, `Hitbox`, `Projectiles`, `Ragdoll`, and `HavocHandler` |

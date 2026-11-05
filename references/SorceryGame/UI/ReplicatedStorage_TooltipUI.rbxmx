@@ -1,0 +1,197 @@
+<roblox version="4">
+  <Item class="ScreenGui" referent="0">
+    <Properties>
+      <string name="Name">TooltipUI</string>
+      <BinaryString name="AttributesSerialize"></BinaryString>
+      <bool name="AutoLocalize">true</bool>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+      <bool name="ClipToDeviceSafeArea">true</bool>
+      <int name="DisplayOrder">99</int>
+      <bool name="Enabled">true</bool>
+      <token name="InputSinkEnabled">0</token>
+      <bool name="ResetOnSpawn">false</bool>
+      <Ref name="RootLocalizationTable">null</Ref>
+      <token name="SafeAreaCompatibility">1</token>
+      <bool name="DefinesCapabilities">false</bool>
+      <token name="ScreenInsets">1</token>
+      <token name="SelectionBehaviorDown">0</token>
+      <token name="SelectionBehaviorLeft">0</token>
+      <token name="SelectionBehaviorRight">0</token>
+      <token name="SelectionBehaviorUp">0</token>
+      <bool name="SelectionGroup">false</bool>
+      <BinaryString name="SerializedOverrides">
+      </BinaryString>
+      <int64 name="SourceAssetId">-1</int64>
+      <BinaryString name="Tags"></BinaryString>
+      <token name="ZIndexBehavior">1</token>
+    </Properties>
+    <Item class="Frame" referent="1">
+      <Properties>
+        <string name="Name">Tips</string>
+        <bool name="Active">false</bool>
+        <Vector2 name="AnchorPoint">
+          <X>0</X>
+          <Y>0</Y>
+        </Vector2>
+        <BinaryString name="AttributesSerialize"></BinaryString>
+        <bool name="AutoLocalize">true</bool>
+        <token name="AutomaticSize">3</token>
+        <Color3 name="BackgroundColor3">
+          <R>1</R>
+          <G>1</G>
+          <B>1</B>
+        </Color3>
+        <float name="BackgroundTransparency">1</float>
+        <Color3 name="BorderColor3">
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </Color3>
+        <token name="BorderMode">0</token>
+        <int name="BorderSizePixel">0</int>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+        <bool name="ClipsDescendants">false</bool>
+        <bool name="Draggable">false</bool>
+        <bool name="Interactable">true</bool>
+        <int name="LayoutOrder">0</int>
+        <Ref name="NextSelectionDown">null</Ref>
+        <Ref name="NextSelectionLeft">null</Ref>
+        <Ref name="NextSelectionRight">null</Ref>
+        <Ref name="NextSelectionUp">null</Ref>
+        <UDim2 name="Position">
+          <XS>0</XS>
+          <XO>0</XO>
+          <YS>0</YS>
+          <YO>0</YO>
+        </UDim2>
+        <Ref name="RootLocalizationTable">null</Ref>
+        <float name="Rotation">0</float>
+        <bool name="DefinesCapabilities">false</bool>
+        <bool name="Selectable">false</bool>
+        <token name="SelectionBehaviorDown">0</token>
+        <token name="SelectionBehaviorLeft">0</token>
+        <token name="SelectionBehaviorRight">0</token>
+        <token name="SelectionBehaviorUp">0</token>
+        <bool name="SelectionGroup">false</bool>
+        <Ref name="SelectionImageObject">null</Ref>
+        <int name="SelectionOrder">0</int>
+        <BinaryString name="SerializedOverrides">
+        </BinaryString>
+        <token name="Sink">0</token>
+        <UDim2 name="Size">
+          <XS>0</XS>
+          <XO>0</XO>
+          <YS>0</YS>
+          <YO>0</YO>
+        </UDim2>
+        <token name="SizeConstraint">0</token>
+        <int64 name="SourceAssetId">-1</int64>
+        <token name="Style">0</token>
+        <BinaryString name="Tags"></BinaryString>
+        <bool name="Visible">true</bool>
+        <int name="ZIndex">1</int>
+      </Properties>
+      <Item class="LocalScript" referent="2">
+        <Properties>
+          <string name="Name">AutoSide</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="Disabled">false</bool>
+          <ContentId name="LinkedSource">
+            <null>
+            </null>
+          </ContentId>
+          <token name="RunContext">0</token>
+          <bool name="DefinesCapabilities">false</bool>
+          <BinaryString name="SerializedOverrides">
+          </BinaryString>
+          <string name="Source">local UserInputService = game:GetService("UserInputService")
+local Tips = script.Parent;
+local AnchoringSide = 1;
+
+local function update_input()
+	local position = UserInputService:GetMouseLocation();
+	Tips.Position = UDim2.fromOffset(position.X + 4 * AnchoringSide, position.Y);
+end
+
+UserInputService.InputChanged:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseMovement) then
+		update_input();
+	end
+end)
+
+local function change_side()
+	if Tips.AbsoluteSize.Y &gt; Tips.AbsoluteSize.X then
+		Tips.AnchorPoint = Vector2.new(1, 1);
+		AnchoringSide = -1;
+	else
+		Tips.AnchorPoint = Vector2.new(0, 1);
+		AnchoringSide = 1;
+	end;
+	
+	update_input();
+end
+
+--change_side();
+Tips.ChildAdded:Connect(change_side);
+Tips.ChildRemoved:Connect(change_side);
+--Tips:GetPropertyChangedSignal("AbsoluteSize"):Connect(change_side);</string>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+        </Properties>
+      </Item>
+      <Item class="UIListLayout" referent="3">
+        <Properties>
+          <string name="Name">UIListLayout</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <token name="FillDirection">1</token>
+          <token name="HorizontalAlignment">1</token>
+          <token name="HorizontalFlex">0</token>
+          <token name="ItemLineAlignment">0</token>
+          <UDim name="Padding">
+            <S>0</S>
+            <O>2</O>
+          </UDim>
+          <bool name="DefinesCapabilities">false</bool>
+          <BinaryString name="SerializedOverrides">
+          </BinaryString>
+          <token name="SortOrder">2</token>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <token name="VerticalAlignment">2</token>
+          <token name="VerticalFlex">0</token>
+          <bool name="Wraps">false</bool>
+        </Properties>
+      </Item>
+      <Item class="UIPadding" referent="4">
+        <Properties>
+          <string name="Name">UIPadding</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <UDim name="PaddingBottom">
+            <S>0</S>
+            <O>2</O>
+          </UDim>
+          <UDim name="PaddingLeft">
+            <S>0</S>
+            <O>2</O>
+          </UDim>
+          <UDim name="PaddingRight">
+            <S>0</S>
+            <O>2</O>
+          </UDim>
+          <UDim name="PaddingTop">
+            <S>0</S>
+            <O>2</O>
+          </UDim>
+          <bool name="DefinesCapabilities">false</bool>
+          <BinaryString name="SerializedOverrides">
+          </BinaryString>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+        </Properties>
+      </Item>
+    </Item>
+  </Item>
+</roblox>
