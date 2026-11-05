@@ -1,0 +1,5 @@
+  
+
+ 
+
+return require(script.Parent.Config).new();

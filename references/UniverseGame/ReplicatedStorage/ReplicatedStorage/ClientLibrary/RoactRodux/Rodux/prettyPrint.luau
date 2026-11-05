@@ -1,0 +1,39 @@
+  
+
+ 
+
+local function prettyPrint(p1, p2) -- Line: 3
+    -- upvalues: prettyPrint (copy)
+    local v3 = p2 or 0;
+    local v4 = {};
+
+    if typeof(p1) == "table" then
+        table.insert(v4, "{\n");
+
+        for i, v in pairs(p1) do
+            table.insert(v4, ("    "):rep(v3 + 1));
+            local v5 = tostring(i);
+            table.insert(v4, v5);
+            table.insert(v4, " = ");
+            table.insert(v4, prettyPrint(v, v3 + 1));
+            table.insert(v4, "\n");
+        end;
+
+        table.insert(v4, ("    "):rep(v3));
+        table.insert(v4, "}");
+    elseif typeof(p1) == "string" then
+        table.insert(v4, string.format("%q", p1));
+        table.insert(v4, " (string)");
+    else
+        local v6 = tostring(p1);
+        table.insert(v4, v6);
+        table.insert(v4, " (");
+        local v7 = typeof(p1);
+        table.insert(v4, v7);
+        table.insert(v4, ")");
+    end;
+
+    return table.concat(v4, "");
+end;
+
+return prettyPrint;

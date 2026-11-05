@@ -1,0 +1,9 @@
+  
+
+ 
+
+return {
+    Inherit = {
+        AbilityName = "ShadowDio"
+    }
+};

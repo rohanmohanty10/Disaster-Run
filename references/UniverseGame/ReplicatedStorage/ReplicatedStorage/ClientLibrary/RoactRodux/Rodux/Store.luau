@@ -1,0 +1,173 @@
+  
+
+ 
+
+local RunService = game:GetService("RunService");
+local Signal = require(script.Parent.Signal);
+local NoYield = require(script.Parent.NoYield);
+local u8 = {
+    reportReducerError = function(p1, p2, p3) -- Line: 9, Name: reportReducerError
+        error(string.format("Received error: %s\n\n%s", p3.message, p3.thrownValue));
+    end,
+
+    reportUpdateError = function(p4, p5, p6, p7) -- Line: 12, Name: reportUpdateError
+        error(string.format("Received error: %s\n\n%s", p7.message, p7.thrownValue));
+    end
+};
+
+local function tracebackReporter(p9) -- Line: 17
+    return debug.traceback((tostring(p9)));
+end;
+
+local u10 = {
+    _flushEvent = RunService.Heartbeat
+};
+u10.__index = u10;
+
+function u10.new(u11, u12, p13, p14) -- Line: 41
+    -- upvalues: u8 (copy), tracebackReporter (copy), Signal (copy), u10 (copy)
+    local v15 = typeof(u11) == "function";
+    assert(v15, "Bad argument #1 to Store.new, expected function.");
+    local v16 = p13 == nil and true or typeof(p13) == "table";
+    assert(v16, "Bad argument #3 to Store.new, expected nil or table.");
+
+    if p13 ~= nil then
+        for i = 1, #p13 do
+            local v17 = typeof(p13[i]) == "function";
+            local v18 = tostring(p13[i]);
+            assert(v17, ("Expected the middleware (\'%s\') at index %d to be a function."):format(v18, i));
+        end;
+    end;
+
+    local u19 = {
+        _errorReporter = p14 or u8,
+        _isDispatching = false,
+        _reducer = u11
+    };
+    local u20 = {
+        type = "@@INIT"
+    };
+    u19._actionLog = { u20 };
+    local v21, v22 = xpcall(function() -- Line: 62
+        -- upvalues: u19 (copy), u11 (copy), u12 (copy), u20 (copy)
+        u19._state = u11(u12, u20);
+    end, tracebackReporter);
+
+    if not v21 then
+        u19._errorReporter.reportReducerError(u12, u20, {
+            message = "Caught error in reducer with init",
+            thrownValue = v22
+        });
+        u19._state = u12;
+    end;
+
+    u19._lastState = u19._state;
+    u19._mutatedSinceFlush = false;
+    u19._connections = {};
+    u19.changed = Signal.new(u19);
+    setmetatable(u19, u10);
+    local v23 = u19._flushEvent:Connect(function() -- Line: 81
+        -- upvalues: u19 (copy)
+        u19:flush();
+    end);
+    table.insert(u19._connections, v23);
+
+    if p13 then
+        local dispatch = u19.dispatch;
+
+        local function u24(...) -- Line: 88
+            -- upvalues: dispatch (copy), u19 (copy)
+            return dispatch(u19, ...);
+        end;
+
+        for i = #p13, 1, -1 do
+            u24 = p13[i](u24, u19);
+        end;
+
+        function u19.dispatch(p25, ...) -- Line: 97
+            -- upvalues: u24 (ref)
+            return u24(...);
+        end;
+    end;
+
+    return u19;
+end;
+
+function u10.getState(p26) -- Line: 108
+    if p26._isDispatching then
+        error(("You may not call store:getState() while the reducer is executing. The reducer (%s) has already received the state as an argument. Pass it down from the top reducer instead of reading it from the store."):format((tostring(p26._reducer))));
+    end;
+
+    return p26._state;
+end;
+
+function u10.dispatch(u27, u28) -- Line: 125
+    if typeof(u28) ~= "table" then
+        error(("Actions must be tables. Use custom middleware for %q actions."):format((typeof(u28))), 2);
+    end;
+
+    if u28.type == nil then
+        error("Actions may not have an undefined \'type\' property. " .. "Have you misspelled a constant? \n" .. tostring(u28), 2);
+    end;
+
+    if u27._isDispatching then
+        error("Reducers may not dispatch actions.");
+    end;
+
+    local success, result = pcall(function() -- Line: 143
+        -- upvalues: u27 (copy), u28 (copy)
+        u27._isDispatching = true;
+        u27._state = u27._reducer(u27._state, u28);
+        u27._mutatedSinceFlush = true;
+    end);
+    u27._isDispatching = false;
+
+    if not success then
+        u27._errorReporter.reportReducerError(u27._state, u28, {
+            message = "Caught error in reducer",
+            thrownValue = result
+        });
+    end;
+
+    if #u27._actionLog == 3 then
+        table.remove(u27._actionLog, 1);
+    end;
+
+    table.insert(u27._actionLog, u28);
+end;
+
+function u10.destruct(p29) -- Line: 171
+    for _, v in ipairs(p29._connections) do
+        v:Disconnect();
+    end;
+
+    p29._connections = nil;
+end;
+
+function u10.flush(u30) -- Line: 182
+    -- upvalues: NoYield (copy), tracebackReporter (copy)
+    if not u30._mutatedSinceFlush then
+        return;
+    end;
+
+    u30._mutatedSinceFlush = false;
+    local _state = u30._state;
+    local v31, v32 = xpcall(function() -- Line: 194
+        -- upvalues: NoYield (ref), u30 (copy), _state (copy)
+        NoYield(function() -- Line: 197
+            -- upvalues: u30 (ref), _state (ref)
+            u30.changed:fire(_state, u30._lastState);
+        end);
+    end, tracebackReporter);
+
+    if not v31 then
+        u30._errorReporter.reportUpdateError(u30._lastState, _state, u30._actionLog, {
+            message = "Caught error flushing store updates",
+            thrownValue = v32
+        });
+    end;
+
+    u30._lastState = _state;
+end;
+
+return u10;

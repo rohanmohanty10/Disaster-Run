@@ -1,0 +1,93 @@
+  
+
+ 
+
+return {
+    Action2 = {
+        ["LMB-1"] = 17167736432,
+        ["LMB-2"] = 17167737076,
+        ["LMB-3"] = 17167737772,
+        ["LMB-4"] = 17167738829,
+        StandBlock = 10808688837,
+        StandBlockHit1 = 10808692075,
+        StandBlockHit2 = 10808695355,
+        StandBlockHit3 = 10808697696,
+        StandBlockBreak = 10808701329,
+        Grab = 10907328566,
+        Throw = 10907329255,
+        ThrowVictim = 10907329938,
+        YouCanDieHereStartup = 15729192223,
+        YouCanDieHere = 15729186660,
+        YouCanDieHereVictim = 15729190301,
+        YouCanDieHereAirStartup = 17118987933,
+        YouCanDieHereAir = 17363347714,
+        YouCanDieHereAirVictim = 17363345591,
+        YouCanDieHereAirLoop = 17118994593,
+        YouCanDieHereAirLoopVictim = 17118999462,
+        YouCanDieHereAirEnd = 17119009573,
+        YouCanDieHereAirEndVictim = 17119011730,
+        AxeKick = 15729609925,
+        AxeKickAir = 15853797958,
+        DismantleRip = 126185308806119,
+        Dismantle = 15737007623,
+        DismantleAir = 16413312562,
+        Cleave = 15736961636,
+        CleaveAir = 17373981534,
+        ShrineTechnique = 82251600733070,
+        DevilThrowStartup = 15853947773,
+        DevilThrow = 15859732465,
+        DevilThrowVictim = 15859737323,
+        SkullCrasher = 17362642299,
+        RendingPalmStartup = 15729441420,
+        RendingPalm = 15729359518,
+        RendingPalmVictim = 15729361547,
+        OpenStartup = 17276466091,
+        OpenLoop = 17276467472,
+        OpenEnd = 17276468715,
+        UltOpenStartup = 17276797075,
+        UltOpenLoop = 17276798364,
+        UltOpenEnd = 17276799820,
+        ArrowIdle = 17401355983,
+        ArrowFlying = 17401359190,
+        SupremeMartialSolution = 17374567022,
+        SmoothCrueltyStartup = 87580862849522,
+        SmoothCruelty = 104059036819846,
+        MalevolentShrine = 17381400249,
+        MalevolentShrineLoop = 17382432865,
+        MalevolentShrineUser = 17381418014,
+        MalevolentShrineCamera = 17381411007,
+        MalevolentShrineAmplify = 17400957893,
+        MalevolentShrineAmplifyLoop = 17400966167,
+        MalevolentShrineAmplifyEnd = 17400970620,
+        WickedBreaker = 140403099658985,
+        Spiderweb = 120423848826987,
+        WorldCuttingSlash = 18277988655,
+        PoseIdle = 18519532729,
+        PoseTransition = 18519525882
+    },
+    Action = {
+        FiendishRush = 17119421441,
+        FiendishGrab = 15850788022,
+        FiendishGrindStartup = 15851372443,
+        FiendishGrindStartupVictim = 15851375102,
+        FiendishGrind = 15851413640,
+        FiendishGrindVictim = 15851410813,
+        FiendishGrindEnd = 15851382769,
+        FiendishGrindEndVictim = 15851385037,
+        FiendishRushAir = 17119295288
+    },
+    Movement = {
+        Walk = 15112671428,
+        Run = 15112668537,
+        ForwardDash = 10838677738,
+        BackwardDash = 10838687030,
+        LeftDash = 10838688196,
+        RightDash = 10838689289
+    },
+    Idle = {
+        DismantleLegs = 15737011204
+    },
+    Core = {
+        Idle = 15112666357
+    }
+};

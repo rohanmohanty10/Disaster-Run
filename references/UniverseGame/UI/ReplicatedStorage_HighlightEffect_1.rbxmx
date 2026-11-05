@@ -1,0 +1,205 @@
+<roblox version="4">
+  <Item class="ScreenGui" referent="0">
+    <Properties>
+      <string name="Name">HighlightEffect</string>
+      <BinaryString name="AttributesSerialize"></BinaryString>
+      <bool name="AutoLocalize">true</bool>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+      <bool name="ClipToDeviceSafeArea">true</bool>
+      <int name="DisplayOrder">3</int>
+      <bool name="Enabled">true</bool>
+      <bool name="ResetOnSpawn">true</bool>
+      <Ref name="RootLocalizationTable">null</Ref>
+      <token name="SafeAreaCompatibility">1</token>
+      <bool name="DefinesCapabilities">false</bool>
+      <token name="ScreenInsets">1</token>
+      <token name="SelectionBehaviorDown">0</token>
+      <token name="SelectionBehaviorLeft">0</token>
+      <token name="SelectionBehaviorRight">0</token>
+      <token name="SelectionBehaviorUp">0</token>
+      <bool name="SelectionGroup">false</bool>
+      <BinaryString name="SerializedOverrides">
+      </BinaryString>
+      <int64 name="SourceAssetId">-1</int64>
+      <BinaryString name="Tags"></BinaryString>
+      <token name="ZIndexBehavior">1</token>
+    </Properties>
+    <Item class="ViewportFrame" referent="1">
+      <Properties>
+        <string name="Name">ViewportFrame</string>
+        <bool name="Active">false</bool>
+        <Color3 name="Ambient">
+          <R>1</R>
+          <G>1</G>
+          <B>1</B>
+        </Color3>
+        <Vector2 name="AnchorPoint">
+          <X>0</X>
+          <Y>0</Y>
+        </Vector2>
+        <BinaryString name="AttributesSerialize"></BinaryString>
+        <bool name="AutoLocalize">true</bool>
+        <token name="AutomaticSize">3</token>
+        <Color3 name="BackgroundColor3">
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </Color3>
+        <float name="BackgroundTransparency">1</float>
+        <Color3 name="BorderColor3">
+          <R>0.10588236</R>
+          <G>0.16470589</G>
+          <B>0.20784315</B>
+        </Color3>
+        <token name="BorderMode">0</token>
+        <int name="BorderSizePixel">1</int>
+        <CoordinateFrame name="CameraCFrame">
+          <X>1198.4562</X>
+          <Y>27.774084</Y>
+          <Z>286.06244</Z>
+          <R00>-0.000012874603</R00>
+          <R01>0.25877026</R01>
+          <R02>-0.96593904</R02>
+          <R10>0.00000166893</R10>
+          <R11>0.9659389</R11>
+          <R12>0.25877026</R12>
+          <R20>1.0000001</R20>
+          <R21>0.00000166893</R21>
+          <R22>-0.000012874603</R22>
+        </CoordinateFrame>
+        <float name="CameraFieldOfView">1.2217306</float>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+        <bool name="ClipsDescendants">false</bool>
+        <bool name="Draggable">false</bool>
+        <Color3 name="ImageColor3">
+          <R>1</R>
+          <G>1</G>
+          <B>1</B>
+        </Color3>
+        <float name="ImageTransparency">1</float>
+        <bool name="Interactable">true</bool>
+        <int name="LayoutOrder">0</int>
+        <Color3 name="LightColor">
+          <R>1</R>
+          <G>1</G>
+          <B>1</B>
+        </Color3>
+        <Vector3 name="LightDirection">
+          <X>-1</X>
+          <Y>-1</Y>
+          <Z>-1</Z>
+        </Vector3>
+        <Ref name="NextSelectionDown">null</Ref>
+        <Ref name="NextSelectionLeft">null</Ref>
+        <Ref name="NextSelectionRight">null</Ref>
+        <Ref name="NextSelectionUp">null</Ref>
+        <UDim2 name="Position">
+          <XS>0</XS>
+          <XO>0</XO>
+          <YS>0</YS>
+          <YO>0</YO>
+        </UDim2>
+        <Ref name="RootLocalizationTable">null</Ref>
+        <float name="Rotation">0</float>
+        <bool name="DefinesCapabilities">false</bool>
+        <bool name="Selectable">false</bool>
+        <token name="SelectionBehaviorDown">0</token>
+        <token name="SelectionBehaviorLeft">0</token>
+        <token name="SelectionBehaviorRight">0</token>
+        <token name="SelectionBehaviorUp">0</token>
+        <bool name="SelectionGroup">false</bool>
+        <Ref name="SelectionImageObject">null</Ref>
+        <int name="SelectionOrder">0</int>
+        <BinaryString name="SerializedOverrides">
+        </BinaryString>
+        <token name="Sink">0</token>
+        <UDim2 name="Size">
+          <XS>1</XS>
+          <XO>0</XO>
+          <YS>1</YS>
+          <YO>0</YO>
+        </UDim2>
+        <token name="SizeConstraint">0</token>
+        <int64 name="SourceAssetId">-1</int64>
+        <BinaryString name="Tags"></BinaryString>
+        <bool name="Visible">true</bool>
+        <int name="ZIndex">1</int>
+      </Properties>
+      <Item class="WorldModel" referent="2">
+        <Properties>
+          <string name="Name">WorldModel</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="AutoSimulate">false</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <BinaryString name="CollisionGroupData"><![CDATA[AQ4ABIX4//8HRGVmYXVsdAEErPj//wJGWAIE7/r//wNNYXADBO74//8JVGltZUVyYXNlBASg+P//CUJ5cGFzc0FsbAUE/vD//xlQbHVnaW5fVW5zZWxlY3RhYmxlX0dyb3VwBgTs+P//A05QQwcE//r//wdSYXljYXN0CAQA8f//CFNhZmV6b25lCQSE+P//B0dob3N0ZWQKBAD4//8LTm9Db2xsaXNpb24LBN/u//8QU3R1ZGlvU2VsZWN0YWJsZQwE//f//xBGb3JnZU1vdXNlSWdub3JlDQT/3///C0ZvcmdlRGVicmlz]]></BinaryString>
+          <Vector3 name="GravityDirection">
+            <X>0</X>
+            <Y>-1</Y>
+            <Z>0</Z>
+          </Vector3>
+          <token name="LevelOfDetail">0</token>
+          <CoordinateFrame name="ModelMeshCFrame">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <SharedString name="ModelMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
+          <Vector3 name="ModelMeshSize">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+          <token name="ModelStreamingMode">3</token>
+          <bool name="NeedsPivotMigration">false</bool>
+          <Ref name="PrimaryPart">null</Ref>
+          <bool name="DefinesCapabilities">false</bool>
+          <float name="ScaleFactor">1</float>
+          <BinaryString name="SerializedOverrides">
+          </BinaryString>
+          <float name="SimulationRate">1</float>
+          <SharedString name="SlimHash">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <bool name="UseWorkspaceCollisionGroups">false</bool>
+          <float name="Wind">0</float>
+          <Vector3 name="WindDirection">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+          <OptionalCoordinateFrame name="WorldPivotData">
+          </OptionalCoordinateFrame>
+        </Properties>
+        <Item class="Folder" referent="3">
+          <Properties>
+            <string name="Name">Moyai</string>
+            <BinaryString name="AttributesSerialize"></BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+            <Color3 name="IconTint">
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color3>
+            <bool name="DefinesCapabilities">false</bool>
+            <BinaryString name="SerializedOverrides">
+            </BinaryString>
+            <int64 name="SourceAssetId">-1</int64>
+            <BinaryString name="Tags"></BinaryString>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+  </Item>
+  <SharedStrings>
+    <SharedString md5="rxNJufX5oaagQE3qNtzJSQ=="></SharedString>
+  </SharedStrings>
+</roblox>

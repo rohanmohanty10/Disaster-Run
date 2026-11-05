@@ -1,0 +1,70 @@
+  
+
+ 
+
+return {
+    Action = {
+        ["LMB-1"] = 17401930025,
+        ["LMB-2"] = 17401932389,
+        ["LMB-3"] = 17401935056,
+        ["LMB-4"] = 17401936601,
+        ["Shadow\'s Retribution"] = 17651191807,
+        ["Shadow\'s Retribution Target"] = 17651183375,
+        ["Shadow\'s Retribution Startup"] = 17651190118,
+        ["Imminent Blink"] = 18128144938,
+        ["Umbral Smash"] = 17650283744,
+        ["Umbral Smash Target"] = 17650282063,
+        ["Umbral Smash Startup"] = 17650276462,
+        ["Slime Emission"] = 17632714571,
+        ["Birdcage Of Darkness 2"] = 17632763865,
+        SilhouetteSlashes = 17866425127,
+        SilhouetteSlashesStartup = 17866417404,
+        SilhouetteSlashesFinisher = 17866427393,
+        SilhouetteSlashesClashEnd = 17401936601,
+        Overdrive = 18306874374,
+        ["Overdrive Camera"] = 18308077171,
+        ["Highest Start"] = 16844329684,
+        ["Highest Loop"] = 16674736423,
+        ["Highest End"] = 16674738127,
+        ["I am atomic"] = 18383054205,
+        ["I am atomic Camera"] = 18360362689,
+        ["All Range Camera"] = 17396334278,
+        ["Atomic: Sword"] = 17559285592,
+        ["Atomic Sword Startup"] = 18441513539,
+        ["Atomic Sword Loop"] = 18441517855,
+        ["Atomic Sword End"] = 18441519899,
+        ["Eidolon Tears"] = 17401785436,
+        ["Umbral Charge"] = 17713981824,
+        ["Birdcage Of Darkness"] = 18284906066,
+        ["Birdcage Of Darkness Target"] = 18284911621,
+        ["Recovery Atomic Startup"] = 17506471268,
+        ["Recovery Atomic Loop"] = 17506478153,
+        ["Recovery Atomic Release"] = 17506475892,
+        ["Recovery Atomic Charged Release"] = 17506480175,
+        ["Highest Startup"] = 17559976834,
+        Highest = 17559984967,
+        ["Highest Victim"] = 17559982453,
+        ["Highest Camera"] = 17559993058,
+        Flash = 16988129175,
+        ForwardDash1 = 17866501857,
+        ForwardDash2 = 17866499998,
+        BackwardDash = 17866504452,
+        LeftDash = 17866498059,
+        RightDash = 17866496229,
+        ["Dark Blade"] = 18277990165,
+        ["Dark Blade Target"] = 18277995622,
+        ["Dark Blade Startup"] = 18277969103,
+        PoseTransition = 18299622084,
+        PoseIdle = 18299635774
+    },
+    Movement = {
+        OverdriveWalk = 18208851142,
+        OverdriveRun = 18208848137,
+        Walk = 18208842642,
+        Run = 18208834665
+    },
+    Idle = {
+        OverdriveIdle = 18208855356,
+        Idle = 18307005656
+    }
+};

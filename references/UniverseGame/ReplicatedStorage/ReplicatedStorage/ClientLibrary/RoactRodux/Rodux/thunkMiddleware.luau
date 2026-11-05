@@ -1,0 +1,33 @@
+  
+
+ 
+
+local function tracebackReporter(p1) -- Line: 7
+    return debug.traceback(p1);
+end;
+
+return function(u2, u3) -- Line: 11, Name: thunkMiddleware
+    -- upvalues: tracebackReporter (copy)
+    return function(u4) -- Line: 12
+        -- upvalues: u3 (copy), tracebackReporter (ref), u2 (copy)
+        if typeof(u4) ~= "function" then
+            return u2(u4);
+        end;
+
+        local v5, v6 = xpcall(function() -- Line: 14
+            -- upvalues: u4 (copy), u3 (ref)
+            return u4(u3);
+        end, tracebackReporter);
+
+        if v5 then
+            return v6;
+        end;
+
+        u3._errorReporter.reportReducerError(u3:getState(), u4, {
+            message = "Caught error in thunk",
+            thrownValue = v6
+        });
+
+        return nil;
+    end;
+end;

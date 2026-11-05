@@ -1,0 +1,24 @@
+  
+
+ 
+
+return function(u1, u2) -- Line: 4, Name: makeActionCreator
+    local v3 = type(u1) == "string";
+    assert(v3, "Bad argument #1: Expected a string name for the action creator");
+    local v4 = type(u2) == "function";
+    assert(v4, "Bad argument #2: Expected a function that creates action objects");
+
+    return setmetatable({
+        name = u1
+    }, {
+        __call = function(p5, ...) -- Line: 12, Name: __call
+            -- upvalues: u2 (copy), u1 (copy)
+            local v6 = u2(...);
+            local v7 = type(v6) == "table";
+            assert(v7, "Invalid action: An action creator must return a table");
+            v6.type = u1;
+
+            return v6;
+        end
+    });
+end;

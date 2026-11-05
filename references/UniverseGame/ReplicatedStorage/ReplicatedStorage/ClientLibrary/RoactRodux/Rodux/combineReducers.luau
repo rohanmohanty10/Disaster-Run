@@ -1,0 +1,17 @@
+  
+
+ 
+
+return function(u1) -- Line: 4, Name: combineReducers
+    return function(p2, p3) -- Line: 5
+        -- upvalues: u1 (copy)
+        local v4 = p2 == nil and {} or p2;
+        local v5 = {};
+
+        for i, v in pairs(u1) do
+            v5[i] = v(v4[i], p3);
+        end;
+
+        return v5;
+    end;
+end;

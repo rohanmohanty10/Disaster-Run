@@ -1,0 +1,21 @@
+  
+
+ 
+
+local prettyPrint = require(script.Parent.prettyPrint);
+local u1 = {
+    outputFunction = print
+};
+
+function u1.middleware(u2, u3) -- Line: 10
+    -- upvalues: u1 (copy), prettyPrint (copy)
+    return function(p4) -- Line: 11
+        -- upvalues: u2 (copy), u1 (ref), prettyPrint (ref), u3 (copy)
+        local v5 = u2(p4);
+        u1.outputFunction(("Action dispatched: %s\nState changed to: %s"):format(prettyPrint(p4), prettyPrint(u3:getState())));
+
+        return v5;
+    end;
+end;
+
+return u1;

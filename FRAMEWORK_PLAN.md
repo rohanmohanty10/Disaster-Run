@@ -295,3 +295,26 @@ The `references/SorceryGame/` archive provides the exact implementation of Gojo'
 - `/test round end` ends the round or match.
 - `/test role runner` lets you use Runner skills in the lobby (against the dummies).
 - `/test round god` then `/test round start` lets you try the God view solo, with the dummies as targets.
+
+
+---
+
+## 9. StandGame Reference Modules (`references/StandGame/`)
+Provides reference implementations for stand summoning, punch barrages, time-stop/time-erase, and multi-tier skill trees:
+
+| System | StandGame Reference | Description |
+| :--- | :--- | :--- |
+| **Skill Trees & Storage** | `references/StandGame/LocalPlayer/StandSkillTree/` | Skill point allocation and tree nodes for abilities |
+| **Combat & Barrages** | `references/StandGame/ReplicatedStorage/` & `Workspace/` | Stand summon positioning, punch barrage replication, hit detection |
+| **Time Dilation / Timestop** | `references/StandGame/` | Screen grayscale shader, character anchoring, and localized physics pauses |
+
+---
+
+## 10. UniverseGame Reference Modules (`references/UniverseGame/`)
+Provides 4,596 scripts of advanced anime/stand abilities, trait rolls, and projectile mechanics:
+
+| System | UniverseGame Reference | Description |
+| :--- | :--- | :--- |
+| **Universal Ability Kits** | `references/UniverseGame/ReplicatedStorage/` | Modular stand abilities, movesets, and character morphs |
+| **Projectile & Curve Engine** | `references/UniverseGame/ReplicatedStorage/` | Complex projectile raycasting, curved trajectories, and splash radii |
+| **Inventory & Trait Vaults** | `references/UniverseGame/StarterGui/` & `ReplicatedStorage/` | High-fidelity inventory screens, trait rolling, and skin archives |

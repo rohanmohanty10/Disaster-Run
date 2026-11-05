@@ -1,0 +1,42 @@
+  
+
+ 
+
+return {
+    [117873674] = { "Uber Oni", "Gura", "UGrain Dev", "Mahoraga", "The Dark Knight", "Dragon Sage", "Clown", "Shovel" },
+    [36778992] = { "Uber Oni" },
+    [350390265] = { "Uber Oni" },
+    [188403787] = { "The Dark Knight" },
+    [105235127] = { "UGrain Dev", "The Dark Knight" },
+    [618541798] = { "Killua_R", "δ: FOR THE DELTA", "crystallized", "Dragon Sage", "NUCLEAR-STAR" },
+    [1549164509] = { "Dragon Sage" },
+    [1514749448] = { "Uber Oni", "UGrain Dev", "Tusk ACT4", "「Star Platinum」" },
+    [369981372] = { "Uber Oni", "UGrain Dev", "「Star Platinum」" },
+    [1628637263] = { "The Dark Knight", "UGrain Dev", "Clown", "Gura", "Dragon Sage" },
+    [195353328] = { "Gura", "Prisoner" },
+    [2224298089] = { "The Dark Knight", "UGrain Dev", "「Star Platinum」", "Umbra_OLD" },
+    [560766989] = { "Kuro Claws", "Uber Oni", "Mahoraga", "Hollow" },
+    [48084710] = { "Gomu" },
+    [2400613198] = { "LT_R", "Tusk ACT4", "UGrain Dev" },
+    [86827595] = { "LT_R" },
+    [1245581901] = { "UGrain Dev", "Dragon Sage" },
+    [37140552] = { "UGrain Dev" },
+    [75027435] = { "UGrain Dev" },
+    [1988546377] = { "「Star Platinum」", "UGrain Dev", "Uber Oni" },
+    [1505918452] = { "Mad Dog", "Dragon" },
+    [100747086] = { "Mahoraga", "Uber Oni", "Mortal Man", "UGrain Dev", "Gura", "Dragon Sage", "Dragon", "Mad Dog", "Goku (Z)", "Goku (Super)" },
+    [575826973] = { "Dragon Sage" },
+    [68210378] = { "Dragon Sage" },
+    [186894768] = { "Dragon Sage" },
+    [1172509492] = { "Dragon Sage" },
+    [531904845] = { "Dragon Sage" },
+    [17645326] = { "Mortal Man" },
+    [47916090] = { "Wonder Of U" },
+    [88990573] = { "Goku (Z)" },
+    [73535835] = { "Goku (Z)" },
+    [209213802] = { "Uber Oni" },
+    [54966385] = { "Uber Oni" },
+    [359038889] = { "Uber Oni" },
+    [89988746] = { "Uber Oni" },
+    [782623277] = { "Uber Oni", "UGrain Dev" }
+};

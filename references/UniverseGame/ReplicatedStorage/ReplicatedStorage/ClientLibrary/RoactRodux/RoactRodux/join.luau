@@ -1,0 +1,19 @@
+  
+
+ 
+
+return function(...) -- Line: 1, Name: join
+    local v1 = {};
+
+    for i = 1, select("#", ...) do
+        local v2 = select(i, ...);
+
+        if v2 ~= nil then
+            for i2, v in pairs(v2) do
+                v1[i2] = v;
+            end;
+        end;
+    end;
+
+    return v1;
+end;

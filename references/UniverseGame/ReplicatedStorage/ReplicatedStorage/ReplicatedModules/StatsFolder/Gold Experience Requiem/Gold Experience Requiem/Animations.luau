@@ -1,0 +1,70 @@
+  
+
+ 
+
+return {
+    Action = {
+        ["LMB-1"] = 13610087255,
+        ["LMB-2"] = 13610091174,
+        ["LMB-3"] = 13610093098,
+        ["LMB-4"] = 13610094194,
+        ["StandOff-LMB-1"] = 11371980872,
+        ["StandOff-LMB-2"] = 11371981731,
+        ["StandOff-LMB-3"] = 11371982707,
+        ["StandOff-LMB-4"] = 11371983463,
+        StandBlock = 10808688837,
+        StandBlockHit1 = 10808692075,
+        StandBlockHit2 = 10808695355,
+        StandBlockHit3 = 10808697696,
+        StandBlockBreak = 10808701329,
+        KickBarrage = 13057990519,
+        BarrageStartup = 10838298509,
+        Barrage = 10838301380,
+        BarrageFinisher = 10603516376,
+        BarrageClashEnd = 10839831781,
+        RootStab = 13610705531,
+        StrongPunch = 13405030292,
+        DebrisShot = 13610231008,
+        CombinationAttackStartup = 13404728496,
+        CombinationAttack = 13404730141,
+        CombinationAttackVictim = 13404730818,
+        DevastatingForceStartup = 13763872138,
+        DevastatingForce = 13763873625,
+        DevastatingForceVictim = 13763874941,
+        ConsecutiveRushdownStartup = 13590952042,
+        ConsecutiveRushdown = 13590961805,
+        ConsecutiveRushdownVictim = 13590963414,
+        ConsecutiveRushdownDash = 11459613079,
+        NullificationStartup = 13763976636,
+        Nullification = 13802779629,
+        NullificationVictim = 13763978649,
+        ReturnToZero = 13802915735,
+        RighteousResolutionStartup = 13892281917,
+        RighteousResolution = 13892290342,
+        RighteousResolutionVictim = 13892287797,
+        RighteousResolutionCamera = 13892292246,
+        Heal = 13878379631,
+        SelfHeal = 8027965306,
+        Grab = 10907328566,
+        Throw = 10907329255,
+        ThrowVictim = 10907329938,
+        PoseIdle = 13894224022,
+        PoseTransition = 13894223122,
+        StandPoseIdle = 13894225621,
+        StandPoseTransition = 13894224746
+    },
+    Movement = {
+        Walk = 13070481387,
+        SummonedWalk = 13070481387,
+        Run = 13070480214,
+        SummonedRun = 13070480214,
+        ForwardDash = 10838677738,
+        BackwardDash = 10838687030,
+        LeftDash = 10838688196,
+        RightDash = 10838689289
+    },
+    Idle = {
+        Idle = 13070478617,
+        SummonedIdle = 13070478617
+    }
+};

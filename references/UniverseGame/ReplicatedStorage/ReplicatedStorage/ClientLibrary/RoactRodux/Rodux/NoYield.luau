@@ -1,0 +1,22 @@
+  
+
+ 
+
+local function resultHandler(p1, p2, ...) -- Line: 12
+    if not p2 then
+        error(debug.traceback(p1, (...)), 2);
+    end;
+
+    if coroutine.status(p1) ~= "dead" then
+        error(debug.traceback(p1, "Attempted to yield inside changed event!"), 2);
+    end;
+
+    return ...;
+end;
+
+return function(p3, ...) -- Line: 25, Name: NoYield
+    -- upvalues: resultHandler (copy)
+    local v4 = coroutine.create(p3);
+
+    return resultHandler(v4, coroutine.resume(v4, ...));
+end;

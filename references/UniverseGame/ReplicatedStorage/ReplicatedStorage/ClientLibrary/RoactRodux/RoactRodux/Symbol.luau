@@ -1,0 +1,29 @@
+  
+
+ 
+
+return {
+    named = function(p1) -- Line: 15, Name: named
+        local v2 = type(p1) == "string";
+        assert(v2, "Symbols must be created using a string name!");
+        local v3 = newproxy(true);
+        local u4 = ("Symbol(%s)"):format(p1);
+
+        getmetatable(v3).__tostring = function() -- Line: 22
+            -- upvalues: u4 (copy)
+            return u4;
+        end;
+
+        return v3;
+    end,
+
+    unnamed = function() -- Line: 33, Name: unnamed
+        local v5 = newproxy(true);
+
+        getmetatable(v5).__tostring = function() -- Line: 36
+            return "Unnamed Symbol";
+        end;
+
+        return v5;
+    end
+};

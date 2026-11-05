@@ -1,0 +1,1728 @@
+ 
+
+ 
+
+local l__unpack__1 = string.unpack;
+local l__pack__2 = table.pack;
+local l__create__3 = table.create;
+local l__move__4 = table.move;
+local l__create__5 = coroutine.create;
+local l__yield__6 = coroutine.yield;
+local l__resume__7 = coroutine.resume;
+local u1 = tonumber;
+local u2 = pcall;
+local u3 = {
+    { "NOP", 0 },
+    { "BREAK", 0 },
+    { "LOADNIL", 1 },
+    { "LOADB", 3 },
+    { "LOADN", 4 },
+    { "LOADK", 4 },
+    { "MOVE", 2 },
+    { "GETGLOBAL", 1, true },
+    { "SETGLOBAL", 1, true },
+    { "GETUPVAL", 2 },
+    { "SETUPVAL", 2 },
+    { "CLOSEUPVALS", 1 },
+    { "GETIMPORT", 4, true },
+    { "GETTABLE", 3 },
+    { "SETTABLE", 3 },
+    { "GETTABLEKS", 3, true },
+    { "SETTABLEKS", 3, true },
+    { "GETTABLEN", 3 },
+    { "SETTABLEN", 3 },
+    { "NEWCLOSURE", 4 },
+    { "NAMECALL", 3, true },
+    { "CALL", 3 },
+    { "RETURN", 2 },
+    { "JUMP", 4 },
+    { "JUMPBACK", 4 },
+    { "JUMPIF", 4 },
+    { "JUMPIFNOT", 4 },
+    { "JUMPIFEQ", 4, true },
+    { "JUMPIFLE", 4, true },
+    { "JUMPIFLT", 4, true },
+    { "JUMPIFNOTEQ", 4, true },
+    { "JUMPIFNOTLE", 4, true },
+    { "JUMPIFNOTLT", 4, true },
+    { "ADD", 3 },
+    { "SUB", 3 },
+    { "MUL", 3 },
+    { "DIV", 3 },
+    { "MOD", 3 },
+    { "POW", 3 },
+    { "ADDK", 3 },
+    { "SUBK", 3 },
+    { "MULK", 3 },
+    { "DIVK", 3 },
+    { "MODK", 3 },
+    { "POWK", 3 },
+    { "AND", 3 },
+    { "OR", 3 },
+    { "ANDK", 3 },
+    { "ORK", 3 },
+    { "CONCAT", 3 },
+    { "NOT", 2 },
+    { "MINUS", 2 },
+    { "LENGTH", 2 },
+    { "NEWTABLE", 2, true },
+    { "DUPTABLE", 4 },
+    { "SETLIST", 3, true },
+    { "FORNPREP", 4 },
+    { "FORNLOOP", 4 },
+    { "FORGLOOP", 4, true },
+    { "FORGPREP_INEXT", 4 },
+    { "LOP_DEP_FORGLOOP_INEXT", 0 },
+    { "FORGPREP_NEXT", 4 },
+    { "LOP_DEP_FORGLOOP_NEXT", 0 },
+    { "GETVARARGS", 2 },
+    { "DUPCLOSURE", 4 },
+    { "PREPVARARGS", 1 },
+    { "LOADKX", 1, true },
+    { "JUMPX", 5 },
+    { "FASTCALL", 3 },
+    { "COVERAGE", 5 },
+    { "CAPTURE", 2 },
+    { "LOP_DEP_JUMPIFEQK", 0 },
+    { "LOP_DEP_JUMPIFNOTEQK", 0 },
+    { "FASTCALL1", 3 },
+    { "FASTCALL2", 3, true },
+    { "FASTCALL2K", 3, true },
+    { "FORGPREP", 4 },
+    { "JUMPXEQKNIL", 4, true },
+    { "JUMPXEQKB", 4, true },
+    { "JUMPXEQKN", 4, true },
+    { "JUMPXEQKS", 4, true }
+};
+local u4 = {};
+local function u5() --[[ Line: 15 ]]
+    return {
+        slist = {},
+        plist = {}
+    };
+end;
+local function u6() --[[ Line: 22 ]]
+    return {
+        code = {},
+        k = {},
+        protos = {}
+    };
+end;
+for v7, v8 in u3 do
+    if v8[3] then
+        table.insert(u4, v7);
+    end;
+end;
+local function u59(u9) --[[ Line: 133 ]]
+    -- upvalues: u5 (copy), l__unpack__1 (copy), u3 (copy), u4 (copy), u6 (copy)
+    local u10 = 1;
+    local u11 = u5();
+    local l__slist__8 = u11.slist;
+    local l__plist__9 = u11.plist;
+    local function u17() --[[ Line: 151 ]]
+        -- upvalues: l__unpack__1 (ref), u9 (copy), u10 (ref)
+        local v12 = 0;
+        for v13 = 0, 7 do
+            local v14 = l__unpack__1(">B", u9, u10);
+            u10 = u10 + 1;
+            local v15 = bit32.band(v14, 127);
+            local v16 = bit32.lshift(v15, v13 * 7);
+            v12 = bit32.bor(v12, v16);
+            if bit32.band(v14, 128) == 0 then
+                break;
+            end;
+        end;
+        return v12;
+    end;
+    local function u35(p18) --[[ Line: 175 ]]
+        -- upvalues: l__unpack__1 (ref), u9 (copy), u10 (ref), u3 (ref), u4 (ref)
+        local v19 = {};
+        local v20 = l__unpack__1("I4", u9, u10);
+        u10 = u10 + 4;
+        local v21 = bit32.band(v20, 255);
+        v19.value = v20;
+        v19.opcode = v21;
+        local v22 = u3[v21 + 1];
+        v19.opname = v22[1];
+        v19.type = v22[2];
+        local l__type__10 = v19.type;
+        if l__type__10 == 3 then
+            local v23 = bit32.rshift(v20, 8);
+            v19.A = bit32.band(v23, 255);
+            local v24 = bit32.rshift(v20, 16);
+            v19.B = bit32.band(v24, 255);
+            local v25 = bit32.rshift(v20, 24);
+            v19.C = bit32.band(v25, 255);
+        elseif l__type__10 == 2 then
+            local v26 = bit32.rshift(v20, 8);
+            v19.A = bit32.band(v26, 255);
+            local v27 = bit32.rshift(v20, 16);
+            v19.B = bit32.band(v27, 255);
+        elseif l__type__10 == 1 then
+            local v28 = bit32.rshift(v20, 8);
+            v19.A = bit32.band(v28, 255);
+        elseif l__type__10 == 4 then
+            local v29 = bit32.rshift(v20, 8);
+            v19.A = bit32.band(v29, 255);
+            local v30 = bit32.rshift(v20, 16);
+            local v31 = bit32.band(v30, 65535);
+            if v31 >= 32768 then
+                v31 = v31 - 65536;
+            end;
+            v19.D = v31;
+        elseif l__type__10 == 5 then
+            local v32 = bit32.rshift(v20, 8);
+            local v33 = bit32.band(v32, 16777215);
+            if v33 >= 8388608 then
+                v33 = v33 - 16777216;
+            end;
+            v19.E = v33;
+        end;
+        if not table.find(u4, v21 + 1) then
+            table.insert(p18, v19);
+            return false;
+        end;
+        local v34 = l__unpack__1("I4", u9, u10);
+        u10 = u10 + 4;
+        v19.aux = v34;
+        table.insert(p18, v19);
+        table.insert(p18, {
+            value = v34
+        });
+        return true;
+    end;
+    local function v53() --[[ Line: 223 ]]
+        -- upvalues: u6 (ref), l__unpack__1 (ref), u9 (copy), u10 (ref), u17 (copy), u35 (copy), u11 (copy)
+        local v36 = u6();
+        local v37 = l__unpack__1(">B", u9, u10);
+        u10 = u10 + 1;
+        v36.maxstacksize = v37;
+        local v38 = l__unpack__1(">B", u9, u10);
+        u10 = u10 + 1;
+        v36.numparams = v38;
+        local v39 = l__unpack__1(">B", u9, u10);
+        u10 = u10 + 1;
+        v36.nups = v39;
+        local v40 = l__unpack__1(">B", u9, u10);
+        u10 = u10 + 1;
+        v36.isvararg = v40 ~= 0;
+        local l__code__11 = v36.code;
+        local v41 = u17();
+        v36.sizecode = v41;
+        local v42 = false;
+        for _ = 1, v41 do
+            if v42 then
+                v42 = false;
+            else
+                v42 = u35(l__code__11);
+            end;
+        end;
+        local l__k__12 = v36.k;
+        local v43 = u17();
+        v36.sizek = v43;
+        for _ = 1, v43 do
+            local v44 = l__unpack__1(">B", u9, u10);
+            u10 = u10 + 1;
+            local v45 = nil;
+            if v44 == 0 then
+                v45 = nil;
+            elseif v44 == 1 then
+                local v46 = l__unpack__1(">B", u9, u10);
+                u10 = u10 + 1;
+                v45 = v46 ~= 0;
+            elseif v44 == 2 then
+                v45 = l__unpack__1("d", u9, u10);
+                u10 = u10 + 8;
+            elseif v44 == 3 then
+                v45 = u11.slist[u17()];
+            elseif v44 == 4 then
+                v45 = l__unpack__1("I4", u9, u10);
+                u10 = u10 + 4;
+            elseif v44 == 5 then
+                v45 = {};
+                for _ = 1, u17() do
+                    local v47 = u17();
+                    table.insert(v45, v47);
+                end;
+            elseif v44 == 6 then
+                v45 = u17();
+            end;
+            table.insert(l__k__12, v45);
+        end;
+        local v48 = u17();
+        local l__protos__13 = v36.protos;
+        v36.sizep = v48;
+        for _ = 1, v48 do
+            local v49 = u17();
+            table.insert(l__protos__13, v49);
+        end;
+        u17();
+        u17();
+        local v50 = l__unpack__1(">B", u9, u10);
+        u10 = u10 + 1;
+        if v50 ~= 0 then
+            local v51 = l__unpack__1(">B", u9, u10);
+            u10 = u10 + 1;
+            for _ = 1, v41 do
+                l__unpack__1(">B", u9, u10);
+                u10 = u10 + 1;
+            end;
+            for _ = 1, bit32.rshift(v41 - 1, v51) + 1 do
+                l__unpack__1("I4", u9, u10);
+                u10 = u10 + 4;
+            end;
+        end;
+        local v52 = l__unpack__1(">B", u9, u10);
+        u10 = u10 + 1;
+        if v52 ~= 0 then
+            for _ = 1, u17() do
+                u17();
+                u17();
+                u17();
+                l__unpack__1(">B", u9, u10);
+                u10 = u10 + 1;
+            end;
+        end;
+        return v36;
+    end;
+    local v54 = l__unpack__1(">B", u9, u10);
+    u10 = u10 + 1;
+    if v54 ~= 3 then
+        error("Incorrect Bytecode Provided", 0);
+    end;
+    local v55 = u10;
+    for _ = 1, u17() do
+        local v56 = u17();
+        local v57;
+        if v56 == 0 then
+            v57 = "";
+        else
+            v57 = l__unpack__1("c" .. v56, u9, v55);
+            u10 = v55 + v56;
+            v55 = u10;
+        end;
+        table.insert(l__slist__8, v57);
+    end;
+    for _ = 1, u17() do
+        local v58 = v53();
+        table.insert(l__plist__9, v58);
+    end;
+    u11.mainp = u17();
+    assert(v55 == #u9 + 1, "Deserializer position mismatch");
+    return u11;
+end;
+return {
+    luau_load = function(u60, u61) --[[ Name: luau_load, Line 332 ]]
+        -- upvalues: u59 (copy), l__pack__2 (copy), l__move__4 (copy), l__create__3 (copy), u1 (copy), l__resume__7 (copy), l__yield__6 (copy), l__create__5 (copy), u2 (copy)
+        if type(u60) == "string" then
+            u60 = u59(u60);
+        end;
+        local l__plist__14 = u60.plist;
+        local u62 = l__plist__14[u60.mainp + 1];
+        local function u344(u63, u64, u65) --[[ Line: 339 ]]
+            -- upvalues: u61 (copy), l__plist__14 (copy), u344 (copy), l__pack__2 (ref), l__move__4 (ref), l__create__3 (ref), u1 (ref), l__resume__7 (ref), l__yield__6 (ref), l__create__5 (ref), u2 (ref)
+            local function u336(p66, p67, _, p68, p69) --[[ Line: 340 ]]
+                -- upvalues: u64 (copy), u61 (ref), u65 (copy), l__plist__14 (ref), u344 (ref), u63 (copy), l__pack__2 (ref), l__move__4 (ref), l__create__3 (ref), u1 (ref), l__resume__7 (ref), l__yield__6 (ref), l__create__5 (ref)
+                local l__k__15 = u64.k;
+                local v70 = 1;
+                local v71 = {};
+                local v72 = -1;
+                local v73 = {};
+                while true do
+                    local v74;
+                    while true do
+                        v74 = p68[v70];
+                        local l__opcode__16 = v74.opcode;
+                        v70 = v70 + 1;
+                        p66.pc = v70;
+                        p66.name = v74.opname;
+                        if l__opcode__16 == 2 then
+                            break;
+                        end;
+                        if l__opcode__16 == 3 then
+                            p67[v74.A] = v74.B ~= 0;
+                            v70 = v70 + v74.C;
+                        elseif l__opcode__16 == 4 then
+                            p67[v74.A] = v74.D;
+                        elseif l__opcode__16 == 5 then
+                            p67[v74.A] = l__k__15[v74.D + 1];
+                        elseif l__opcode__16 == 6 then
+                            p67[v74.A] = p67[v74.B];
+                        elseif l__opcode__16 == 7 then
+                            v70 = v70 + 1;
+                            local v75 = l__k__15[v74.aux + 1];
+                            local v76 = type(v75) == "string";
+                            assert(v76, "GETGLOBAL encountered non-string constant!");
+                            p67[v74.A] = u61[v75];
+                        elseif l__opcode__16 == 8 then
+                            v70 = v70 + 1;
+                            local v77 = l__k__15[v74.aux + 1];
+                            local v78 = type(v77) == "string";
+                            assert(v78, "GETGLOBAL encountered non-string constant!");
+                            u61[v77] = p67[v74.A];
+                        elseif l__opcode__16 == 9 then
+                            local v79 = u65[v74.B + 1];
+                            p67[v74.A] = v79.store[v79.index];
+                        elseif l__opcode__16 == 10 then
+                            local v80 = u65[v74.B + 1];
+                            v80.store[v80.index] = p67[v74.A];
+                        elseif l__opcode__16 == 11 then
+                            for v81, v82 in v73 do
+                                if v82.index >= v74.A then
+                                    v82.value = v82.store[v82.index];
+                                    v82.store = v82;
+                                    v82.index = "value";
+                                    v73[v81] = nil;
+                                end;
+                            end;
+                        elseif l__opcode__16 == 12 then
+                            v70 = v70 + 1;
+                            local l__aux__17 = v74.aux;
+                            local v83 = bit32.rshift(l__aux__17, 30);
+                            local v84 = bit32.rshift(l__aux__17, 20);
+                            local v85 = bit32.band(v84, 1023);
+                            if v83 == 1 then
+                                p67[v74.A] = u61[l__k__15[v85 + 1]];
+                            elseif v83 == 2 then
+                                local v86 = bit32.rshift(l__aux__17, 10);
+                                local v87 = bit32.band(v86, 1023);
+                                p67[v74.A] = u61[l__k__15[v85 + 1]][l__k__15[v87 + 1]];
+                            elseif v83 == 3 then
+                                local v88 = bit32.rshift(l__aux__17, 10);
+                                local v89 = bit32.band(v88, 1023);
+                                local v90 = bit32.rshift(l__aux__17, 0);
+                                local v91 = bit32.band(v90, 1023);
+                                p67[v74.A] = u61[l__k__15[v85 + 1]][l__k__15[v89 + 1]][l__k__15[v91 + 1]];
+                            end;
+                        elseif l__opcode__16 == 13 then
+                            p67[v74.A] = p67[v74.B][p67[v74.C]];
+                        elseif l__opcode__16 == 14 then
+                            p67[v74.B][p67[v74.C]] = p67[v74.A];
+                        elseif l__opcode__16 == 15 then
+                            v70 = v70 + 1;
+                            p67[v74.A] = p67[v74.B][l__k__15[v74.aux + 1]];
+                        elseif l__opcode__16 == 16 then
+                            v70 = v70 + 1;
+                            p67[v74.B][l__k__15[v74.aux + 1]] = p67[v74.A];
+                        elseif l__opcode__16 == 17 then
+                            p67[v74.A] = p67[v74.B][v74.C];
+                        elseif l__opcode__16 == 18 then
+                            p67[v74.B][v74.C] = p67[v74.A];
+                        elseif l__opcode__16 == 19 then
+                            local v92 = l__plist__14[v74.D + 1];
+                            local v93 = {};
+                            for v94 = 1, v92.nups do
+                                local v95 = p68[v70];
+                                local l__opcode__18 = v95.opcode;
+                                v70 = v70 + 1;
+                                assert(l__opcode__18 == 70, "Unhandled opcode passed to NEWCLOSURE");
+                                local l__A__19 = v95.A;
+                                if l__A__19 == 0 then
+                                    local v96 = {
+                                        index = "value",
+                                        value = p67[v95.B]
+                                    };
+                                    v96.store = v96;
+                                    v93[v94] = v96;
+                                elseif l__A__19 == 1 then
+                                    local l__B__20 = v95.B;
+                                    local v97 = v73[l__B__20];
+                                    if v97 == nil then
+                                        v97 = {
+                                            index = l__B__20,
+                                            store = p67
+                                        };
+                                        v73[l__B__20] = v97;
+                                    end;
+                                    v93[v94] = v97;
+                                elseif l__A__19 == 2 then
+                                    v93[v94] = u65[v95.B];
+                                end;
+                            end;
+                            p67[v74.A] = u344(u63, v92, v93);
+                        elseif l__opcode__16 == 20 then
+                            v70 = v70 + 1;
+                            local l__A__21 = v74.A;
+                            local l__B__22 = v74.B;
+                            local v98 = l__k__15[v74.aux + 1];
+                            local v99 = type(v98) == "string";
+                            assert(v99, "NAMECALL encountered non-string constant!");
+                            p67[l__A__21 + 1] = p67[l__B__22];
+                            p67[l__A__21] = p67[l__B__22][v98];
+                        elseif l__opcode__16 == 21 then
+                            local l__A__23 = v74.A;
+                            local l__B__24 = v74.B;
+                            local l__C__25 = v74.C;
+                            local v100;
+                            if l__B__24 == 0 then
+                                v100 = v72 - l__A__23;
+                            else
+                                v100 = l__B__24 - 1;
+                            end;
+                            local v101 = l__pack__2(p67[l__A__23](table.unpack(p67, l__A__23 + 1, l__A__23 + v100)));
+                            local l__n__26 = v101.n;
+                            if l__C__25 == 0 then
+                                v72 = l__A__23 + l__n__26 - 1;
+                            else
+                                l__n__26 = l__C__25 - 1;
+                            end;
+                            l__move__4(v101, 1, l__n__26, l__A__23, p67);
+                        else
+                            if l__opcode__16 == 22 then
+                                local l__A__27 = v74.A;
+                                local l__B__28 = v74.B;
+                                local v102;
+                                if l__B__28 - 1 == -1 then
+                                    v102 = v72 - l__A__27 + 1;
+                                else
+                                    v102 = l__A__27 + l__B__28 - 1 - u64.numparams;
+                                end;
+                                return table.unpack(p67, l__A__27, l__A__27 + v102 - 1);
+                            end;
+                            if l__opcode__16 == 23 then
+                                v70 = v70 + v74.D;
+                            elseif l__opcode__16 == 24 then
+                                v70 = v70 + v74.D;
+                            elseif l__opcode__16 == 25 then
+                                if p67[v74.A] then
+                                    v70 = v70 + v74.D;
+                                end;
+                            elseif l__opcode__16 == 26 then
+                                if not p67[v74.A] then
+                                    v70 = v70 + v74.D;
+                                end;
+                            elseif l__opcode__16 == 27 then
+                                if p67[v74.A] == p67[v74.aux] then
+                                    v70 = v70 + v74.D;
+                                else
+                                    v70 = v70 + 1;
+                                end;
+                            elseif l__opcode__16 == 28 then
+                                if p67[v74.A] < p67[v74.aux] then
+                                    v70 = v70 + v74.D;
+                                else
+                                    v70 = v70 + 1;
+                                end;
+                            elseif l__opcode__16 == 29 then
+                                if p67[v74.A] <= p67[v74.aux] then
+                                    v70 = v70 + v74.D;
+                                else
+                                    v70 = v70 + 1;
+                                end;
+                            elseif l__opcode__16 == 30 then
+                                if p67[v74.A] == p67[v74.aux] then
+                                    v70 = v70 + 1;
+                                else
+                                    v70 = v70 + v74.D;
+                                end;
+                            elseif l__opcode__16 == 31 then
+                                if p67[v74.A] < p67[v74.aux] then
+                                    v70 = v70 + 1;
+                                else
+                                    v70 = v70 + v74.D;
+                                end;
+                            elseif l__opcode__16 == 32 then
+                                if p67[v74.A] <= p67[v74.aux] then
+                                    v70 = v70 + 1;
+                                else
+                                    v70 = v70 + v74.D;
+                                end;
+                            elseif l__opcode__16 == 33 then
+                                p67[v74.A] = p67[v74.B] + p67[v74.C];
+                            elseif l__opcode__16 == 34 then
+                                p67[v74.A] = p67[v74.B] - p67[v74.C];
+                            elseif l__opcode__16 == 35 then
+                                p67[v74.A] = p67[v74.B] * p67[v74.C];
+                            elseif l__opcode__16 == 36 then
+                                p67[v74.A] = p67[v74.B] / p67[v74.C];
+                            elseif l__opcode__16 == 37 then
+                                p67[v74.A] = p67[v74.B] % p67[v74.C];
+                            elseif l__opcode__16 == 38 then
+                                p67[v74.A] = p67[v74.B] ^ p67[v74.C];
+                            elseif l__opcode__16 == 39 then
+                                p67[v74.A] = p67[v74.B] + l__k__15[v74.C + 1];
+                            elseif l__opcode__16 == 40 then
+                                p67[v74.A] = p67[v74.B] - l__k__15[v74.C + 1];
+                            elseif l__opcode__16 == 41 then
+                                p67[v74.A] = p67[v74.B] * l__k__15[v74.C + 1];
+                            elseif l__opcode__16 == 42 then
+                                p67[v74.A] = p67[v74.B] / l__k__15[v74.C + 1];
+                            elseif l__opcode__16 == 43 then
+                                p67[v74.A] = p67[v74.B] % l__k__15[v74.C + 1];
+                            elseif l__opcode__16 == 44 then
+                                p67[v74.A] = p67[v74.B] ^ l__k__15[v74.C + 1];
+                            elseif l__opcode__16 == 45 then
+                                local v103 = p67[v74.B];
+                                if (v103 and true or false) == false then
+                                    p67[v74.A] = v103;
+                                else
+                                    p67[v74.A] = p67[v74.C] or false;
+                                end;
+                            elseif l__opcode__16 == 46 then
+                                local v104 = p67[v74.B];
+                                if (v104 and true or false) == true then
+                                    p67[v74.A] = v104;
+                                else
+                                    p67[v74.A] = p67[v74.C] or false;
+                                end;
+                            elseif l__opcode__16 == 47 then
+                                local v105 = p67[v74.B];
+                                if (v105 and true or false) == false then
+                                    p67[v74.A] = v105;
+                                else
+                                    p67[v74.A] = l__k__15[v74.C + 1] or false;
+                                end;
+                            elseif l__opcode__16 == 48 then
+                                local v106 = p67[v74.B];
+                                if (v106 and true or false) == true then
+                                    p67[v74.A] = v106;
+                                else
+                                    p67[v74.A] = l__k__15[v74.C + 1] or false;
+                                end;
+                            elseif l__opcode__16 == 49 then
+                                local v107 = "";
+                                for v108 = v74.B, v74.C do
+                                    v107 = v107 .. p67[v108];
+                                end;
+                                p67[v74.A] = v107;
+                            elseif l__opcode__16 == 50 then
+                                p67[v74.A] = not p67[v74.B];
+                            elseif l__opcode__16 == 51 then
+                                p67[v74.A] = -p67[v74.B];
+                            elseif l__opcode__16 == 52 then
+                                p67[v74.A] = #p67[v74.B];
+                            elseif l__opcode__16 == 53 then
+                                v70 = v70 + 1;
+                                p67[v74.A] = l__create__3(v74.aux);
+                            elseif l__opcode__16 == 54 then
+                                local v109 = {};
+                                for _, v110 in l__k__15[v74.D + 1] do
+                                    v109[l__k__15[v110 + 1]] = nil;
+                                end;
+                                p67[v74.A] = v109;
+                            elseif l__opcode__16 == 55 then
+                                v70 = v70 + 1;
+                                local l__A__29 = v74.A;
+                                local l__B__30 = v74.B;
+                                local v111 = v74.C - 1;
+                                if v111 == -1 then
+                                    v111 = v72 - l__B__30;
+                                end;
+                                l__move__4(p67, l__B__30, l__B__30 + v111, v74.aux, p67[l__A__29]);
+                            elseif l__opcode__16 == 56 then
+                                local l__A__31 = v74.A;
+                                local v112 = p67[l__A__31];
+                                if type(v112) ~= "number" then
+                                    v112 = u1(v112);
+                                    if v112 == nil then
+                                        error("invalid \'for\' limit (number expected)");
+                                    end;
+                                    p67[l__A__31] = v112;
+                                end;
+                                local v113 = p67[l__A__31 + 1];
+                                if type(v113) ~= "number" then
+                                    v113 = u1(v113);
+                                    if v113 == nil then
+                                        error("invalid \'for\' step (number expected)");
+                                    end;
+                                    p67[l__A__31 + 1] = v113;
+                                end;
+                                local v114 = p67[l__A__31 + 2];
+                                if type(v114) ~= "number" then
+                                    v114 = u1(v114);
+                                    if v114 == nil then
+                                        error("invalid \'for\' index (number expected)");
+                                    end;
+                                    p67[l__A__31 + 2] = v114;
+                                end;
+                                local v115;
+                                if v113 == math.abs(v113) then
+                                    v115 = v112 <= v114;
+                                else
+                                    v115 = v114 <= v112;
+                                end;
+                                if v115 then
+                                    v70 = v70 + v74.D;
+                                end;
+                            elseif l__opcode__16 == 57 then
+                                local l__A__32 = v74.A;
+                                local v116 = p67[l__A__32];
+                                local v117 = p67[l__A__32 + 1];
+                                local v118 = p67[l__A__32 + 2] + v117;
+                                local v119;
+                                if v117 == math.abs(v117) then
+                                    v119 = v118 <= v116;
+                                else
+                                    v119 = v116 <= v118;
+                                end;
+                                if v119 then
+                                    p67[l__A__32 + 2] = v118;
+                                    v70 = v70 + v74.D;
+                                end;
+                            elseif l__opcode__16 == 58 then
+                                local l__A__33 = v74.A;
+                                local l__aux__34 = v74.aux;
+                                v72 = l__A__33 + 6;
+                                if type(p67[l__A__33]) == "function" then
+                                    l__move__4({ p67[l__A__33](p67[l__A__33 + 1], p67[l__A__33 + 2]) }, 1, l__aux__34, l__A__33 + 3, p67);
+                                    if p67[l__A__33 + 3] == nil then
+                                        v70 = v70 + 1;
+                                    else
+                                        p67[l__A__33 + 2] = p67[l__A__33 + 3];
+                                        v70 = v70 + v74.D;
+                                    end;
+                                else
+                                    local _, v120 = l__resume__7(v71[v74]);
+                                    if v120 == -2 then
+                                        v70 = v70 + 1;
+                                    else
+                                        l__move__4(v120, 1, l__aux__34, l__A__33 + 3, p67);
+                                        p67[l__A__33 + 2] = p67[l__A__33 + 3];
+                                        v70 = v70 + v74.D;
+                                    end;
+                                end;
+                            elseif l__opcode__16 == 59 then
+                                if type(p67[v74.A]) ~= "function" then
+                                    error("FORGPREP_INEXT encountered non-function value");
+                                end;
+                                v70 = v70 + v74.D;
+                            elseif l__opcode__16 == 61 then
+                                if type(p67[v74.A]) ~= "function" then
+                                    error("FORGPREP_NEXT encountered non-function value");
+                                end;
+                                v70 = v70 + v74.D;
+                            elseif l__opcode__16 == 63 then
+                                local l__A__35 = v74.A;
+                                local v121 = v74.B - 1;
+                                if v121 == -1 then
+                                    v121 = p69.len;
+                                    v72 = l__A__35 + v121 - 1;
+                                end;
+                                l__move__4(p69.list, 1, v121, l__A__35, p67);
+                            elseif l__opcode__16 == 64 then
+                                local v122 = l__plist__14[l__k__15[v74.D + 1] + 1];
+                                local v123 = {};
+                                for v124 = 1, v122.nups do
+                                    local v125 = p68[v70];
+                                    local l__opcode__36 = v125.opcode;
+                                    v70 = v70 + 1;
+                                    assert(l__opcode__36 == 70, "Unhandled opcode passed to DUPCLOSURE");
+                                    local l__A__37 = v125.A;
+                                    if l__A__37 == 0 then
+                                        local v126 = {
+                                            index = "value",
+                                            value = p67[v125.B]
+                                        };
+                                        v126.store = v126;
+                                        v123[v124] = v126;
+                                    elseif l__A__37 == 2 then
+                                        v123[v124] = u65[v125.B];
+                                    end;
+                                end;
+                                p67[v74.A] = u344(u63, v122, v123);
+                            elseif l__opcode__16 ~= 65 then
+                                if l__opcode__16 == 66 then
+                                    v70 = v70 + 1;
+                                    local v127 = l__k__15[v74.aux + 1];
+                                    local v128 = type(v127) == "string";
+                                    assert(v128, "LOADKX encountered non-string constant!");
+                                    p67[v74.A] = v127;
+                                elseif l__opcode__16 == 67 then
+                                    v70 = v70 + v74.E;
+                                elseif l__opcode__16 ~= 68 and l__opcode__16 ~= 69 then
+                                    if l__opcode__16 == 70 then
+                                        error("Unhandled CAPTURE");
+                                    elseif l__opcode__16 ~= 73 then
+                                        if l__opcode__16 == 74 then
+                                            v70 = v70 + 1;
+                                        elseif l__opcode__16 == 75 then
+                                            v70 = v70 + 1;
+                                        elseif l__opcode__16 == 76 then
+                                            local u129 = p67[v74.A];
+                                            if type(u129) ~= "function" then
+                                                local v130 = p68[v70 + v74.D];
+                                                if v71[v130] == nil then
+                                                    v71[v130] = l__create__5(function() --[[ Name: iterator, Line 820 ]]
+                                                        -- upvalues: u129 (copy), l__yield__6 (ref)
+                                                        for v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v142, v143, v144, v145, v146, v147, v148, v149, v150, v151, v152, v153, v154, v155, v156, v157, v158, v159, v160, v161, v162, v163, v164, v165, v166, v167, v168, v169, v170, v171, v172, v173, v174, v175, v176, v177, v178, v179, v180, v181, v182, v183, v184, v185, v186, v187, v188, v189, v190, v191, v192, v193, v194, v195, v196, v197, v198, v199, v200, v201, v202, v203, v204, v205, v206, v207, v208, v209, v210, v211, v212, v213, v214, v215, v216, v217, v218, v219, v220, v221, v222, v223, v224, v225, v226, v227, v228, v229, v230, v231, v232, v233, v234, v235, v236, v237, v238, v239, v240, v241, v242, v243, v244, v245, v246, v247, v248, v249, v250, v251, v252, v253, v254, v255, v256, v257, v258, v259, v260, v261, v262, v263, v264, v265, v266, v267, v268, v269, v270, v271, v272, v273, v274, v275, v276, v277, v278, v279, v280, v281, v282, v283, v284, v285, v286, v287, v288, v289, v290, v291, v292, v293, v294, v295, v296, v297, v298, v299, v300, v301, v302, v303, v304, v305, v306, v307, v308, v309, v310, v311, v312, v313, v314, v315, v316, v317, v318, v319, v320, v321, v322, v323, v324, v325, v326, v327, v328, v329, v330 in u129 do
+                                                            l__yield__6({
+                                                                v131,
+                                                                v132,
+                                                                v133,
+                                                                v134,
+                                                                v135,
+                                                                v136,
+                                                                v137,
+                                                                v138,
+                                                                v139,
+                                                                v140,
+                                                                v141,
+                                                                v142,
+                                                                v143,
+                                                                v144,
+                                                                v145,
+                                                                v146,
+                                                                v147,
+                                                                v148,
+                                                                v149,
+                                                                v150,
+                                                                v151,
+                                                                v152,
+                                                                v153,
+                                                                v154,
+                                                                v155,
+                                                                v156,
+                                                                v157,
+                                                                v158,
+                                                                v159,
+                                                                v160,
+                                                                v161,
+                                                                v162,
+                                                                v163,
+                                                                v164,
+                                                                v165,
+                                                                v166,
+                                                                v167,
+                                                                v168,
+                                                                v169,
+                                                                v170,
+                                                                v171,
+                                                                v172,
+                                                                v173,
+                                                                v174,
+                                                                v175,
+                                                                v176,
+                                                                v177,
+                                                                v178,
+                                                                v179,
+                                                                v180,
+                                                                v181,
+                                                                v182,
+                                                                v183,
+                                                                v184,
+                                                                v185,
+                                                                v186,
+                                                                v187,
+                                                                v188,
+                                                                v189,
+                                                                v190,
+                                                                v191,
+                                                                v192,
+                                                                v193,
+                                                                v194,
+                                                                v195,
+                                                                v196,
+                                                                v197,
+                                                                v198,
+                                                                v199,
+                                                                v200,
+                                                                v201,
+                                                                v202,
+                                                                v203,
+                                                                v204,
+                                                                v205,
+                                                                v206,
+                                                                v207,
+                                                                v208,
+                                                                v209,
+                                                                v210,
+                                                                v211,
+                                                                v212,
+                                                                v213,
+                                                                v214,
+                                                                v215,
+                                                                v216,
+                                                                v217,
+                                                                v218,
+                                                                v219,
+                                                                v220,
+                                                                v221,
+                                                                v222,
+                                                                v223,
+                                                                v224,
+                                                                v225,
+                                                                v226,
+                                                                v227,
+                                                                v228,
+                                                                v229,
+                                                                v230,
+                                                                v231,
+                                                                v232,
+                                                                v233,
+                                                                v234,
+                                                                v235,
+                                                                v236,
+                                                                v237,
+                                                                v238,
+                                                                v239,
+                                                                v240,
+                                                                v241,
+                                                                v242,
+                                                                v243,
+                                                                v244,
+                                                                v245,
+                                                                v246,
+                                                                v247,
+                                                                v248,
+                                                                v249,
+                                                                v250,
+                                                                v251,
+                                                                v252,
+                                                                v253,
+                                                                v254,
+                                                                v255,
+                                                                v256,
+                                                                v257,
+                                                                v258,
+                                                                v259,
+                                                                v260,
+                                                                v261,
+                                                                v262,
+                                                                v263,
+                                                                v264,
+                                                                v265,
+                                                                v266,
+                                                                v267,
+                                                                v268,
+                                                                v269,
+                                                                v270,
+                                                                v271,
+                                                                v272,
+                                                                v273,
+                                                                v274,
+                                                                v275,
+                                                                v276,
+                                                                v277,
+                                                                v278,
+                                                                v279,
+                                                                v280,
+                                                                v281,
+                                                                v282,
+                                                                v283,
+                                                                v284,
+                                                                v285,
+                                                                v286,
+                                                                v287,
+                                                                v288,
+                                                                v289,
+                                                                v290,
+                                                                v291,
+                                                                v292,
+                                                                v293,
+                                                                v294,
+                                                                v295,
+                                                                v296,
+                                                                v297,
+                                                                v298,
+                                                                v299,
+                                                                v300,
+                                                                v301,
+                                                                v302,
+                                                                v303,
+                                                                v304,
+                                                                v305,
+                                                                v306,
+                                                                v307,
+                                                                v308,
+                                                                v309,
+                                                                v310,
+                                                                v311,
+                                                                v312,
+                                                                v313,
+                                                                v314,
+                                                                v315,
+                                                                v316,
+                                                                v317,
+                                                                v318,
+                                                                v319,
+                                                                v320,
+                                                                v321,
+                                                                v322,
+                                                                v323,
+                                                                v324,
+                                                                v325,
+                                                                v326,
+                                                                v327,
+                                                                v328,
+                                                                v329,
+                                                                v330
+                                                            });
+                                                        end;
+                                                        l__yield__6(-2);
+                                                    end);
+                                                end;
+                                            end;
+                                            v70 = v70 + v74.D;
+                                        elseif l__opcode__16 == 77 then
+                                            if (p67[v74.A] == nil and 0 or 1) == bit32.rshift(v74.aux, 31) then
+                                                v70 = v70 + v74.D;
+                                            else
+                                                v70 = v70 + 1;
+                                            end;
+                                        elseif l__opcode__16 == 78 then
+                                            local l__aux__38 = v74.aux;
+                                            if (p67[v74.A] and 0 or 1) == (bit32.band(l__aux__38, 1) and 0 or 1) == bit32.rshift(l__aux__38, 31) then
+                                                v70 = v70 + v74.D;
+                                            else
+                                                v70 = v70 + 1;
+                                            end;
+                                        elseif l__opcode__16 == 79 then
+                                            local l__aux__39 = v74.aux;
+                                            local v331 = l__k__15[bit32.band(l__aux__39, 16777215) + 1];
+                                            local v332 = type(v331) == "number";
+                                            assert(v332, "JUMPXEQKN encountered non-number constant!");
+                                            local v333 = p67[v74.A];
+                                            if bit32.rshift(l__aux__39, 31) == 0 then
+                                                v70 = v70 + (v333 ~= v331 and 1 or v74.D);
+                                            else
+                                                v70 = v70 + (v333 == v331 and 1 or v74.D);
+                                            end;
+                                        elseif l__opcode__16 == 80 then
+                                            local l__aux__40 = v74.aux;
+                                            local v334 = l__k__15[bit32.band(l__aux__40, 16777215) + 1];
+                                            local v335 = type(v334) == "string";
+                                            assert(v335, "JUMPXEQKS encountered non-string constant!");
+                                            if (v334 == p67[v74.A] and 0 or 1) == bit32.rshift(l__aux__40, 31) then
+                                                v70 = v70 + 1;
+                                            else
+                                                v70 = v70 + v74.D;
+                                            end;
+                                        else
+                                            error("Unsupported Opcode: " .. v74.opname .. " op: " .. l__opcode__16);
+                                        end;
+                                    end;
+                                end;
+                            end;
+                        end;
+                    end;
+                    p67[v74.A] = nil;
+                end;
+            end;
+            return function(...) --[[ Name: wrapped, Line 875 ]]
+                -- upvalues: l__pack__2 (ref), l__create__3 (ref), u64 (copy), l__move__4 (ref), u2 (ref), u336 (copy)
+                local v337 = l__pack__2(...);
+                local v338 = l__create__3(u64.maxstacksize);
+                local v339 = {
+                    len = 0,
+                    list = {}
+                };
+                l__move__4(v337, 1, u64.numparams, 0, v338);
+                if u64.numparams < v337.n then
+                    local v340 = u64.numparams + 1;
+                    local v341 = v337.n - u64.numparams;
+                    v339.len = v341;
+                    l__move__4(v337, v340, v340 + v341 - 1, 1, v339.list);
+                end;
+                local v342 = {};
+                local v343 = l__pack__2(u2(u336, v342, v338, u64.protos, u64.code, v339));
+                if v343[1] then
+                    return table.unpack(v343, 2, v343.n);
+                end;
+                error(string.format("Fiu VM Error PC: %s Opcode: %s: \n%s", v342.pc, v342.name, v343[2]), 0);
+            end;
+        end;
+        local u345 = nil;
+        local function u616(p346, p347, _, p348, p349) --[[ Line: 340 ]]
+            -- upvalues: u62 (copy), u61 (copy), u345 (copy), l__plist__14 (copy), u344 (copy), u60 (copy), l__pack__2 (ref), l__move__4 (ref), l__create__3 (ref), u1 (ref), l__resume__7 (ref), l__yield__6 (ref), l__create__5 (ref)
+            local l__k__41 = u62.k;
+            local v350 = 1;
+            local v351 = {};
+            local v352 = -1;
+            local v353 = {};
+            while true do
+                local v354;
+                while true do
+                    v354 = p348[v350];
+                    local l__opcode__42 = v354.opcode;
+                    v350 = v350 + 1;
+                    p346.pc = v350;
+                    p346.name = v354.opname;
+                    if l__opcode__42 == 2 then
+                        break;
+                    end;
+                    if l__opcode__42 == 3 then
+                        p347[v354.A] = v354.B ~= 0;
+                        v350 = v350 + v354.C;
+                    elseif l__opcode__42 == 4 then
+                        p347[v354.A] = v354.D;
+                    elseif l__opcode__42 == 5 then
+                        p347[v354.A] = l__k__41[v354.D + 1];
+                    elseif l__opcode__42 == 6 then
+                        p347[v354.A] = p347[v354.B];
+                    elseif l__opcode__42 == 7 then
+                        v350 = v350 + 1;
+                        local v355 = l__k__41[v354.aux + 1];
+                        local v356 = type(v355) == "string";
+                        assert(v356, "GETGLOBAL encountered non-string constant!");
+                        p347[v354.A] = u61[v355];
+                    elseif l__opcode__42 == 8 then
+                        v350 = v350 + 1;
+                        local v357 = l__k__41[v354.aux + 1];
+                        local v358 = type(v357) == "string";
+                        assert(v358, "GETGLOBAL encountered non-string constant!");
+                        u61[v357] = p347[v354.A];
+                    elseif l__opcode__42 == 9 then
+                        local v359 = u345[v354.B + 1];
+                        p347[v354.A] = v359.store[v359.index];
+                    elseif l__opcode__42 == 10 then
+                        local v360 = u345[v354.B + 1];
+                        v360.store[v360.index] = p347[v354.A];
+                    elseif l__opcode__42 == 11 then
+                        for v361, v362 in v353 do
+                            if v362.index >= v354.A then
+                                v362.value = v362.store[v362.index];
+                                v362.store = v362;
+                                v362.index = "value";
+                                v353[v361] = nil;
+                            end;
+                        end;
+                    elseif l__opcode__42 == 12 then
+                        v350 = v350 + 1;
+                        local l__aux__43 = v354.aux;
+                        local v363 = bit32.rshift(l__aux__43, 30);
+                        local v364 = bit32.rshift(l__aux__43, 20);
+                        local v365 = bit32.band(v364, 1023);
+                        if v363 == 1 then
+                            p347[v354.A] = u61[l__k__41[v365 + 1]];
+                        elseif v363 == 2 then
+                            local v366 = bit32.rshift(l__aux__43, 10);
+                            local v367 = bit32.band(v366, 1023);
+                            p347[v354.A] = u61[l__k__41[v365 + 1]][l__k__41[v367 + 1]];
+                        elseif v363 == 3 then
+                            local v368 = bit32.rshift(l__aux__43, 10);
+                            local v369 = bit32.band(v368, 1023);
+                            local v370 = bit32.rshift(l__aux__43, 0);
+                            local v371 = bit32.band(v370, 1023);
+                            p347[v354.A] = u61[l__k__41[v365 + 1]][l__k__41[v369 + 1]][l__k__41[v371 + 1]];
+                        end;
+                    elseif l__opcode__42 == 13 then
+                        p347[v354.A] = p347[v354.B][p347[v354.C]];
+                    elseif l__opcode__42 == 14 then
+                        p347[v354.B][p347[v354.C]] = p347[v354.A];
+                    elseif l__opcode__42 == 15 then
+                        v350 = v350 + 1;
+                        p347[v354.A] = p347[v354.B][l__k__41[v354.aux + 1]];
+                    elseif l__opcode__42 == 16 then
+                        v350 = v350 + 1;
+                        p347[v354.B][l__k__41[v354.aux + 1]] = p347[v354.A];
+                    elseif l__opcode__42 == 17 then
+                        p347[v354.A] = p347[v354.B][v354.C];
+                    elseif l__opcode__42 == 18 then
+                        p347[v354.B][v354.C] = p347[v354.A];
+                    elseif l__opcode__42 == 19 then
+                        local v372 = l__plist__14[v354.D + 1];
+                        local v373 = {};
+                        for v374 = 1, v372.nups do
+                            local v375 = p348[v350];
+                            local l__opcode__44 = v375.opcode;
+                            v350 = v350 + 1;
+                            assert(l__opcode__44 == 70, "Unhandled opcode passed to NEWCLOSURE");
+                            local l__A__45 = v375.A;
+                            if l__A__45 == 0 then
+                                local v376 = {
+                                    index = "value",
+                                    value = p347[v375.B]
+                                };
+                                v376.store = v376;
+                                v373[v374] = v376;
+                            elseif l__A__45 == 1 then
+                                local l__B__46 = v375.B;
+                                local v377 = v353[l__B__46];
+                                if v377 == nil then
+                                    v377 = {
+                                        index = l__B__46,
+                                        store = p347
+                                    };
+                                    v353[l__B__46] = v377;
+                                end;
+                                v373[v374] = v377;
+                            elseif l__A__45 == 2 then
+                                v373[v374] = u345[v375.B];
+                            end;
+                        end;
+                        p347[v354.A] = u344(u60, v372, v373);
+                    elseif l__opcode__42 == 20 then
+                        v350 = v350 + 1;
+                        local l__A__47 = v354.A;
+                        local l__B__48 = v354.B;
+                        local v378 = l__k__41[v354.aux + 1];
+                        local v379 = type(v378) == "string";
+                        assert(v379, "NAMECALL encountered non-string constant!");
+                        p347[l__A__47 + 1] = p347[l__B__48];
+                        p347[l__A__47] = p347[l__B__48][v378];
+                    elseif l__opcode__42 == 21 then
+                        local l__A__49 = v354.A;
+                        local l__B__50 = v354.B;
+                        local l__C__51 = v354.C;
+                        local v380;
+                        if l__B__50 == 0 then
+                            v380 = v352 - l__A__49;
+                        else
+                            v380 = l__B__50 - 1;
+                        end;
+                        local v381 = l__pack__2(p347[l__A__49](table.unpack(p347, l__A__49 + 1, l__A__49 + v380)));
+                        local l__n__52 = v381.n;
+                        if l__C__51 == 0 then
+                            v352 = l__A__49 + l__n__52 - 1;
+                        else
+                            l__n__52 = l__C__51 - 1;
+                        end;
+                        l__move__4(v381, 1, l__n__52, l__A__49, p347);
+                    else
+                        if l__opcode__42 == 22 then
+                            local l__A__53 = v354.A;
+                            local l__B__54 = v354.B;
+                            local v382;
+                            if l__B__54 - 1 == -1 then
+                                v382 = v352 - l__A__53 + 1;
+                            else
+                                v382 = l__A__53 + l__B__54 - 1 - u62.numparams;
+                            end;
+                            return table.unpack(p347, l__A__53, l__A__53 + v382 - 1);
+                        end;
+                        if l__opcode__42 == 23 then
+                            v350 = v350 + v354.D;
+                        elseif l__opcode__42 == 24 then
+                            v350 = v350 + v354.D;
+                        elseif l__opcode__42 == 25 then
+                            if p347[v354.A] then
+                                v350 = v350 + v354.D;
+                            end;
+                        elseif l__opcode__42 == 26 then
+                            if not p347[v354.A] then
+                                v350 = v350 + v354.D;
+                            end;
+                        elseif l__opcode__42 == 27 then
+                            if p347[v354.A] == p347[v354.aux] then
+                                v350 = v350 + v354.D;
+                            else
+                                v350 = v350 + 1;
+                            end;
+                        elseif l__opcode__42 == 28 then
+                            if p347[v354.A] < p347[v354.aux] then
+                                v350 = v350 + v354.D;
+                            else
+                                v350 = v350 + 1;
+                            end;
+                        elseif l__opcode__42 == 29 then
+                            if p347[v354.A] <= p347[v354.aux] then
+                                v350 = v350 + v354.D;
+                            else
+                                v350 = v350 + 1;
+                            end;
+                        elseif l__opcode__42 == 30 then
+                            if p347[v354.A] == p347[v354.aux] then
+                                v350 = v350 + 1;
+                            else
+                                v350 = v350 + v354.D;
+                            end;
+                        elseif l__opcode__42 == 31 then
+                            if p347[v354.A] < p347[v354.aux] then
+                                v350 = v350 + 1;
+                            else
+                                v350 = v350 + v354.D;
+                            end;
+                        elseif l__opcode__42 == 32 then
+                            if p347[v354.A] <= p347[v354.aux] then
+                                v350 = v350 + 1;
+                            else
+                                v350 = v350 + v354.D;
+                            end;
+                        elseif l__opcode__42 == 33 then
+                            p347[v354.A] = p347[v354.B] + p347[v354.C];
+                        elseif l__opcode__42 == 34 then
+                            p347[v354.A] = p347[v354.B] - p347[v354.C];
+                        elseif l__opcode__42 == 35 then
+                            p347[v354.A] = p347[v354.B] * p347[v354.C];
+                        elseif l__opcode__42 == 36 then
+                            p347[v354.A] = p347[v354.B] / p347[v354.C];
+                        elseif l__opcode__42 == 37 then
+                            p347[v354.A] = p347[v354.B] % p347[v354.C];
+                        elseif l__opcode__42 == 38 then
+                            p347[v354.A] = p347[v354.B] ^ p347[v354.C];
+                        elseif l__opcode__42 == 39 then
+                            p347[v354.A] = p347[v354.B] + l__k__41[v354.C + 1];
+                        elseif l__opcode__42 == 40 then
+                            p347[v354.A] = p347[v354.B] - l__k__41[v354.C + 1];
+                        elseif l__opcode__42 == 41 then
+                            p347[v354.A] = p347[v354.B] * l__k__41[v354.C + 1];
+                        elseif l__opcode__42 == 42 then
+                            p347[v354.A] = p347[v354.B] / l__k__41[v354.C + 1];
+                        elseif l__opcode__42 == 43 then
+                            p347[v354.A] = p347[v354.B] % l__k__41[v354.C + 1];
+                        elseif l__opcode__42 == 44 then
+                            p347[v354.A] = p347[v354.B] ^ l__k__41[v354.C + 1];
+                        elseif l__opcode__42 == 45 then
+                            local v383 = p347[v354.B];
+                            if (v383 and true or false) == false then
+                                p347[v354.A] = v383;
+                            else
+                                p347[v354.A] = p347[v354.C] or false;
+                            end;
+                        elseif l__opcode__42 == 46 then
+                            local v384 = p347[v354.B];
+                            if (v384 and true or false) == true then
+                                p347[v354.A] = v384;
+                            else
+                                p347[v354.A] = p347[v354.C] or false;
+                            end;
+                        elseif l__opcode__42 == 47 then
+                            local v385 = p347[v354.B];
+                            if (v385 and true or false) == false then
+                                p347[v354.A] = v385;
+                            else
+                                p347[v354.A] = l__k__41[v354.C + 1] or false;
+                            end;
+                        elseif l__opcode__42 == 48 then
+                            local v386 = p347[v354.B];
+                            if (v386 and true or false) == true then
+                                p347[v354.A] = v386;
+                            else
+                                p347[v354.A] = l__k__41[v354.C + 1] or false;
+                            end;
+                        elseif l__opcode__42 == 49 then
+                            local v387 = "";
+                            for v388 = v354.B, v354.C do
+                                v387 = v387 .. p347[v388];
+                            end;
+                            p347[v354.A] = v387;
+                        elseif l__opcode__42 == 50 then
+                            p347[v354.A] = not p347[v354.B];
+                        elseif l__opcode__42 == 51 then
+                            p347[v354.A] = -p347[v354.B];
+                        elseif l__opcode__42 == 52 then
+                            p347[v354.A] = #p347[v354.B];
+                        elseif l__opcode__42 == 53 then
+                            v350 = v350 + 1;
+                            p347[v354.A] = l__create__3(v354.aux);
+                        elseif l__opcode__42 == 54 then
+                            local v389 = {};
+                            for _, v390 in l__k__41[v354.D + 1] do
+                                v389[l__k__41[v390 + 1]] = nil;
+                            end;
+                            p347[v354.A] = v389;
+                        elseif l__opcode__42 == 55 then
+                            v350 = v350 + 1;
+                            local l__A__55 = v354.A;
+                            local l__B__56 = v354.B;
+                            local v391 = v354.C - 1;
+                            if v391 == -1 then
+                                v391 = v352 - l__B__56;
+                            end;
+                            l__move__4(p347, l__B__56, l__B__56 + v391, v354.aux, p347[l__A__55]);
+                        elseif l__opcode__42 == 56 then
+                            local l__A__57 = v354.A;
+                            local v392 = p347[l__A__57];
+                            if type(v392) ~= "number" then
+                                v392 = u1(v392);
+                                if v392 == nil then
+                                    error("invalid \'for\' limit (number expected)");
+                                end;
+                                p347[l__A__57] = v392;
+                            end;
+                            local v393 = p347[l__A__57 + 1];
+                            if type(v393) ~= "number" then
+                                v393 = u1(v393);
+                                if v393 == nil then
+                                    error("invalid \'for\' step (number expected)");
+                                end;
+                                p347[l__A__57 + 1] = v393;
+                            end;
+                            local v394 = p347[l__A__57 + 2];
+                            if type(v394) ~= "number" then
+                                v394 = u1(v394);
+                                if v394 == nil then
+                                    error("invalid \'for\' index (number expected)");
+                                end;
+                                p347[l__A__57 + 2] = v394;
+                            end;
+                            local v395;
+                            if v393 == math.abs(v393) then
+                                v395 = v392 <= v394;
+                            else
+                                v395 = v394 <= v392;
+                            end;
+                            if v395 then
+                                v350 = v350 + v354.D;
+                            end;
+                        elseif l__opcode__42 == 57 then
+                            local l__A__58 = v354.A;
+                            local v396 = p347[l__A__58];
+                            local v397 = p347[l__A__58 + 1];
+                            local v398 = p347[l__A__58 + 2] + v397;
+                            local v399;
+                            if v397 == math.abs(v397) then
+                                v399 = v398 <= v396;
+                            else
+                                v399 = v396 <= v398;
+                            end;
+                            if v399 then
+                                p347[l__A__58 + 2] = v398;
+                                v350 = v350 + v354.D;
+                            end;
+                        elseif l__opcode__42 == 58 then
+                            local l__A__59 = v354.A;
+                            local l__aux__60 = v354.aux;
+                            v352 = l__A__59 + 6;
+                            if type(p347[l__A__59]) == "function" then
+                                l__move__4({ p347[l__A__59](p347[l__A__59 + 1], p347[l__A__59 + 2]) }, 1, l__aux__60, l__A__59 + 3, p347);
+                                if p347[l__A__59 + 3] == nil then
+                                    v350 = v350 + 1;
+                                else
+                                    p347[l__A__59 + 2] = p347[l__A__59 + 3];
+                                    v350 = v350 + v354.D;
+                                end;
+                            else
+                                local _, v400 = l__resume__7(v351[v354]);
+                                if v400 == -2 then
+                                    v350 = v350 + 1;
+                                else
+                                    l__move__4(v400, 1, l__aux__60, l__A__59 + 3, p347);
+                                    p347[l__A__59 + 2] = p347[l__A__59 + 3];
+                                    v350 = v350 + v354.D;
+                                end;
+                            end;
+                        elseif l__opcode__42 == 59 then
+                            if type(p347[v354.A]) ~= "function" then
+                                error("FORGPREP_INEXT encountered non-function value");
+                            end;
+                            v350 = v350 + v354.D;
+                        elseif l__opcode__42 == 61 then
+                            if type(p347[v354.A]) ~= "function" then
+                                error("FORGPREP_NEXT encountered non-function value");
+                            end;
+                            v350 = v350 + v354.D;
+                        elseif l__opcode__42 == 63 then
+                            local l__A__61 = v354.A;
+                            local v401 = v354.B - 1;
+                            if v401 == -1 then
+                                v401 = p349.len;
+                                v352 = l__A__61 + v401 - 1;
+                            end;
+                            l__move__4(p349.list, 1, v401, l__A__61, p347);
+                        elseif l__opcode__42 == 64 then
+                            local v402 = l__plist__14[l__k__41[v354.D + 1] + 1];
+                            local v403 = {};
+                            for v404 = 1, v402.nups do
+                                local v405 = p348[v350];
+                                local l__opcode__62 = v405.opcode;
+                                v350 = v350 + 1;
+                                assert(l__opcode__62 == 70, "Unhandled opcode passed to DUPCLOSURE");
+                                local l__A__63 = v405.A;
+                                if l__A__63 == 0 then
+                                    local v406 = {
+                                        index = "value",
+                                        value = p347[v405.B]
+                                    };
+                                    v406.store = v406;
+                                    v403[v404] = v406;
+                                elseif l__A__63 == 2 then
+                                    v403[v404] = u345[v405.B];
+                                end;
+                            end;
+                            p347[v354.A] = u344(u60, v402, v403);
+                        elseif l__opcode__42 ~= 65 then
+                            if l__opcode__42 == 66 then
+                                v350 = v350 + 1;
+                                local v407 = l__k__41[v354.aux + 1];
+                                local v408 = type(v407) == "string";
+                                assert(v408, "LOADKX encountered non-string constant!");
+                                p347[v354.A] = v407;
+                            elseif l__opcode__42 == 67 then
+                                v350 = v350 + v354.E;
+                            elseif l__opcode__42 ~= 68 and l__opcode__42 ~= 69 then
+                                if l__opcode__42 == 70 then
+                                    error("Unhandled CAPTURE");
+                                elseif l__opcode__42 ~= 73 then
+                                    if l__opcode__42 == 74 then
+                                        v350 = v350 + 1;
+                                    elseif l__opcode__42 == 75 then
+                                        v350 = v350 + 1;
+                                    elseif l__opcode__42 == 76 then
+                                        local u409 = p347[v354.A];
+                                        if type(u409) ~= "function" then
+                                            local v410 = p348[v350 + v354.D];
+                                            if v351[v410] == nil then
+                                                v351[v410] = l__create__5(function() --[[ Name: iterator, Line 820 ]]
+                                                    -- upvalues: u409 (copy), l__yield__6 (ref)
+                                                    for v411, v412, v413, v414, v415, v416, v417, v418, v419, v420, v421, v422, v423, v424, v425, v426, v427, v428, v429, v430, v431, v432, v433, v434, v435, v436, v437, v438, v439, v440, v441, v442, v443, v444, v445, v446, v447, v448, v449, v450, v451, v452, v453, v454, v455, v456, v457, v458, v459, v460, v461, v462, v463, v464, v465, v466, v467, v468, v469, v470, v471, v472, v473, v474, v475, v476, v477, v478, v479, v480, v481, v482, v483, v484, v485, v486, v487, v488, v489, v490, v491, v492, v493, v494, v495, v496, v497, v498, v499, v500, v501, v502, v503, v504, v505, v506, v507, v508, v509, v510, v511, v512, v513, v514, v515, v516, v517, v518, v519, v520, v521, v522, v523, v524, v525, v526, v527, v528, v529, v530, v531, v532, v533, v534, v535, v536, v537, v538, v539, v540, v541, v542, v543, v544, v545, v546, v547, v548, v549, v550, v551, v552, v553, v554, v555, v556, v557, v558, v559, v560, v561, v562, v563, v564, v565, v566, v567, v568, v569, v570, v571, v572, v573, v574, v575, v576, v577, v578, v579, v580, v581, v582, v583, v584, v585, v586, v587, v588, v589, v590, v591, v592, v593, v594, v595, v596, v597, v598, v599, v600, v601, v602, v603, v604, v605, v606, v607, v608, v609, v610 in u409 do
+                                                        l__yield__6({
+                                                            v411,
+                                                            v412,
+                                                            v413,
+                                                            v414,
+                                                            v415,
+                                                            v416,
+                                                            v417,
+                                                            v418,
+                                                            v419,
+                                                            v420,
+                                                            v421,
+                                                            v422,
+                                                            v423,
+                                                            v424,
+                                                            v425,
+                                                            v426,
+                                                            v427,
+                                                            v428,
+                                                            v429,
+                                                            v430,
+                                                            v431,
+                                                            v432,
+                                                            v433,
+                                                            v434,
+                                                            v435,
+                                                            v436,
+                                                            v437,
+                                                            v438,
+                                                            v439,
+                                                            v440,
+                                                            v441,
+                                                            v442,
+                                                            v443,
+                                                            v444,
+                                                            v445,
+                                                            v446,
+                                                            v447,
+                                                            v448,
+                                                            v449,
+                                                            v450,
+                                                            v451,
+                                                            v452,
+                                                            v453,
+                                                            v454,
+                                                            v455,
+                                                            v456,
+                                                            v457,
+                                                            v458,
+                                                            v459,
+                                                            v460,
+                                                            v461,
+                                                            v462,
+                                                            v463,
+                                                            v464,
+                                                            v465,
+                                                            v466,
+                                                            v467,
+                                                            v468,
+                                                            v469,
+                                                            v470,
+                                                            v471,
+                                                            v472,
+                                                            v473,
+                                                            v474,
+                                                            v475,
+                                                            v476,
+                                                            v477,
+                                                            v478,
+                                                            v479,
+                                                            v480,
+                                                            v481,
+                                                            v482,
+                                                            v483,
+                                                            v484,
+                                                            v485,
+                                                            v486,
+                                                            v487,
+                                                            v488,
+                                                            v489,
+                                                            v490,
+                                                            v491,
+                                                            v492,
+                                                            v493,
+                                                            v494,
+                                                            v495,
+                                                            v496,
+                                                            v497,
+                                                            v498,
+                                                            v499,
+                                                            v500,
+                                                            v501,
+                                                            v502,
+                                                            v503,
+                                                            v504,
+                                                            v505,
+                                                            v506,
+                                                            v507,
+                                                            v508,
+                                                            v509,
+                                                            v510,
+                                                            v511,
+                                                            v512,
+                                                            v513,
+                                                            v514,
+                                                            v515,
+                                                            v516,
+                                                            v517,
+                                                            v518,
+                                                            v519,
+                                                            v520,
+                                                            v521,
+                                                            v522,
+                                                            v523,
+                                                            v524,
+                                                            v525,
+                                                            v526,
+                                                            v527,
+                                                            v528,
+                                                            v529,
+                                                            v530,
+                                                            v531,
+                                                            v532,
+                                                            v533,
+                                                            v534,
+                                                            v535,
+                                                            v536,
+                                                            v537,
+                                                            v538,
+                                                            v539,
+                                                            v540,
+                                                            v541,
+                                                            v542,
+                                                            v543,
+                                                            v544,
+                                                            v545,
+                                                            v546,
+                                                            v547,
+                                                            v548,
+                                                            v549,
+                                                            v550,
+                                                            v551,
+                                                            v552,
+                                                            v553,
+                                                            v554,
+                                                            v555,
+                                                            v556,
+                                                            v557,
+                                                            v558,
+                                                            v559,
+                                                            v560,
+                                                            v561,
+                                                            v562,
+                                                            v563,
+                                                            v564,
+                                                            v565,
+                                                            v566,
+                                                            v567,
+                                                            v568,
+                                                            v569,
+                                                            v570,
+                                                            v571,
+                                                            v572,
+                                                            v573,
+                                                            v574,
+                                                            v575,
+                                                            v576,
+                                                            v577,
+                                                            v578,
+                                                            v579,
+                                                            v580,
+                                                            v581,
+                                                            v582,
+                                                            v583,
+                                                            v584,
+                                                            v585,
+                                                            v586,
+                                                            v587,
+                                                            v588,
+                                                            v589,
+                                                            v590,
+                                                            v591,
+                                                            v592,
+                                                            v593,
+                                                            v594,
+                                                            v595,
+                                                            v596,
+                                                            v597,
+                                                            v598,
+                                                            v599,
+                                                            v600,
+                                                            v601,
+                                                            v602,
+                                                            v603,
+                                                            v604,
+                                                            v605,
+                                                            v606,
+                                                            v607,
+                                                            v608,
+                                                            v609,
+                                                            v610
+                                                        });
+                                                    end;
+                                                    l__yield__6(-2);
+                                                end);
+                                            end;
+                                        end;
+                                        v350 = v350 + v354.D;
+                                    elseif l__opcode__42 == 77 then
+                                        if (p347[v354.A] == nil and 0 or 1) == bit32.rshift(v354.aux, 31) then
+                                            v350 = v350 + v354.D;
+                                        else
+                                            v350 = v350 + 1;
+                                        end;
+                                    elseif l__opcode__42 == 78 then
+                                        local l__aux__64 = v354.aux;
+                                        if (p347[v354.A] and 0 or 1) == (bit32.band(l__aux__64, 1) and 0 or 1) == bit32.rshift(l__aux__64, 31) then
+                                            v350 = v350 + v354.D;
+                                        else
+                                            v350 = v350 + 1;
+                                        end;
+                                    elseif l__opcode__42 == 79 then
+                                        local l__aux__65 = v354.aux;
+                                        local v611 = l__k__41[bit32.band(l__aux__65, 16777215) + 1];
+                                        local v612 = type(v611) == "number";
+                                        assert(v612, "JUMPXEQKN encountered non-number constant!");
+                                        local v613 = p347[v354.A];
+                                        if bit32.rshift(l__aux__65, 31) == 0 then
+                                            v350 = v350 + (v613 ~= v611 and 1 or v354.D);
+                                        else
+                                            v350 = v350 + (v613 == v611 and 1 or v354.D);
+                                        end;
+                                    elseif l__opcode__42 == 80 then
+                                        local l__aux__66 = v354.aux;
+                                        local v614 = l__k__41[bit32.band(l__aux__66, 16777215) + 1];
+                                        local v615 = type(v614) == "string";
+                                        assert(v615, "JUMPXEQKS encountered non-string constant!");
+                                        if (v614 == p347[v354.A] and 0 or 1) == bit32.rshift(l__aux__66, 31) then
+                                            v350 = v350 + 1;
+                                        else
+                                            v350 = v350 + v354.D;
+                                        end;
+                                    else
+                                        error("Unsupported Opcode: " .. v354.opname .. " op: " .. l__opcode__42);
+                                    end;
+                                end;
+                            end;
+                        end;
+                    end;
+                end;
+                p347[v354.A] = nil;
+            end;
+        end;
+        return function(...) --[[ Name: wrapped, Line 875 ]]
+            -- upvalues: l__pack__2 (ref), l__create__3 (ref), u62 (copy), l__move__4 (ref), u2 (ref), u616 (copy)
+            local v617 = l__pack__2(...);
+            local v618 = l__create__3(u62.maxstacksize);
+            local v619 = {
+                len = 0,
+                list = {}
+            };
+            l__move__4(v617, 1, u62.numparams, 0, v618);
+            if u62.numparams < v617.n then
+                local v620 = u62.numparams + 1;
+                local v621 = v617.n - u62.numparams;
+                v619.len = v621;
+                l__move__4(v617, v620, v620 + v621 - 1, 1, v619.list);
+            end;
+            local v622 = {};
+            local v623 = l__pack__2(u2(u616, v622, v618, u62.protos, u62.code, v619));
+            if v623[1] then
+                return table.unpack(v623, 2, v623.n);
+            end;
+            error(string.format("Fiu VM Error PC: %s Opcode: %s: \n%s", v622.pc, v622.name, v623[2]), 0);
+        end;
+    end,
+    luau_newproto = u6,
+    luau_newmodule = u5,
+    luau_deserialize = u59
+};

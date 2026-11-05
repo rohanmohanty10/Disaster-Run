@@ -1,0 +1,90 @@
+  
+
+ 
+
+local function immutableAppend(p1, ...) -- Line: 7
+    local v2 = #p1;
+    local v3 = {};
+
+    for i = 1, v2 do
+        v3[i] = p1[i];
+    end;
+
+    for i = 1, select("#", ...) do
+        v3[v2 + i] = select(i, ...);
+    end;
+
+    return v3;
+end;
+
+local function immutableRemoveValue(p4, p5) -- Line: 22
+    local v6 = {};
+
+    for i = 1, #p4 do
+        if p4[i] ~= p5 then
+            table.insert(v6, p4[i]);
+        end;
+    end;
+
+    return v6;
+end;
+
+local u7 = {};
+u7.__index = u7;
+
+function u7.new(p8) -- Line: 38
+    -- upvalues: u7 (copy)
+    local v9 = {
+        _listeners = {},
+        _store = p8
+    };
+    setmetatable(v9, u7);
+
+    return v9;
+end;
+
+function u7.connect(u10, p11) -- Line: 49
+    -- upvalues: immutableAppend (copy), immutableRemoveValue (copy)
+    if typeof(p11) ~= "function" then
+        error("Expected the listener to be a function.");
+    end;
+
+    if u10._store and u10._store._isDispatching then
+        error("You may not call store.changed:connect() while the reducer is executing. If you would like to be notified after the store has been updated, subscribe from a component and invoke store:getState() in the callback to access the latest state. ");
+    end;
+
+    local u12 = {
+        disconnected = false,
+        disconnectTraceback = nil,
+        callback = p11,
+        connectTraceback = debug.traceback()
+    };
+    u10._listeners = immutableAppend(u10._listeners, u12);
+
+    return {
+        disconnect = function() -- Line: 71, Name: disconnect
+            -- upvalues: u12 (copy), u10 (copy), immutableRemoveValue (ref)
+            if u12.disconnected then
+                error(("Listener connected at: \n%s\nwas already disconnected at: \n%s\n"):format(tostring(u12.connectTraceback), (tostring(u12.disconnectTraceback))));
+            end;
+
+            if u10._store and u10._store._isDispatching then
+                error("You may not unsubscribe from a store listener while the reducer is executing.");
+            end;
+
+            u12.disconnected = true;
+            u12.disconnectTraceback = debug.traceback();
+            u10._listeners = immutableRemoveValue(u10._listeners, u12);
+        end
+    };
+end;
+
+function u7.fire(p13, ...) -- Line: 96
+    for _, v in ipairs(p13._listeners) do
+        if not v.disconnected then
+            v.callback(...);
+        end;
+    end;
+end;
+
+return u7;

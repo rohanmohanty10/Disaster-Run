@@ -1,0 +1,180 @@
+  
+
+ 
+
+local GJK = require(script:WaitForChild("GJK"));
+local Supports = require(script:WaitForChild("Supports"));
+local Vertices = require(script:WaitForChild("Vertices"));
+local u1 = {};
+u1.__index = u1;
+
+local function getCorners(p2, p3) -- Line: 86
+    return {
+        p2:PointToWorldSpace((Vector3.new(-p3.x, p3.y, p3.z))),
+        p2:PointToWorldSpace((Vector3.new(-p3.x, -p3.y, p3.z))),
+        p2:PointToWorldSpace((Vector3.new(-p3.x, -p3.y, -p3.z))),
+        p2:PointToWorldSpace((Vector3.new(p3.x, -p3.y, -p3.z))),
+        p2:PointToWorldSpace((Vector3.new(p3.x, p3.y, -p3.z))),
+        p2:PointToWorldSpace((Vector3.new(p3.x, p3.y, p3.z))),
+        p2:PointToWorldSpace((Vector3.new(p3.x, -p3.y, p3.z))),
+        p2:PointToWorldSpace((Vector3.new(-p3.x, p3.y, -p3.z)))
+    };
+end;
+
+local function worldBoundingBox(p4) -- Line: 99
+    local v5 = {};
+    local v6 = {};
+    local v7 = {};
+
+    for i = 1, #p4 do
+        local y = p4[i].y;
+        local z = p4[i].z;
+        v5[i] = p4[i].x;
+        v6[i] = y;
+        v7[i] = z;
+    end;
+
+    local v8 = math.min(unpack(v5));
+    local v9 = math.min(unpack(v6));
+    local v10 = math.min(unpack(v7));
+    local v11 = Vector3.new(v8, v9, v10);
+    local v12 = math.max(unpack(v5));
+    local v13 = math.max(unpack(v6));
+    local v14 = math.max(unpack(v7));
+
+    return v11, Vector3.new(v12, v13, v14);
+end;
+
+function u1.new(p15, p16) -- Line: 109
+    -- upvalues: u1 (copy), Vertices (copy), Supports (copy), worldBoundingBox (copy)
+    local v17 = setmetatable({}, u1);
+    v17.CFrame = p15;
+    v17.Size = p16;
+    v17.Shape = "Block";
+    v17.Set = Vertices.Block(p15, p16 / 2);
+    v17.Support = Supports.PointCloud;
+    v17.Centroid = p15.p;
+    v17.AlignedRegion3 = Region3.new(worldBoundingBox(v17.Set));
+
+    return v17;
+end;
+
+u1.Block = u1.new;
+
+function u1.Wedge(p18, p19) -- Line: 127
+    -- upvalues: u1 (copy), Vertices (copy), Supports (copy), worldBoundingBox (copy)
+    local v20 = setmetatable({}, u1);
+    v20.CFrame = p18;
+    v20.Size = p19;
+    v20.Shape = "Wedge";
+    v20.Set = Vertices.Wedge(p18, p19 / 2);
+    v20.Support = Supports.PointCloud;
+    v20.Centroid = Vertices.GetCentroid(v20.Set);
+    v20.AlignedRegion3 = Region3.new(worldBoundingBox(v20.Set));
+
+    return v20;
+end;
+
+function u1.CornerWedge(p21, p22) -- Line: 143
+    -- upvalues: u1 (copy), Vertices (copy), Supports (copy), worldBoundingBox (copy)
+    local v23 = setmetatable({}, u1);
+    v23.CFrame = p21;
+    v23.Size = p22;
+    v23.Shape = "CornerWedge";
+    v23.Set = Vertices.CornerWedge(p21, p22 / 2);
+    v23.Support = Supports.PointCloud;
+    v23.Centroid = Vertices.GetCentroid(v23.Set);
+    v23.AlignedRegion3 = Region3.new(worldBoundingBox(v23.Set));
+
+    return v23;
+end;
+
+function u1.Cylinder(p24, p25) -- Line: 159
+    -- upvalues: u1 (copy), Supports (copy), worldBoundingBox (copy), getCorners (copy)
+    local v26 = setmetatable({}, u1);
+    v26.CFrame = p24;
+    v26.Size = p25;
+    v26.Shape = "Cylinder";
+    v26.Set = { p24, p25 / 2 };
+    v26.Support = Supports.Cylinder;
+    v26.Centroid = p24.p;
+    v26.AlignedRegion3 = Region3.new(worldBoundingBox((getCorners(unpack(v26.Set)))));
+
+    return v26;
+end;
+
+function u1.Ball(p27, p28) -- Line: 175
+    -- upvalues: u1 (copy), Supports (copy), worldBoundingBox (copy), getCorners (copy)
+    local v29 = setmetatable({}, u1);
+    v29.CFrame = p27;
+    v29.Size = p28;
+    v29.Shape = "Ball";
+    v29.Set = { p27, p28 / 2 };
+    v29.Support = Supports.Ellipsoid;
+    v29.Centroid = p27.p;
+    v29.AlignedRegion3 = Region3.new(worldBoundingBox((getCorners(unpack(v29.Set)))));
+
+    return v29;
+end;
+
+function u1.FromPart(p30) -- Line: 191
+    -- upvalues: u1 (copy), Vertices (copy)
+    return u1[Vertices.Classify(p30)](p30.CFrame, p30.Size);
+end;
+
+function u1.CastPoint(p31, p32) -- Line: 197
+    -- upvalues: GJK (copy), Supports (copy)
+    return GJK.new(p31.Set, { p32 }, p31.Centroid, p32, p31.Support, Supports.PointCloud):IsColliding();
+end;
+
+function u1.CastPart(p33, p34) -- Line: 202
+    -- upvalues: u1 (copy), GJK (copy)
+    local v35 = u1.FromPart(p34);
+
+    return GJK.new(p33.Set, v35.Set, p33.Centroid, v35.Centroid, p33.Support, v35.Support):IsColliding();
+end;
+
+function u1.FindPartsInRegion3(p36, p37, p38) -- Line: 208
+    local v39 = game.Workspace:FindPartsInRegion3(p36.AlignedRegion3, p37, p38);
+    local v40 = {};
+
+    for i = 1, #v39 do
+        if p36:CastPart(v39[i]) then
+            table.insert(v40, v39[i]);
+        end;
+    end;
+
+    return v40;
+end;
+
+function u1.FindPartsInRegion3WithIgnoreList(p41, p42, p43) -- Line: 219
+    local v44 = game.Workspace:FindPartsInRegion3WithIgnoreList(p41.AlignedRegion3, p42 or {}, p43);
+    local v45 = {};
+
+    for i = 1, #v44 do
+        if p41:CastPart(v44[i]) then
+            table.insert(v45, v44[i]);
+        end;
+    end;
+
+    return v45;
+end;
+
+function u1.FindPartsInRegion3WithWhiteList(p46, p47, p48) -- Line: 231
+    local v49 = game.Workspace:FindPartsInRegion3WithWhiteList(p46.AlignedRegion3, p47 or {}, p48);
+    local v50 = {};
+
+    for i = 1, #v49 do
+        if p46:CastPart(v49[i]) then
+            table.insert(v50, v49[i]);
+        end;
+    end;
+
+    return v50;
+end;
+
+function u1.Cast(p51, p52, p53) -- Line: 243
+    return p51:FindPartsInRegion3WithIgnoreList(type(p52) == "table" and p52 and p52 or { p52 }, p53);
+end;
+
+return u1;

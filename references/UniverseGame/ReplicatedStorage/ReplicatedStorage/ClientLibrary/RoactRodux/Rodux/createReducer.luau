@@ -1,0 +1,20 @@
+  
+
+ 
+
+return function(u1, u2) -- Line: 1
+    return function(p3, p4) -- Line: 2
+        -- upvalues: u1 (copy), u2 (copy)
+        if p3 == nil then
+            p3 = u1;
+        end;
+
+        local v5 = u2[p4.type];
+
+        if v5 then
+            return v5(p3, p4);
+        end;
+
+        return p3;
+    end;
+end;

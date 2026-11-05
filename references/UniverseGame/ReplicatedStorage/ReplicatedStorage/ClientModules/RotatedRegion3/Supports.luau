@@ -1,0 +1,51 @@
+  
+
+ 
+
+local function rayPlane(p1, p2, p3, p4) -- Line: 6
+    local v5 = -(p1 - p3):Dot(p4) / p2:Dot(p4);
+
+    return p1 + v5 * p2, v5;
+end;
+
+return {
+    PointCloud = function(p6, p7) -- Line: 16, Name: PointCloud
+        local v8 = p6[1];
+        local v9 = p6[1]:Dot(p7);
+
+        for i = 2, #p6 do
+            local v10 = p6[i]:Dot(p7);
+
+            if v9 < v10 then
+                v8 = p6[i];
+                v9 = v10;
+            end;
+        end;
+
+        return v8;
+    end,
+
+    Cylinder = function(p11, p12) -- Line: 28, Name: Cylinder
+        local v13, v14 = unpack(p11);
+        local v15 = v13:VectorToObjectSpace(p12);
+        local v16 = math.min(v14.y, v14.z);
+        local v17 = v15:Dot(Vector3.new(1, 0, 0));
+        local v18 = Vector3.new(v14.x, 0, 0);
+        local v19;
+
+        if v17 == 0 then
+            v19 = v15.Unit * v16;
+        else
+            local v20 = v17 > 0 and v18 and v18 or -v18;
+            v19 = v20 + (Vector3.new(0, 0, 0) + -(Vector3.new(0, 0, 0) - v20):Dot(Vector3.new(1, 0, 0)) / v15:Dot(Vector3.new(1, 0, 0)) * v15 - v20).Unit * v16;
+        end;
+
+        return v13:PointToWorldSpace(v19);
+    end,
+
+    Ellipsoid = function(p21, p22) -- Line: 46, Name: Ellipsoid
+        local v23, v24 = unpack(p21);
+
+        return v23:PointToWorldSpace(v24 * (v24 * v23:VectorToObjectSpace(p22)).Unit);
+    end
+};
