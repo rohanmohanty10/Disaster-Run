@@ -998,6 +998,37 @@ Kits.Runner = {
 			},
 		},
 	},
+	CrimsonEpitaph = {
+		Id = "CrimsonEpitaph",
+		Name = "Crimson Epitaph",
+		Rarity = "Legendary",
+		Element = "Time",
+		Desc = "Only the result remains. The moment the strike landed simply never happened.",
+		Skills = {
+			{
+				Name = "Time Erasure",
+				Key = "Q",
+				Shape = "Self",
+				Desc = "Erase time for 4s. Nobody else can see or hear you, not even the Gods, and you move 25% faster. Strikes still hurt if they land on you.",
+				Damage = 0,
+				Cooldown = 24,
+				Cost = 30,
+				Ultimate = false,
+				Behavior = { T = "TimeErase", Duration = 4, Speed = 1.25 },
+			},
+			{
+				Name = "Epitaph",
+				Key = "E",
+				Shape = "Self",
+				Desc = "See 2.5s into the future. The first hit you'd take never happens: you appear 12 studs ahead with 0.5s of iframes. If a Runner hit you, you appear behind them instead and they're stunned for 0.5s.",
+				Damage = 0,
+				Cooldown = 16,
+				Cost = 25,
+				Ultimate = false,
+				Behavior = { T = "Arm", Kind = "Epitaph", Window = 2.5, Teleport = 12, IFrames = 0.5, Stun = 0.5 },
+			},
+		},
+	},
 	UltraInstinct = {
 		Id = "UltraInstinct",
 		Name = "Ultra Instinct",
@@ -1201,7 +1232,7 @@ Kits.Runner = {
 -- Display order inside each rarity (dictionary order isn't stable).
 Kits.Order = {
 	God = { "Rockfall", "GalePalm", "EmberSpark", "FrostWarden", "Tidecaller", "FireFist", "SandCalamity", "ShadowWeaver", "MagmaAdmiral", "ThunderGod", "GravityLord", "LightAdmiral", "WorldShaker", "BlackFlame", "KingOfCurses" },
-	Runner = { "QuickFeet", "SecondWind", "Bounce", "FlashStep", "Moonwalk", "DiveRoll", "Shinobi", "Brawler", "ClapSwapper", "InstantTransmission", "Godspeed", "WindWalker", "UltraInstinct", "Metavision", "HonoredOne", "TimeLord", "MadeInHeaven" },
+	Runner = { "QuickFeet", "SecondWind", "Bounce", "FlashStep", "Moonwalk", "DiveRoll", "Shinobi", "Brawler", "ClapSwapper", "InstantTransmission", "Godspeed", "WindWalker", "CrimsonEpitaph", "UltraInstinct", "Metavision", "HonoredOne", "TimeLord", "MadeInHeaven" },
 }
 
 function Kits.IsRole(role: any): boolean

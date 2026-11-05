@@ -21,6 +21,23 @@ SoundConfig.Skills = {
 	["Meteor Fury"] = { Telegraph = "", Impact = "" },
 } :: { [string]: { Telegraph: string, Impact: string } }
 
+-- Stand Runner kits: one slot per moment in the skill (played by FxController / StandFx).
+SoundConfig.Stands = {
+	CrimsonEpitaph = {
+		TimeEraseActivate = "",
+		TimeErase = "",
+		TimeEraseAmbient = "",
+		TimeEraseAmbientPanic = "", -- plays instead of TimeEraseAmbient when you're below 35% health
+		TimeEraseEnd = "",
+		TimeEraseVoiceline = "",
+		TimeEraseEndVoiceline = "",
+		Witness = "", -- Epitaph opens
+		WitnessVoiceline = "",
+		WitnessHit = "", -- Epitaph cancels a hit
+		WitnessHitVoiceline = "",
+	},
+} :: { [string]: { [string]: string } }
+
 -- Fallbacks for every other kit, by element (Behavior.Vfx in Kits.luau).
 SoundConfig.Elements = {
 	Boulder = { Telegraph = "", Impact = "" },
