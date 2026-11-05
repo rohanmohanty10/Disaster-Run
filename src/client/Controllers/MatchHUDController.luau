@@ -396,7 +396,7 @@ local trackerTimer = 0
 local function update(dt: number)
 	local state = ReplicatedStorage:GetAttribute("RoundState")
 	local endsAt = ReplicatedStorage:GetAttribute("RoundEndsAt")
-	ui.State.Text = STATE_TEXT[state :: any] or ""
+	ui.State.Text = if ReplicatedStorage:GetAttribute("WaitingForStart") then "Waiting · start a match from the admin panel (F2)" else (STATE_TEXT[state :: any] or "")
 	ui.Timer.Text = if type(endsAt) == "number" then `⏱ {math.max(math.ceil(endsAt - workspace:GetServerTimeNow()), 0)}s` else ""
 	local roundNumber = ReplicatedStorage:GetAttribute("RoundNumber")
 	ui.Info.Text = if matchActive() then `Round {roundNumber or 1} · {runnersLeft()} left` else ""
