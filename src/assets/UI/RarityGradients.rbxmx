@@ -1,0 +1,135 @@
+<roblox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Folder" referent="RarityGradientsFolder">
+		<Properties>
+			<string name="Name">RarityGradients</string>
+		</Properties>
+		<Item class="UIGradient" referent="RarityGradient_Common">
+			<Properties>
+				<ColorSequence name="Color">0 0.92 0.92 0.92 0 1 0.62 0.62 0.62 0 </ColorSequence>
+				<bool name="Enabled">true</bool>
+				<Vector2 name="Offset">
+					<X>0</X>
+					<Y>0</Y>
+				</Vector2>
+				<float name="Rotation">-90</float>
+				<float name="Scale">1</float>
+				<token name="TileMode">0</token>
+				<NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+				<token name="Type">0</token>
+				<BinaryString name="AttributesSerialize" />
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<string name="Name">Common</string>
+				<BinaryString name="SerializedOverrides" />
+				<int64 name="SourceAssetId">-1</int64>
+			</Properties>
+		</Item>
+		<Item class="UIGradient" referent="RarityGradient_Rare">
+			<Properties>
+				<ColorSequence name="Color">0 0 0.815686 1 0 0.637324 1 1 1 0 1 1 1 1 0 </ColorSequence>
+				<bool name="Enabled">true</bool>
+				<Vector2 name="Offset">
+					<X>0</X>
+					<Y>0</Y>
+				</Vector2>
+				<float name="Rotation">-90</float>
+				<float name="Scale">1</float>
+				<token name="TileMode">0</token>
+				<NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+				<token name="Type">0</token>
+				<BinaryString name="AttributesSerialize" />
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<string name="Name">Rare</string>
+				<BinaryString name="SerializedOverrides" />
+				<int64 name="SourceAssetId">-1</int64>
+			</Properties>
+		</Item>
+		<Item class="UIGradient" referent="RarityGradient_Epic">
+			<Properties>
+				<ColorSequence name="Color">0 0.541176 0.0196078 1 0 0.637324 1 1 1 0 1 1 1 1 0 </ColorSequence>
+				<bool name="Enabled">true</bool>
+				<Vector2 name="Offset">
+					<X>0</X>
+					<Y>0</Y>
+				</Vector2>
+				<float name="Rotation">-90</float>
+				<float name="Scale">1</float>
+				<token name="TileMode">0</token>
+				<NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+				<token name="Type">0</token>
+				<BinaryString name="AttributesSerialize" />
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<string name="Name">Epic</string>
+				<BinaryString name="SerializedOverrides" />
+				<int64 name="SourceAssetId">-1</int64>
+			</Properties>
+		</Item>
+		<Item class="UIGradient" referent="RarityGradient_Legendary">
+			<Properties>
+				<ColorSequence name="Color">0 1 0.666667 0 0 0.637324 1 1 1 0 1 1 1 1 0 </ColorSequence>
+				<bool name="Enabled">true</bool>
+				<Vector2 name="Offset">
+					<X>0</X>
+					<Y>0</Y>
+				</Vector2>
+				<float name="Rotation">-90</float>
+				<float name="Scale">1</float>
+				<token name="TileMode">0</token>
+				<NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+				<token name="Type">0</token>
+				<BinaryString name="AttributesSerialize" />
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<string name="Name">Legendary</string>
+				<BinaryString name="SerializedOverrides" />
+				<int64 name="SourceAssetId">-1</int64>
+			</Properties>
+		</Item>
+		<Item class="UIGradient" referent="RarityGradient_Mythical">
+			<Properties>
+				<ColorSequence name="Color">0 1 0 0 0 0.637324 1 1 1 0 1 1 1 1 0 </ColorSequence>
+				<bool name="Enabled">true</bool>
+				<Vector2 name="Offset">
+					<X>0</X>
+					<Y>0</Y>
+				</Vector2>
+				<float name="Rotation">-90</float>
+				<float name="Scale">1</float>
+				<token name="TileMode">0</token>
+				<NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+				<token name="Type">0</token>
+				<BinaryString name="AttributesSerialize" />
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<string name="Name">Mythical</string>
+				<BinaryString name="SerializedOverrides" />
+				<int64 name="SourceAssetId">-1</int64>
+			</Properties>
+		</Item>
+		<Item class="UIGradient" referent="RarityGradient_Secret">
+			<Properties>
+				<ColorSequence name="Color">0 1 0.992157 0.929412 0 0.637324 1 1 1 0 1 1 0.996078 0.898039 0 </ColorSequence>
+				<bool name="Enabled">true</bool>
+				<Vector2 name="Offset">
+					<X>0</X>
+					<Y>0</Y>
+				</Vector2>
+				<float name="Rotation">-45</float>
+				<float name="Scale">1</float>
+				<token name="TileMode">0</token>
+				<NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+				<token name="Type">0</token>
+				<BinaryString name="AttributesSerialize" />
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<string name="Name">Secret</string>
+				<BinaryString name="SerializedOverrides" />
+				<int64 name="SourceAssetId">-1</int64>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>
