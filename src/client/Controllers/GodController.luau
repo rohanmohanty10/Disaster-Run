@@ -27,8 +27,13 @@ local selected = 1
 local reticle: Model? = nil
 local reticleParts: { [string]: BasePart } = {}
 
+local function inTestArea(): boolean
+	return LocalPlayer:GetAttribute("InTestArea") == true
+end
+
+-- A God in a live match, or an admin practising as God in the dev test area.
 local function isGodActive(): boolean
-	return LocalPlayer:GetAttribute("Role") == "God" and ReplicatedStorage:GetAttribute("MatchActive") == true
+	return LocalPlayer:GetAttribute("Role") == "God" and (ReplicatedStorage:GetAttribute("MatchActive") == true or inTestArea())
 end
 
 function GodController.IsActive(): boolean
@@ -138,9 +143,12 @@ end
 local function packCenter(): Vector3?
 	local sum = Vector3.zero
 	local count = 0
+	local testing = inTestArea()
 	for _, player in Players:GetPlayers() do
 		local character = player.Character
-		if player:GetAttribute("Role") == "Runner" and not player:GetAttribute("Eliminated") and character and Characters.IsAlive(character) and character:GetAttribute("TimeErased") ~= true then
+		-- Only Runners on the same side: the match, or the test area.
+		local sameSide = (player:GetAttribute("InTestArea") == true) == testing
+		if sameSide and player:GetAttribute("Role") == "Runner" and not player:GetAttribute("Eliminated") and character and Characters.IsAlive(character) and character:GetAttribute("TimeErased") ~= true then
 			-- (Time Erasure: the camera mustn't give away an erased Runner.)
 			local root = Characters.GetRoot(character)
 			if root then
@@ -193,8 +201,8 @@ local function step(dt: number)
 		if active then
 			camera.CameraType = Enum.CameraType.Scriptable
 			panOffset = Vector3.zero
-			local course = workspace:FindFirstChild("Course") or workspace:FindFirstChild("CourseMarkers")
-			local start = course and course:FindFirstChild("StartSpawn")
+			local course = if inTestArea() then workspace:FindFirstChild("TestArea") else (workspace:FindFirstChild("Course") or workspace:FindFirstChild("CourseMarkers"))
+			local start = course and (course:FindFirstChild("Center") or course:FindFirstChild("StartSpawn"))
 			focus = if start and start:IsA("BasePart") then start.Position else Vector3.zero
 		else
 			camera.CameraType = Enum.CameraType.Custom

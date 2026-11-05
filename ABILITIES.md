@@ -15,7 +15,7 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **18 
 | **Signature effects** | **Thunder God** and **Gravity Lord** have their own original effects (`SkillFx.luau`), **Made in Heaven** has its stand effects (`StandFx.luau`), and **Crimson Epitaph** has its own erased-time and Epitaph effects (`FxController.luau`). Every other kit uses simple element-coloured placeholder effects. |
 | **Animations / sounds** | Not added yet. Kits need their own animations and sounds (see `ROADMAP.md`). |
 | **Simplifications** | A few skills are simpler than their description. Each kit below lists its *Current in-game differences*. |
-| **Needs testing** | Everything here still needs a Studio test (`/test round start`, `/test round god`). |
+| **Needs testing** | Everything here still needs a Studio test. The quickest way is the dev test area: admin panel (F2) → TOOLS → *Test as Runner* / *Test as God*. |
 
 ## How kits work
 

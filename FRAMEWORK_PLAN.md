@@ -33,6 +33,7 @@ src/
 │   │   ├── KnockbackService.luau     -- ✅ Knockback (client-applied for players, server for NPCs)
 │   │   ├── CombatService.luau        -- ✅ Afflict() hit pipeline, damage caps, kill credit
 │   │   ├── DevTestService.luau       -- ✅ Test dummies + /test chat commands (Studio only)
+│   │   ├── TestAreaService.luau      -- ✅ Dev test area: try Runner / God kits without a match
 │   │   ├── RoundService.luau         -- Multi-round match lifecycle (rounds loop until 1 survivor; dead Runners become Gods)
 │   │   ├── StatusEffectService.luau  -- ✅ Stacking CC / iframe states (Section 1)
 │   │   ├── HitboxService.luau        -- ✅ Box / sphere hitboxes + target filters (Section 2)
@@ -144,7 +145,7 @@ local victims = HitboxService.Query({...})           -- one-shot list, nearest f
 - **Roles:** filters read the `Role` attribute (`"Runner"` / `"God"`) on the Player, or on the model for NPCs. **`RoundService` must set it.**
 - **Ragdoll:** ball sockets and colliders are built once per character from its `Motor6D`s (R6 and R15). Players' clients switch themselves into the Physics state. Bodies ragdoll on death.
 - **Knockback:** players are pushed by their own client (`Knockback` remote), NPCs on the server. Existing movers are cleared first so pushes never stack into a fling.
-- **Testing in Studio:** 3 dummies spawn at `CombatConfig.TestDummies.Origin`. Type `/test` in chat for commands (smite, stun, slow, shove, barrage, void, `me ...`, `role ...`, `hitboxes`).
+- **Testing in Studio:** 5 dummies spawn in the dev test area at `CombatConfig.TestDummies.Origin`. Type `/test` in chat for commands (smite, stun, slow, shove, barrage, void, `me ...`, `role ...`, `hitboxes`).
 
 ---
 
@@ -298,6 +299,11 @@ The `references/SorceryGame/` archive provides the exact implementation of Gojo'
 - `/test round end` ends the round or match.
 - `/test role runner` lets you use Runner skills in the lobby (against the dummies).
 - `/test round god` then `/test round start` lets you try the God view solo, with the dummies as targets.
+- **Dev test area (no match needed):** admin panel → TOOLS → *Test as Runner* / *Test as God*, or `/test area runner` / `/test area god`. It's a practice yard at `TestAreaConfig.Center` (X −400, away from the lobby and course) with a grid floor (lines every 20 studs), a ramp and ledges, a low and a tall wall, destructible cover and the dummies. As a God you get the overhead view and God HUD over it.
+  - `/test area cooldowns`: no cooldowns and free casts (no stamina / energy spent), only while you're in the area.
+  - `/test area move`: the dummies walk left and right, for practising God aim.
+  - `/test area reset`: rebuilds the cover and respawns the dummies. `/test area leave` sends you back to the lobby.
+  - Matches skip players in the test area, and you can't enter while you're in a match, so testing and real rounds don't interrupt each other.
 
 
 ---

@@ -14,6 +14,8 @@ local RunService = game:GetService("RunService")
 
 local Kits = require(ReplicatedStorage.Shared.Data.Kits)
 local RoundConfig = require(ReplicatedStorage.Shared.Config.RoundConfig)
+local TestAreaConfig = require(ReplicatedStorage.Shared.Config.TestAreaConfig)
+local TestAreaService = require(script.Parent.TestAreaService)
 local MovementConfig = require(ReplicatedStorage.Shared.Config.MovementConfig)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
@@ -126,7 +128,7 @@ local function canUse(player: Player, character: Model, index: number): (boolean
 	if type(ready) == "number" and ready > now() then
 		return false, kit, skill, nil
 	end
-	if role == "God" then
+	if role == "God" and not TestAreaService.FreeCasts(player) then
 		local energy = (player:GetAttribute("Energy") :: number?) or 0
 		if energy < costFor(getState(player), kit, skill) then
 			return false, kit, skill, "Not enough energy!"
@@ -137,6 +139,11 @@ end
 
 local function spend(player: Player, kit: Kits.Kit, skill: Kits.Skill, index: number)
 	local state = getState(player)
+	if TestAreaService.FreeCasts(player) then
+		-- Dev test area, no-cooldown mode: nothing is spent, only a short anti-spam delay.
+		player:SetAttribute(`Cooldown{index}`, now() + TestAreaConfig.NoCooldownDelay)
+		return
+	end
 	player:SetAttribute(`Cooldown{index}`, now() + skill.Cooldown)
 	if player:GetAttribute("Role") == "God" then
 		local energy = (player:GetAttribute("Energy") :: number?) or 0

@@ -18,6 +18,7 @@ local StatusEffectService = require(script.Parent.StatusEffectService)
 local RagdollService = require(script.Parent.RagdollService)
 local KnockbackService = require(script.Parent.KnockbackService)
 local RoundService = require(script.Parent.RoundService)
+local TestAreaService = require(script.Parent.TestAreaService)
 
 local DevTestService = {}
 
@@ -94,7 +95,8 @@ end
 local HELP = [[/test smite | stun | slow | shove | barrage | void
 /test me ragdoll | stun | slow | iframes | knockback | heal
 /test role runner | god | none   /test hitboxes   /test dummies
-/test round start | end | god | runner   (god/runner = your role in a solo Studio match)]]
+/test round start | end | god | runner   (god/runner = your role in a solo Studio match)
+/test area runner | god | leave | cooldowns | move | reset   (dev test area, no match needed)]]
 
 local function front(player: Player, distance: number): CFrame?
 	local character = player.Character
@@ -216,6 +218,23 @@ local function run(player: Player, words: { string }): string
 			return `Solo matches will make you a {option}. Use /test round start.`
 		end
 		return HELP
+	elseif command == "area" then
+		local option = words[2]
+		local message: string
+		if option == "runner" or option == "god" then
+			_, message = TestAreaService.Enter(player, if option == "god" then "God" else "Runner")
+		elseif option == "leave" then
+			_, message = TestAreaService.Leave(player)
+		elseif option == "cooldowns" then
+			_, message = TestAreaService.ToggleNoCooldowns(player)
+		elseif option == "move" then
+			_, message = TestAreaService.ToggleMovingDummies()
+		elseif option == "reset" then
+			_, message = TestAreaService.Reset()
+		else
+			return HELP
+		end
+		return message
 	elseif command == "dummies" then
 		DevTestService.SpawnDummies()
 		return "Dummies respawned."
@@ -279,7 +298,9 @@ function DevTestService.RunCommand(player: Player, text: string): string
 	return if ok then result else `Error: {result}`
 end
 
-function DevTestService.Init() end
+function DevTestService.Init()
+	TestAreaService.SetDummySpawner(DevTestService.SpawnDummies)
+end
 
 function DevTestService.Start()
 	setupCommands()
