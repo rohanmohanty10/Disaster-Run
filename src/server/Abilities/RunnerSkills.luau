@@ -4,7 +4,8 @@
 -- (SelfMove remote); the server grants iframes and does everything that affects others.
 --
 -- Templates: Buff, Dash, AirJump, Blink, Arm, Decoy, Rush, Shove, Swap, Pull, Domain,
---            TimeStop, Rewind.
+--            TimeStop, Rewind, Accelerate.
+-- Behavior.Aura = "<Stand>" shows that stand's aura on the caster (StandFx.luau on the client).
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -97,7 +98,12 @@ function RunnerSkills.Buff(ctx: Context)
 	if b.Path then
 		selfMove(ctx, { Kind = "Path", Duration = b.Path })
 	end
-	Common.Fx({ Kind = "Buff", Character = character, Duration = (b.Speed and b.Speed.Duration) or b.IFrames or b.Root or 1 })
+	local duration = (b.Speed and b.Speed.Duration) or b.IFrames or b.Root or 1
+	if b.Aura then
+		Common.Fx({ Kind = "StandAura", Character = character, Stand = b.Aura, Duration = duration })
+	else
+		Common.Fx({ Kind = "Buff", Character = character, Duration = duration })
+	end
 end
 
 function RunnerSkills.Dash(ctx: Context)
@@ -167,13 +173,19 @@ function RunnerSkills.Blink(ctx: Context)
 		end
 	end
 	local root = ctx.Root
-	local goal = ctx.Aim or (root.Position + ctx.Look * b.Dist)
-	local offset = (goal - root.Position) * Vector3.new(1, 0, 1)
-	if offset.Magnitude > b.Dist then
-		offset = offset.Unit * b.Dist
-	end
-	if offset.Magnitude < 1 then
-		offset = ctx.Look * b.Dist
+	local offset
+	if b.UseMove then
+		-- The full distance in the direction you're moving (Made in Heaven's Godly Speed).
+		offset = ctx.Move * b.Dist
+	else
+		local goal = ctx.Aim or (root.Position + ctx.Look * b.Dist)
+		offset = (goal - root.Position) * Vector3.new(1, 0, 1)
+		if offset.Magnitude > b.Dist then
+			offset = offset.Unit * b.Dist
+		end
+		if offset.Magnitude < 1 then
+			offset = ctx.Look * b.Dist
+		end
 	end
 	-- Stop short of walls.
 	local params = RaycastParams.new()
@@ -185,7 +197,7 @@ function RunnerSkills.Blink(ctx: Context)
 	end
 	local landing = Common.Ground(root.Position + offset) + Vector3.new(0, 3, 0)
 	CombatService.GiveIFrames(ctx.Character, b.IFrames)
-	Common.Fx({ Kind = "Blink", From = root.Position, To = landing })
+	Common.Fx({ Kind = "Blink", From = root.Position, To = landing, Stand = b.Aura })
 	ctx.Character:PivotTo(CFrame.lookAt(landing, landing + ctx.Look))
 end
 
@@ -358,6 +370,71 @@ function RunnerSkills.Rewind(ctx: Context)
 		local lost = chosen.Health - humanoid.Health
 		if lost > 0 then
 			humanoid.Health = math.min(humanoid.MaxHealth, humanoid.Health + math.min(lost, b.HealMax))
+		end
+	end
+end
+
+-- Made in Heaven's Time Acceleration, ending in Universe Reset (StandGame's skill-tree order):
+--   accelerate: you speed up and sprint free, your other cooldowns tick faster, and Runners in
+--               range are trapped in the accelerated time with you (slowed);
+--   reset:      when it ends you heal, and every Runner in range becomes an "alternate universe"
+--               version of themselves for a moment (silenced + slowed).
+function RunnerSkills.Accelerate(ctx: Context)
+	local b = ctx.Behavior
+	local character = ctx.Character
+	local player = ctx.Player
+	local function inRange(other: Model): boolean
+		if not b.Range then
+			return true
+		end
+		local root = Characters.GetRoot(other)
+		return root ~= nil and (root.Position - ctx.Root.Position).Magnitude <= b.Range
+	end
+
+	Common.TimedAttribute(character, "SpeedBoost", b.Speed, b.Duration)
+	Common.TimedAttribute(character, "FreeSprint", true, b.Duration)
+	Common.Fx({ Kind = "TimeAccel", Caster = character, Duration = b.Duration, Radius = b.Range })
+	for _, other in otherRunners(ctx) do
+		if inRange(other) then
+			CombatService.Afflict(player, other, { Slow = { Factor = b.Slow, Duration = b.Duration } })
+		end
+	end
+
+	-- Your Q / E cooldowns run `OwnCooldownRate` times faster while time is accelerated.
+	local rate = b.OwnCooldownRate or 1
+	local elapsed = 0
+	while elapsed < b.Duration do
+		local dt = task.wait(0.1)
+		elapsed += dt
+		if rate > 1 then
+			local now = workspace:GetServerTimeNow()
+			for i = 1, 2 do
+				local ready = player:GetAttribute(`Cooldown{i}`)
+				if type(ready) == "number" and ready > now then
+					player:SetAttribute(`Cooldown{i}`, math.max(ready - dt * (rate - 1), now))
+				end
+			end
+		end
+		if not Characters.IsAlive(character) then
+			return
+		end
+	end
+
+	local reset = b.Reset
+	if not reset then
+		return
+	end
+	local center = (Characters.GetRoot(character) or ctx.Root).Position
+	Common.Fx({ Kind = "UniverseReset", Caster = character, CFrame = CFrame.new(center), Radius = reset.Radius })
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if humanoid and reset.Heal then
+		humanoid.Health = math.min(humanoid.MaxHealth, humanoid.Health + reset.Heal)
+	end
+	for _, victim in Common.Targets(player, { Kind = "Circle", CFrame = CFrame.new(center), Radius = reset.Radius }, "RunnersPvP") do
+		CombatService.Afflict(player, victim, { Silence = reset.Silence, Slow = reset.Slow })
+		local victimPlayer = Players:GetPlayerFromCharacter(victim)
+		if victimPlayer then
+			Common.FxTo(victimPlayer, { Kind = "AlternateUniverse", Duration = reset.Silence })
 		end
 	end
 end
