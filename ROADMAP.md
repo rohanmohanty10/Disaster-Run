@@ -38,11 +38,12 @@ Status key: ✅ done · 🔨 in progress · ⬜ to do · ⏸️ on hold
 | Robux | Spin packs and extra slots with PurchaseId-safe receipts | `MonetizationService.luau` (product ids are still 0) |
 | Vault UI | God and Runner vault screens: slots, reel, odds list, vault panel, confirm, buy panels, blackout reveal, avatar showcase | `src/gui/*.rbxmx`, `VaultController.luau`, `ShowcaseStage.luau` |
 | HUD | Vault buttons, Cash counter, toasts, button animations, stroke scaling | `src/gui/HUD.rbxmx`, `UIController.luau` |
-| Kit data | 15 God and 17 Runner kits with descriptions and numbers (every Runner kit has two abilities; Made in Heaven is the first stand kit) | `src/shared/Data/Kits.luau` |
+| Kit data | 15 God and 18 Runner kits with descriptions and numbers (every Runner kit has two abilities; Made in Heaven is the first stand kit) | `src/shared/Data/Kits.luau` |
 | Combat core *(needs a Studio test)* | Stacking status effects (stun, slow, root, silence, iframes, ragdoll, void), box/sphere hitboxes with the 4 target filters, build-once ragdolls, knockback, the `Afflict` hit pipeline with 60-per-cast and per-second damage caps, kill/assist credit, DODGED and damage pop-ups | `StatusEffectService`, `HitboxService`, `RagdollService`, `KnockbackService`, `CombatService`, `CombatController` (usage in `FRAMEWORK_PLAN.md` Sections 1–2) |
-| Test tools | 3 respawning test dummies and `/test` chat commands (Studio / creator only) | `DevTestService.luau` |
+| Test tools | 5 respawning test dummies and `/test` chat commands (Studio / creator only) | `DevTestService.luau` |
+| Dev test area *(needs a Studio test)* | Admins try any Runner or God kit without starting a match: a practice yard with grid lines, movement obstacles, destructible cover and the dummies. God view and HUD work there; options for no cooldowns, moving dummies and a reset. Matches skip players inside it. | `TestAreaService.luau`, `TestAreaConfig.luau`, admin panel TOOLS, `/test area ...` |
 | Admin panel *(needs a Studio test)* | F2 / ADMIN button: equip any kit instantly (completed kits marked ✨), give spins and Cash, start test matches as Runner or God, end rounds, dummies, hitboxes. The server checks every request; admins are Studio, the creator (or group owner) and `AdminConfig.Admins`. | `AdminService.luau`, `AdminController.luau`, `AdminConfig.luau` |
-| Ability framework *(needs a Studio test)* | One pipeline for all 78 skills: role + kit lookup, cooldowns, God energy, charge/hold skills, aim updates, passives; data-driven behaviours (Circle, Line, Cone, Homing, Rain, Buff, Dash, Blink, Arm, Decoy, Swap, Pull, Domain, Time Stop, Rewind, Accelerate…) | `AbilityService.luau`, `src/server/Abilities/`, `Behavior` tables in `Kits.luau` |
+| Ability framework *(needs a Studio test)* | One pipeline for all 80 skills: role + kit lookup, cooldowns, God energy, charge/hold skills, aim updates, passives; data-driven behaviours (Circle, Line, Cone, Homing, Rain, Buff, Dash, Blink, Arm, Decoy, Swap, Pull, Domain, Time Stop, Rewind, Accelerate, TimeErase…) | `AbilityService.luau`, `src/server/Abilities/`, `Behavior` tables in `Kits.luau` |
 | Runner gameplay *(needs a Studio test)* | Sprint + stamina, slide with 0.35s iframes, near-miss stamina refunds, Valley Run locomotion animations, Left Alt shift lock, Q/E/R skills | `MovementController.luau`, `AbilityController.luau`, `AnimationConfig.luau` |
 | God gameplay *(needs a Studio test)* | Overhead camera (WASD pan, 60–220 zoom), ground reticle per skill shape, 1–5 hotbar, energy regen, telegraphs and danger warnings | `GodController.luau`, `FxController.luau` |
 | Round loop *(needs a Studio test)* | Intermission → Gods picked → rounds → dead Runners become Gods → last survivor wins; Sanctuary finish, mid-point, Cash payouts, kills/assists, MVP stats | `RoundService.luau`, `RoundConfig.luau` |
@@ -60,7 +61,8 @@ Tasks higher up unblock the ones below them. Pick from the top when you can.
 Follow-ups once tested:
 - ✅ Signature VFX for Thunder God and Gravity Lord (original, `SkillFx.luau`)
 - ✅ Made in Heaven stand effects: aura matched to StandGame's emitters, Time Acceleration sky race and afterimages, Universe Reset (original, `StandFx.luau`)
-- ⬜ Other stands (removed for now; add them one at a time after Made in Heaven is tested)
+- ✅ Crimson Epitaph (King Crimson) effects: erased-time view, hidden caster, Epitaph face and counter aura, time-skip cut (original, `FxController.luau`; sound slots in `SoundConfig.Stands`)
+- ⬜ Other stands (add them one at a time after Made in Heaven and Crimson Epitaph are tested)
 - ⬜ Thunder God / Gravity Lord: sounds (paste ids into `SoundConfig.luau`), and charge scaling for Lightning Dragon, Lightning Wrath and Meteor Strike (holding only delays them for now). No casting animations: the God is just a camera in the sky.
 - 💡 God presence in the sky (idea, not decided): a giant head or an eye in the clouds per God that glows in the kit's colour and looks toward each strike (`GAME_PLAN.md` Section 2A)
 - ⬜ When a kit is fully finished, add it to `AdminConfig.CompletedKits` so the admin panel marks it

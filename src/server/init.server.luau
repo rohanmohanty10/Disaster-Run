@@ -23,6 +23,7 @@ local SERVICES = {
 	"AbilityService",
 	"MapService",
 	"RoundService",
+	"TestAreaService", -- dev test area: try Runner / God kits without a match
 	"DevTestService", -- test dummies + /test commands (Studio / creator only)
 	"AdminService", -- admin panel: equip any kit, give spins, test tools
 }

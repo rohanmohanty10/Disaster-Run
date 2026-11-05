@@ -74,6 +74,17 @@ local function banner(text: string, sub: string?, color: Color3?)
 	event({ Kind = "Banner", Text = text, Sub = sub, Color = color })
 end
 
+-- Players who take part in matches: everyone except admins in the dev test area (TestAreaService).
+local function matchPlayers(): { Player }
+	local list = {}
+	for _, player in Players:GetPlayers() do
+		if player:GetAttribute("InTestArea") ~= true then
+			table.insert(list, player)
+		end
+	end
+	return list
+end
+
 local function minPlayers(): number
 	return if RunService:IsStudio() then 1 else RoundConfig.MinPlayers
 end
@@ -232,7 +243,7 @@ local function startMatch()
 	roundNumber = 0
 	ReplicatedStorage:SetAttribute("MatchActive", true)
 
-	local players = Players:GetPlayers()
+	local players = matchPlayers()
 	setState(RoundState.RoleSelection, 3)
 	local godCount = 0
 	local forced = ReplicatedStorage:GetAttribute("ForceSoloRole")
@@ -567,8 +578,8 @@ local function endMatch(winner: Player?)
 	event({ Kind = "Results", Winner = if winner then winner.DisplayName else nil, Awards = awards, Rows = rows })
 	waitFor(RoundConfig.MatchEndTime)
 
-	-- Back to the lobby.
-	for _, player in Players:GetPlayers() do
+	-- Back to the lobby (players in the test area weren't in the match; leave them alone).
+	for _, player in matchPlayers() do
 		setRole(player, nil)
 		player:SetAttribute("InRound", nil)
 		player:SetAttribute("Eliminated", nil)
@@ -610,27 +621,27 @@ end
 
 local function loop()
 	while true do
-		if #Players:GetPlayers() < minPlayers() then
+		if #matchPlayers() < minPlayers() then
 			setState(RoundState.Waiting)
 			repeat
 				task.wait(1)
-			until #Players:GetPlayers() >= minPlayers()
+			until #matchPlayers() >= minPlayers()
 		end
 		setState(RoundState.Intermission, RoundConfig.IntermissionTime)
 		forceStart = false
 		local started = os.clock()
 		while os.clock() - started < RoundConfig.IntermissionTime and not forceStart do
 			task.wait(0.25)
-			if #Players:GetPlayers() < minPlayers() then
+			if #matchPlayers() < minPlayers() then
 				break
 			end
 		end
-		if #Players:GetPlayers() >= minPlayers() then
+		if #matchPlayers() >= minPlayers() then
 			local ok, err = pcall(runMatch)
 			if not ok then
 				warn(`[RoundService] Match crashed: {err}`)
 				ReplicatedStorage:SetAttribute("MatchActive", nil)
-				for _, player in Players:GetPlayers() do
+				for _, player in matchPlayers() do
 					setRole(player, nil)
 					player:SetAttribute("InRound", nil)
 				end

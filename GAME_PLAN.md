@@ -95,6 +95,7 @@ Abilities are modular kits that scale in utility, visual impact, and slot count 
   - **Double Accel** (`Q`): the fast-movement sprint. 6s of +60% speed and free sprinting, wrapped in the stand's aura.
   - **Godly Speed** (`E`): a 25-stud teleport in your move direction.
   - **Time Acceleration** (`R`, ultimate): 8s of accelerated time. The sky races through day and night, you're much faster, your other cooldowns tick at double speed, and Runners near you are trapped in it with you (slowed). It ends in **Universe Reset**: you heal, and Runners in range become alternate-universe versions of themselves for a moment (silenced and slowed).
+  - **Crimson Epitaph** *(Legendary, King Crimson)*: **Time Erasure** (`Q`, 4s where no one, not even the Gods, can see or hear you, +25% speed) and **Epitaph** (`E`, a 2.5s counter: the first hit never happens and you reappear ahead, or behind a Runner who hit you, stunning them). Original effects in `FxController.luau`; sound slots in `SoundConfig.Stands`.
   - **Effects:** original code in `src/client/Controllers/StandFx.luau`, rebuilt to match StandGame's Made in Heaven aura (same colours, sizes, rates and motion read from its emitters), using Roblox's built-in particle textures. No reference textures, sounds or animations are copied (Assets policy below). Full numbers are in `ABILITIES.md`.
 - **Invulnerability Frames (Iframes):** Evasion skills and slide rolls grant precise invulnerability windows (0.35s to 0.75s) where incoming blasts deal zero damage.
 - **Runner-to-Runner Sabotage (Social Friction):**

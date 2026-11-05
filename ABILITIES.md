@@ -1,6 +1,6 @@
 # ABILITIES — God Cataclysms & Runner Reflexes
 
-Every kit a player can roll from the two gacha vaults. **15 God kits** and **17 Runner kits** across six rarities.
+Every kit a player can roll from the two gacha vaults. **15 God kits** and **18 Runner kits** across six rarities.
 
 > **Source of truth:** this file and `src/shared/Data/Kits.luau` hold the same data. When a number changes, change both.
 > Descriptions follow the house style used by the vault screen: a kit has a one-line flavour **description** (shown under the kit name when it's rolled), and each skill has a plain **mechanical description**.
@@ -11,11 +11,11 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **17 
 
 | | |
 | :--- | :--- |
-| **Playable** | **All 32 kits / 78 skills** work through the ability framework (`AbilityService`). Each skill's `Behavior` in `Kits.luau` picks how it plays (circle strike, line, dash, blink and so on). |
-| **Signature effects** | **Thunder God** and **Gravity Lord** have their own original effects (`SkillFx.luau`), and **Made in Heaven** has its stand effects (`StandFx.luau`). Every other kit uses simple element-coloured placeholder effects. |
+| **Playable** | **All 33 kits / 80 skills** work through the ability framework (`AbilityService`). Each skill's `Behavior` in `Kits.luau` picks how it plays (circle strike, line, dash, blink and so on). |
+| **Signature effects** | **Thunder God** and **Gravity Lord** have their own original effects (`SkillFx.luau`), **Made in Heaven** has its stand effects (`StandFx.luau`), and **Crimson Epitaph** has its own erased-time and Epitaph effects (`FxController.luau`). Every other kit uses simple element-coloured placeholder effects. |
 | **Animations / sounds** | Not added yet. Kits need their own animations and sounds (see `ROADMAP.md`). |
 | **Simplifications** | A few skills are simpler than their description. Each kit below lists its *Current in-game differences*. |
-| **Needs testing** | Everything here still needs a Studio test (`/test round start`, `/test round god`). |
+| **Needs testing** | Everything here still needs a Studio test. The quickest way is the dev test area: admin panel (F2) → TOOLS → *Test as Runner* / *Test as God*. |
 
 ## How kits work
 
@@ -39,7 +39,7 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **17 
 | ⚪ **Common** | 55% | — | Rockfall, Gale Palm, Ember Spark | Quick Feet, Second Wind, Bounce |
 | 🔵 **Rare** | 30% | — | Frost Warden, Tidecaller, Fire Fist | Flash Step, Moonwalk, Dive Roll |
 | 🟣 **Epic** | 11.5% | — | Sand Calamity, Shadow Weaver, Magma Admiral | Shinobi, Brawler, Clap Swapper |
-| 🟠 **Legendary** | 3% | 92% | Thunder God, Gravity Lord, Light Admiral | Instant Transmission, Godspeed, Wind Walker |
+| 🟠 **Legendary** | 3% | 92% | Thunder God, Gravity Lord, Light Admiral | Instant Transmission, Godspeed, Wind Walker, Crimson Epitaph |
 | 🔴 **Mythical** | 0.49% | 7% | World Shaker, Black Flame Avenger | Ultra Instinct, Metavision |
 | 🌈 **Secret** | 0.01% | 1% | King of Curses | The Honored One, Time Lord, Made in Heaven |
 
@@ -410,8 +410,8 @@ _Normal: 11.5% total, 3.83% each_
 | `Q` | **Swap Clap** | Target (35) | — | 20s | 25 | Swap places with any Runner within 35 studs that you can see. Perfect for putting them where the strike is about to land. |
 | `E` | **Shove** | Cone (6) | — | 8s | 10 | Shove the Runner in front of you 14 studs. |
 
-### 🟠 Legendary — 2 skills (blink / hyper-slide)
-_Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
+### 🟠 Legendary — 2 skills (blink / hyper-slide / time)
+_Normal: 3% total, 0.75% each · Lucky: 92% total, 23% each_
 
 #### Instant Transmission  `InstantTransmission`
 **In game:** ✅ Playable · placeholder element effects
@@ -448,6 +448,24 @@ _Normal: 3% total, 1% each · Lucky: 92% total, 30.67% each_
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Gale Step** | Self | — | 18s | 20 | For 4s you can jump up to 3 times in the air. |
 | `E` | **Tailwind Slide** | Slide (20) | — | 12s | 25 | Hyper-slide 20 studs with 0.4s of iframes. You leave a wind trail that gives other Runners +15% speed. |
+
+#### Crimson Epitaph  `CrimsonEpitaph`
+**In game:** ✅ Playable · own effects (erased time, Epitaph)
+
+> *"Only the result remains. The moment the strike landed simply never happened."*
+
+**Element:** Time · **Inspired by:** The stand that erases time and reads the future (Stand Game / Universe Game King Crimson)
+ · **Reference:** `references/UniverseGame/ReplicatedStorage/ReplicatedStorage/ReplicatedModules/StatsFolder/King Crimson/` (moves, and the look of the `KCR` Requiem skin)
+
+| Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
+| :---: | :--- | :--- | :--- | :---: | :---: | :--- |
+| `Q` | **Time Erasure** | Self | — | 24s | 30 | Erase time for 4s. Nobody else can see or hear you, not even the Gods, and you move 25% faster. Strikes still hurt if they land on you. |
+| `E` | **Epitaph** | Self | — | 16s | 25 | See 2.5s into the future. The first hit you'd take never happens: you appear 12 studs ahead with 0.5s of iframes. If a Runner hit you, you appear behind them instead and they're stunned for 0.5s. |
+
+**Effects:** original code modelled on King Crimson Requiem. While time is erased, the caster sees the nearby world shatter and fade, a purple sky, and red afterimages of the other Runners; everyone else can't see or hear the caster, and the God camera ignores them. Epitaph puts a small gold face on the forehead and a gold counter aura on the body. A red-and-black time-skip cut plays on screen at the start and end.
+
+**Current in-game differences:**
+- *Sounds:* none yet. Each moment has an empty slot in `SoundConfig.Stands.CrimsonEpitaph`; paste your own uploaded ids there.
 
 ### 🔴 Mythical — 2 skills + passive
 _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_

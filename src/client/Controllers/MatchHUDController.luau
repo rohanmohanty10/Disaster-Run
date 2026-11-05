@@ -402,7 +402,7 @@ local function update(dt: number)
 	ui.Info.Text = if matchActive() then `Round {roundNumber or 1} · {runnersLeft()} left` else ""
 
 	local r = role()
-	local isGod = r == "God" and matchActive()
+	local isGod = r == "God" and (matchActive() or LocalPlayer:GetAttribute("InTestArea") == true) -- test area: TestAreaService
 	ui.GodHUD.Visible = isGod
 	ui.RunnerHUD.Visible = not isGod
 	ui.ProgressBar.Visible = matchActive() and r == "Runner"

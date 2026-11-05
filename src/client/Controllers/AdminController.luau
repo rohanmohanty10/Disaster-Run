@@ -1,7 +1,8 @@
 --!strict
 -- Admin panel (F2 or the ADMIN button; only shown to admins — the server re-checks every request).
 --   GOD KITS / RUNNER KITS: equip any kit instantly. Completed kits are listed first and marked.
---   TOOLS: spins, Cash, start a test match as Runner or God, end the round, dummies, hitboxes.
+--   TOOLS: the dev test area (try kits as Runner or God with no match), spins, Cash, start a
+--          test match as Runner or God, end the round, dummies, hitboxes.
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -140,6 +141,31 @@ local function showTools()
 	clearContent()
 	local function header(text: string)
 		Make.Label({ Size = UDim2.new(1, 0, 0, 22), TextXAlignment = Enum.TextXAlignment.Left, TextColor3 = Theme.Gold, Text = text, Parent = content })
+	end
+	local inside = LocalPlayer:GetAttribute("InTestArea") == true
+	header(if inside then `TEST AREA (you're a {LocalPlayer:GetAttribute("Role") or "?"})` else "TEST AREA (no match needed)")
+	button(content, "Test as Runner", Color3.fromRGB(30, 90, 60), function()
+		command("area runner")
+	end)
+	button(content, "Test as God", Color3.fromRGB(90, 40, 90), function()
+		command("area god")
+	end)
+	if inside then
+		button(content, `No cooldowns: {if LocalPlayer:GetAttribute("TestNoCooldowns") then "ON" else "OFF"}`, nil, function()
+			command("area cooldowns")
+		end)
+		button(content, `Moving dummies: {if workspace:GetAttribute("TestDummiesMove") then "ON" else "OFF"}`, nil, function()
+			command("area move")
+		end)
+		button(content, "Reset cover + dummies", nil, function()
+			command("area reset")
+		end)
+		button(content, "Heal me", nil, function()
+			command("me heal")
+		end)
+		button(content, "Leave test area", Color3.fromRGB(110, 40, 40), function()
+			command("area leave")
+		end)
 	end
 	header("SPINS & CASH")
 	button(content, "+10 God Spins", nil, function()
@@ -291,6 +317,16 @@ end
 function AdminController.Start()
 	refreshAccess()
 	LocalPlayer:GetAttributeChangedSignal("IsAdmin"):Connect(refreshAccess)
+	-- Keep the TOOLS tab's test-area buttons in step (role, no-cooldowns, moving dummies).
+	local function refreshTools()
+		if panel.Visible and currentTab == "Tools" then
+			showTools()
+		end
+	end
+	for _, name in { "InTestArea", "Role", "TestNoCooldowns" } do
+		LocalPlayer:GetAttributeChangedSignal(name):Connect(refreshTools)
+	end
+	workspace:GetAttributeChangedSignal("TestDummiesMove"):Connect(refreshTools)
 	for _, role in Kits.Roles do
 		LocalPlayer:GetAttributeChangedSignal(`Equipped{role}Kit`):Connect(function()
 			if panel.Visible and currentTab == role then

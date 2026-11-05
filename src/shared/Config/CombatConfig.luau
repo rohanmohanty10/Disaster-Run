@@ -29,10 +29,11 @@ CombatConfig.DefaultMaxTargets = 30
 -- Set the workspace attribute "ShowHitboxes" to true to see every hitbox (Studio testing).
 CombatConfig.ShowHitboxesAttribute = "ShowHitboxes"
 
--- Test dummies (Studio only, or when the workspace attribute "SpawnTestDummies" is true)
+-- Test dummies, in the dev test area (TestAreaConfig). Spawned in Studio, when the workspace
+-- attribute "SpawnTestDummies" is true, or when an admin enters the test area.
 CombatConfig.TestDummies = {
-	Count = 3,
-	Origin = Vector3.new(0, 4, -30),
+	Count = 5,
+	Origin = Vector3.new(-400, 4, -30), -- TestAreaConfig.Center + (0, 4, -30)
 	Spacing = 10,
 	RespawnTime = 3,
 }
