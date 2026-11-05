@@ -81,6 +81,13 @@ Abilities are modular kits that scale in utility, visual impact, and slot count 
   - *Tremor Calamity:* Atmospheric air cracks knocking players down through thin walls; seismic fault lines splitting the valley floor into bottomless chasms.
   - *Gravity Calamity:* Levitation wells lifting and hurling ruined buildings; orbital meteors crushing entire map chunks.
 
+- **No God body or casting animation:** a God is just the camera in the sky.
+- **God presence (idea, not decided):** something Runners can see in the sky:
+  - a **giant head** made of stone or clouds, or
+  - one **enormous eye in the storm**.
+  - Either way, one per God. Its eyes glow in the kit's colour on each cast and it turns toward the strike, which makes the Gods feel present and gives Runners a fair hint.
+- **Sounds:** each God skill has Telegraph / Impact sound slots in `SoundConfig.luau`, played in 3D at the strike.
+
 ### B. The Runner System (Mobility, Iframes & Sabotage)
 - **Control Scheme:** Third-person shiftlock sprint with stamina drain and recovery.
 - **Invulnerability Frames (Iframes):** Evasion skills and slide rolls grant precise invulnerability windows (0.35s to 0.75s) where incoming blasts deal zero damage.

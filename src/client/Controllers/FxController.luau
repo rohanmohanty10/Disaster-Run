@@ -16,6 +16,7 @@ local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 
 local UIController = require(script.Parent.UIController)
 local SkillFx = require(script.Parent.SkillFx)
+local SoundConfig = require(ReplicatedStorage.Shared.Config.SoundConfig)
 
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui") :: PlayerGui
@@ -179,11 +180,34 @@ local function dangerCheck(info: { [string]: any })
 	end)
 end
 
+-- Plays a skill's Telegraph / Impact sound at the strike (SoundConfig.luau).
+local function playSkillSound(info: { [string]: any }, slot: "Telegraph" | "Impact")
+	local entry = (if type(info.Skill) == "string" then SoundConfig.Skills[info.Skill] else nil)
+		or (if type(info.Element) == "string" then SoundConfig.Elements[info.Element] else nil)
+	local id = entry and entry[slot]
+	if not id or id == "" or typeof(info.CFrame) ~= "CFrame" then
+		return
+	end
+	local anchor = part({ Size = Vector3.one * 0.2, Transparency = 1, Position = (info.CFrame :: CFrame).Position })
+	local sound = Instance.new("Sound")
+	sound.SoundId = id
+	sound.Volume = SoundConfig.Volume
+	sound.RollOffMode = Enum.RollOffMode.InverseTapered
+	sound.RollOffMaxDistance = SoundConfig.MaxDistance
+	sound.Parent = anchor
+	sound:Play()
+	sound.Ended:Once(function()
+		anchor:Destroy()
+	end)
+	Debris:AddItem(anchor, 15)
+end
+
 -- ------------------------------------------------------------------ handlers
 local handlers: { [string]: (info: { [string]: any }) -> () } = {}
 
 handlers.Telegraph = function(info)
 	SkillFx.Telegraph(info) -- extra signature visuals; the ground warning below always draws
+	playSkillSound(info, "Telegraph")
 	local duration = math.clamp(tonumber(info.Duration) or 1, 0.05, 20)
 	local color = colorOf(info.Element)
 	local outline = groundShape(info, if info.Faint then color else WARNING, if info.Faint then 0.8 else 0.7)
@@ -202,6 +226,7 @@ handlers.Telegraph = function(info)
 end
 
 handlers.Impact = function(info)
+	playSkillSound(info, "Impact")
 	if SkillFx.Impact(info) then
 		return
 	end

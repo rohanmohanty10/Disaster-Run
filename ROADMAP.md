@@ -59,10 +59,12 @@ Tasks higher up unblock the ones below them. Pick from the top when you can.
 ### 2–6. Abilities, Runner, God, round loop, match UI — ✅ written, waiting on a Studio test (see Done)
 Follow-ups once tested:
 - ✅ Signature VFX for Thunder God and Gravity Lord (original, `SkillFx.luau`)
-- ⬜ Thunder God / Gravity Lord: casting animations and sounds (needs our own uploads), and charge scaling for Lightning Dragon, Lightning Wrath and Meteor Strike (holding only delays them for now)
+- ⬜ Thunder God / Gravity Lord: sounds (paste ids into `SoundConfig.luau`), and charge scaling for Lightning Dragon, Lightning Wrath and Meteor Strike (holding only delays them for now). No casting animations: the God is just a camera in the sky.
+- 💡 God presence in the sky (idea, not decided): a giant head or an eye in the clouds per God that glows in the kit's colour and looks toward each strike (`GAME_PLAN.md` Section 2A)
 - ⬜ When a kit is fully finished, add it to `AdminConfig.CompletedKits` so the admin panel marks it
 - ⬜ Signature VFX for the other kits (same approach: original effects in `SkillFx.luau`; the generic element VFX are placeholders)
-- ⬜ Kit animations and sounds (asset ids needed — see `AnimationConfig.luau`)
+- ⬜ Skill sounds: paste uploaded ids into `SoundConfig.luau` (per skill, or per element as a fallback)
+- ⬜ Runner kit animations (own uploads; ids in `AnimationConfig.luau`). Gods have none: they're a camera in the sky.
 - ⬜ God Pass priority for picking the starting Gods
 - ⬜ Runner stamina is tracked on the client: move it server-side before launch
 - ⬜ "Muting" for Infinite Void needs all sounds routed through one SoundGroup
