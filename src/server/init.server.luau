@@ -14,6 +14,13 @@ local SERVICES = {
 	"InventoryService",
 	"GachaService",
 	"MonetizationService",
+	-- Combat core
+	"StatusEffectService",
+	"RagdollService",
+	"KnockbackService",
+	"HitboxService",
+	"CombatService",
+	"DevTestService", -- test dummies + /test commands (Studio / creator only)
 }
 
 Remotes.CreateAll()

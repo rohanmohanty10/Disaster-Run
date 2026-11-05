@@ -13,6 +13,12 @@ local Definitions = {
 	DataUpdated = "RemoteEvent",
 	-- Server -> client: toast message (text, colour?)
 	Notify = "RemoteEvent",
+	-- Server -> the victim's client: push their own character (velocity, duration)
+	Knockback = "RemoteEvent",
+	-- Server -> the victim's client: enter / leave ragdoll physics (isRagdolled)
+	Ragdoll = "RemoteEvent",
+	-- Server -> all clients: hit feedback for pop-ups ({ Kind, Position, Amount? })
+	CombatFeedback = "RemoteEvent",
 }
 
 local Remotes = {}

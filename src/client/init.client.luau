@@ -8,6 +8,7 @@ local CONTROLLERS = {
 	"DataController",
 	"UIController",
 	"VaultController",
+	"CombatController",
 }
 
 local loaded = {}
