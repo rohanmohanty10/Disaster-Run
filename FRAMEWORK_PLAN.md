@@ -294,12 +294,14 @@ The `references/SorceryGame/` archive provides the exact implementation of Gojo'
 
 ### Testing
 - **Admin panel:** press **F2** (or the ADMIN button, top-left). It equips any kit instantly and has buttons for spins, Cash, starting a match as Runner or God, ending rounds, dummies and hitboxes. Admins are anyone in Studio, the creator / group owner, and the user ids in `AdminConfig.Admins`. The server checks every request.
+- **Studio doesn't start matches by itself** (`RoundConfig.StudioAutoStart = false`). The HUD shows *Waiting · start a match from the admin panel*. Press *Start match as Runner / God* in TOOLS, or type `/test round start`. To get the old countdown back, press *Auto-start matches in Studio* in TOOLS or type `/test round auto`. Live servers always auto-start.
 - `/test round start` skips the intermission.
 - `/test round god` or `/test round runner` sets your role for solo matches.
 - `/test round end` ends the round or match.
 - `/test role runner` lets you use Runner skills in the lobby (against the dummies).
 - `/test round god` then `/test round start` lets you try the God view solo, with the dummies as targets.
 - **Dev test area (no match needed):** admin panel → TOOLS → *Test as Runner* / *Test as God*, or `/test area runner` / `/test area god`. It's a practice yard at `TestAreaConfig.Center` (X −400, away from the lobby and course) with a grid floor (lines every 20 studs), a ramp and ledges, a low and a tall wall, destructible cover and the dummies. As a God you get the overhead view and God HUD over it.
+  - **God over the course:** TOOLS → *Test as God over the course* (`/test area god course`) gives you the God view in the sky above the real course, with no match running. (The dummies stay in the test area.)
   - `/test area cooldowns`: no cooldowns and free casts (no stamina / energy spent), only while you're in the area.
   - `/test area move`: the dummies walk left and right, for practising God aim.
   - `/test area reset`: rebuilds the cover and respawns the dummies. `/test area leave` sends you back to the lobby.
