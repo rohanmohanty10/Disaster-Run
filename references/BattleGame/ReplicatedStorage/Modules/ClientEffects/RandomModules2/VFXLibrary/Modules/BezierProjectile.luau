@@ -1,5 +1,4 @@
  
--- Decompiled with Potassium's decompiler.
 
 return {
     SpawnProjectiles = function(p1) --[[ Name: SpawnProjectiles, Line 46 ]]

@@ -1,5 +1,4 @@
  
--- Decompiled with Potassium's decompiler.
 
 local u1 = {};
 u1.__index = u1;

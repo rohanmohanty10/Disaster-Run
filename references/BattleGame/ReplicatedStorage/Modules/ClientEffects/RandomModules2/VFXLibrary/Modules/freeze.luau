@@ -1,5 +1,4 @@
  
--- Decompiled with Potassium's decompiler.
 
 local l__TweenService__1 = game:GetService("TweenService");
 return function(p1, p2, p3) --[[ Line: 3 ]]

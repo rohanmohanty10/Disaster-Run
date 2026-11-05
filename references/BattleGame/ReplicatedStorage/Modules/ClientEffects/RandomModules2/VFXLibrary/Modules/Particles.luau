@@ -1,5 +1,4 @@
  
--- Decompiled with Potassium's decompiler.
 
 local l__Workspace__1 = game:GetService("Workspace");
 local l__Players__2 = game:GetService("Players");

@@ -110,4 +110,4 @@ Follow-ups once tested:
 
 ## Known gaps in the references
 - **FruitGame and ValleyRun have no server scripts**, so their damage, hitbox and round logic is rebuilt from the design docs.
-- **The references are other developers' games**, saved with a game-copying tool. Use them only to understand how mechanics work. Don't copy their code, UI, animations, sounds or meshes into Disaster Run.
+- **The references are other developers' games**, Use them only to understand how mechanics work. Don't copy their code, UI, animations, sounds or meshes into Disaster Run.

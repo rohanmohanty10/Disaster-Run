@@ -1273,7 +1273,6 @@ function t.new(p1) --[[ new | Line: 940 | Upvalues: t (copy), collectTracks (cop
 	return v3
 end
 function t.AssignExternal(p1, p2, p3, p4) --[[ AssignExternal | Line: 1073 | Upvalues: resolveOrCreateUnder (copy), resolvePathUnder (copy) ]]
-	-- structuring failed for function 81; please report this in our discord https://discord.gg/y63m4zUYa4
 end
 function t.AssignExternalByName(p1, p2, p3, p4) --[[ AssignExternalByName | Line: 1319 ]]
 	return p1:AssignExternal(p2, p3, p4)

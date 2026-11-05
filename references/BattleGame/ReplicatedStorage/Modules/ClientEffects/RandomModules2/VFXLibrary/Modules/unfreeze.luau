@@ -1,5 +1,4 @@
  
--- Decompiled with Potassium's decompiler.
 
 return function(p1) --[[ Line: 1 ]]
     for _, v2 in p1:GetDescendants() do

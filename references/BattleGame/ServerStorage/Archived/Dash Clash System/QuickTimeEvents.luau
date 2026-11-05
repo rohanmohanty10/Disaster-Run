@@ -1,5 +1,4 @@
  
--- Decompiled with Potassium's decompiler.
 
 return {
     activateQTE = function(p1, p2, p3, p4) --[[ Name: activateQTE, Line 4 ]]

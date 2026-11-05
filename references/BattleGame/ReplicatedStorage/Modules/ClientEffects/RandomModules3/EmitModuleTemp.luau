@@ -57,7 +57,6 @@ local v3 = table.create(64)
 local v4 = table.create(64)
 local v5 = false
 local v6 = coroutine.create(function() --[[ Line: 167 | Upvalues: v3 (copy), v4 (copy), v5 (ref) ]]
-	-- structuring failed for function 2; please report this in our discord https://discord.gg/y63m4zUYa4
 end)
 local v7 = setmetatable({}, {
 	__mode = "k"

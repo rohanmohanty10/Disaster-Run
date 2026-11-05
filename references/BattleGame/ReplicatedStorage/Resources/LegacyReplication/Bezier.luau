@@ -1,4 +1,3 @@
--- Saved by UniversalSynSaveInstance https://discord.gg/wx4ThpAsmw
 
 local v0 = {};
 v0.__index = v0;

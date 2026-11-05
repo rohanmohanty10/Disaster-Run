@@ -1,5 +1,4 @@
  
--- Decompiled with Potassium's decompiler.
 
 local l__TweenService__1 = game:GetService("TweenService");
 local l__Debris__2 = game:GetService("Debris");
