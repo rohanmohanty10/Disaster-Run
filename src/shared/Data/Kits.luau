@@ -12,6 +12,7 @@ export type Skill = {
 	Cooldown: number,
 	Cost: number,
 	Ultimate: boolean,
+	Behavior: { [string]: any }, -- how the skill plays (templates in src/server/Abilities)
 }
 
 export type Kit = {
@@ -49,6 +50,7 @@ Kits.God = {
 				Cooldown = 6,
 				Cost = 20,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 8, Tel = 1.0, Dmg = 20, KB = { Power = 30, Lift = 25 }, Vfx = "Boulder" },
 			},
 		},
 	},
@@ -68,6 +70,7 @@ Kits.God = {
 				Cooldown = 7,
 				Cost = 20,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 40, W = 10, Tel = 0.6, Dmg = 10, KB = { Power = 70, Lift = 10, Along = true }, Ragdoll = 0.5, Vfx = "Wind" },
 			},
 		},
 	},
@@ -87,6 +90,7 @@ Kits.God = {
 				Cooldown = 5,
 				Cost = 20,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 6, Tel = 0.6, Dmg = 18, Burn = { Dps = 2, Duration = 3 }, Vfx = "Fire" },
 			},
 		},
 	},
@@ -106,6 +110,7 @@ Kits.God = {
 				Cooldown = 7,
 				Cost = 30,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 50, W = 5, Tel = 0.6, Dmg = 25, Slow = { Factor = 0.6, Duration = 2 }, MaxTargets = 1, Vfx = "Ice" },
 			},
 			{
 				Name = "Glacier Floor",
@@ -116,6 +121,7 @@ Kits.God = {
 				Cooldown = 12,
 				Cost = 35,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 14, Tel = 0.7, Linger = { Duration = 4, Tick = 1, Dmg = 5 }, Slow = { Factor = 0.7, Duration = 1.2 }, Vfx = "Ice" },
 			},
 		},
 	},
@@ -135,6 +141,7 @@ Kits.God = {
 				Cooldown = 6,
 				Cost = 30,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 50, W = 6, Tel = 0.5, Dmg = 12, Shots = { Count = 3, Interval = 0.2 }, Vfx = "Water" },
 			},
 			{
 				Name = "Riptide",
@@ -145,6 +152,7 @@ Kits.God = {
 				Cooldown = 11,
 				Cost = 35,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 12, Tel = 0.6, Dmg = 10, Linger = { Duration = 2, Tick = 0.25, Pull = 18 }, Vfx = "Water" },
 			},
 		},
 	},
@@ -164,6 +172,7 @@ Kits.God = {
 				Cooldown = 8,
 				Cost = 35,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 60, W = 12, Tel = 0.8, Dmg = 30, KB = { Power = 45, Lift = 15, Along = true }, DestroyCover = true, Vfx = "Fire" },
 			},
 			{
 				Name = "Flame Pillar",
@@ -174,6 +183,7 @@ Kits.God = {
 				Cooldown = 10,
 				Cost = 35,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 10, Tel = 0.8, Dmg = 25, KB = { Power = 5, Lift = 70 }, Vfx = "Fire" },
 			},
 		},
 	},
@@ -193,6 +203,7 @@ Kits.God = {
 				Cooldown = 8,
 				Cost = 35,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 70, W = 6, Tel = 0.7, Dmg = 35, DestroyCover = true, Vfx = "Sand" },
 			},
 			{
 				Name = "Sables",
@@ -203,6 +214,7 @@ Kits.God = {
 				Cooldown = 14,
 				Cost = 45,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 18, Tel = 0.6, Linger = { Duration = 5, Tick = 1, Dmg = 6 }, Blind = 1.2, Vfx = "Sand" },
 			},
 			{
 				Name = "Ground Death",
@@ -213,6 +225,7 @@ Kits.God = {
 				Cooldown = 16,
 				Cost = 50,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 12, Tel = 0.7, Linger = { Duration = 3, Tick = 0.5, Dmg = 4, Pull = 10 }, Slow = { Factor = 0.5, Duration = 0.6 }, Vfx = "Sand" },
 			},
 		},
 	},
@@ -232,6 +245,7 @@ Kits.God = {
 				Cooldown = 9,
 				Cost = 30,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 45, W = 4, Tel = 0.5, Dmg = 10, Root = 1.5, MaxTargets = 1, Vfx = "Shadow" },
 			},
 			{
 				Name = "Shadow Spikes",
@@ -242,6 +256,7 @@ Kits.God = {
 				Cooldown = 8,
 				Cost = 35,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 10, Tel = 0.9, Dmg = 28, KB = { Power = 10, Lift = 35 }, Vfx = "Shadow" },
 			},
 			{
 				Name = "Shadow Field",
@@ -252,6 +267,7 @@ Kits.God = {
 				Cooldown = 15,
 				Cost = 40,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 16, Tel = 0.5, Linger = { Duration = 6, Tick = 0.5, Dmg = 0 }, Slow = { Factor = 0.75, Duration = 0.6 }, Vfx = "Shadow" },
 			},
 		},
 	},
@@ -271,6 +287,7 @@ Kits.God = {
 				Cooldown = 9,
 				Cost = 40,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 9, Tel = 1.0, Dmg = 32, Ragdoll = 1.2, KB = { Power = 10, Lift = 80 }, Vfx = "Magma" },
 			},
 			{
 				Name = "Magma Pool",
@@ -281,6 +298,7 @@ Kits.God = {
 				Cooldown = 14,
 				Cost = 45,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 10, Tel = 0.7, Linger = { Duration = 6, Tick = 1, Dmg = 8 }, DestroyCover = true, Vfx = "Magma" },
 			},
 			{
 				Name = "Hound Blaze",
@@ -291,6 +309,7 @@ Kits.God = {
 				Cooldown = 18,
 				Cost = 50,
 				Ultimate = false,
+				Behavior = { T = "Homing", Count = 3, Range = 70, R = 6, Tel = 0.8, Dmg = 15, Vfx = "Magma" },
 			},
 		},
 	},
@@ -310,6 +329,7 @@ Kits.God = {
 				Cooldown = 7,
 				Cost = 50,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 80, W = 8, Tel = 0.6, Charge = 10, Dmg = 30, Chain = { Count = 3, Range = 20, Dmg = 15 }, Stun = 0.4, Vfx = "Lightning" },
 			},
 			{
 				Name = "Lightning Wrath",
@@ -320,6 +340,7 @@ Kits.God = {
 				Cooldown = 18,
 				Cost = 75,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 22, Tel = 0.4, Charge = 10, Bolts = { Count = 10, Interval = 0.15, R = 5, Dmg = 12, Tel = 0.5 }, Vfx = "Lightning" },
 			},
 			{
 				Name = "Raigo",
@@ -330,6 +351,7 @@ Kits.God = {
 				Cooldown = 65,
 				Cost = 95,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 26, RMin = 10, Tel = 1.2, Charge = 15, Dmg = 35, DmgMax = 60, Ragdoll = 2, KB = { Power = 40, Lift = 40 }, DestroyCover = true, Vfx = "Lightning" },
 			},
 		},
 	},
@@ -349,6 +371,7 @@ Kits.God = {
 				Cooldown = 15,
 				Cost = 75,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 14, Tel = 1.3, Charge = 10, Dmg = 40, DmgEdge = 20, Ragdoll = 1.5, KB = { Power = 55, Lift = 45 }, DestroyCover = true, Vfx = "Meteor" },
 			},
 			{
 				Name = "Gravity Dominance",
@@ -359,6 +382,7 @@ Kits.God = {
 				Cooldown = 12,
 				Cost = 50,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 16, RMin = 6, Tel = 0.3, Charge = 3, Linger = { Duration = 1.5, Tick = 0.5, Dmg = 8 }, Slow = { Factor = 0.5, Duration = 0.6 }, RootAtFull = 1.5, Vfx = "Gravity" },
 			},
 			{
 				Name = "Meteor Fury",
@@ -369,6 +393,7 @@ Kits.God = {
 				Cooldown = 45,
 				Cost = 130,
 				Ultimate = false,
+				Behavior = { T = "Rain", Duration = 5.6, Interval = 0.35, R = 8, Tel = 0.9, Dmg = 15, KB = { Power = 25, Lift = 25 }, Vfx = "Meteor" },
 			},
 		},
 	},
@@ -388,6 +413,7 @@ Kits.God = {
 				Cooldown = 10,
 				Cost = 45,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 16, Tel = 0.5, Bolts = { Count = 12, Interval = 0.12, R = 3, Dmg = 8, Tel = 0.35 }, Vfx = "Light" },
 			},
 			{
 				Name = "Light Beam",
@@ -398,6 +424,7 @@ Kits.God = {
 				Cooldown = 9,
 				Cost = 40,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 90, W = 6, Tel = 0.7, Dmg = 35, DestroyCover = true, Vfx = "Light" },
 			},
 			{
 				Name = "Light Blade",
@@ -408,6 +435,7 @@ Kits.God = {
 				Cooldown = 11,
 				Cost = 45,
 				Ultimate = false,
+				Behavior = { T = "Cone", L = 40, Angle = 70, Tel = 0.6, Dmg = 30, KB = { Power = 35, Lift = 10 }, Vfx = "Light" },
 			},
 			{
 				Name = "Flash Mirror",
@@ -418,6 +446,7 @@ Kits.God = {
 				Cooldown = 16,
 				Cost = 35,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 20, Tel = 0.5, Blind = 1.5, Slow = { Factor = 0.8, Duration = 1.5 }, Vfx = "Light" },
 			},
 		},
 	},
@@ -437,6 +466,7 @@ Kits.God = {
 				Cooldown = 8,
 				Cost = 40,
 				Ultimate = false,
+				Behavior = { T = "Cone", L = 50, Angle = 60, Tel = 0.7, Dmg = 30, Ragdoll = 1, KB = { Power = 50, Lift = 20 }, Vfx = "Quake" },
 			},
 			{
 				Name = "Seaquake",
@@ -447,6 +477,7 @@ Kits.God = {
 				Cooldown = 12,
 				Cost = 45,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 25, Tel = 0.8, Dmg = 15, Ragdoll = 0.8, Vfx = "Quake" },
 			},
 			{
 				Name = "Fault Line",
@@ -457,6 +488,7 @@ Kits.God = {
 				Cooldown = 14,
 				Cost = 55,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 80, W = 8, Tel = 1.0, Dmg = 40, Ragdoll = 1.5, KB = { Power = 5, Lift = 30 }, DestroyCover = true, Vfx = "Quake" },
 			},
 			{
 				Name = "Island Splitter",
@@ -467,6 +499,7 @@ Kits.God = {
 				Cooldown = 40,
 				Cost = 90,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 30, Tel = 1.5, Dmg = 55, Ragdoll = 2, KB = { Power = 60, Lift = 50 }, DestroyCover = true, Vfx = "Quake" },
 			},
 		},
 		Passive = { Name = "Aftershock", Desc = "Every 3rd skill sends a smaller aftershock (10 damage, r8) to the same spot 1s later." },
@@ -487,6 +520,7 @@ Kits.God = {
 				Cooldown = 9,
 				Cost = 40,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 8, Tel = 0.6, Linger = { Duration = 6, Tick = 1, Dmg = 6 }, Outline = 4, Vfx = "BlackFlame" },
 			},
 			{
 				Name = "Blaze Shape",
@@ -497,6 +531,7 @@ Kits.God = {
 				Cooldown = 13,
 				Cost = 45,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 30, W = 4, Tel = 0.6, Linger = { Duration = 5, Tick = 0.5, Dmg = 10 }, Wall = true, Vfx = "BlackFlame" },
 			},
 			{
 				Name = "Susanoo Arrow",
@@ -507,6 +542,7 @@ Kits.God = {
 				Cooldown = 15,
 				Cost = 55,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 100, W = 6, Tel = 0.9, Dmg = 45, KB = { Power = 40, Lift = 15, Along = true }, DestroyCover = true, Vfx = "Spirit" },
 			},
 			{
 				Name = "Tsukuyomi",
@@ -517,6 +553,7 @@ Kits.God = {
 				Cooldown = 18,
 				Cost = 40,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 6, Tel = 0.6, Dmg = 10, Root = 1.5, Invert = 1.5, Vfx = "Spirit" },
 			},
 		},
 		Passive = { Name = "Eye of the Storm", Desc = "Runners hit by Amaterasu are outlined through cover for 4s." },
@@ -537,6 +574,7 @@ Kits.God = {
 				Cooldown = 6,
 				Cost = 30,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 60, W = 4, Tel = 0.5, Dmg = 25, DestroyCover = true, Vfx = "Slash" },
 			},
 			{
 				Name = "Cleave",
@@ -547,6 +585,7 @@ Kits.God = {
 				Cooldown = 10,
 				Cost = 35,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 5, Tel = 0.5, HealthPercent = 0.4, DmgMin = 15, Dmg = 40, Vfx = "Slash" },
 			},
 			{
 				Name = "Flame Arrow",
@@ -557,6 +596,7 @@ Kits.God = {
 				Cooldown = 20,
 				Cost = 60,
 				Ultimate = false,
+				Behavior = { T = "Circle", R = 14, Tel = 1.2, Dmg = 50, Ragdoll = 1.5, KB = { Power = 50, Lift = 40 }, DestroyCover = true, Vfx = "Fire" },
 			},
 			{
 				Name = "World Slash",
@@ -567,6 +607,7 @@ Kits.God = {
 				Cooldown = 35,
 				Cost = 80,
 				Ultimate = false,
+				Behavior = { T = "Line", L = 220, W = 6, Tel = 1.5, Dmg = 55, DestroyCover = true, Vfx = "Slash" },
 			},
 			{
 				Name = "Shrine of Calamity",
@@ -577,6 +618,7 @@ Kits.God = {
 				Cooldown = 90,
 				Cost = 140,
 				Ultimate = true,
+				Behavior = { T = "Circle", R = 40, Tel = 1.0, Linger = { Duration = 4, Tick = 0.25, Dmg = 6 }, DestroyCover = true, Vfx = "Slash" },
 			},
 		},
 		Passive = { Name = "Four Arms", Desc = "After each skill, your next skill costs 15% less energy." },
@@ -600,6 +642,7 @@ Kits.Runner = {
 				Cooldown = 10,
 				Cost = 15,
 				Ultimate = false,
+				Behavior = { T = "Buff", Speed = { Mult = 1.35, Duration = 2 } },
 			},
 		},
 	},
@@ -619,6 +662,7 @@ Kits.Runner = {
 				Cooldown = 14,
 				Cost = 0,
 				Ultimate = false,
+				Behavior = { T = "Buff", Stamina = 50, Speed = { Mult = 1.15, Duration = 1.5 } },
 			},
 		},
 	},
@@ -638,6 +682,7 @@ Kits.Runner = {
 				Cooldown = 8,
 				Cost = 10,
 				Ultimate = false,
+				Behavior = { T = "Buff", Jump = { Mult = 1.8, Duration = 4 } },
 			},
 		},
 	},
@@ -657,6 +702,7 @@ Kits.Runner = {
 				Cooldown = 9,
 				Cost = 20,
 				Ultimate = false,
+				Behavior = { T = "Dash", Dist = 16, IFrames = 0.35, Anim = "DashForward" },
 			},
 		},
 	},
@@ -676,6 +722,7 @@ Kits.Runner = {
 				Cooldown = 9,
 				Cost = 20,
 				Ultimate = false,
+				Behavior = { T = "AirJump", Up = 55, Forward = 40, IFrames = 0.35 },
 			},
 		},
 	},
@@ -695,6 +742,7 @@ Kits.Runner = {
 				Cooldown = 8,
 				Cost = 15,
 				Ultimate = false,
+				Behavior = { T = "Dash", Dist = 12, IFrames = 0.35, Anim = "Dive" },
 			},
 		},
 	},
@@ -714,6 +762,7 @@ Kits.Runner = {
 				Cooldown = 16,
 				Cost = 20,
 				Ultimate = false,
+				Behavior = { T = "Arm", Kind = "Substitution", Window = 1, Teleport = 10, IFrames = 0.5 },
 			},
 			{
 				Name = "Shadow Clone",
@@ -724,6 +773,7 @@ Kits.Runner = {
 				Cooldown = 18,
 				Cost = 25,
 				Ultimate = false,
+				Behavior = { T = "Decoy", Duration = 4 },
 			},
 		},
 	},
@@ -743,6 +793,7 @@ Kits.Runner = {
 				Cooldown = 10,
 				Cost = 20,
 				Ultimate = false,
+				Behavior = { T = "Rush", Dist = 10, KB = { Power = 60, Lift = 10 }, Stun = 0.6 },
 			},
 			{
 				Name = "Iron Body",
@@ -753,6 +804,7 @@ Kits.Runner = {
 				Cooldown = 15,
 				Cost = 15,
 				Ultimate = false,
+				Behavior = { T = "Buff", Root = 1.2, DamageReduction = 0.5, KnockbackImmune = true },
 			},
 		},
 	},
@@ -772,6 +824,7 @@ Kits.Runner = {
 				Cooldown = 20,
 				Cost = 25,
 				Ultimate = false,
+				Behavior = { T = "Swap", Range = 35, IFrames = 0.2 },
 			},
 			{
 				Name = "Shove",
@@ -782,6 +835,7 @@ Kits.Runner = {
 				Cooldown = 8,
 				Cost = 10,
 				Ultimate = false,
+				Behavior = { T = "Shove", Range = 6, KB = { Power = 55, Lift = 8 } },
 			},
 		},
 	},
@@ -801,6 +855,7 @@ Kits.Runner = {
 				Cooldown = 14,
 				Cost = 30,
 				Ultimate = false,
+				Behavior = { T = "Blink", Dist = 35, Hold = 0.4, IFrames = 0.4 },
 			},
 			{
 				Name = "Afterimage",
@@ -811,6 +866,7 @@ Kits.Runner = {
 				Cooldown = 16,
 				Cost = 20,
 				Ultimate = false,
+				Behavior = { T = "Buff", IFrames = 0.6, Speed = { Mult = 1.2, Duration = 2 } },
 			},
 		},
 	},
@@ -830,6 +886,7 @@ Kits.Runner = {
 				Cooldown = 22,
 				Cost = 0,
 				Ultimate = false,
+				Behavior = { T = "Buff", Speed = { Mult = 1.45, Duration = 5 }, FreeSprint = 5 },
 			},
 			{
 				Name = "Lightning Slide",
@@ -840,6 +897,7 @@ Kits.Runner = {
 				Cooldown = 12,
 				Cost = 25,
 				Ultimate = false,
+				Behavior = { T = "Dash", Dist = 22, IFrames = 0.4, StunThrough = 0.5, Anim = "Slide" },
 			},
 		},
 	},
@@ -859,6 +917,7 @@ Kits.Runner = {
 				Cooldown = 18,
 				Cost = 20,
 				Ultimate = false,
+				Behavior = { T = "Buff", AirJumps = { Count = 3, Duration = 4 } },
 			},
 			{
 				Name = "Tailwind Slide",
@@ -869,6 +928,7 @@ Kits.Runner = {
 				Cooldown = 12,
 				Cost = 25,
 				Ultimate = false,
+				Behavior = { T = "Dash", Dist = 20, IFrames = 0.4, Trail = { Mult = 1.15, Duration = 2 }, Anim = "Slide" },
 			},
 		},
 	},
@@ -888,6 +948,7 @@ Kits.Runner = {
 				Cooldown = 20,
 				Cost = 25,
 				Ultimate = false,
+				Behavior = { T = "Arm", Kind = "SilverReflex", Window = 3, Teleport = 6, IFrames = 0.5 },
 			},
 			{
 				Name = "Divine Sidestep",
@@ -898,6 +959,7 @@ Kits.Runner = {
 				Cooldown = 12,
 				Cost = 25,
 				Ultimate = false,
+				Behavior = { T = "Dash", Dist = 8, IFrames = 0.3, Count = 2, Anim = "DashSide" },
 			},
 		},
 		Passive = { Name = "Autonomous Reflex", Desc = "Near-miss dodges refund 30 stamina and take 3s off Silver Reflex's cooldown." },
@@ -918,6 +980,7 @@ Kits.Runner = {
 				Cooldown = 14,
 				Cost = 25,
 				Ultimate = false,
+				Behavior = { T = "Dash", Dist = 14, IFrames = 0.3, Steal = { Mult = 1.25, Duration = 3 }, Anim = "DashForward" },
 			},
 			{
 				Name = "Direct Line",
@@ -928,6 +991,7 @@ Kits.Runner = {
 				Cooldown = 20,
 				Cost = 20,
 				Ultimate = false,
+				Behavior = { T = "Buff", Speed = { Mult = 1.2, Duration = 4 }, Path = 4 },
 			},
 		},
 		Passive = { Name = "Flow State", Desc = "See God telegraphs 0.8s earlier than everyone else, with red trajectory lines." },
@@ -948,6 +1012,7 @@ Kits.Runner = {
 				Cooldown = 18,
 				Cost = 25,
 				Ultimate = false,
+				Behavior = { T = "Buff", IFrames = 0.75, DamageReduction = 0.5, ReductionTime = 1.5 },
 			},
 			{
 				Name = "Lapse Blue",
@@ -958,6 +1023,7 @@ Kits.Runner = {
 				Cooldown = 16,
 				Cost = 25,
 				Ultimate = false,
+				Behavior = { T = "Pull", Ahead = 12, R = 14, Duration = 1.5, Power = 22 },
 			},
 			{
 				Name = "Infinite Void",
@@ -968,6 +1034,7 @@ Kits.Runner = {
 				Cooldown = 70,
 				Cost = 50,
 				Ultimate = true,
+				Behavior = { T = "Domain", R = 25, Void = 2 },
 			},
 		},
 	},
@@ -987,6 +1054,7 @@ Kits.Runner = {
 				Cooldown = 12,
 				Cost = 25,
 				Ultimate = false,
+				Behavior = { T = "Blink", Dist = 20, Hold = 0, IFrames = 0.4 },
 			},
 			{
 				Name = "Rewind",
@@ -997,6 +1065,7 @@ Kits.Runner = {
 				Cooldown = 25,
 				Cost = 30,
 				Ultimate = false,
+				Behavior = { T = "Rewind", Back = 3, HealMax = 40 },
 			},
 			{
 				Name = "Time Stop",
@@ -1007,6 +1076,7 @@ Kits.Runner = {
 				Cooldown = 80,
 				Cost = 50,
 				Ultimate = true,
+				Behavior = { T = "TimeStop", IFrames = 2.5, Freeze = 1.5 },
 			},
 		},
 	},

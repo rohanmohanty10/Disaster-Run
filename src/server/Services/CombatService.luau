@@ -47,6 +47,17 @@ local CombatService = {}
 CombatService.Damaged = Signal.new()
 -- (victim: Model, killer: Player?, assists: { Player })
 CombatService.Killed = Signal.new()
+-- (victim: Model, attacker: Player?) — a hit was dodged with iframes or an intercept
+CombatService.Dodged = Signal.new()
+
+-- Interceptors run before a hit lands (after the iframe check). Returning true cancels the hit.
+-- Used by reactive skills such as Substitution and Silver Reflex.
+type Interceptor = (attacker: Player?, victim: Model, args: any) -> boolean
+local interceptors: { Interceptor } = {}
+
+function CombatService.AddInterceptor(interceptor: Interceptor)
+	table.insert(interceptors, interceptor)
+end
 
 local nextCastId = 0
 local damageLog: { [Model]: { DamageRecord } } = {}
@@ -139,6 +150,11 @@ function CombatService.DealDamage(attacker: Player?, victim: Model, amount: numb
 		end
 		amount = math.min(amount, CombatConfig.MaxDamagePerSecond - recentDamage(victim, 1))
 	end
+	-- Damage reduction buffs (Iron Body, Infinity): character attribute DamageTakenMultiplier.
+	local multiplier = victim:GetAttribute("DamageTakenMultiplier")
+	if type(multiplier) == "number" then
+		amount *= math.clamp(multiplier, 0, 1)
+	end
 	amount = math.min(amount, humanoid.Health)
 	if amount <= 0 then
 		return 0
@@ -183,7 +199,16 @@ function CombatService.Afflict(attacker: (Player | Model)?, victim: Model, args:
 
 	if not args.IgnoreIFrames and StatusEffectService.IsInvulnerable(victim) then
 		feedback("Dodged", victim)
+		CombatService.Dodged:Fire(victim, attackerPlayer)
 		return false, "IFrames"
+	end
+
+	for _, interceptor in interceptors do
+		if interceptor(attackerPlayer, victim, args) then
+			feedback("Dodged", victim)
+			CombatService.Dodged:Fire(victim, attackerPlayer)
+			return false, "Intercepted"
+		end
 	end
 
 	if args.Damage then
@@ -209,10 +234,12 @@ function CombatService.Afflict(attacker: (Player | Model)?, victim: Model, args:
 	if args.Silence then
 		StatusEffectService.Apply(victim, "Silenced", args.Silence, force)
 	end
-	if args.Ragdoll then
+	-- Iron Body and similar: no knockback or ragdoll.
+	local immovable = victim:GetAttribute("KnockbackImmune") == true
+	if args.Ragdoll and not immovable then
 		RagdollService.Ragdoll(victim, args.Ragdoll)
 	end
-	if args.Knockback then
+	if args.Knockback and not immovable then
 		KnockbackService.Apply(victim, args.Knockback)
 	end
 	return true, "Hit"

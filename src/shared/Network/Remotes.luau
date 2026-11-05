@@ -19,6 +19,19 @@ local Definitions = {
 	Ragdoll = "RemoteEvent",
 	-- Server -> all clients: hit feedback for pop-ups ({ Kind, Position, Amount? })
 	CombatFeedback = "RemoteEvent",
+	-- Client -> server: ability input (action, skillIndex, data)
+	--   action "Press" | "Release" ; data { Target = Vector3?, Direction = Vector3? }
+	Ability = "RemoteEvent",
+	-- Client -> server (unreliable): God aim point while a skill is held
+	Aim = "UnreliableRemoteEvent",
+	-- Server -> clients: ability visuals ({ Kind, ... }) — telegraphs, impacts, buffs
+	AbilityFx = "RemoteEvent",
+	-- Server -> one client: run a movement skill on your own character ({ Kind, ... })
+	SelfMove = "RemoteEvent",
+	-- Server -> one client: stamina change (amount, reason)
+	Stamina = "RemoteEvent",
+	-- Server -> all clients: round banners and results ({ Kind, ... })
+	RoundEvent = "RemoteEvent",
 }
 
 local Remotes = {}
@@ -59,6 +72,10 @@ end
 
 function Remotes.Event(name: string): RemoteEvent
 	return get(name) :: RemoteEvent
+end
+
+function Remotes.Unreliable(name: string): UnreliableRemoteEvent
+	return get(name) :: UnreliableRemoteEvent
 end
 
 -- Server: create everything up front so clients never wait on a missing remote.
