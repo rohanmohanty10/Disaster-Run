@@ -574,7 +574,7 @@ Kits.God = {
 				Cooldown = 6,
 				Cost = 30,
 				Ultimate = false,
-				Behavior = { T = "Line", L = 60, W = 4, Tel = 0.5, Dmg = 25, DestroyCover = true, Vfx = "Slash" },
+				Behavior = { T = "Line", L = 60, W = 4, Tel = 0.5, Dmg = 25, DestroyCover = true, CoverDamage = 999, Vfx = "Slash" },
 			},
 			{
 				Name = "Cleave",
@@ -596,7 +596,7 @@ Kits.God = {
 				Cooldown = 20,
 				Cost = 60,
 				Ultimate = false,
-				Behavior = { T = "Circle", R = 14, Tel = 1.2, Dmg = 50, Ragdoll = 1.5, KB = { Power = 50, Lift = 40 }, DestroyCover = true, Vfx = "Fire" },
+				Behavior = { T = "Arrow", R = 14, Tel = 1.2, Travel = 0.25, Path = 60, PathW = 4, Height = 35, Dmg = 50, Ragdoll = 1.5, KB = { Power = 50, Lift = 40 }, DestroyCover = true, Vfx = "Fire" },
 			},
 			{
 				Name = "World Slash",
@@ -607,7 +607,7 @@ Kits.God = {
 				Cooldown = 35,
 				Cost = 80,
 				Ultimate = false,
-				Behavior = { T = "Line", L = 220, W = 6, Tel = 1.5, Dmg = 55, DestroyCover = true, Vfx = "Slash" },
+				Behavior = { T = "Line", Across = true, L = 220, W = 6, Tel = 1.5, Dmg = 55, DestroyCover = true, CoverDamage = 999, Vfx = "Slash" },
 			},
 			{
 				Name = "Shrine of Calamity",
@@ -618,7 +618,7 @@ Kits.God = {
 				Cooldown = 90,
 				Cost = 140,
 				Ultimate = true,
-				Behavior = { T = "Circle", R = 40, Tel = 1.0, Linger = { Duration = 4, Tick = 0.25, Dmg = 6 }, DestroyCover = true, Vfx = "Slash" },
+				Behavior = { T = "Circle", R = 40, Tel = 1.0, Linger = { Duration = 4, Tick = 0.25, Dmg = 6 }, DestroyCover = true, CoverDamage = 999, Vfx = "Slash" },
 			},
 		},
 		Passive = { Name = "Four Arms", Desc = "After each skill, your next skill costs 15% less energy." },

@@ -16,7 +16,7 @@ src/
 │   │   ├── ShowcaseStage.luau        -- ✅ Avatar showcase stage + camera behind the vault screens
 │   │   ├── Net.luau                  -- ✅ Safe request wrapper
 │   │   ├── CombatController.luau     -- ✅ Applies own knockback / ragdoll, DODGED + damage pop-ups, void screen
-│   │   ├── SkillFx.luau              -- ✅ Signature kit visuals (Thunder God, Gravity Lord)
+│   │   ├── SkillFx.luau              -- ✅ Signature kit visuals (Thunder God, Gravity Lord, King of Curses)
 │   │   ├── StandFx.luau              -- ✅ Stand visuals (Made in Heaven aura, Time Acceleration, Universe Reset)
 │   │   ├── CameraController.luau     -- God RTS orthographic camera & Runner 3rd-person spring camera
 │   │   ├── MovementController.luau   -- Runner sprint, stamina drain, slide/dodge iframes
@@ -298,6 +298,7 @@ The `references/SorceryGame/` archive provides the exact implementation of Gojo'
 - `/test round end` ends the round or match.
 - `/test role runner` lets you use Runner skills in the lobby (against the dummies).
 - `/test round god` then `/test round start` lets you try the God view solo, with the dummies as targets.
+- **Unit tests (no Studio needed):** pure maths lives in `src/shared/Util/StrikeMath.luau` and is tested with Lune: `lune run tests/StrikeMath.spec.luau` from the repo root.
 
 
 ---

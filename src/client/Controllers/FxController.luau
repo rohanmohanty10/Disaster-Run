@@ -208,7 +208,9 @@ local handlers: { [string]: (info: { [string]: any }) -> () } = {}
 
 handlers.Telegraph = function(info)
 	SkillFx.Telegraph(info) -- extra signature visuals; the ground warning below always draws
-	playSkillSound(info, "Telegraph")
+	if not info.Silent then
+		playSkillSound(info, "Telegraph") -- Silent: a second warning for the same cast (Flame Arrow's path)
+	end
 	local duration = math.clamp(tonumber(info.Duration) or 1, 0.05, 20)
 	local color = colorOf(info.Element)
 	local outline = groundShape(info, if info.Faint then color else WARNING, if info.Faint then 0.8 else 0.7)
@@ -276,6 +278,19 @@ handlers.Bolt = function(info)
 	local bolt = part({ Size = Vector3.new(0.6, 0.6, length), CFrame = CFrame.lookAt(from, to) * CFrame.new(0, 0, -length / 2), Color = colorOf(info.Element) })
 	TweenService:Create(bolt, TweenInfo.new(0.3), { Transparency = 1 }):Play()
 	Debris:AddItem(bolt, 0.35)
+end
+
+-- A shot travelling from one point to another (Flame Arrow). Signature visuals in SkillFx.
+handlers.Projectile = function(info)
+	if SkillFx.Projectile(info) then
+		return
+	end
+	if typeof(info.From) ~= "Vector3" or typeof(info.To) ~= "Vector3" then
+		return
+	end
+	local ball = part({ Shape = Enum.PartType.Ball, Size = Vector3.one * 2, Position = info.From, Color = colorOf(info.Element), Transparency = 0.1 })
+	TweenService:Create(ball, TweenInfo.new(math.clamp(tonumber(info.Duration) or 0.25, 0.05, 3), Enum.EasingStyle.Linear), { Position = info.To }):Play()
+	Debris:AddItem(ball, math.clamp(tonumber(info.Duration) or 0.25, 0.05, 3))
 end
 
 handlers.Blink = function(info)
@@ -380,6 +395,7 @@ function FxController.Init()
 	folder.Name = "AbilityFx"
 	folder.Parent = workspace
 	SkillFx.SetFolder(folder)
+	SkillFx.SetPlayerGui(PlayerGui)
 	StandFx.SetFolder(folder)
 	StandFx.SetPlayerGui(PlayerGui)
 

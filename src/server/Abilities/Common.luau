@@ -10,6 +10,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
 local MovementConfig = require(ReplicatedStorage.Shared.Config.MovementConfig)
+local StrikeMath = require(ReplicatedStorage.Shared.Util.StrikeMath)
 
 local Services = script.Parent.Parent.Services
 local CombatService = require(Services.CombatService)
@@ -147,7 +148,10 @@ function Common.DamageCover(shape: Shape, damage: number)
 		cframe = shape.CFrame
 	end
 	for _, part in workspace:GetPartBoundsInBox(cframe, size) do
-		if CollectionService:HasTag(part, "DestructibleCover") and part.Anchored then
+		-- Circles query a square box; skip parts in its corners that the circle doesn't reach.
+		local inShape = shape.Kind ~= "Circle"
+			or StrikeMath.InCircle(part.Position, shape.CFrame.Position, (shape.Radius or 8) + math.max(part.Size.X, part.Size.Z) / 2)
+		if inShape and CollectionService:HasTag(part, "DestructibleCover") and part.Anchored then
 			local health = (part:GetAttribute("Health") :: number?) or 100
 			health -= damage
 			part:SetAttribute("Health", health)

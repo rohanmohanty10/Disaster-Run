@@ -10,6 +10,8 @@ local UserInputService = game:GetService("UserInputService")
 
 local Kits = require(ReplicatedStorage.Shared.Data.Kits)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
+local StrikeMath = require(ReplicatedStorage.Shared.Util.StrikeMath)
+local MapConfig = require(ReplicatedStorage.Shared.Config.MapConfig)
 
 local LocalPlayer = Players.LocalPlayer
 
@@ -97,7 +99,28 @@ local function updateReticle()
 	local charging = LocalPlayer:GetAttribute("Charging") == selected
 	local kind = if behavior then behavior.T else "Circle"
 
-	if kind == "Line" and behavior then
+	if kind == "Line" and behavior and behavior.Across then
+		-- Same maths as the server (GodSkills.Line): wall to wall across the canyon.
+		local course = if workspace:FindFirstChild("Course") then StrikeMath.CourseFromConfig(MapConfig) else nil
+		local spec = StrikeMath.CrossCanyonLine(target, GodController.GetDirection(), course, behavior.L or 220)
+		local width = behavior.W or 6
+		local part = reticlePart("Line", Enum.PartType.Block)
+		part.Size = Vector3.new(width, 0.2, spec.Length)
+		part.CFrame = CFrame.lookAt(spec.Start, spec.Start + spec.Direction) * CFrame.new(0, 0.15, -spec.Length / 2)
+		part.Transparency = 0.55
+	elseif kind == "Arrow" and behavior then
+		-- Flight path (thin) plus the blast circle on the reticle.
+		local path = StrikeMath.ArrowPath(target, GodController.GetDirection(), behavior.Path or 60)
+		local line = reticlePart("Line", Enum.PartType.Block)
+		line.Size = Vector3.new(behavior.PathW or 4, 0.2, path.Length)
+		line.CFrame = CFrame.lookAt(path.Start, path.Start + path.Direction) * CFrame.new(0, 0.15, -path.Length / 2)
+		line.Transparency = 0.75
+		local radius = behavior.R or 8
+		local circle = reticlePart("Circle", Enum.PartType.Cylinder)
+		circle.Size = Vector3.new(0.2, radius * 2, radius * 2)
+		circle.CFrame = ground * CFrame.Angles(0, 0, math.rad(90))
+		circle.Transparency = 0.55
+	elseif kind == "Line" and behavior then
 		local length, width = behavior.L or 40, behavior.W or 6
 		local dir = GodController.GetDirection()
 		local start = target - dir * (length * 0.15)

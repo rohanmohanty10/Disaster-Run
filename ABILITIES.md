@@ -12,7 +12,7 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **17 
 | | |
 | :--- | :--- |
 | **Playable** | **All 32 kits / 78 skills** work through the ability framework (`AbilityService`). Each skill's `Behavior` in `Kits.luau` picks how it plays (circle strike, line, dash, blink and so on). |
-| **Signature effects** | **Thunder God** and **Gravity Lord** have their own original effects (`SkillFx.luau`), and **Made in Heaven** has its stand effects (`StandFx.luau`). Every other kit uses simple element-coloured placeholder effects. |
+| **Signature effects** | **Thunder God**, **Gravity Lord** and **King of Curses** have their own original effects (`SkillFx.luau`), and **Made in Heaven** has its stand effects (`StandFx.luau`). Every other kit uses simple element-coloured placeholder effects. |
 | **Animations / sounds** | Not added yet. Kits need their own animations and sounds (see `ROADMAP.md`). |
 | **Simplifications** | A few skills are simpler than their description. Each kit below lists its *Current in-game differences*. |
 | **Needs testing** | Everything here still needs a Studio test (`/test round start`, `/test round god`). |
@@ -270,7 +270,7 @@ _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_
 _Normal: 0.01% total, 0.01% each · Lucky: 1% total, 1% each_
 
 #### King of Curses  `KingOfCurses`
-**In game:** ✅ Playable · placeholder element effects
+**In game:** ✅ Playable · ✨ signature effects
 
 > *"The undisputed King of Curses. He doesn't hunt the weak; they just happen to be in his way."*
 
@@ -285,6 +285,13 @@ _Normal: 0.01% total, 0.01% each · Lucky: 1% total, 1% each_
 | `5` | **Shrine of Calamity** ⭐ | Domain (r40) | 6 every 0.25s (max 60) | 90s | 140 | ULTIMATE. Opens a domain for 4s. Endless slashes hit every Runner inside, and all cover in it is destroyed. |
 
 **Passive — Four Arms:** After each skill, your next skill costs 15% less energy.
+
+**How it plays in game:**
+- *Dismantle:* cuts through every piece of cover it touches.
+- *Flame Arrow:* the flight path and the blast circle both show for the whole 1.2s wind-up and flight. Only the blast deals damage.
+- *World Slash:* always cuts straight across the canyon, wall to wall, at the reticle (outside the canyon it cuts across your aim, 220 studs long). It cuts through every piece of cover on the line.
+- *Shrine of Calamity:* every piece of cover inside the domain is destroyed as it opens. The 6-damage ticks stop at 60 per Runner (the per-cast cap).
+- *Four Arms:* the hotbar shows the lowered cost in green.
 
 ---
 
