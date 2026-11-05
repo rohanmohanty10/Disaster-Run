@@ -64,12 +64,12 @@ Abilities are modular kits that scale in utility, visual impact, and slot count 
 
 | Tier | Drop Rate | God Kit Structure | Runner Kit Structure | Special Features |
 | :--- | :--- | :--- | :--- | :--- |
-| **Common** | 55.0% | 1 Skill (Targeted poke / push) | 1 Skill (Short speed burst) | Baseline cooldowns |
-| **Rare** | 30.0% | 2 Skills (AoE burst + area denial) | 1 Skill (Vault / Dive with 0.35s iframes) | Enhanced telegraph VFX |
+| **Common** | 55.0% | 1 Skill (Targeted poke / push) | 2 Skills (Speed burst + utility) | Baseline cooldowns |
+| **Rare** | 30.0% | 2 Skills (AoE burst + area denial) | 2 Skills (Vault / Dive with 0.35s iframes) | Enhanced telegraph VFX |
 | **Epic** | 11.5% | 2–3 Skills (Quicksand traps, sand blades) | 2 Skills (Substitution dummy, Sabotage shove) | Crowd control & PvP sabotage |
 | **Legendary** | 3.0% | 3–4 Skills (Lightning smite, homing dragons, nuke) | 2 Skills (Instant transmission blink, hyper-slide) | Hard Pity at 50 Normal Spins |
 | **Mythical** | 0.49% | 4 Skills + Passive (Air-cracking shockwaves, fault lines) | 2 Skills + Passive (Flow State: early hazard trajectory overlays) | Hard Pity at 75 Lucky Spins |
-| **Secret** | 0.01% | 4 Skills + Ult + Passive (Meteor cataclysm, gravity reverse) | 2 Skills + Ult (Complete temporal invulnerability, Infinite Void AoE stun) | Hard Pity at 250 Lucky Spins, cutscene |
+| **Secret** | 0.01% | 4 Skills + Ult + Passive (Meteor cataclysm, gravity reverse) | 2 Skills + Ult (Complete temporal invulnerability, Infinite Void AoE stun, Made in Heaven's Time Acceleration → Universe Reset) | Hard Pity at 250 Lucky Spins, cutscene |
 
 ### A. The God System (Overhead Cataclysms)
 - **Control Scheme:** Top-down RTS orthographic/isometric camera with ground mouse-raycast reticle (Circle AoE, Line Projectile, or Cone indicators).
@@ -90,6 +90,12 @@ Abilities are modular kits that scale in utility, visual impact, and slot count 
 
 ### B. The Runner System (Mobility, Iframes & Sabotage)
 - **Control Scheme:** Third-person shiftlock sprint with stamina drain and recovery.
+- **Two Abilities Per Kit:** Every Runner kit gives the player **two abilities** to use, on `Q` and `E`, the same way each style in the basketball reference comes with two moves. This holds at every rarity, Common included. Rarity changes how strong the pair is, and the top tiers add on top of it: **Mythical** kits add a passive, and **Secret** kits add an ultimate on `R`.
+- **Stand Kits:** Stands are Runner kits built from the stand references. **Made in Heaven** *(Secret)* is the first one, following StandGame's Made in Heaven skill tree:
+  - **Double Accel** (`Q`): the fast-movement sprint. 6s of +60% speed and free sprinting, wrapped in the stand's aura.
+  - **Godly Speed** (`E`): a 25-stud teleport in your move direction.
+  - **Time Acceleration** (`R`, ultimate): 8s of accelerated time. The sky races through day and night, you're much faster, your other cooldowns tick at double speed, and Runners near you are trapped in it with you (slowed). It ends in **Universe Reset**: you heal, and Runners in range become alternate-universe versions of themselves for a moment (silenced and slowed).
+  - **Effects:** original code in `src/client/Controllers/StandFx.luau`, rebuilt to match StandGame's Made in Heaven aura (same colours, sizes, rates and motion read from its emitters), using Roblox's built-in particle textures. No reference textures, sounds or animations are copied (Assets policy below). Full numbers are in `ABILITIES.md`.
 - **Invulnerability Frames (Iframes):** Evasion skills and slide rolls grant precise invulnerability windows (0.35s to 0.75s) where incoming blasts deal zero damage.
 - **Runner-to-Runner Sabotage (Social Friction):**
   - Friendly collision is active.
@@ -113,6 +119,160 @@ The full list of God and Runner kits, with every skill, cooldown, cost, damage v
   - **Meteor Strike / Meteor Fury:** burning meteors with craters and debris.
   - **Gravity Dominance:** a violet pressure dome with crushing rings.
 - **Assets policy:** game assets (code, UI, animations, sounds, meshes) must be **our own** or properly licensed. The reference archives are for studying mechanics only, never for copying into the game. See `ROADMAP.md` → *Replace reference-derived assets*.
+
+### D. Ability Roster Ideas (Anime-Inspired Concepts)
+
+> **Status:** Brainstorm / inspiration pool, not final. Made in Heaven from this list is now a real kit (see Section 2B and `ABILITIES.md`); the rest are still ideas. Every Runner idea here should be built as a **two-ability** kit (Section 2B). Sources are mainly **One Piece**, **Jujutsu Kaisen**, **JoJo Stands** (Runner-only), **Naruto**, **Demon Slayer**, **Attack on Titan**, **Solo Leveling** and **Chainsaw Man**. Roblox games in brackets already implement a version and are worth playtesting for feel.
+> **IP note:** Names below are working references only. Every ability must be renamed and given original VFX before shipping.
+> **Design rules:** Runner abilities focus on mobility, iframes, sabotage and counters. God abilities must be **large-scale AoE** with a ground telegraph (0.5s–1.2s), since the God plays from an overhead view.
+
+#### D.1 Runner Roster (40)
+
+**Common: speed / movement burst (1 skill)**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| Soru | One Piece (Blox Fruits) | Very fast short forward burst |
+| Geppo | One Piece (Blox Fruits) | Kick off the air for up to 2 extra jumps |
+| Body Flicker | Naruto (Shindo Life) | Quick sidestep in any direction |
+| Chakra Sprint | Naruto (Shindo Life) | +35% move speed for 4s |
+| Total Concentration Breathing | Demon Slayer (Project Slayers) | Instantly refills stamina |
+| Cursed Energy Legs | JJK (Jujutsu Shenanigans) | Reinforced jump that clears gaps and short walls |
+
+**Rare: vault / dive with iframes (1 skill)**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| Thunder Breathing: First Form | Demon Slayer (Project Slayers) | Lightning line-dash with iframes along the whole path |
+| Dead Calm | Demon Slayer (Water Breathing) | 0.5s stance; any hit during it is dodged |
+| Gum-Gum Rocket | One Piece (Blox Fruits) | Stretch to a wall or ledge and fling yourself to it |
+| ODM Gear | Attack on Titan (Untitled AoT) | Dual grapples for swinging through the canyon |
+| Sticky Fingers | JoJo Pt. 5 | Zip into a wall or floor, exit 10 studs ahead |
+| Oasis | JoJo Pt. 5 | Swim through softened ground for 2s, beneath God AoE |
+| Armament Haki | One Piece (Blox Fruits) | Harden and survive one hit |
+
+**Epic: substitution & sabotage (2 skills)**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| Substitution Jutsu | Naruto (Shindo Life) | On hit, swap in a log and blink 5 studs back |
+| Shadow Clone | Naruto (Shindo Life) | 2 clones split off to bait the God's aim |
+| Shadow Possession | Naruto (Shikamaru) | Shadow touches a runner and freezes them for 2s |
+| Boogie Woogie | JJK (Jujutsu Shenanigans) | Clap to swap places with any runner, saving yourself or throwing them in |
+| Room: Shambles | One Piece (Blox Fruits) | Inside a dome, swap places with any object or runner |
+| Echoes Act 3: Three Freeze | JoJo Pt. 4 | Makes one runner extremely heavy, pinning them in place |
+| Soft & Wet | JoJo Pt. 8 | Bubble pops on a runner and steals their speed for 4s |
+| Stone Free | JoJo Pt. 6 | String grapple, or a tripwire that trips the runner behind you |
+| Crazy Diamond | JoJo Pt. 4 | Repairs cover the God destroyed (team support) |
+
+**Legendary: blink & hyper-mobility (2 skills)**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| Flying Raijin | Naruto (Minato) | Throw 3 kunai markers, teleport to any of them |
+| Gear Second | One Piece (Blox Fruits) | 6s overdrive: faster, higher jumps, drains stamina |
+| The Hand | JoJo Pt. 4 | Erase space to blink forward, or yank a runner back |
+| Star Platinum: The World | JoJo Pt. 3 | 1.5s time stop where only you move |
+| Mandom | JoJo Pt. 7 | Rewind your own last 6 seconds |
+| Bari Bari Barrier | One Piece | Wall in front of you blocks one strike for everyone behind it |
+| Black Flash | JJK | Timing-window dash; a perfect press at impact gives a free dodge and speed |
+
+**Mythical: 2 skills + passive**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| King Crimson + Epitaph | JoJo Pt. 5 | *Passive:* see telegraphs 1s early. *Active:* erase 2s of time, invulnerable, exit further ahead |
+| Killer Queen | JoJo Pt. 4 | *Skills:* touch bomb, Sheer Heart Attack (homing bomb that chases runners). *Passive:* Bites the Dust, rewinds 5s on death once per round |
+| D4C | JoJo Pt. 7 | Step between two objects to teleport to other cover. *Passive:* a parallel clone takes your first hit |
+| Future Sight | One Piece (Katakuri) | *Passive:* see the God's strike location before the telegraph appears |
+| Jackpot | JJK (Hakari) | *Passive:* each dodge spins a slot machine; a jackpot gives 10s of immortality and infinite stamina |
+| Sharingan | Naruto | *Passive:* God attacks appear slowed. *Active:* copy a nearby runner's last ability |
+| Kamui | Naruto (Obito) | 2s of intangibility; God hits pass through |
+| Eight Gates | Naruto (Guy) | *Passive:* each gate opened boosts speed at the cost of health |
+| Mahoraga's Wheel | JJK | *Passive:* wheel turns each time you survive a God ability, giving resistance to that type |
+
+**Secret: 2 skills + Ult**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| Made in Heaven *(Ult)* | JoJo Pt. 6 | Time acceleration: you're 3x faster for 6s, but God cooldowns also speed up |
+| The World: Over Heaven *(Ult)* | JoJo (Eyes of Heaven) | Time stop that also erases one active God hazard from reality |
+| Gold Experience Requiem *(Ult)* | JoJo Pt. 5 | Return to Zero: for 5s any God attack aimed at you resets to nothing |
+| Tusk Act 4 *(Ult)* | JoJo Pt. 7 | Infinite rotation: shoot the God's reticle to cancel that ability and send it on cooldown |
+| Love Train *(Ult)* | JoJo Pt. 7 | Wall of light; misfortune aimed at you is redirected to the nearest runner |
+| Infinity *(Ult)* | JJK (Gojo) | Completely untouchable for 3s |
+| Unlimited Void *(Ult)* | JJK (Gojo) | Domain that stuns nearby runners for 2s |
+| Gear Fifth *(Ult)* | One Piece | Toon physics: bounce off walls, no knockback, cartoon squash and stretch |
+| Susanoo *(Ult)* | Naruto | Giant armor that survives one direct God hit |
+
+#### D.2 God Roster (38): large-scale AoE only
+
+**Common: large poke / push (1 skill)**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| Rankyaku | One Piece (Blox Fruits) | Huge blade line cutting through an entire lane |
+| Great Fireball | Naruto (Shindo Life) | Large circle of fire |
+| Great Breakthrough | Naruto (Wind Release) | Huge wind cone that blows runners off ledges |
+| Cursed Spirit Swarm | JJK (Geto) | Flock of curse spirits dive-bombs an area |
+| Flame Blade Wave | Demon Slayer (Sun Breathing) | Sweeping arc of fire |
+
+**Rare: AoE burst + area denial (2 skills)**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| Ice Time | One Piece (Aokiji / Blox Fruits Ice) | Freezes a floor section into a slippery surface |
+| Flame Commandment | One Piece (Ace) | Ring of fire pillars around a target point |
+| Swamp of the Underworld | Naruto | Huge mud swamp that slows runners |
+| Water Dragon | Naruto | Flood wave sweeping a whole section |
+| Spider Thread Cage | Demon Slayer (Rui) | Grid of cutting threads; runners must slide under or find gaps |
+| Cursed Technique Lapse: Blue | JJK (Gojo) | Pull vortex dragging runners and debris to the center |
+
+**Epic: crowd control (2–3 skills)**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| Desert Funeral | Naruto (Gaara) / One Piece (Crocodile) | Quicksand closes in and crushes |
+| Dismantle | JJK (Sukuna) | Barrage of invisible cutting lines across the field |
+| Compass Needle | Demon Slayer (Akaza) | Only targets runners *moving* inside the zone, punishing panic sprints |
+| Muzan's Whips | Demon Slayer | Huge flesh tendrils sweep outward in a circle |
+| War Hammer Spikes | Attack on Titan | Crystal spikes erupt from the ground in a line |
+| Gun Devil Barrage | Chainsaw Man | Random shots land across the whole map |
+
+**Legendary: big strikes (3–4 skills)**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| El Thor / Raigo | One Piece (Enel) | Lightning smite pillar and sector-wiping thunder sphere |
+| Meteor Volcano | One Piece (Akainu) | Rains magma fists down over an area |
+| Shinra Tensei | Naruto (Pain) | Massive push from the center that wipes away cover |
+| Kirin | Naruto (Sasuke) | Lightning dragon from storm clouds; long charge, huge impact |
+| Rasenshuriken | Naruto | Giant spinning orb that expands on impact |
+| Hollow Purple | JJK (Gojo) | Line attack that erases everything it passes through |
+| Fuga: Open | JJK (Sukuna) | Giant fire arrow that explodes in a huge circle |
+| Colossal Steam | Attack on Titan | Steam blast burning an entire area |
+
+**Mythical: 4 skills + passive**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| Gura Gura Quake | One Piece (Whitebeard) | Fault lines splitting the canyon floor |
+| Birdcage | One Piece (Doflamingo / GPO) | Ring of strings slowly closes in on the map |
+| Bolo Breath | One Piece (Kaido) | Dragon strafes the lane with flame breath |
+| Chibaku Tensei | Naruto | Pulls map chunks into a floating sphere, then drops them |
+| Shadow Extraction *(Passive)* | Solo Leveling | Eliminated runners return as shadows that block or chase the living |
+| Conqueror's Haki *(Passive)* | One Piece | Aura around the reticle drains stamina from nearby runners |
+
+**Secret: 4 skills + Ult + passive**
+| Ability | Source | Effect |
+| :--- | :--- | :--- |
+| Malevolent Shrine *(Ult)* | JJK (Sukuna) | Domain fills the area with slashes; only telegraphed spots are safe |
+| World Cutting Slash *(Ult)* | JJK (Sukuna) | One giant slash across the whole map, cutting through everything |
+| Gravity Blade: Raging Tiger *(Ult)* | One Piece (Fujitora) | Pulls a meteor from the sky (Gravity Calamity theme) |
+| Tengai Shinsei *(Ult)* | Naruto (Madara) | Two meteors fall one after the other |
+| Infinite Tsukuyomi *(Ult)* | Naruto | Every runner enters a genjutsu with reversed controls for 4s |
+| The Rumbling *(Ult)* | Attack on Titan | Wall of giants marches down the canyon |
+| Army of Shadows *(Ult)* | Solo Leveling | Shadow army attacks every lane at once |
+| Mahoraga Adaptation *(Passive)* | JJK | Each time runners dodge the same ability, it grows bigger and faster |
+
+#### D.3 Design Notes
+- **Stands as a Runner slot type:** Stands could be a summoned companion with their own passive and active, separate from normal abilities.
+- **Stand evolution:** Spend Divine Shards to evolve a Stand (e.g. The World → Over Heaven, Gold Experience → Requiem). This gives Secret-tier forms a grind goal tied to the duplicate system.
+- **Time-manipulation rules:** Decide whether a runner time stop freezes God telegraphs already in progress, and add a global cooldown so multiple runners can't chain time stops.
+- **Counter abilities:** Gold Experience Requiem and Tusk Act 4 directly answer God ultimates, creating clash moments rather than raw power.
+- **Synergy examples:**
+  - Made in Heaven runner vs. Gura Gura God: an accelerated runner racing a splitting canyon.
+  - Compass Needle vs. Sharingan: the God punishes movement while the runner reads slowed attacks.
+  - Shadow Possession + Boogie Woogie: freeze a runner, then swap them into a strike zone (core sabotage combo).
 
 ---
 

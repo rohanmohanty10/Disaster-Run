@@ -17,6 +17,7 @@ src/
 │   │   ├── Net.luau                  -- ✅ Safe request wrapper
 │   │   ├── CombatController.luau     -- ✅ Applies own knockback / ragdoll, DODGED + damage pop-ups, void screen
 │   │   ├── SkillFx.luau              -- ✅ Signature kit visuals (Thunder God, Gravity Lord)
+│   │   ├── StandFx.luau              -- ✅ Stand visuals (Made in Heaven aura, Time Acceleration, Universe Reset)
 │   │   ├── CameraController.luau     -- God RTS orthographic camera & Runner 3rd-person spring camera
 │   │   ├── MovementController.luau   -- Runner sprint, stamina drain, slide/dodge iframes
 │   │   └── StatusEffectController.luau -- Stun/Silence/Void screen distortion effects

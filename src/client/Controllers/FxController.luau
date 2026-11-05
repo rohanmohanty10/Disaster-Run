@@ -16,6 +16,7 @@ local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 
 local UIController = require(script.Parent.UIController)
 local SkillFx = require(script.Parent.SkillFx)
+local StandFx = require(script.Parent.StandFx)
 local SoundConfig = require(ReplicatedStorage.Shared.Config.SoundConfig)
 
 local LocalPlayer = Players.LocalPlayer
@@ -278,6 +279,9 @@ handlers.Bolt = function(info)
 end
 
 handlers.Blink = function(info)
+	if StandFx.Blink(info) then
+		return
+	end
 	for _, key in { "From", "To" } do
 		local position = info[key]
 		if typeof(position) == "Vector3" then
@@ -328,6 +332,23 @@ handlers.Domain = function(info)
 	Debris:AddItem(sphere, duration + 0.5)
 end
 
+-- Stand effects (StandFx.luau): Made in Heaven's aura, Time Acceleration and Universe Reset.
+handlers.StandAura = function(info)
+	StandFx.Aura(info)
+end
+
+handlers.TimeAccel = function(info)
+	StandFx.TimeAccel(info)
+end
+
+handlers.UniverseReset = function(info)
+	StandFx.UniverseReset(info)
+end
+
+handlers.AlternateUniverse = function(info)
+	StandFx.AlternateUniverse(info)
+end
+
 handlers.TimeStop = function(info)
 	local duration = math.clamp(tonumber(info.Duration) or 1.5, 0.2, 5)
 	colorEffect("TimeStop", duration, { Saturation = -1, Contrast = 0.4, TintColor = Color3.fromRGB(255, 230, 180) })
@@ -359,6 +380,8 @@ function FxController.Init()
 	folder.Name = "AbilityFx"
 	folder.Parent = workspace
 	SkillFx.SetFolder(folder)
+	StandFx.SetFolder(folder)
+	StandFx.SetPlayerGui(PlayerGui)
 
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "ScreenFx"

@@ -109,10 +109,12 @@ The code lives in this GitHub repo. **Rojo doesn't store anything itself**: it s
 
 Abilities are modular kits that scale in utility and slot count based on their rolled rarity:
 
+Every Runner kit has **two abilities** (`Q` and `E`) at every rarity, like the two-move styles in the basketball reference. Mythical adds a passive and Secret adds an ultimate (`R`).
+
 | Rarity | Drop Rate | God Kit Structure | Runner Kit Structure | Special Features |
 | :--- | :--- | :--- | :--- | :--- |
-| **Common** | 55.0% | 1 Skill (Targeted poke / push) | 1 Skill (Short speed burst) | Baseline cooldowns |
-| **Rare** | 30.0% | 2 Skills (AoE burst + area denial) | 1 Skill (Vault / Dive with 0.4s iframes) | Enhanced VFX |
+| **Common** | 55.0% | 1 Skill (Targeted poke / push) | 2 Skills (Speed burst + utility) | Baseline cooldowns |
+| **Rare** | 30.0% | 2 Skills (AoE burst + area denial) | 2 Skills (Vault / Dive with 0.4s iframes) | Enhanced VFX |
 | **Epic** | 11.5% | 2–3 Skills (Quicksand traps, sand blades) | 2 Skills (Substitution dummy, Sabotage shove) | Crowd control / PvP sabotage |
 | **Legendary** | 3.0% | 3–4 Skills (Lightning smite, homing dragons, nuke) | 2 Skills (Instant transmission blink, hyper-slide) | Hard Pity at 50 rolls |
 | **Mythical** | 0.49% | 4 Skills + Passive (Air-cracking shockwaves, fault lines) | 2 Skills + Passive (Flow State: Meta-Vision early warnings) | Hard Pity at 250 rolls |

@@ -1,6 +1,6 @@
 # ABILITIES — God Cataclysms & Runner Reflexes
 
-Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 Runner kits** across six rarities.
+Every kit a player can roll from the two gacha vaults. **15 God kits** and **17 Runner kits** across six rarities.
 
 > **Source of truth:** this file and `src/shared/Data/Kits.luau` hold the same data. When a number changes, change both.
 > Descriptions follow the house style used by the vault screen: a kit has a one-line flavour **description** (shown under the kit name when it's rolled), and each skill has a plain **mechanical description**.
@@ -11,8 +11,8 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 
 
 | | |
 | :--- | :--- |
-| **Playable** | **All 31 kits / 69 skills** work through the ability framework (`AbilityService`). Each skill's `Behavior` in `Kits.luau` picks how it plays (circle strike, line, dash, blink and so on). |
-| **Signature effects** | **Thunder God** and **Gravity Lord** have their own original effects (`SkillFx.luau`). Every other kit uses simple element-coloured placeholder effects. |
+| **Playable** | **All 32 kits / 78 skills** work through the ability framework (`AbilityService`). Each skill's `Behavior` in `Kits.luau` picks how it plays (circle strike, line, dash, blink and so on). |
+| **Signature effects** | **Thunder God** and **Gravity Lord** have their own original effects (`SkillFx.luau`), and **Made in Heaven** has its stand effects (`StandFx.luau`). Every other kit uses simple element-coloured placeholder effects. |
 | **Animations / sounds** | Not added yet. Kits need their own animations and sounds (see `ROADMAP.md`). |
 | **Simplifications** | A few skills are simpler than their description. Each kit below lists its *Current in-game differences*. |
 | **Needs testing** | Everything here still needs a Studio test (`/test round start`, `/test round god`). |
@@ -26,6 +26,7 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 
 - **God controls:** skills on `1`–`4`, ultimate on `5`. Aimed with the ground reticle. Every attack shows a warning telegraph (0.5s–1.5s) before it lands.
 - **God resource:** **Calamity Energy**, 150 max, regenerates 10/s.
 - **Runner controls:** skills on `Q` and `E`, ultimate on `R`.
+- **Every Runner kit has two abilities.** Like the styles in the basketball reference, each Runner kit gives you two skills to use, one on `Q` and one on `E`, at every rarity. Higher rarities add on top of the pair: Mythical kits add a passive, and Secret kits add an ultimate on `R`.
 - **Runner resource:** **Stamina**, 100 max (shared with sprinting).
 - **Runner health:** 100 HP.
 - **Damage rule:** a single God cast deals **at most 60 damage** to one Runner, so nothing one-shots a full-health Runner. Lines marked "(max X)" show the per-cast cap for multi-hit skills.
@@ -40,7 +41,7 @@ Every kit a player can roll from the two gacha vaults. **15 God kits** and **16 
 | 🟣 **Epic** | 11.5% | — | Sand Calamity, Shadow Weaver, Magma Admiral | Shinobi, Brawler, Clap Swapper |
 | 🟠 **Legendary** | 3% | 92% | Thunder God, Gravity Lord, Light Admiral | Instant Transmission, Godspeed, Wind Walker |
 | 🔴 **Mythical** | 0.49% | 7% | World Shaker, Black Flame Avenger | Ultra Instinct, Metavision |
-| 🌈 **Secret** | 0.01% | 1% | King of Curses | The Honored One, Time Lord |
+| 🌈 **Secret** | 0.01% | 1% | King of Curses | The Honored One, Time Lord, Made in Heaven |
 
 ---
 
@@ -289,7 +290,7 @@ _Normal: 0.01% total, 0.01% each · Lucky: 1% total, 1% each_
 
 ## 🏃 Runner Reflexes
 
-### ⚪ Common — 1 skill (speed burst)
+### ⚪ Common — 2 skills (speed burst + utility)
 _Normal: 55% total, 18.33% each_
 
 #### Quick Feet  `QuickFeet`
@@ -302,6 +303,7 @@ _Normal: 55% total, 18.33% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Burst Step** | Self | — | 10s | 15 | +35% movement speed for 2s. |
+| `E` | **Light Feet** | Self | — | 16s | 0 | For 3s, sprinting costs no stamina. |
 
 #### Second Wind  `SecondWind`
 **In game:** ✅ Playable · placeholder element effects
@@ -313,6 +315,7 @@ _Normal: 55% total, 18.33% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Deep Breath** | Self | — | 14s | 0 | Instantly restores 50 stamina and gives +15% speed for 1.5s. |
+| `E` | **Grit** | Self | — | 18s | 10 | Grit your teeth: you take 25% less damage for 2s. |
 
 #### Bounce  `Bounce`
 **In game:** ✅ Playable · placeholder element effects
@@ -324,8 +327,9 @@ _Normal: 55% total, 18.33% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Spring Jump** | Self | — | 8s | 10 | Your next jump goes 1.8x higher. |
+| `E` | **Double Hop** | Self | — | 14s | 15 | For 4s you can jump once more in the air. |
 
-### 🔵 Rare — 1 skill (dive/vault, 0.35s iframes)
+### 🔵 Rare — 2 skills (dive/vault, 0.35s iframes)
 _Normal: 30% total, 10% each_
 
 #### Flash Step  `FlashStep`
@@ -338,6 +342,7 @@ _Normal: 30% total, 10% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Flash Step** | Dash (16) | — | 9s | 20 | Dash 16 studs in your move direction with 0.35s of iframes. |
+| `E` | **Step Chain** | Dash x2 | — | 13s | 25 | Two quick flash steps, 8 studs each, with 0.25s of iframes on each. |
 
 #### Moonwalk  `Moonwalk`
 **In game:** ✅ Playable · placeholder element effects
@@ -349,6 +354,7 @@ _Normal: 30% total, 10% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Sky Step** | Air jump | — | 9s | 20 | Kick off the air mid-jump, launching up and forward 14 studs with 0.35s of iframes. Once per jump. |
+| `E` | **Low Gravity** | Self | — | 14s | 15 | For 4s your jumps go 1.5x higher. |
 
 #### Dive Roll  `DiveRoll`
 **In game:** ✅ Playable · placeholder element effects
@@ -360,6 +366,7 @@ _Normal: 30% total, 10% each_
 | Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
 | :---: | :--- | :--- | :--- | :---: | :---: | :--- |
 | `Q` | **Dive Roll** | Dash (12) | — | 8s | 15 | Dive-roll forward 12 studs with 0.35s of iframes. You keep your sprint speed. |
+| `E` | **Baseball Slide** | Slide (14) | — | 10s | 15 | Slide feet-first 14 studs with 0.35s of iframes. |
 
 ### 🟣 Epic — 2 skills (substitution / sabotage)
 _Normal: 11.5% total, 3.83% each_
@@ -477,7 +484,7 @@ _Normal: 0.49% total, 0.24% each · Lucky: 7% total, 3.5% each_
 - *Direct Line:* Draws a guide line to the Sanctuary (not a computed safest path yet).
 
 ### 🌈 Secret — 2 skills + ultimate
-_Normal: 0.01% total, 0.005% each · Lucky: 1% total, 0.5% each_
+_Normal: 0.01% total, 0.0033% each · Lucky: 1% total, 0.33% each_
 
 #### The Honored One  `HonoredOne`
 **In game:** ✅ Playable · placeholder element effects
@@ -510,6 +517,25 @@ _Normal: 0.01% total, 0.005% each · Lucky: 1% total, 0.5% each_
 
 **Current in-game differences:**
 - *Time Stop:* Freezes other Runners; pausing God telegraphs isn't in yet.
+
+#### Made in Heaven  `MadeInHeaven`
+**In game:** ✅ Playable · stand effects (`StandFx.luau`)
+
+> *"Time accelerates toward a new universe. Everyone else is standing still."*
+
+**Element:** Time · **Inspired by:** The priest's stand that accelerates time · **Reference:** StandGame's Made in Heaven (*Double Accel*, *Time Acceleration*, *Universe Reset*)
+
+| Key | Skill | Shape | Damage | Cooldown | Stamina | Description |
+| :---: | :--- | :--- | :--- | :---: | :---: | :--- |
+| `Q` | **Double Accel** | Self | — | 16s | 20 | Your stand speeds up your own time. For 6s you move 60% faster and sprinting costs no stamina, wrapped in Made in Heaven's aura. |
+| `E` | **Godly Speed** | Blink (25) | — | 10s | 25 | Teleport up to 25 studs in the direction you're moving, with 0.4s of iframes. |
+| `R` | **Time Acceleration** ⭐ | Circle (r40) | — | 90s | 50 | ULTIMATE. Accelerate time for 8s: the sun races across the sky, you move 80% faster, sprint for free and your Q / E cooldowns run at double speed. Runners within 40 studs are trapped in it with you and slowed 40%. When it ends, **Universe Reset**: you heal 30 HP, and every Runner within 40 studs becomes an alternate-universe version of themselves, silenced and slowed 30% for 3s. |
+
+**Effects:** StandGame's Made in Heaven aura (two wispy root layers plus the blue-violet-teal torso glow), rebuilt from its emitter settings with Roblox's built-in particle textures. Godly Speed bursts the aura where you leave and land. Time Acceleration adds afterimages, a dome over the trapped area, the sky racing through day and night for everyone, and a cool colour grade. Universe Reset is a white-out with a new universe expanding from the caster; victims see an "alternate universe" colour shift while silenced.
+
+**Current in-game differences:**
+- *Universe Reset:* StandGame's version also costs victims a limb and bypasses their defence; here it's a silence and a slow, since Runners don't fight.
+- *Sounds / animations:* none yet (no own uploads).
 
 ---
 
