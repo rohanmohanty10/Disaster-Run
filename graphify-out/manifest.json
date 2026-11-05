@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1793842656.7377179,
-    "seen": 1793842844.0691073,
-    "ast_hash": "65c06e2e42fc9c479e70a067e7db87ae",
+    "mtime": 1793845242.82542,
+    "seen": 1793845809.3208861,
+    "ast_hash": "2fee938d2bea834be1e3bd4eb9f9966a",
     "semantic_hash": ""
   },
   "GAME_PLAN.md": {
@@ -82656,21 +82656,21 @@
     "semantic_hash": ""
   },
   "src/client/init.client.luau": {
-    "mtime": 1793842590.0657194,
-    "seen": 1793842844.0689952,
-    "ast_hash": "7b7e3f1115ca49349f2142dacbae6c2b",
+    "mtime": 1793845616.1057358,
+    "seen": 1793845809.320739,
+    "ast_hash": "c68b781af514683932471b09c1700d65",
     "semantic_hash": ""
   },
   "src/server/init.server.luau": {
-    "mtime": 1793842282.8617265,
-    "seen": 1793842844.0690112,
-    "ast_hash": "9ae708e2659d47a223daff4dea1d8c5a",
+    "mtime": 1793845616.105115,
+    "seen": 1793845809.3207695,
+    "ast_hash": "6f3990e362cc1cf4b9a42210b5faac50",
     "semantic_hash": ""
   },
   "FRAMEWORK_PLAN.md": {
-    "mtime": 1793842638.5248466,
-    "seen": 1793842844.069038,
-    "ast_hash": "6a5bb4c006fa89f4f9b6a2f6c8bc532d",
+    "mtime": 1793845656.2271543,
+    "seen": 1793845809.3208137,
+    "ast_hash": "1dc679163acbc7c2ae4d481fb1f1cd1e",
     "semantic_hash": ""
   },
   "Packages/_Index/evaera_promise@4.0.0/promise/CHANGELOG.md": {
@@ -94992,9 +94992,9 @@
     "semantic_hash": ""
   },
   "src/shared/Network/Remotes.luau": {
-    "mtime": 1793842143.5280745,
-    "seen": 1793842844.0690238,
-    "ast_hash": "d47ad4fefe11872fd09e826d011bf90e",
+    "mtime": 1793845344.6333716,
+    "seen": 1793845809.3207924,
+    "ast_hash": "62cf283fd8c987e5a0760b2b0d00c8a6",
     "semantic_hash": ""
   },
   "src/shared/Util/Format.luau": {
@@ -95019,6 +95019,90 @@
     "mtime": 1793841994.6915658,
     "seen": 1793842844.0690308,
     "ast_hash": "336565c38c1588d27a96d2a56c114bbd",
+    "semantic_hash": ""
+  },
+  "src/client/Controllers/CombatController.luau": {
+    "mtime": 1793845605.5797045,
+    "seen": 1793845809.3207192,
+    "ast_hash": "f25ec73ac36094a9e1ebbd9f74bd98af",
+    "semantic_hash": ""
+  },
+  "src/server/Services/CombatService.luau": {
+    "mtime": 1793845522.8853674,
+    "seen": 1793845809.320742,
+    "ast_hash": "e160cf84dd4eccbdf99695fd9a410dea",
+    "semantic_hash": ""
+  },
+  "src/server/Services/DevTestService.luau": {
+    "mtime": 1793845571.7253664,
+    "seen": 1793845809.3207476,
+    "ast_hash": "984879093784b8541ca05618fcf80e63",
+    "semantic_hash": ""
+  },
+  "src/server/Services/HitboxService.luau": {
+    "mtime": 1793845424.9558244,
+    "seen": 1793845809.320752,
+    "ast_hash": "9bff3439f1f933a8091b099122c65a5f",
+    "semantic_hash": ""
+  },
+  "src/server/Services/KnockbackService.luau": {
+    "mtime": 1793845487.8733683,
+    "seen": 1793845809.3207564,
+    "ast_hash": "9dcaf12f834f160b20ae2eab61d79a88",
+    "semantic_hash": ""
+  },
+  "src/server/Services/RagdollService.luau": {
+    "mtime": 1793845473.4453685,
+    "seen": 1793845809.3207626,
+    "ast_hash": "d2bdd28103195f15e6e0c6bb1a61b8fc",
+    "semantic_hash": ""
+  },
+  "src/server/Services/StatusEffectService.luau": {
+    "mtime": 1793845377.7773707,
+    "seen": 1793845809.3207664,
+    "ast_hash": "f6f542b06292f10cc28ab8d8aaaec899",
+    "semantic_hash": ""
+  },
+  "src/shared/Config/CombatConfig.luau": {
+    "mtime": 1793845335.7213717,
+    "seen": 1793845809.3207712,
+    "ast_hash": "40e3acd2e84a2bab38340f88f828cb0d",
+    "semantic_hash": ""
+  },
+  "src/shared/Enums/StatusEffectType.luau": {
+    "mtime": 1793845327.902384,
+    "seen": 1793845809.3207855,
+    "ast_hash": "64631b6c6f97deceedb58ef39acb3805",
+    "semantic_hash": ""
+  },
+  "src/shared/Enums/TargetFilterMode.luau": {
+    "mtime": 1793845330.1533718,
+    "seen": 1793845809.320787,
+    "ast_hash": "aaebc37b75e091b829c1ae7cc29ff26c",
+    "semantic_hash": ""
+  },
+  "src/shared/Util/Characters.luau": {
+    "mtime": 1793845387.0613706,
+    "seen": 1793845809.3207948,
+    "ast_hash": "a4d5283f30d14753f8e6f80df13fab80",
+    "semantic_hash": ""
+  },
+  "src/shared/Util/Knockback.luau": {
+    "mtime": 1793845494.573368,
+    "seen": 1793845809.3207989,
+    "ast_hash": "ff6a107c3d852a7ed997698d29cd6e78",
+    "semantic_hash": ""
+  },
+  "src/shared/Util/NumberStack.luau": {
+    "mtime": 1793845324.297372,
+    "seen": 1793845809.3208005,
+    "ast_hash": "1545409ab3fd6c6446b6c3c6bd3f4e8d",
+    "semantic_hash": ""
+  },
+  "ROADMAP.md": {
+    "mtime": 1793845656.2276669,
+    "seen": 1793845809.320888,
+    "ast_hash": "3b2bd2be29118b365a0605014f1231b8",
     "semantic_hash": ""
   }
 }
