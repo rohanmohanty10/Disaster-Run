@@ -300,6 +300,7 @@ The `references/SorceryGame/` archive provides the exact implementation of Gojo'
 - `/test round end` ends the round or match.
 - `/test role runner` lets you use Runner skills in the lobby (against the dummies).
 - `/test round god` then `/test round start` lets you try the God view solo, with the dummies as targets.
+- **Equipping a kit from the admin panel** outside a match also puts you in the test area as that role (God kit → God view in the sky; Runner kit → Runner), so you can use it right away. Turn this off with `AdminConfig.EquipEntersTestArea = false`.
 - **Dev test area (no match needed):** admin panel → TOOLS → *Test as Runner* / *Test as God*, or `/test area runner` / `/test area god`. It's a practice yard at `TestAreaConfig.Center` (X −400, away from the lobby and course) with a grid floor (lines every 20 studs), a ramp and ledges, a low and a tall wall, destructible cover and the dummies. As a God you get the overhead view and God HUD over it.
   - **God over the course:** TOOLS → *Test as God over the course* (`/test area god course`) gives you the God view in the sky above the real course, with no match running. (The dummies stay in the test area.)
   - `/test area cooldowns`: no cooldowns and free casts (no stamina / energy spent), only while you're in the area.

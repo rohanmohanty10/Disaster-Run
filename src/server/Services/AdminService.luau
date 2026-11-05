@@ -15,6 +15,7 @@ local Requests = require(script.Parent.Requests)
 local DataService = require(script.Parent.DataService)
 local InventoryService = require(script.Parent.InventoryService)
 local DevTestService = require(script.Parent.DevTestService)
+local TestAreaService = require(script.Parent.TestAreaService)
 
 local AdminService = {}
 
@@ -72,6 +73,15 @@ function AdminService.Init()
 			return Requests.Fail("BadRequest")
 		end
 		local ok, message = AdminService.EquipKit(player, role, kitId)
+		-- Outside a match, jump straight into testing it (unless already testing as that role).
+		local testing = TestAreaService.IsInside(player) and player:GetAttribute("Role") == role
+		if ok and AdminConfig.EquipEntersTestArea and not player:GetAttribute("InRound") and not testing then
+			local spot = if role == "God" then player:GetAttribute("TestAreaSpot") else nil
+			local entered, enterMessage = TestAreaService.Enter(player, role, if spot == "Course" then "Course" else nil)
+			if entered then
+				message = `{message} {enterMessage}`
+			end
+		end
 		return { Ok = ok, Message = message }
 	end)
 
