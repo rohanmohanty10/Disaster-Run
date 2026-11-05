@@ -47,6 +47,7 @@ local function strike(ctx: Context, shape: Common.Shape, telegraph: number, dama
 		Angle = shape.Angle,
 		Duration = telegraph,
 		Element = b.Vfx,
+		Skill = if ctx.Skill then ctx.Skill.Name else nil,
 	})
 	task.wait(telegraph)
 	Common.Fx({
@@ -58,6 +59,7 @@ local function strike(ctx: Context, shape: Common.Shape, telegraph: number, dama
 		Width = shape.Width,
 		Angle = shape.Angle,
 		Element = b.Vfx,
+		Skill = if ctx.Skill then ctx.Skill.Name else nil,
 	})
 	local hits = Common.Targets(ctx.Player, shape, "HostileToRunners", b.MaxTargets)
 	local center = shape.CFrame.Position
@@ -89,6 +91,7 @@ local function linger(ctx: Context, shape: Common.Shape, cast: any)
 		Width = shape.Width,
 		Duration = l.Duration,
 		Element = b.Vfx,
+		Skill = if ctx.Skill then ctx.Skill.Name else nil,
 	})
 	local center = shape.CFrame.Position
 	local elapsed = 0
@@ -122,7 +125,8 @@ function GodSkills.Circle(ctx: Context)
 
 	if b.Bolts then
 		-- Many small strikes scattered inside the area (Lightning Wrath, Sacred Jewel Barrage).
-		Common.Fx({ Kind = "Telegraph", Shape = "Circle", CFrame = shape.CFrame, Radius = radius, Duration = b.Tel + b.Bolts.Count * b.Bolts.Interval, Element = b.Vfx, Faint = true })
+		Common.Fx({ Kind = "Telegraph", Shape = "Circle", CFrame = shape.CFrame, Radius = radius, Duration = b.Tel + b.Bolts.Count * b.Bolts.Interval, Element = b.Vfx,
+		Skill = if ctx.Skill then ctx.Skill.Name else nil, Faint = true })
 		task.wait(b.Tel)
 		local rng = Random.new()
 		for _ = 1, b.Bolts.Count do
@@ -140,7 +144,7 @@ function GodSkills.Circle(ctx: Context)
 	end
 
 	if b.Linger and not b.Dmg then
-		Common.Fx({ Kind = "Telegraph", Shape = "Circle", CFrame = shape.CFrame, Radius = radius, Duration = b.Tel, Element = b.Vfx })
+		Common.Fx({ Kind = "Telegraph", Shape = "Circle", CFrame = shape.CFrame, Radius = radius, Duration = b.Tel, Element = b.Vfx, Skill = ctx.Skill.Name })
 		task.wait(b.Tel)
 		if b.RootAtFull and ctx.Charge >= 0.95 then
 			for _, victim in Common.Targets(ctx.Player, shape, "HostileToRunners") do
@@ -191,7 +195,7 @@ function GodSkills.Line(ctx: Context)
 	}
 	local cast = CombatService.NewCast()
 	if b.Wall and b.Linger then
-		Common.Fx({ Kind = "Telegraph", Shape = "Line", CFrame = shape.CFrame, Length = b.L, Width = b.W, Duration = b.Tel, Element = b.Vfx })
+		Common.Fx({ Kind = "Telegraph", Shape = "Line", CFrame = shape.CFrame, Length = b.L, Width = b.W, Duration = b.Tel, Element = b.Vfx, Skill = ctx.Skill.Name })
 		task.wait(b.Tel)
 		linger(ctx, shape, cast)
 		return
@@ -230,7 +234,7 @@ function GodSkills.Line(ctx: Context)
 					break
 				end
 				local targetRoot = Characters.GetRoot(nextTarget :: Model) :: BasePart
-				Common.Fx({ Kind = "Bolt", From = fromRoot.Position, To = targetRoot.Position, Element = b.Vfx })
+				Common.Fx({ Kind = "Bolt", From = fromRoot.Position, To = targetRoot.Position, Element = b.Vfx, Skill = ctx.Skill.Name })
 				chained[nextTarget :: Model] = true
 				CombatService.Afflict(ctx.Player, nextTarget :: Model, { Cast = cast, Damage = b.Chain.Dmg, Stun = b.Stun })
 				from = nextTarget :: Model

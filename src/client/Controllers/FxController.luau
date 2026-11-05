@@ -15,6 +15,7 @@ local Remotes = require(ReplicatedStorage.Shared.Network.Remotes)
 local Characters = require(ReplicatedStorage.Shared.Util.Characters)
 
 local UIController = require(script.Parent.UIController)
+local SkillFx = require(script.Parent.SkillFx)
 
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui") :: PlayerGui
@@ -182,6 +183,7 @@ end
 local handlers: { [string]: (info: { [string]: any }) -> () } = {}
 
 handlers.Telegraph = function(info)
+	SkillFx.Telegraph(info) -- extra signature visuals; the ground warning below always draws
 	local duration = math.clamp(tonumber(info.Duration) or 1, 0.05, 20)
 	local color = colorOf(info.Element)
 	local outline = groundShape(info, if info.Faint then color else WARNING, if info.Faint then 0.8 else 0.7)
@@ -200,6 +202,9 @@ handlers.Telegraph = function(info)
 end
 
 handlers.Impact = function(info)
+	if SkillFx.Impact(info) then
+		return
+	end
 	local color = colorOf(info.Element)
 	local flash = groundShape(info, color, 0.1)
 	if flash then
@@ -222,6 +227,9 @@ handlers.Impact = function(info)
 end
 
 handlers.Linger = function(info)
+	if SkillFx.Linger(info) then
+		return
+	end
 	local duration = math.clamp(tonumber(info.Duration) or 2, 0.1, 30)
 	local zone = groundShape(info, colorOf(info.Element), 0.5)
 	if zone then
@@ -231,6 +239,9 @@ handlers.Linger = function(info)
 end
 
 handlers.Bolt = function(info)
+	if SkillFx.Bolt(info) then
+		return
+	end
 	if typeof(info.From) ~= "Vector3" or typeof(info.To) ~= "Vector3" then
 		return
 	end
@@ -322,6 +333,7 @@ function FxController.Init()
 	folder = Instance.new("Folder")
 	folder.Name = "AbilityFx"
 	folder.Parent = workspace
+	SkillFx.SetFolder(folder)
 
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "ScreenFx"
